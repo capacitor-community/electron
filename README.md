@@ -1,6 +1,6 @@
-# Capacitor HTTP Plugin
+# Capacitor Electron
 
-Capacitor community plugin for native HTTP requests, file download/uploads, and cookie management.
+Capacitor community support for the Electron platform.
 
 <!-- Badges -->
 <a href="https://npmjs.com/package/@capacitor-community/electron">
