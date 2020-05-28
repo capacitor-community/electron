@@ -1,9 +1,24 @@
-# Capacitor Community Github Org
+# Capacitor HTTP Plugin
 
-The `capacitor-community` GitHub org seeks to bring together the highest quality Capacitor plugins and the Capacitor plugin authoring community into a single place and help users find high quality, well maintained Capacitor plugins.
+Capacitor community plugin for native HTTP requests, file download/uploads, and cookie management.
 
-Every plugin in the `capacitor-community` org commits to a base level of maintenance and quality control, and, as much as possible, follows a set of consistent design and code standards.
+<!-- Badges -->
+<a href="https://npmjs.com/package/@capacitor-community/electron">
+  <img src="https://img.shields.io/npm/v/@capacitor-community/electron.svg">
+</a>
+<a href="https://npmjs.com/package/@capacitor-community/electron">
+  <img src="https://img.shields.io/npm/l/@capacitor-community/electron.svg">
+</a>
 
-Unlike the core Capacitor tooling and APIs, plugins in the `capacitor-community` are not maintained by the Ionic or Capacitor core team (though may be maintained by individuals on the team), but by the community and community maintainers. However, the Ionic and Capacitor team do facilitate and work closely with maintainers to ensure that plugins are kept up to date, follow the latest in Capacitor plugin standards, and have a broad set of useful functionality.
+## Maintainers
 
-Beyond maintenance, plugin authors commit to providing a safe environment and adhere to the community Code of Conduct, and expect the same of all users.
+| Maintainer | GitHub | Social | Sponsoring Company | Primary  |
+| -----------| -------| -------| ------------------ | -------- |
+| Mike S. | [mlynch](https://github.com/Mike-Summ) | [@IT_MikeS](https://twitter.com/IT_MikeS) | Volunteer | Yes |
+| Max Lynch | [mlynch](https://github.com/mlynch) | [@maxlynch](https://twitter.com/maxlynch) | Ionic | *No* |
+
+Maintenance Status: Actively Maintained
+
+## Usage
+
+More info soon
