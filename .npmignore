@@ -1,0 +1,10 @@
+.DS_Store
+node_modules/
+npm-debug.log
+.idea/
+.vscode/
+src/
+.gitignore
+index.ts
+rollup.config.js
+tsconfig.json

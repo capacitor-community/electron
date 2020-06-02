@@ -26,7 +26,7 @@ export class ModalsPluginElectron extends WebPlugin implements ModalsPlugin {
 
   async alert(options: AlertOptions): Promise<void> {
     const buttons = [options.buttonTitle || 'OK'];
-    return await dialog.showMessageBox(getCurrentWindow(), {message: options.message, title: options.title, buttons});
+    await dialog.showMessageBox(getCurrentWindow(), {message: options.message, title: options.title, buttons});
   }
 
   async prompt(options: PromptOptions): Promise<PromptResult> {
