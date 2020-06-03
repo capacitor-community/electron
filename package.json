@@ -1,6 +1,6 @@
 {
   "name": "@capacitor-community/electron",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Capacitor community support for the Electron platform.",
   "main": "dist/index.js",
   "scripts": {
@@ -10,8 +10,8 @@
     "minify": "uglifyjs --mangle --compress --source-map \"content='dist/electron-bridge.js.map',url='electron-bridge.js.map'\" --comments '/^/*!/' --output dist/electron-bridge.js dist/electron-bridge.js",
     "prepublishOnly": "npm run build",
     "rollup": "rollup --config rollup.config.js",
-    "transpile": "tsc --module ES2020 --target ES5 --outDir dist/esm",
-    "transpile-index": "tsc ./index.ts --module ES2020 --target ES5 --outDir dist --moduleResolution Node --allowSyntheticDefaultImports --sourceMap",
+    "transpile": "tsc --module ES2015 --target ES5 --outDir dist/esm",
+    "transpile-index": "tsc ./index.ts --module ES2015 --target ES5 --outDir dist --moduleResolution Node --allowSyntheticDefaultImports --sourceMap",
     "transpile-no-helpers": "tsc --module ES2015 --target ES5 --noEmitHelpers true --outDir dist/esm",
     "test": "jest"
   },

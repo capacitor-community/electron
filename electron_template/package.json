@@ -7,8 +7,7 @@
     "electron:start": "electron ./"
   },
   "dependencies": {
-    "electron-is-dev": "^1.1.0",
-    "image-data-uri": "~2.0.1",
+    "electron-is-dev": "~1.1.0",
     "@capacitor-community/electron": "latest"
   },
   "devDependencies": {
