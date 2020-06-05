@@ -23,7 +23,7 @@ Maintenance Status: Actively Maintained
 
 More info soon
 
-## Configuration for Popular Frameworks/Libraries's
+## Configuration for Popular Frameworks/Libraries
 
 - __Ionic/React__
   1. Add `homepage: "./",` to your apps `package.json`
