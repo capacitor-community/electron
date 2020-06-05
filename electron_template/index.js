@@ -54,14 +54,23 @@ async function createWindow () {
     mainWindow.webContents.openDevTools();
   }
 
-  if(useSplashScreen) {
-    splashScreen = new CapacitorSplashScreen(mainWindow);
-    splashScreen.init();
-  } else {
+  // This function will get called after the SplashScreen timeout and load your content into the main window.
+  const loadMainWindow = () => {
+    // Here we use a file referance but you could also reference a dev server instead:
+    // mainWindow.loadURL(`http://localhost:3000`);
     mainWindow.loadFile(`./app/index.html`);
+
+    // After your content is loaded in we show the user the window. 
     mainWindow.webContents.on('dom-ready', () => {
       mainWindow.show();
     });
+  }
+
+  if(useSplashScreen) {
+    splashScreen = new CapacitorSplashScreen(mainWindow);
+    splashScreen.init(loadMainWindow);
+  } else {
+    loadMainWindow();
   }
 
 }
