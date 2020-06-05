@@ -32,7 +32,6 @@ async function encodeFromFile(filePath: string): Promise<string> {
     return 'data:' + mediaType + ';base64,' + dataBase64;
 }
 
-
 async function configCapacitor(mainWindow: Electron.BrowserWindow) {
     let capConfigJson = JSON.parse(fs.readFileSync(`./capacitor.config.json`, 'utf-8'));
     const appendUserAgent = capConfigJson.electron && capConfigJson.electron.appendUserAgent ? capConfigJson.electron.appendUserAgent : capConfigJson.appendUserAgent;
@@ -61,8 +60,9 @@ class CapacitorSplashScreen {
         customHtml: null
     };
 
+
     constructor(mainWindow: Electron.BrowserWindow, splashOptions?: SplashOptions) {
-    
+
         if (splashOptions) {
             this.splashOptions = {...splashOptions};
         }
@@ -70,7 +70,7 @@ class CapacitorSplashScreen {
         this.mainWindowRef = mainWindow;
 
         try {
-            let capConfigJson = JSON.parse(fs.readFileSync(`./capacitor.config.json`, 'utf-8'));
+            let capConfigJson = JSON.parse(fs.readFileSync(path.join(app.getAppPath(), 'capacitor.config.json'), 'utf-8'));
             this.splashOptions = Object.assign(
                 this.splashOptions,
                 capConfigJson.plugins && capConfigJson.plugins.SplashScreen ? capConfigJson.plugins.SplashScreen : {}
@@ -96,7 +96,7 @@ class CapacitorSplashScreen {
         });
     }
 
-    async init() {
+    async init(afterSplash: () => void) {
         let rootPath = app.getAppPath();
 
         this.splashWindow = new BrowserWindow({
@@ -139,7 +139,8 @@ class CapacitorSplashScreen {
         this.splashWindow.webContents.on('dom-ready', async () => {
             this.splashWindow.show();
             setTimeout(async () => {
-                this.mainWindowRef.loadURL(`file://${rootPath}/app/index.html`);
+                afterSplash();
+                // this.mainWindowRef.loadURL(`file://${rootPath}/app/index.html`);
             }, 4500);
         });
 
