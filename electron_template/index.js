@@ -1,14 +1,22 @@
-const { app, BrowserWindow, Menu } = require('electron');
+const { app, BrowserWindow, Menu, dialog } = require('electron');
 const isDevMode = require('electron-is-dev');
-const { CapacitorSplashScreen, configCapacitor } = require('@capacitor-community/electron');
-
 const path = require('path');
+const { CapacitorSplashScreen, CapacitorDeeplinking, configCapacitor } = require('@capacitor-community/electron');
 
 // Place holders for our windows so they don't get garbage collected.
 let mainWindow = null;
 
 // Placeholder for SplashScreen ref
 let splashScreen = null;
+
+// Placeholder for deeplinking
+let deepLinking = null;
+// This is the function that will run when a deeplink is executed.
+const deepLinkingHandler = (deeplinkingUrl) => {
+  //Do something with passed deeplinking url (ex: mycapacitorapp://testing)
+  console.log(deeplinkingUrl);
+  dialog.showMessageBox(mainWindow, {message: deeplinkingUrl, title: 'Log', buttons: ['Okay']});
+};
 
 //Change this if you do not wish to have a splash screen
 let useSplashScreen = true;
@@ -43,10 +51,14 @@ async function createWindow () {
     }
   });
 
+  // Initialize Deeplinking for given custom protocol.
+  deepLinking = new CapacitorDeeplinking(mainWindow, {customeProtocol: "mycapacitorapp"});
+
   // Call to configure the useragent for capacitor.
   // Note: any windows you spawn that you want to include capacitor plugins must have this config function applied.
   configCapacitor(mainWindow);
 
+  // Check if electron is in dev mode.
   if (isDevMode) {
     // Set our above template to the Menu Object if we are in development mode, dont want users having the devtools.
     Menu.setApplicationMenu(Menu.buildFromTemplate(menuTemplateDev));
@@ -56,6 +68,10 @@ async function createWindow () {
 
   // This function will get called after the SplashScreen timeout and load your content into the main window.
   const loadMainWindow = () => {
+    // Setup the handler for deeplinking if it has been setup.
+    if(deepLinking !== null)
+      deeplinking.init(deepLinkingHandler);
+
     // Here we use a file referance but you could also reference a dev server instead:
     // mainWindow.loadURL(`http://localhost:3000`);
     mainWindow.loadFile(`./app/index.html`);
@@ -66,13 +82,13 @@ async function createWindow () {
     });
   }
 
+  //Based on Splashscreen choice actually load the window.
   if(useSplashScreen) {
     splashScreen = new CapacitorSplashScreen(mainWindow);
     splashScreen.init(loadMainWindow);
   } else {
     loadMainWindow();
   }
-
 }
 
 // This method will be called when Electron has finished

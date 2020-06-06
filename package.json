@@ -44,6 +44,7 @@
     "typescript": "^3.2.4"
   },
   "dependencies": {
-    "@capacitor/core": "latest"
+    "@capacitor/core": "latest",
+    "mime-types": "^2.1.27"
   }
 }

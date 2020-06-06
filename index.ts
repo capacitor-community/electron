@@ -12,11 +12,14 @@ export interface SplashOptions {
     customHtml?: string | null;
 }
 
+export interface DeeplinkingOptions {
+    customProtocol: string;
+}
+
 const fs = require('fs');
 const path = require('path');
 const mimeTypes = require('mime-types');
 const { app, ipcMain, BrowserWindow } = require('electron');
-
 
 async function encodeFromFile(filePath: string): Promise<string> {
     if (!filePath) {
@@ -164,7 +167,66 @@ class CapacitorSplashScreen {
 
 }
 
+class CapacitorDeeplinking {
+    private deeplinkingUrl = '';
+    mainWindowRef = null;
+    deepLinkHandler: (deeplinkUrl: string) => void;
+    deeplinkingOptions: DeeplinkingOptions = {
+        customProtocol: 'myapp'
+    };
+
+    constructor(mainWindow, options?: DeeplinkingOptions) {
+        this.mainWindowRef = mainWindow;
+        if(options) {
+            this.deeplinkingOptions.customProtocol = options.customProtocol;
+        }
+    }
+
+    init(deepLinkHandler: (deeplinkUrl: string) => void) {
+        this.deepLinkHandler = deepLinkHandler;
+
+        const gotTheLock = app.requestSingleInstanceLock();
+        if (gotTheLock) {
+            app.on('second-instance', (e, argv) => {
+                if (process.platform == 'win32') {
+                    this.deeplinkingUrl = argv.slice(1).toString();
+                }
+                this.deepLinkHandler(this.deeplinkingUrl);
+
+                if (this.mainWindowRef) {
+                    if (this.mainWindowRef.isMinimized()) 
+                        this.mainWindowRef.restore();
+                    this.mainWindowRef.focus();
+                }
+            });
+        } else {
+            app.quit();
+            return
+        }
+
+        if (!app.isDefaultProtocolClient(this.deeplinkingOptions.customProtocol)) {
+            // Define custom protocol handler. 
+            // Deep linking only works on packaged versions of the app!
+            app.setAsDefaultProtocolClient(this.deeplinkingOptions.customProtocol);
+        }
+          
+        app.on('will-finish-launching', function() {
+            app.on('open-url', function(event, url) {
+                event.preventDefault();
+                this.deepLinkHandler(url);
+            });
+        });
+
+        if (process.platform == 'win32') {
+            this.deeplinkingUrl = process.argv.slice(1).toString();
+            this.deepLinkHandler(this.deeplinkingUrl);
+        }
+    }
+
+}
+
 module.exports = {
     CapacitorSplashScreen,
+    CapacitorDeeplinking,
     configCapacitor
 }
