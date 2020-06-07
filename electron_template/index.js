@@ -42,17 +42,19 @@ async function createWindow () {
     height: 920,
     width: 1600,
     show: false,
+    icon: path.join(app.getAppPath(), 'appIcon.png'),
+    title: 'Capacitor App',
     webPreferences: {
       nodeIntegration: true,
+      enableRemoteModule: true,
       // Use preload to inject the electron varriant overrides for capacitor plugins.
       // Note: any windows you spawn that you want to include capacitor plugins must have this preload.
-      preload: path.join(__dirname, 'node_modules', '@capacitor-community', 'electron', 'dist', 'electron-bridge.js'),
-      enableRemoteModule: true
+      preload: path.join(__dirname, 'node_modules', '@capacitor-community', 'electron', 'dist', 'electron-bridge.js')
     }
   });
 
   // Initialize Deeplinking for given custom protocol.
-  deepLinking = new CapacitorDeeplinking(mainWindow, {customeProtocol: "mycapacitorapp"});
+  deepLinking = new CapacitorDeeplinking(mainWindow, {customProtocol: "mycapacitorapp"});
 
   // Call to configure the useragent for capacitor.
   // Note: any windows you spawn that you want to include capacitor plugins must have this config function applied.
