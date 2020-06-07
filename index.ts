@@ -1,4 +1,8 @@
 import Electron from 'electron';
+const fs = require('fs');
+const path = require('path');
+const mimeTypes = require('mime-types');
+const { app, ipcMain, BrowserWindow } = require('electron');
 
 export interface SplashOptions {
     imageFileName?: string;
@@ -15,11 +19,6 @@ export interface SplashOptions {
 export interface DeeplinkingOptions {
     customProtocol: string;
 }
-
-const fs = require('fs');
-const path = require('path');
-const mimeTypes = require('mime-types');
-const { app, ipcMain, BrowserWindow } = require('electron');
 
 async function encodeFromFile(filePath: string): Promise<string> {
     if (!filePath) {
