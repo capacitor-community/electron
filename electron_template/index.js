@@ -33,7 +33,7 @@ const deepLinkingHandler = (deeplinkingUrl) => {
   });
 };
 
-//Change this if you do not wish to have a splash screen
+// Change this if you do not wish to have a splash screen
 let useSplashScreen = true;
 
 // Create simple menu for easy devtools access, and for demo
@@ -107,7 +107,7 @@ async function createWindow() {
     });
   };
 
-  //Based on Splashscreen choice actually load the window.
+  // Based on Splashscreen choice actually load the window.
   if (useSplashScreen) {
     splashScreen = new CapacitorSplashScreen(mainWindow);
     splashScreen.init(loadMainWindow);

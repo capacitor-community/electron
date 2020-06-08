@@ -78,7 +78,7 @@ class CapacitorSplashScreen {
     splashOptions?: SplashOptions
   ) {
     if (splashOptions) {
-      this.splashOptions = { ...splashOptions };
+      this.splashOptions = Object.assign(this.splashOptions, splashOptions);
     }
 
     this.mainWindowRef = mainWindow;
@@ -201,7 +201,7 @@ class CapacitorDeeplinking {
   constructor(mainWindow, options?: DeeplinkingOptions) {
     this.mainWindowRef = mainWindow;
     if (options) {
-      this.deeplinkingOptions.customProtocol = options.customProtocol;
+      this.deeplinkingOptions = Object.assign(this.deeplinkingOptions, options);
     }
   }
 
