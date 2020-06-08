@@ -1,0 +1,38 @@
+{
+  "name": "capacitor-app",
+  "version": "1.0.0",
+  "description": "An Amazing Capacitor App",
+  "main": "index.js",
+  "scripts": {
+    "electron:start": "electron ./",
+    "electron:pack": "electron-builder build --dir",
+    "electron:build-windows": "electron-builder build --windows",
+    "electron:build-mac": "electron-builder build --mac"
+  },
+  "dependencies": {
+    "electron-is-dev": "~1.1.0",
+    "@capacitor-community/electron": "latest"
+  },
+  "devDependencies": {
+    "electron": "~9.0.0",
+    "electron-builder": "~22.7.0"
+  },
+  "keywords": [
+    "capacitor",
+    "electron"
+  ],
+  "author": "",
+  "license": "MIT",
+  "build": {
+    "appId": "com.example.capacitor-app",
+    "mac": {
+      "category": "public.app-category.developer-tools",
+      "target": "dmg",
+      "icon": "appIcon.png"
+    },
+    "win": {
+      "target": "msi",
+      "icon": "appIcon.png"
+    }
+  }
+}
