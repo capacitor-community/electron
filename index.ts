@@ -360,8 +360,6 @@ class CapacitorElectronApp {
       },
     };
 
-    console.log(this.config);
-
     this.mainWindow = new BrowserWindow(
       Object.assign(
         neededBrowserWindowConfig,
