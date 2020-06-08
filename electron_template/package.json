@@ -10,9 +10,7 @@
     "electron:build-mac": "electron-builder build --mac"
   },
   "dependencies": {
-    "electron-is-dev": "1.2.0",
-    "@capacitor-community/electron": "latest",
-    "electron-serve": "1.0.0"
+    "@capacitor-community/electron": "latest"
   },
   "devDependencies": {
     "electron": "~9.0.0",
