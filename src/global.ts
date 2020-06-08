@@ -1,8 +1,8 @@
-import {Capacitor as _Capacitor} from '@capacitor/core/dist/esm/definitions';
+import { Capacitor as _Capacitor } from "@capacitor/core/dist/esm/definitions";
 
 declare var window: any;
 
-import { CapacitorElectron } from './runtime';
+import { CapacitorElectron } from "./runtime";
 
 // Create our default Capacitor instance, which will be
 // overridden on native platforms
