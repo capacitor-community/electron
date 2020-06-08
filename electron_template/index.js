@@ -7,6 +7,8 @@ const {
   CapacitorDeeplinking,
   configCapacitor,
 } = require("@capacitor-community/electron");
+
+// electron-serve allows SPA and other webapps to run in electron
 const loadWebApp = electronServe({
   directory: path.join(app.getAppPath(), "app"),
   scheme: "capacitor-electron",
