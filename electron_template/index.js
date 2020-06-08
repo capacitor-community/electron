@@ -1,11 +1,16 @@
 const { app, BrowserWindow, Menu, dialog } = require("electron");
 const isDevMode = require("electron-is-dev");
+const electronServe = require("electron-serve");
 const path = require("path");
 const {
   CapacitorSplashScreen,
   CapacitorDeeplinking,
   configCapacitor,
 } = require("@capacitor-community/electron");
+const loadWebApp = electronServe({
+  directory: path.join(app.getAppPath(), "app"),
+  scheme: "capacitor-electron",
+});
 
 // Place holders for our windows so they don't get garbage collected.
 let mainWindow = null;
@@ -86,13 +91,13 @@ async function createWindow() {
   }
 
   // This function will get called after the SplashScreen timeout and load your content into the main window.
-  const loadMainWindow = () => {
+  const loadMainWindow = async () => {
     // Setup the handler for deeplinking if it has been setup.
-    if (deepLinking !== null) deeplinking.init(deepLinkingHandler);
+    if (deepLinking !== null) deepLinking.init(deepLinkingHandler);
 
-    // Here we use a file referance but you could also reference a dev server instead:
+    // Here we use a production web app build reference but you could also reference a dev server instead with:
     // mainWindow.loadURL(`http://localhost:3000`);
-    mainWindow.loadFile(`./app/index.html`);
+    await loadWebApp(mainWindow);
 
     // After your content is loaded in we show the user the window.
     mainWindow.webContents.on("dom-ready", () => {
