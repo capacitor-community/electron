@@ -11,7 +11,8 @@
     "rollup": "rollup --config rollup.config.js",
     "transpile": "tsc --module ES2015 --target ES5 --outDir dist/esm",
     "transpile-index": "tsc ./index.ts --module ES2015 --target ES5 --outDir dist --moduleResolution Node --allowSyntheticDefaultImports --sourceMap",
-    "transpile-no-helpers": "tsc --module ES2015 --target ES5 --noEmitHelpers true --outDir dist/esm"
+    "transpile-no-helpers": "tsc --module ES2015 --target ES5 --noEmitHelpers true --outDir dist/esm",
+    "shipit": "np"
   },
   "repository": {
     "type": "git",
@@ -25,10 +26,20 @@
   "bugs": {
     "url": "https://github.com/capacitor-community/electron/issues"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  },
   "homepage": "https://github.com/capacitor-community/electron#readme",
   "devDependencies": {
     "@types/node": "~12.0.5",
     "electron": "~9.0.0",
+    "husky": "^4.2.5",
+    "np": "^6.2.4",
+    "prettier": "^2.0.5",
+    "prettier-plugin-java": "^0.8.0",
+    "pretty-quick": "^2.0.1",
     "rimraf": "^3.0.2",
     "rollup": "^2.13.1",
     "rollup-plugin-node-resolve": "^5.2.0",
