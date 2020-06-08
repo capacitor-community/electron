@@ -20,7 +20,7 @@ const myCapacitorApp = new CapacitorElectronApp({
   splashScreen: {
     useSplashScreen: true,
     splashOptions: {
-      imageFilePath: path.join(app.getAppPath(), "assets", "splash.png"),
+      imageFilePath: path.join(app.getAppPath(), "assets", "splash.gif"),
       windowWidth: 400,
       windowHeight: 400,
       autoHideLaunchSplash: true,
