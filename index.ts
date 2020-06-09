@@ -47,7 +47,7 @@ export interface CapacitorElectronConfig {
   deepLinking?: {
     useDeeplinking: boolean;
     deeplinkingCustomProtocol: string;
-    deeplinkingHandlerFunction: (deeplinkingUrl: string) => void;
+    deeplinkingHandlerFunction?: (deeplinkingUrl: string) => void;
   };
 }
 
@@ -216,11 +216,27 @@ class CapacitorSplashScreen {
 
 class CapacitorDeeplinking {
   private deeplinkingUrl = "";
-  mainWindowRef = null;
-  deepLinkHandler: (deeplinkUrl: string) => void;
+  mainWindowRef: Electron.BrowserWindow | null = null;
+  private internalDeeplinkHandler: (deeplinkUrl: string) => void = (
+    deeplinkUrl: string
+  ) => {
+    const paramsArr = deeplinkUrl.split(",");
+    let url = "";
+    for (let item of paramsArr) {
+      if (item.indexOf(this.deeplinkingOptions.customProtocol) >= 0) {
+        url = item;
+        break;
+      }
+    }
+    if (url.length > 0) {
+      this.mainWindowRef.webContents.send("appUrlOpen", url);
+      if (this.userDeeplinkHandler !== null) this.userDeeplinkHandler(url);
+    }
+  };
   deeplinkingOptions: DeeplinkingOptions = {
     customProtocol: "myapp",
   };
+  userDeeplinkHandler: (deeplinkUrl: string) => void | null = null;
 
   constructor(mainWindow, options?: DeeplinkingOptions) {
     this.mainWindowRef = mainWindow;
@@ -229,8 +245,8 @@ class CapacitorDeeplinking {
     }
   }
 
-  init(deepLinkHandler: (deeplinkUrl: string) => void) {
-    this.deepLinkHandler = deepLinkHandler;
+  init(deepLinkHandler?: (deeplinkUrl: string) => void) {
+    if (deepLinkHandler) this.userDeeplinkHandler = deepLinkHandler;
 
     const gotTheLock = app.requestSingleInstanceLock();
     if (gotTheLock) {
@@ -238,7 +254,7 @@ class CapacitorDeeplinking {
         if (process.platform == "win32") {
           this.deeplinkingUrl = argv.slice(1).toString();
         }
-        this.deepLinkHandler(this.deeplinkingUrl);
+        this.internalDeeplinkHandler(this.deeplinkingUrl);
 
         if (this.mainWindowRef) {
           if (this.mainWindowRef.isMinimized()) this.mainWindowRef.restore();
@@ -259,13 +275,13 @@ class CapacitorDeeplinking {
     app.on("will-finish-launching", function () {
       app.on("open-url", function (event, url) {
         event.preventDefault();
-        this.deepLinkHandler(url);
+        this.internalDeeplinkHandler(url);
       });
     });
 
     if (process.platform == "win32") {
       this.deeplinkingUrl = process.argv.slice(1).toString();
-      this.deepLinkHandler(this.deeplinkingUrl);
+      this.internalDeeplinkHandler(this.deeplinkingUrl);
     }
   }
 }
@@ -289,21 +305,12 @@ class CapacitorElectronApp {
   ];
 
   deepLinking = null;
-  deepLinkingHandler = (deeplinkingUrl: string) => {
-    //Do something with passed deeplinking url (ex: mycapacitorapp://testing)
-    console.log(deeplinkingUrl);
-    dialog.showMessageBox(this.mainWindow, {
-      message: deeplinkingUrl,
-      title: "Log",
-      buttons: ["Okay"],
-    });
-  };
 
   config: CapacitorElectronConfig = {
     deepLinking: {
       useDeeplinking: false,
       deeplinkingCustomProtocol: "mycapacitorapp",
-      deeplinkingHandlerFunction: this.deepLinkingHandler,
+      deeplinkingHandlerFunction: null,
     },
     splashScreen: {
       useSplashScreen: true,
@@ -384,8 +391,13 @@ class CapacitorElectronApp {
     // This function will get called after the SplashScreen timeout and load your content into the main window.
     const loadMainWindow = async () => {
       // Setup the handler for deeplinking if it has been setup.
-      if (this.deepLinking !== null)
-        this.deepLinking.init(this.deepLinkingHandler);
+      if (this.deepLinking !== null) {
+        if (this.config.deepLinking.deeplinkingHandlerFunction !== null)
+          this.deepLinking.init(
+            this.config.deepLinking.deeplinkingHandlerFunction
+          );
+        else this.deepLinking.init();
+      }
 
       if (this.config.mainWindow.devServer.useDevServer) {
         this.mainWindow.webContents.loadURL(
