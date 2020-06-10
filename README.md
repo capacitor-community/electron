@@ -19,9 +19,10 @@ Capacitor community support for the Electron platform.
 
 Maintenance Status: Actively Maintained
 
-## Usage
+## Basic Usage Steps:
 
-More info soon
+1. Run `npx cap add electron` in your project directory.
+2. Open a terminal in the `electron` folder that was created in your project directory and run `npm run electron:start` to start your app with the default config.
 
 ## Using your own image for the Splash Screen
 
@@ -29,3 +30,15 @@ More info soon
 
 1. Editing the `splash.png` file directly.
 2. Place your own image file into the `splash_assets` folder and pass the `imageFileName` property as part of `splashOptions` into `splashScreen = new CapacitorSplashScreen(mainWindow);`. For example if your image was named `myImage.png` your would pass it like: `splashScreen = new CapacitorSplashScreen(mainWindow, {imageFileName: 'myImage.png'});`
+
+## Great electron packages to consider for your project.
+
+- [Electron-Unhandled](https://github.com/sindresorhus/electron-unhandled): Catch unhandled errors and promise rejections in your Electron app.
+- [Electron-Timber](https://github.com/sindresorhus/electron-timber): Pretty console logger for Electron apps.
+- [Electron-Util](https://github.com/sindresorhus/electron-util): Useful utilities for Electron apps and modules.
+- [Electron-Debug](https://github.com/sindresorhus/electron-debug): Adds useful debug features to your Electron app.
+- [Devtron](https://www.electronjs.org/devtron): An open source tool to help you inspect, monitor, and debug your Electron app.
+- [Electron-Better-IPC](https://github.com/sindresorhus/electron-better-ipc): Simplified IPC communication for Electron apps.
+- [Electron-Store](https://github.com/sindresorhus/electron-store): Simple data persistence for your Electron app - Save and load user preferences, app state, cache, etc
+
+And more can be found on the [Awesome Electron List](https://github.com/sindresorhus/awesome-electron).
