@@ -59,5 +59,8 @@
   "directories": {
     "doc": "docs"
   },
-  "author": "IT-MikeS"
+  "author": "IT-MikeS",
+  "publishConfig": {
+    "access": "public"
+  }
 }
