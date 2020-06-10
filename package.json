@@ -4,7 +4,7 @@
   "description": "Capacitor community support for the Electron platform.",
   "main": "dist/index.js",
   "scripts": {
-    "build": "npm run clean && npm run transpile && npm run rollup && npm run minify && npm run transpile-index && npm run typedoc:run",
+    "build": "npm run clean && npm run transpile && npm run rollup && npm run minify && npm run transpile-index",
     "clean": "rimraf dist",
     "minify": "uglifyjs --mangle --compress --source-map \"content='dist/electron-bridge.js.map',url='electron-bridge.js.map'\" --comments '/^/*!/' --output dist/electron-bridge.js dist/electron-bridge.js",
     "prepublishOnly": "npm run build",
@@ -55,5 +55,9 @@
   "dependencies": {
     "@capacitor/core": "latest",
     "mime-types": "~2.1.27"
-  }
+  },
+  "directories": {
+    "doc": "docs"
+  },
+  "author": "IT-MikeS"
 }
