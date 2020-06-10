@@ -19,6 +19,10 @@ Capacitor community support for the Electron platform.
 
 Maintenance Status: Actively Maintained
 
+## Docs:
+
+- [Typedoc Docs](https://github.com/IT-MikeS/electron) about config and usage options.
+
 ## Basic Usage Steps:
 
 1. Run `npx cap add electron` in your project directory.
