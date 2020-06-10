@@ -29,7 +29,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "pretty-quick --staged"
+      "pre-commit": "pretty-quick --staged && npm run typedoc:run"
     }
   },
   "homepage": "https://github.com/capacitor-community/electron#readme",
