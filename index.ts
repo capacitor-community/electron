@@ -111,7 +111,7 @@ export interface CapacitorElectronConfig {
   };
 }
 
-/** @hidden */
+/** @internal */
 async function encodeFromFile(filePath: string): Promise<string> {
   if (!filePath) {
     throw new Error("filePath is required.");
@@ -128,7 +128,7 @@ async function encodeFromFile(filePath: string): Promise<string> {
   return "data:" + mediaType + ";base64," + dataBase64;
 }
 
-/** @hidden */
+/** @internal */
 async function configCapacitor(mainWindow: Electron.BrowserWindow) {
   let capConfigJson = JSON.parse(
     fs.readFileSync(`./capacitor.config.json`, "utf-8")
