@@ -26,10 +26,25 @@ Maintenance Status: Actively Maintained
 
 ## Using your own image for the Splash Screen
 
-`@capacitor-community/electron` looks in the `splash_assets` folder of the `YOUR_APP_ROOT/electron` folder for a `splash.png` file by default, you can use your own image by using one of the folloing methods:
+`@capacitor-community/electron` looks in the `YOUR_APP_ROOT/electron/assets` folder for a `splash.png` file by default, but you can use your own image by using one of the following methods:
 
 1. Editing the `splash.png` file directly.
-2. Place your own image file into the `splash_assets` folder and pass the `imageFileName` property as part of `splashOptions` into `splashScreen = new CapacitorSplashScreen(mainWindow);`. For example if your image was named `myImage.png` your would pass it like: `splashScreen = new CapacitorSplashScreen(mainWindow, {imageFileName: 'myImage.png'});`
+2. Place your own image file into the `assets` folder and pass the `imageFilePath` property as part of `splashScreen -> splashOptions` into `CapacitorElectronApp()`. For example if your image was named `myImage.gif` (yes animated GIF's are valid) you would pass it like this:
+
+```typescript
+  const {app, ......} = require('electron');
+  const path = require('path');
+
+  .....
+
+  const myCapacitorApp = new CapacitorElectronApp({
+    splashScreen: {
+      splashOptions: {
+        imageFilePath: path.join(app.getAppPath(), "assets", "myImage.gif")
+      }
+    }
+  });
+```
 
 ## Great electron packages to consider for your project.
 

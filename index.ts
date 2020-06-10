@@ -28,7 +28,7 @@ export interface DeeplinkingOptions {
 
 export interface CapacitorElectronConfig {
   splashScreen?: {
-    useSplashScreen: boolean;
+    useSplashScreen?: boolean;
     splashOptions?: SplashOptions;
   };
   mainWindow?: {
@@ -318,7 +318,7 @@ class CapacitorElectronApp {
     splashScreen: {
       useSplashScreen: true,
       splashOptions: {
-        imageFilePath: path.join(app.getAppPath(), "assets", "splash.gif"),
+        imageFilePath: path.join(app.getAppPath(), "assets", "splash.png"),
         windowWidth: 400,
         windowHeight: 400,
         textColor: "#43A8FF",
