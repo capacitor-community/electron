@@ -4,6 +4,6 @@ node_modules/
 .DS_Store
 .vscode/
 npm-debug.log
-package-lock.json
+electron_template/package-lock.json
 old_index.ts
 electron_template/old_index.js
