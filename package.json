@@ -48,6 +48,7 @@
     "rollup-plugin-node-resolve": "^5.2.0",
     "ts-lint": "^4.5.1",
     "tslint-ionic-rules": "0.0.21",
+    "typedoc": "^0.17.7",
     "typescript": "^3.4.3",
     "uglify-js": "^3.9.4"
   },

@@ -9,3 +9,6 @@ index.ts
 rollup.config.js
 tsconfig.json
 docs/
+electron_template/
+.github/
+PLUGIN_AUTHOR_README.md
