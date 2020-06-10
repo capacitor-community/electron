@@ -13,7 +13,7 @@
     "@capacitor-community/electron": "latest"
   },
   "devDependencies": {
-    "electron": "~9.0.0",
+    "electron": "~9.0.3",
     "electron-builder": "~22.7.0",
     "typescript": "~3.9.5"
   },

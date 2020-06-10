@@ -5,5 +5,3 @@ node_modules/
 .vscode/
 npm-debug.log
 electron_template/package-lock.json
-old_index.ts
-electron_template/old_index.js
