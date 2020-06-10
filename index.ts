@@ -1,16 +1,33 @@
+/** @hidden */
 import Electron from "electron";
+/** @hidden */
 const fs = require("fs");
+/** @hidden */
 const mimeTypes = require("mime-types");
+/** @hidden */
 const path = require("path");
+/** @hidden */
 const electronIsDev = require("electron-is-dev");
-const { BrowserWindow, app, Menu, dialog, ipcMain } = require("electron");
+/** @hidden */
+const electron = require("electron");
+/** @hidden */
+const BrowserWindow = electron.BrowserWindow;
+/** @hidden */
+const app = electron.app;
+/** @hidden */
+const Menu = electron.Menu;
+/** @hidden */
+const ipcMain = electron.ipcMain;
+/** @hidden */
 const electronServe = require("electron-serve");
+/** @hidden */
 const loadWebApp = electronServe({
   directory: path.join(app.getAppPath(), "app"),
   scheme: "capacitor-electron",
 });
 
-export interface SplashOptions {
+/** @internal */
+interface SplashOptions {
   imageFilePath?: string;
   windowWidth?: number;
   windowHeight?: number;
@@ -22,36 +39,79 @@ export interface SplashOptions {
   customHtml?: string | null;
 }
 
-export interface DeeplinkingOptions {
+/** @internal */
+interface DeeplinkingOptions {
   customProtocol: string;
 }
 
 export interface CapacitorElectronConfig {
   splashScreen?: {
+    /** Whether or not to show a splash screen on startup. __Default is: true__ */
     useSplashScreen?: boolean;
-    splashOptions?: SplashOptions;
+    splashOptions?: {
+      /** Where the splash screen image is located. __Default is:__ `path.join(app.getAppPath(), "assets", "splash.png")` */
+      imageFilePath?: string;
+      /** Window width in px. __Default is: 400__ */
+      windowWidth?: number;
+      /** Window height in px. __Default is: 400__ */
+      windowHeight?: number;
+      textColor?: string;
+      loadingText?: string;
+      textPercentageFromTop?: number;
+      transparentWindow?: boolean;
+      /** Whether or not to auto hide a splash screen or if the app will hide it. __Default is: true__ */
+      autoHideLaunchSplash?: boolean;
+      customHtml?: string | null;
+    };
   };
   mainWindow?: {
+    /** Settings while running in dev mode */
     devMode?: {
       applicationMenu?: {
-        showMenu: boolean;
+        /** Should an application menu bar be shown in dev mode. __Default is: true__ */
+        showMenu?: boolean;
+        /** Custom template for the dev mode application menu. __Default is:__
+         *  ```
+         *  [
+         *    {
+         *      label: "Options",
+         *      submenu: [
+         *        {
+         *          label: "Open Dev Tools",
+         *          click() {
+         *            this.mainWindow.openDevTools();
+         *          },
+         *        },
+         *      ],
+         *    },
+         *  ]
+         *  ```
+         */
         customTemplate?: null | { [key: string]: any }[];
       };
+      /** Should the web dev tools be shown automatically in dev mode. __Default is: true__ */
       showWebDevTools?: boolean;
     };
     windowOptions?: {
+      /** Start height of the main application window in px. __Default is: 920__ */
       height?: number;
+      /** Start width of the main application window in px. __Default is: 1600__ */
       width?: number;
+      /** Path of the icon file for the main window. __Default is:__ `path.join(app.getAppPath(), "assets", "appIcon.png")` */
       icon?: string;
+      /** Title of the main window (this can be overwritten by the webapp). __Default is: 'Capacitor App'__ */
       title?: string;
     };
   };
   deepLinking?: {
+    /** Whether or not deeplinking should be enabled on the url provided in `capacitor.config.json -> server -> hostname` (`'app'` is used if hostname is undefined). __Default is: false__ */
     useDeeplinking: boolean;
-    deeplinkingHandlerFunction?: (deeplinkingUrl: string) => void;
+    /** Optional handler to deal with deeplink urls in the main process of electron. __Default is: null__ */
+    deeplinkingHandlerFunction?: (deeplinkingUrl: string) => void | null;
   };
 }
 
+/** @hidden */
 async function encodeFromFile(filePath: string): Promise<string> {
   if (!filePath) {
     throw new Error("filePath is required.");
@@ -68,6 +128,7 @@ async function encodeFromFile(filePath: string): Promise<string> {
   return "data:" + mediaType + ";base64," + dataBase64;
 }
 
+/** @hidden */
 async function configCapacitor(mainWindow: Electron.BrowserWindow) {
   let capConfigJson = JSON.parse(
     fs.readFileSync(`./capacitor.config.json`, "utf-8")
@@ -90,6 +151,7 @@ async function configCapacitor(mainWindow: Electron.BrowserWindow) {
   }
 }
 
+/** @internal */
 class CapacitorSplashScreen {
   mainWindowRef: Electron.BrowserWindow | null = null;
   splashWindow: Electron.BrowserWindow | null = null;
@@ -132,6 +194,7 @@ class CapacitorSplashScreen {
       console.error(e.message);
     }
 
+    //@ts-ignore
     ipcMain.on("showCapacitorSplashScreen", (event: any, options: any) => {
       this.show();
       if (options) {
@@ -144,6 +207,7 @@ class CapacitorSplashScreen {
       }
     });
 
+    //@ts-ignore
     ipcMain.on("hideCapacitorSplashScreen", (event: any, options: any) => {
       this.hide();
     });
@@ -215,6 +279,7 @@ class CapacitorSplashScreen {
   }
 }
 
+/** @internal */
 class CapacitorDeeplinking {
   private deeplinkingUrl = "";
   mainWindowRef: Electron.BrowserWindow | null = null;
@@ -239,7 +304,10 @@ class CapacitorDeeplinking {
   };
   userDeeplinkHandler: (deeplinkUrl: string) => void | null = null;
 
-  constructor(mainWindow, options?: DeeplinkingOptions) {
+  constructor(
+    mainWindow: Electron.BrowserWindow,
+    options?: DeeplinkingOptions
+  ) {
     this.mainWindowRef = mainWindow;
     if (options) {
       this.deeplinkingOptions = Object.assign(this.deeplinkingOptions, options);
@@ -251,6 +319,7 @@ class CapacitorDeeplinking {
 
     const gotTheLock = app.requestSingleInstanceLock();
     if (gotTheLock) {
+      //@ts-ignore
       app.on("second-instance", (e, argv) => {
         if (process.platform == "win32") {
           this.deeplinkingUrl = argv.slice(1).toString();
@@ -288,29 +357,23 @@ class CapacitorDeeplinking {
 }
 
 class CapacitorElectronApp {
+  /** Exposed mainWindow object that can be referenced in the main process.\
+   * [Electron.BrowserWindow Reference](https://www.electronjs.org/docs/api/browser-window)
+   * */
   public mainWindow: Electron.BrowserWindow | null = null;
-  splashScreen: CapacitorSplashScreen | null = null;
+  /** @internal */
+  private splashScreen: CapacitorSplashScreen | null = null;
 
-  menuTemplateDev: { [key: string]: any }[] = [
-    {
-      label: "Options",
-      submenu: [
-        {
-          label: "Open Dev Tools",
-          click() {
-            this.mainWindow.openDevTools();
-          },
-        },
-      ],
-    },
-  ];
+  /** @internal */
+  private deepLinking: any = null;
+  /** @internal */
+  private deeplinkingCustomProtocol: "app";
 
-  deepLinking = null;
-  deeplinkingCustomProtocol: "mycapacitorapp";
+  /** @internal */
+  private devServerUrl: string | null = null;
 
-  devServerUrl: string | null = null;
-
-  config: CapacitorElectronConfig = {
+  /** @internal */
+  private config: CapacitorElectronConfig = {
     deepLinking: {
       useDeeplinking: false,
       deeplinkingHandlerFunction: null,
@@ -378,6 +441,7 @@ class CapacitorElectronApp {
     }
   }
 
+  /** Creates mainwindow and does all setup. _Called after app.on('ready') event fired._ */
   init() {
     const neededBrowserWindowConfig = {
       show: false,
@@ -462,4 +526,5 @@ class CapacitorElectronApp {
   }
 }
 
+/** @hidden */
 module.exports = { CapacitorElectronApp };
