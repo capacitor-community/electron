@@ -29,13 +29,15 @@ export interface DeeplinkingOptions {
 export interface CapacitorElectronConfig {
   splashScreen?: {
     useSplashScreen: boolean;
-    splashOptions: SplashOptions;
+    splashOptions?: SplashOptions;
   };
   mainWindow?: {
-    menuTemplateDev?: { [key: string]: any }[];
-    devServer?: {
-      useDevServer: boolean;
-      devServerURL: string;
+    devMode?: {
+      applicationMenu?: {
+        showMenu: boolean;
+        customTemplate?: null | { [key: string]: any }[];
+      };
+      showWebDevTools?: boolean;
     };
     windowOptions?: {
       height?: number;
@@ -46,7 +48,6 @@ export interface CapacitorElectronConfig {
   };
   deepLinking?: {
     useDeeplinking: boolean;
-    deeplinkingCustomProtocol: string;
     deeplinkingHandlerFunction?: (deeplinkingUrl: string) => void;
   };
 }
@@ -305,17 +306,19 @@ class CapacitorElectronApp {
   ];
 
   deepLinking = null;
+  deeplinkingCustomProtocol: "mycapacitorapp";
+
+  devServerUrl: string | null = null;
 
   config: CapacitorElectronConfig = {
     deepLinking: {
       useDeeplinking: false,
-      deeplinkingCustomProtocol: "mycapacitorapp",
       deeplinkingHandlerFunction: null,
     },
     splashScreen: {
       useSplashScreen: true,
       splashOptions: {
-        imageFilePath: path.join(app.getAppPath(), "assets", "splash.png"),
+        imageFilePath: path.join(app.getAppPath(), "assets", "splash.gif"),
         windowWidth: 400,
         windowHeight: 400,
         textColor: "#43A8FF",
@@ -327,10 +330,24 @@ class CapacitorElectronApp {
       },
     },
     mainWindow: {
-      menuTemplateDev: null,
-      devServer: {
-        useDevServer: false,
-        devServerURL: "http://localhost:3000",
+      devMode: {
+        applicationMenu: {
+          showMenu: true,
+          customTemplate: [
+            {
+              label: "Options",
+              submenu: [
+                {
+                  label: "Open Dev Tools",
+                  click() {
+                    this.mainWindow.openDevTools();
+                  },
+                },
+              ],
+            },
+          ],
+        },
+        showWebDevTools: true,
       },
       windowOptions: {
         height: 920,
@@ -344,8 +361,21 @@ class CapacitorElectronApp {
   constructor(config?: CapacitorElectronConfig) {
     this.config = Object.assign(this.config, config ? config : {});
 
-    if (config && this.config.mainWindow.menuTemplateDev)
-      this.menuTemplateDev = this.config.mainWindow.menuTemplateDev;
+    const capConfigPath = path.join(app.getAppPath(), "capacitor.config.json");
+    if (fs.existsSync(capConfigPath)) {
+      const capConfig = JSON.parse(fs.readFileSync(capConfigPath, "utf-8"));
+      if (capConfig.server && capConfig.server.url) {
+        this.devServerUrl = capConfig.server.url;
+      }
+      if (this.config.deepLinking.useDeeplinking) {
+        if (capConfig.server && capConfig.server.hostname) {
+          this.deeplinkingCustomProtocol = capConfig.server.hostname;
+        }
+        console.log(
+          `[Capacitor]: Set deeplinking url to: ${this.deeplinkingCustomProtocol}`
+        );
+      }
+    }
   }
 
   init() {
@@ -376,16 +406,24 @@ class CapacitorElectronApp {
 
     if (this.config.deepLinking.useDeeplinking)
       this.deepLinking = new CapacitorDeeplinking(this.mainWindow, {
-        customProtocol: this.config.deepLinking.deeplinkingCustomProtocol,
+        customProtocol: this.deeplinkingCustomProtocol,
       });
 
     configCapacitor(this.mainWindow);
 
-    if (electronIsDev) {
+    if (
+      electronIsDev &&
+      this.config.mainWindow.devMode.applicationMenu.showMenu
+    ) {
       // Set our above template to the Menu Object if we are in development mode, dont want users having the devtools.
-      Menu.setApplicationMenu(Menu.buildFromTemplate(this.menuTemplateDev));
+      Menu.setApplicationMenu(
+        Menu.buildFromTemplate(
+          this.config.mainWindow.devMode.applicationMenu.customTemplate
+        )
+      );
       // If we are developers we might as well open the devtools by default.
-      this.mainWindow.webContents.openDevTools();
+      if (this.config.mainWindow.devMode.showWebDevTools)
+        this.mainWindow.webContents.openDevTools();
     }
 
     // This function will get called after the SplashScreen timeout and load your content into the main window.
@@ -399,10 +437,8 @@ class CapacitorElectronApp {
         else this.deepLinking.init();
       }
 
-      if (this.config.mainWindow.devServer.useDevServer) {
-        this.mainWindow.webContents.loadURL(
-          this.config.mainWindow.devServer.devServerURL
-        );
+      if (this.devServerUrl !== null) {
+        this.mainWindow.webContents.loadURL(this.devServerUrl);
       } else {
         await loadWebApp(this.mainWindow);
       }

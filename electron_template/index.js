@@ -1,45 +1,9 @@
-const { app, dialog } = require("electron");
-const path = require("path");
+// @ts-check
+const { app } = require("electron");
 const { CapacitorElectronApp } = require("@capacitor-community/electron");
 
-// mainWidow prop is exposed on CapacitorElectronApp to allow for usage outside of Capacitors Configuration.
-const myCapacitorApp = new CapacitorElectronApp({
-  deepLinking: {
-    useDeeplinking: true,
-    deeplinkingCustomProtocol: "mycapacitorapp",
-    deeplinkingHandlerFunction: (deeplinkingUrl) => {
-      //Do something with passed deeplinking url (ex: mycapacitorapp://testing)
-      console.log(deeplinkingUrl);
-      dialog.showMessageBox(myCapacitorApp.mainWindow, {
-        message: deeplinkingUrl,
-        title: "Log",
-        buttons: ["Okay"],
-      });
-    },
-  },
-  splashScreen: {
-    useSplashScreen: true,
-    splashOptions: {
-      imageFilePath: path.join(app.getAppPath(), "assets", "splash.gif"),
-      windowWidth: 400,
-      windowHeight: 400,
-      autoHideLaunchSplash: true,
-    },
-  },
-  mainWindow: {
-    menuTemplateDev: null,
-    devServer: {
-      useDevServer: false,
-      devServerURL: "http://localhost:3000",
-    },
-    windowOptions: {
-      height: 920,
-      width: 1600,
-      icon: path.join(app.getAppPath(), "assets", "appIcon.png"),
-      title: "Capacitor App",
-    },
-  },
-});
+// mainWindow prop is exposed on CapacitorElectronApp to allow for usage outside of Capacitors Configuration.
+const myCapacitorApp = new CapacitorElectronApp();
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
