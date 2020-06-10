@@ -1,6 +1,6 @@
 export class CapacitorElectron {
   Plugins = {};
-  platform = 'electron';
+  platform = "electron";
   isNative = false;
 
   constructor() {
@@ -8,26 +8,36 @@ export class CapacitorElectron {
     // if a plugin isn't available
     this.Plugins = new Proxy<any>(this.Plugins, {
       get: (target, prop) => {
-        if (typeof target[prop] === 'undefined') {
+        if (typeof target[prop] === "undefined") {
           let thisRef = this;
-          return new Proxy<any>({}, {
-            get: (_target, _prop) => {
-              if (typeof _target[_prop] === 'undefined') {
-                return thisRef.pluginMethodNoop.bind(thisRef, _target, _prop,  prop);
-              } else {
-                return _target[_prop];
-              }
+          return new Proxy<any>(
+            {},
+            {
+              get: (_target, _prop) => {
+                if (typeof _target[_prop] === "undefined") {
+                  return thisRef.pluginMethodNoop.bind(
+                    thisRef,
+                    _target,
+                    _prop,
+                    prop
+                  );
+                } else {
+                  return _target[_prop];
+                }
+              },
             }
-          });
+          );
         } else {
           return target[prop];
         }
-      }
-    })
+      },
+    });
   }
 
   pluginMethodNoop(_target: any, _prop: PropertyKey, pluginName: string) {
-    return Promise.reject(`${pluginName} does not have electron implementation.`);
+    return Promise.reject(
+      `${pluginName} does not have electron implementation.`
+    );
   }
 
   getPlatform() {

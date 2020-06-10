@@ -1,5 +1,12 @@
-import { DeviceBatteryInfo, DeviceInfo, DeviceLanguageCodeResult, DevicePlugin, DevicePluginWeb, WebPlugin } from "@capacitor/core";
-const { app } = require('electron').remote;
+import {
+  DeviceBatteryInfo,
+  DeviceInfo,
+  DeviceLanguageCodeResult,
+  DevicePlugin,
+  DevicePluginWeb,
+  WebPlugin,
+} from "@capacitor/core";
+const { app } = require("electron").remote;
 
 declare var navigator: any;
 const webDevice = new DevicePluginWeb();
@@ -7,24 +14,24 @@ const webDevice = new DevicePluginWeb();
 export class DevicePluginElectron extends WebPlugin implements DevicePlugin {
   constructor() {
     super({
-      name: 'Device',
-      platforms: ['electron']
+      name: "Device",
+      platforms: ["electron"],
     });
   }
 
   async getInfo(): Promise<DeviceInfo> {
     var info = await webDevice.getInfo();
-    
+
     return {
       model: info.model,
-      platform: <'electron'> 'electron',
+      platform: <"electron">"electron",
       appVersion: app.getVersion(),
-      appBuild: '',
+      appBuild: "",
       operatingSystem: info.operatingSystem,
       osVersion: info.osVersion,
       manufacturer: navigator.vendor,
       isVirtual: false,
-      uuid: info.uuid
+      uuid: info.uuid,
     };
   }
 
@@ -33,16 +40,15 @@ export class DevicePluginElectron extends WebPlugin implements DevicePlugin {
 
     return {
       batteryLevel: batInfo.batteryLevel,
-      isCharging: batInfo.isCharging
+      isCharging: batInfo.isCharging,
     };
   }
 
   async getLanguageCode(): Promise<DeviceLanguageCodeResult> {
     return webDevice.getLanguageCode();
   }
-
 }
-    
+
 const Device = new DevicePluginElectron();
 
 export { Device };
