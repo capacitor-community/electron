@@ -21,7 +21,7 @@ Maintenance Status: Actively Maintained
 
 ## Docs:
 
-- [Typedoc Docs](https://it-mikes.github.io/electron/) about config and usage options.
+- [Typedoc Docs](https://capacitor-community.github.io/electron/) about config and usage options.
 
 ## Basic Usage Steps:
 
