@@ -115,6 +115,67 @@ let mainWidowReference: Electron.BrowserWindow | null = null;
 let splashScreenReference: CapacitorSplashScreen | null = null;
 
 /** @internal */
+function deepMerge(target, _objects = []) {
+  // Credit for origanal function: Josh Cole(saikojosh)[https://github.com/saikojosh]
+  const quickCloneArray = function (input) {
+    return input.map(cloneValue);
+  };
+  const cloneValue = function (value) {
+    if (getTypeOf(value) === "object") return quickCloneObject(value);
+    else if (getTypeOf(value) === "array") return quickCloneArray(value);
+    return value;
+  };
+  const getTypeOf = function (input) {
+    if (input === null) return "null";
+    else if (typeof input === "undefined") return "undefined";
+    else if (typeof input === "object")
+      return Array.isArray(input) ? "array" : "object";
+    return typeof input;
+  };
+  const quickCloneObject = function (input) {
+    const output = {};
+    for (const key in input) {
+      if (!input.hasOwnProperty(key)) {
+        continue;
+      }
+      output[key] = cloneValue(input[key]);
+    }
+    return output;
+  };
+  const objects = _objects.map((object) => object || {});
+  const output = target || {};
+  for (let oindex = 0; oindex < objects.length; oindex++) {
+    const object = objects[oindex];
+    const keys = Object.keys(object);
+    for (let kindex = 0; kindex < keys.length; kindex++) {
+      const key = keys[kindex];
+      const value = object[key];
+      const type = getTypeOf(value);
+      const existingValueType = getTypeOf(output[key]);
+      if (type === "object") {
+        if (existingValueType !== "undefined") {
+          const existingValue =
+            existingValueType === "object" ? output[key] : {};
+          output[key] = deepMerge({}, [existingValue, quickCloneObject(value)]);
+        } else {
+          output[key] = quickCloneObject(value);
+        }
+      } else if (type === "array") {
+        if (existingValueType === "array") {
+          const newValue = quickCloneArray(value);
+          output[key] = newValue;
+        } else {
+          output[key] = quickCloneArray(value);
+        }
+      } else {
+        output[key] = value;
+      }
+    }
+  }
+  return output;
+}
+
+/** @internal */
 async function encodeFromFile(filePath: string): Promise<string> {
   if (!filePath) {
     throw new Error("filePath is required.");
@@ -170,9 +231,7 @@ class CapacitorSplashScreen {
   };
 
   constructor(splashOptions?: SplashOptions) {
-    if (splashOptions) {
-      this.splashOptions = Object.assign(this.splashOptions, splashOptions);
-    }
+    if (splashOptions) this.splashOptions = { ...splashOptions };
 
     try {
       let capConfigJson = JSON.parse(
@@ -181,12 +240,12 @@ class CapacitorSplashScreen {
           "utf-8"
         )
       );
-      this.splashOptions = Object.assign(
-        this.splashOptions,
-        capConfigJson.plugins && capConfigJson.plugins.SplashScreen
-          ? capConfigJson.plugins.SplashScreen
-          : {}
-      );
+      if (capConfigJson.plugins && capConfigJson.plugins.SplashScreen) {
+        this.splashOptions = Object.assign(
+          this.splashOptions,
+          capConfigJson.plugins.SplashScreen
+        );
+      }
     } catch (e) {
       console.error(e.message);
     }
@@ -231,15 +290,7 @@ class CapacitorSplashScreen {
 
     let splashHtml =
       this.splashOptions.customHtml ||
-      `
-              <html style="width: 100%; height: 100%; margin: 0; overflow: hidden;">
-                  <body style="background-image: url('${imageUrl}'); background-position: center center; background-repeat: no-repeat; width: 100%; height: 100%; margin: 0; overflow: hidden;">
-                      <div style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: ${this.splashOptions.textColor}; position: absolute; top: ${this.splashOptions.textPercentageFromTop}%; text-align: center; font-size: 10vw; width: 100vw;">
-                          ${this.splashOptions.loadingText}
-                      </div>
-                  </body>
-              </html>
-          `;
+      `<html style="width: 100%; height: 100%; margin: 0; overflow: hidden;"><body style="width: 100%; height: 100%;"><div style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: ${this.splashOptions.textColor}; position: absolute; top: ${this.splashOptions.textPercentageFromTop}%; text-align: center; font-size: 16pt; width: 100vw; display: block; z-index: 9999;">${this.splashOptions.loadingText}</div><div style="background-image: url('${imageUrl}'); background-position: center center; background-repeat: no-repeat; width: 100%; height: 100%; margin: 0; overflow: hidden; position: absolute; top: 0; left: 0; z-index: 100;">&nbsp;</div></body></html>`;
 
     mainWidowReference.on("closed", () => {
       if (this.splashWin && !this.splashWin.isDestroyed()) {
@@ -247,7 +298,9 @@ class CapacitorSplashScreen {
       }
     });
 
-    this.splashWin.loadURL(`data:text/html;charset=UTF-8,${splashHtml}`);
+    this.splashWin.loadURL(
+      `data:text/html;charset=UTF-8,${encodeURIComponent(splashHtml)}`
+    );
 
     this.splashWin.webContents.on("dom-ready", async () => {
       splashScreenReference.show();
@@ -363,7 +416,7 @@ class CapacitorElectronApp {
         imageFilePath: path.join(app.getAppPath(), "assets", "splash.png"),
         windowWidth: 400,
         windowHeight: 400,
-        textColor: "#43A8FF",
+        textColor: "#FFFFFF",
         loadingText: "Loading...",
         textPercentageFromTop: 75,
         transparentWindow: false,
@@ -389,7 +442,7 @@ class CapacitorElectronApp {
   };
 
   constructor(config?: CapacitorElectronConfig) {
-    this.config = Object.assign(this.config, config ? config : {});
+    if (config) this.config = deepMerge(this.config, [config]);
 
     const capConfigPath = path.join(app.getAppPath(), "capacitor.config.json");
     if (fs.existsSync(capConfigPath)) {
@@ -489,7 +542,10 @@ class CapacitorElectronApp {
     }
 
     mainWidowReference.webContents.on("dom-ready", () => {
-      if (this.config.splashScreen.useSplashScreen) {
+      if (
+        this.config.splashScreen.useSplashScreen &&
+        this.config.splashScreen.splashOptions.autoHideLaunchSplash
+      ) {
         splashScreenReference.hide();
       } else {
         mainWidowReference.show();
