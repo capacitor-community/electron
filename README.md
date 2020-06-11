@@ -9,6 +9,9 @@ Capacitor community support for the Electron platform.
 <a href="https://npmjs.com/package/@capacitor-community/electron">
   <img src="https://img.shields.io/npm/l/@capacitor-community/electron.svg">
 </a>
+<a href="https://www.electronjs.org/releases/stable?version=9">
+  <img src="https://img.shields.io/badge/supported%20electron%20version-~9.0.0-blue">
+</a>
 
 ## Maintainers
 
