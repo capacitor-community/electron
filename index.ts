@@ -64,43 +64,23 @@ export interface CapacitorElectronConfig {
       customHtml?: string | null;
     };
   };
+  /** Define your applications native menu bar. Set to _null_ if you want to hide the bar. __Default is:__
+   * ```
+   *   [
+   *     {role: process.platform === "darwin" ? 'appMenu' : 'fileMenu'},
+   *     { role: "viewMenu" }
+   *   ]
+   * ```
+   */
+  applicationMenuTemplate: { [key: string]: any }[] | null;
   mainWindow?: {
-    /** Settings while running in dev mode */
-    devMode?: {
-      applicationMenu?: {
-        /** Should an application menu bar be shown in dev mode. __Default is: true__ */
-        showMenu?: boolean;
-        /** Custom template for the dev mode application menu. __Default is:__
-         *  ```
-         *  [
-         *    {
-         *      label: "Options",
-         *      submenu: [
-         *        {
-         *          label: "Open Dev Tools",
-         *          click() {
-         *            this.mainWindow.openDevTools();
-         *          },
-         *        },
-         *      ],
-         *    },
-         *  ]
-         *  ```
-         */
-        customTemplate?: null | { [key: string]: any }[];
-      };
-      /** Should the web dev tools be shown automatically in dev mode. __Default is: true__ */
-      showWebDevTools?: boolean;
-    };
     windowOptions?: {
       /** Start height of the main application window in px. __Default is: 920__ */
       height?: number;
       /** Start width of the main application window in px. __Default is: 1600__ */
       width?: number;
-      /** Path of the icon file for the main window. __Default is:__ `path.join(app.getAppPath(), "assets", "appIcon.png")` */
+      /** Path of the icon file for the main window. __Default is:__ `path.join(app.getAppPath(), "assets", process.platform === "win32" ? "appIcon.ico" : "appIcon.png")` */
       icon?: string;
-      /** Title of the main window (this can be overwritten by the webapp). __Default is: 'Capacitor App'__ */
-      title?: string;
     };
   };
   deepLinking?: {
@@ -343,7 +323,7 @@ class CapacitorDeeplinking {
     }
   };
   deeplinkingOptions: DeeplinkingOptions = {
-    customProtocol: "myapp",
+    customProtocol: "app",
   };
   userDeeplinkHandler: (deeplinkUrl: string) => void | null = null;
 
@@ -424,19 +404,19 @@ class CapacitorElectronApp {
         customHtml: null,
       },
     },
+    applicationMenuTemplate: [
+      { role: process.platform === "darwin" ? "appMenu" : "fileMenu" },
+      { role: "viewMenu" },
+    ],
     mainWindow: {
-      devMode: {
-        applicationMenu: {
-          showMenu: true,
-          customTemplate: null,
-        },
-        showWebDevTools: true,
-      },
       windowOptions: {
         height: 920,
         width: 1600,
-        icon: path.join(app.getAppPath(), "assets", "appIcon.png"),
-        title: "Capacitor App",
+        icon: path.join(
+          app.getAppPath(),
+          "assets",
+          process.platform === "win32" ? "appIcon.ico" : "appIcon.png"
+        ),
       },
     },
   };
@@ -496,23 +476,6 @@ class CapacitorElectronApp {
       )
     );
 
-    if (
-      this.config.mainWindow.devMode.applicationMenu.customTemplate === null
-    ) {
-      const devMenu = [];
-
-      if (process.platform === "darwin") {
-        devMenu.push({ role: "appMenu" });
-      } else {
-        devMenu.push({ role: "fileMenu" });
-      }
-      devMenu.push({ role: "viewMenu" });
-
-      this.config.mainWindow.devMode.applicationMenu.customTemplate = [
-        ...devMenu,
-      ];
-    }
-
     if (this.config.deepLinking.useDeeplinking)
       this.deepLinking = new CapacitorDeeplinking({
         customProtocol: this.deeplinkingCustomProtocol,
@@ -520,15 +483,10 @@ class CapacitorElectronApp {
 
     configCapacitor(mainWidowReference);
 
-    if (
-      electronIsDev &&
-      this.config.mainWindow.devMode.applicationMenu.showMenu
-    ) {
+    if (electronIsDev && this.config.applicationMenuTemplate !== null) {
       // Set our above template to the Menu Object if we are in development mode, dont want users having the devtools.
       Menu.setApplicationMenu(
-        Menu.buildFromTemplate(
-          this.config.mainWindow.devMode.applicationMenu.customTemplate
-        )
+        Menu.buildFromTemplate(this.config.applicationMenuTemplate)
       );
     }
 
@@ -551,7 +509,7 @@ class CapacitorElectronApp {
         mainWidowReference.show();
       }
       // If we are developers we might as well open the devtools by default.
-      if (electronIsDev && this.config.mainWindow.devMode.showWebDevTools) {
+      if (electronIsDev) {
         setTimeout(() => {
           mainWidowReference.webContents.openDevTools();
         }, 200);
