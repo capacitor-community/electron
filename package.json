@@ -13,7 +13,7 @@
     "transpile-index": "tsc ./index.ts --module ES2015 --target ES5 --outDir dist --moduleResolution Node --allowSyntheticDefaultImports --sourceMap --declaration",
     "transpile-no-helpers": "tsc --module ES2015 --target ES5 --noEmitHelpers true --outDir dist/esm",
     "typedoc:run": "typedoc --out docs ./index.ts --excludeExternals --stripInternal --readme ./README.md --theme minimal --includeVersion",
-    "shipit": "np 0.1.1-beta.1 --tag=beta"
+    "shipit": "np 0.1.1-beta.2 --tag=beta"
   },
   "repository": {
     "type": "git",
