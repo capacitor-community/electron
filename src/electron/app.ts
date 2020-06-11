@@ -9,8 +9,19 @@ import {
 const { remote, shell, ipcRenderer } = require("electron");
 const webApp = new AppPluginWeb();
 
+interface WindowListenerHandle {
+  registered: boolean;
+  windowEventName: string;
+  pluginEventName: string;
+  handler: (event: any) => void;
+}
+
+type ListenerCallback = (err: any, ...args: any[]) => void;
+
 export class AppPluginElectron extends WebPlugin implements AppPlugin {
   launchUrl: { url: string } = { url: "" };
+  listeners: { [eventName: string]: ListenerCallback[] } = {};
+  windowListeners: { [eventName: string]: WindowListenerHandle } = {};
 
   constructor() {
     super({

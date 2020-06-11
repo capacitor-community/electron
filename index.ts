@@ -17,6 +17,8 @@ const Menu = electron.Menu;
 /** @hidden */
 const ipcMain = electron.ipcMain;
 /** @hidden */
+const dialog = electron.dialog;
+/** @hidden */
 const mimeTypes = require("mime-types");
 /** @hidden */
 const electronServe = require("electron-serve");
@@ -95,25 +97,25 @@ let mainWidowReference: Electron.BrowserWindow | null = null;
 let splashScreenReference: CapacitorSplashScreen | null = null;
 
 /** @internal */
-function deepMerge(target, _objects = []) {
+function deepMerge(target: any, _objects: any[] = []) {
   // Credit for origanal function: Josh Cole(saikojosh)[https://github.com/saikojosh]
-  const quickCloneArray = function (input) {
+  const quickCloneArray = function (input: any) {
     return input.map(cloneValue);
   };
-  const cloneValue = function (value) {
+  const cloneValue = function (value: any) {
     if (getTypeOf(value) === "object") return quickCloneObject(value);
     else if (getTypeOf(value) === "array") return quickCloneArray(value);
     return value;
   };
-  const getTypeOf = function (input) {
+  const getTypeOf = function (input: any) {
     if (input === null) return "null";
     else if (typeof input === "undefined") return "undefined";
     else if (typeof input === "object")
       return Array.isArray(input) ? "array" : "object";
     return typeof input;
   };
-  const quickCloneObject = function (input) {
-    const output = {};
+  const quickCloneObject = function (input: any) {
+    const output: any = {};
     for (const key in input) {
       if (!input.hasOwnProperty(key)) {
         continue;
@@ -363,6 +365,8 @@ class CapacitorDeeplinking {
 
     app.on("will-finish-launching", function () {
       app.on("open-url", function (event, url) {
+        console.log("open-url");
+        dialog.showMessageBox(mainWidowReference, { message: "open-url" });
         event.preventDefault();
         this.internalDeeplinkHandler(url);
       });
@@ -490,15 +494,6 @@ class CapacitorElectronApp {
       );
     }
 
-    // Setup the handler for deeplinking if it has been setup.
-    if (this.deepLinking !== null) {
-      if (this.config.deepLinking.deeplinkingHandlerFunction !== null)
-        this.deepLinking.init(
-          this.config.deepLinking.deeplinkingHandlerFunction
-        );
-      else this.deepLinking.init();
-    }
-
     mainWidowReference.webContents.on("dom-ready", () => {
       if (
         this.config.splashScreen.useSplashScreen &&
@@ -516,6 +511,17 @@ class CapacitorElectronApp {
       }
     });
 
+    // Setup the handler for deeplinking if it has been setup.
+    if (this.deepLinking !== null) {
+      if (this.config.deepLinking.deeplinkingHandlerFunction !== null) {
+        this.deepLinking.init(
+          this.config.deepLinking.deeplinkingHandlerFunction
+        );
+      } else {
+        this.deepLinking.init();
+      }
+    }
+
     // Based on Splashscreen choice actually load the window.
     if (this.config.splashScreen.useSplashScreen) {
       splashScreenReference = new CapacitorSplashScreen(
@@ -529,15 +535,6 @@ class CapacitorElectronApp {
   }
 
   private async loadMainWindow() {
-    // Setup the handler for deeplinking if it has been setup.
-    if (this.deepLinking !== null) {
-      if (this.config.deepLinking.deeplinkingHandlerFunction !== null)
-        this.deepLinking.init(
-          this.config.deepLinking.deeplinkingHandlerFunction
-        );
-      else this.deepLinking.init();
-    }
-
     if (this.devServerUrl !== null) {
       mainWidowReference.webContents.loadURL(this.devServerUrl);
     } else {

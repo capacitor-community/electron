@@ -4,11 +4,11 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>
-      CapacitorElectronConfig | @capacitor-community/electron - v0.1.1-beta.3
+      CapacitorElectronConfig | @capacitor-community/electron - v0.1.1-beta.5
     </title>
     <meta
       name="description"
-      content="Documentation for @capacitor-community/electron - v0.1.1-beta.3"
+      content="Documentation for @capacitor-community/electron - v0.1.1-beta.5"
     />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style type="text/css">
@@ -3024,7 +3024,7 @@
             <div class="table-cell">
               <strong
                 ><a href="../index.html"
-                  >@capacitor-community/electron - v0.1.1-beta.3</a
+                  >@capacitor-community/electron - v0.1.1-beta.5</a
                 ></strong
               >
             </div>
@@ -3079,6 +3079,13 @@
           <ul>
             <li class="tsd-kind-property tsd-parent-kind-interface">
               <a
+                href="_index_.capacitorelectronconfig.html#applicationmenutemplate"
+                class="tsd-kind-icon"
+                >application<wbr />Menu<wbr />Template</a
+              >
+            </li>
+            <li class="tsd-kind-property tsd-parent-kind-interface">
+              <a
                 href="_index_.capacitorelectronconfig.html#deeplinking"
                 class="tsd-kind-icon"
                 >deep<wbr />Linking</a
@@ -3100,6 +3107,24 @@
             </li>
           </ul>
         </li>
+        <li
+          class="tsd-kind-variable tsd-parent-kind-module tsd-is-not-exported"
+        >
+          <a
+            href="../modules/_index_.html#mainwidowreference"
+            class="tsd-kind-icon"
+            >main<wbr />Widow<wbr />Reference</a
+          >
+        </li>
+        <li
+          class="tsd-kind-variable tsd-parent-kind-module tsd-is-not-exported"
+        >
+          <a
+            href="../modules/_index_.html#splashscreenreference"
+            class="tsd-kind-icon"
+            >splash<wbr />Screen<wbr />Reference</a
+          >
+        </li>
       </ul>
     </nav>
     <div class="container container-main">
@@ -3119,6 +3144,13 @@
               <section class="tsd-index-section">
                 <h3>Properties</h3>
                 <ul class="tsd-index-list">
+                  <li class="tsd-kind-property tsd-parent-kind-interface">
+                    <a
+                      href="_index_.capacitorelectronconfig.html#applicationmenutemplate"
+                      class="tsd-kind-icon"
+                      >application<wbr />Menu<wbr />Template</a
+                    >
+                  </li>
                   <li class="tsd-kind-property tsd-parent-kind-interface">
                     <a
                       href="_index_.capacitorelectronconfig.html#deeplinking"
@@ -3147,6 +3179,46 @@
         </section>
         <section class="tsd-panel-group tsd-member-group">
           <h2>Properties</h2>
+          <section
+            class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface"
+          >
+            <a name="applicationmenutemplate" class="tsd-anchor"></a>
+            <h3>application<wbr />Menu<wbr />Template</h3>
+            <div class="tsd-signature tsd-kind-icon">
+              application<wbr />Menu<wbr />Template<span
+                class="tsd-signature-symbol"
+                >:</span
+              >
+              <span class="tsd-signature-symbol">{}</span
+              ><span class="tsd-signature-symbol">[]</span
+              ><span class="tsd-signature-symbol"> | </span
+              ><span class="tsd-signature-type">null</span>
+            </div>
+            <aside class="tsd-sources">
+              <ul>
+                <li>
+                  Defined in
+                  <a
+                    href="https://github.com/capacitor-community/electron/blob/a79fd6e/index.ts#L77"
+                    >index.ts:77</a
+                  >
+                </li>
+              </ul>
+            </aside>
+            <div class="tsd-comment tsd-typography">
+              <div class="lead">
+                <p>
+                  Define your applications native menu bar. Set to
+                  <em>null</em> if you want to hide the bar.
+                  <strong>Default is:</strong>
+                </p>
+                <pre><code>  [
+    {role: process.platform === <span class="hljs-string">"darwin"</span> ? <span class="hljs-symbol">'appMenu</span>' : <span class="hljs-symbol">'fileMenu</span>'},
+    { role: <span class="hljs-string">"viewMenu"</span> }
+  ]</code></pre>
+              </div>
+            </div>
+          </section>
           <section
             class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface"
           >
@@ -3180,8 +3252,8 @@
                 <li>
                   Defined in
                   <a
-                    href="https://github.com/capacitor-community/electron/blob/4152937/index.ts#L106"
-                    >index.ts:106</a
+                    href="https://github.com/capacitor-community/electron/blob/a79fd6e/index.ts#L88"
+                    >index.ts:88</a
                   >
                 </li>
               </ul>
@@ -3284,30 +3356,7 @@
             </h3>
             <div class="tsd-signature tsd-kind-icon">
               main<wbr />Window<span class="tsd-signature-symbol">:</span>
-              <span class="tsd-signature-symbol">{ </span>devMode<span
-                class="tsd-signature-symbol"
-                >?: </span
-              ><span class="tsd-signature-symbol">{ </span>applicationMenu<span
-                class="tsd-signature-symbol"
-                >?: </span
-              ><span class="tsd-signature-symbol">{ </span>customTemplate<span
-                class="tsd-signature-symbol"
-                >?: </span
-              ><span class="tsd-signature-type">null</span
-              ><span class="tsd-signature-symbol"> | </span
-              ><span class="tsd-signature-symbol">{}</span
-              ><span class="tsd-signature-symbol">[]</span
-              ><span class="tsd-signature-symbol">; </span>showMenu<span
-                class="tsd-signature-symbol"
-                >?: </span
-              ><span class="tsd-signature-type">boolean</span
-              ><span class="tsd-signature-symbol"> }</span
-              ><span class="tsd-signature-symbol">; </span>showWebDevTools<span
-                class="tsd-signature-symbol"
-                >?: </span
-              ><span class="tsd-signature-type">boolean</span
-              ><span class="tsd-signature-symbol"> }</span
-              ><span class="tsd-signature-symbol">; </span>windowOptions<span
+              <span class="tsd-signature-symbol">{ </span>windowOptions<span
                 class="tsd-signature-symbol"
                 >?: </span
               ><span class="tsd-signature-symbol">{ </span>height<span
@@ -3315,10 +3364,6 @@
                 >?: </span
               ><span class="tsd-signature-type">number</span
               ><span class="tsd-signature-symbol">; </span>icon<span
-                class="tsd-signature-symbol"
-                >?: </span
-              ><span class="tsd-signature-type">string</span
-              ><span class="tsd-signature-symbol">; </span>title<span
                 class="tsd-signature-symbol"
                 >?: </span
               ><span class="tsd-signature-type">string</span
@@ -3334,8 +3379,8 @@
                 <li>
                   Defined in
                   <a
-                    href="https://github.com/capacitor-community/electron/blob/4152937/index.ts#L67"
-                    >index.ts:67</a
+                    href="https://github.com/capacitor-community/electron/blob/a79fd6e/index.ts#L78"
+                    >index.ts:78</a
                   >
                 </li>
               </ul>
@@ -3346,126 +3391,6 @@
                 <li class="tsd-parameter">
                   <h5>
                     <span class="tsd-flag ts-flagOptional">Optional</span>
-                    dev<wbr />Mode<span class="tsd-signature-symbol">?: </span
-                    ><span class="tsd-signature-symbol">{ </span
-                    >applicationMenu<span class="tsd-signature-symbol">?: </span
-                    ><span class="tsd-signature-symbol">{ </span
-                    >customTemplate<span class="tsd-signature-symbol">?: </span
-                    ><span class="tsd-signature-type">null</span
-                    ><span class="tsd-signature-symbol"> | </span
-                    ><span class="tsd-signature-symbol">{}</span
-                    ><span class="tsd-signature-symbol">[]</span
-                    ><span class="tsd-signature-symbol">; </span>showMenu<span
-                      class="tsd-signature-symbol"
-                      >?: </span
-                    ><span class="tsd-signature-type">boolean</span
-                    ><span class="tsd-signature-symbol"> }</span
-                    ><span class="tsd-signature-symbol">; </span
-                    >showWebDevTools<span class="tsd-signature-symbol">?: </span
-                    ><span class="tsd-signature-type">boolean</span
-                    ><span class="tsd-signature-symbol"> }</span>
-                  </h5>
-                  <div class="tsd-comment tsd-typography">
-                    <div class="lead">
-                      <p>Settings while running in dev mode</p>
-                    </div>
-                  </div>
-                  <ul class="tsd-parameters">
-                    <li class="tsd-parameter">
-                      <h5>
-                        <span class="tsd-flag ts-flagOptional">Optional</span>
-                        application<wbr />Menu<span class="tsd-signature-symbol"
-                          >?: </span
-                        ><span class="tsd-signature-symbol">{ </span
-                        >customTemplate<span class="tsd-signature-symbol"
-                          >?: </span
-                        ><span class="tsd-signature-type">null</span
-                        ><span class="tsd-signature-symbol"> | </span
-                        ><span class="tsd-signature-symbol">{}</span
-                        ><span class="tsd-signature-symbol">[]</span
-                        ><span class="tsd-signature-symbol">; </span
-                        >showMenu<span class="tsd-signature-symbol">?: </span
-                        ><span class="tsd-signature-type">boolean</span
-                        ><span class="tsd-signature-symbol"> }</span>
-                      </h5>
-                      <ul class="tsd-parameters">
-                        <li class="tsd-parameter">
-                          <h5>
-                            <span class="tsd-flag ts-flagOptional"
-                              >Optional</span
-                            >
-                            custom<wbr />Template<span
-                              class="tsd-signature-symbol"
-                              >?: </span
-                            ><span class="tsd-signature-type">null</span
-                            ><span class="tsd-signature-symbol"> | </span
-                            ><span class="tsd-signature-symbol">{}</span
-                            ><span class="tsd-signature-symbol">[]</span>
-                          </h5>
-                          <div class="tsd-comment tsd-typography">
-                            <div class="lead">
-                              <p>
-                                Custom template for the dev mode application
-                                menu. <strong>Default is:</strong>
-                              </p>
-                              <pre><code> [
-   {
-     label: <span class="hljs-string">"Options"</span>,
-     submenu: [
-       {
-         label: <span class="hljs-string">"Open Dev Tools"</span>,
-         click() {
-           this.mainWindow.openDevTools()<span class="hljs-comment">;</span>
-         },
-       },
-     ],
-   },
- ]</code></pre>
-                            </div>
-                          </div>
-                        </li>
-                        <li class="tsd-parameter">
-                          <h5>
-                            <span class="tsd-flag ts-flagOptional"
-                              >Optional</span
-                            >
-                            show<wbr />Menu<span class="tsd-signature-symbol"
-                              >?: </span
-                            ><span class="tsd-signature-type">boolean</span>
-                          </h5>
-                          <div class="tsd-comment tsd-typography">
-                            <div class="lead">
-                              <p>
-                                Should an application menu bar be shown in dev
-                                mode. <strong>Default is: true</strong>
-                              </p>
-                            </div>
-                          </div>
-                        </li>
-                      </ul>
-                    </li>
-                    <li class="tsd-parameter">
-                      <h5>
-                        <span class="tsd-flag ts-flagOptional">Optional</span>
-                        show<wbr />Web<wbr />Dev<wbr />Tools<span
-                          class="tsd-signature-symbol"
-                          >?: </span
-                        ><span class="tsd-signature-type">boolean</span>
-                      </h5>
-                      <div class="tsd-comment tsd-typography">
-                        <div class="lead">
-                          <p>
-                            Should the web dev tools be shown automatically in
-                            dev mode. <strong>Default is: true</strong>
-                          </p>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                </li>
-                <li class="tsd-parameter">
-                  <h5>
-                    <span class="tsd-flag ts-flagOptional">Optional</span>
                     window<wbr />Options<span class="tsd-signature-symbol"
                       >?: </span
                     ><span class="tsd-signature-symbol">{ </span>height<span
@@ -3473,10 +3398,6 @@
                       >?: </span
                     ><span class="tsd-signature-type">number</span
                     ><span class="tsd-signature-symbol">; </span>icon<span
-                      class="tsd-signature-symbol"
-                      >?: </span
-                    ><span class="tsd-signature-type">string</span
-                    ><span class="tsd-signature-symbol">; </span>title<span
                       class="tsd-signature-symbol"
                       >?: </span
                     ><span class="tsd-signature-type">string</span
@@ -3515,24 +3436,10 @@
                             <strong>Default is:</strong>
                             <code
                               >path.join(app.getAppPath(), &quot;assets&quot;,
+                              process.platform === &quot;win32&quot; ?
+                              &quot;appIcon.ico&quot; :
                               &quot;appIcon.png&quot;)</code
                             >
-                          </p>
-                        </div>
-                      </div>
-                    </li>
-                    <li class="tsd-parameter">
-                      <h5>
-                        <span class="tsd-flag ts-flagOptional">Optional</span>
-                        title<span class="tsd-signature-symbol">?: </span
-                        ><span class="tsd-signature-type">string</span>
-                      </h5>
-                      <div class="tsd-comment tsd-typography">
-                        <div class="lead">
-                          <p>
-                            Title of the main window (this can be overwritten by
-                            the webapp).
-                            <strong>Default is: &#39;Capacitor App&#39;</strong>
                           </p>
                         </div>
                       </div>
@@ -3617,8 +3524,8 @@
                 <li>
                   Defined in
                   <a
-                    href="https://github.com/capacitor-community/electron/blob/4152937/index.ts#L48"
-                    >index.ts:48</a
+                    href="https://github.com/capacitor-community/electron/blob/a79fd6e/index.ts#L50"
+                    >index.ts:50</a
                   >
                 </li>
               </ul>
@@ -3815,6 +3722,11 @@
                 </li>
                 <li class="tsd-kind-property tsd-parent-kind-interface">
                   <span class="tsd-kind-icon">Property</span>
+                </li>
+              </ul>
+              <ul class="tsd-legend">
+                <li class="tsd-kind-variable">
+                  <span class="tsd-kind-icon">Variable</span>
                 </li>
               </ul>
               <ul class="tsd-legend">

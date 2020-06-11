@@ -37,7 +37,7 @@
       "id": 3,
       "kind": 65536,
       "name": "__type",
-      "url": "interfaces/_index_.capacitorelectronconfig.html#splashscreen.__type-6",
+      "url": "interfaces/_index_.capacitorelectronconfig.html#splashscreen.__type-4",
       "classes": "tsd-kind-type-literal tsd-parent-kind-property",
       "parent": "\"index\".CapacitorElectronConfig.splashScreen"
     },
@@ -45,7 +45,7 @@
       "id": 4,
       "kind": 32,
       "name": "useSplashScreen",
-      "url": "interfaces/_index_.capacitorelectronconfig.html#splashscreen.__type-6.usesplashscreen",
+      "url": "interfaces/_index_.capacitorelectronconfig.html#splashscreen.__type-4.usesplashscreen",
       "classes": "tsd-kind-variable tsd-parent-kind-type-literal",
       "parent": "\"index\".CapacitorElectronConfig.splashScreen.__type"
     },
@@ -53,7 +53,7 @@
       "id": 5,
       "kind": 32,
       "name": "splashOptions",
-      "url": "interfaces/_index_.capacitorelectronconfig.html#splashscreen.__type-6.splashoptions",
+      "url": "interfaces/_index_.capacitorelectronconfig.html#splashscreen.__type-4.splashoptions",
       "classes": "tsd-kind-variable tsd-parent-kind-type-literal",
       "parent": "\"index\".CapacitorElectronConfig.splashScreen.__type"
     },
@@ -61,7 +61,7 @@
       "id": 6,
       "kind": 65536,
       "name": "__type",
-      "url": "interfaces/_index_.capacitorelectronconfig.html#splashscreen.__type-6.splashoptions.__type-7",
+      "url": "interfaces/_index_.capacitorelectronconfig.html#splashscreen.__type-4.splashoptions.__type-5",
       "classes": "tsd-kind-type-literal tsd-parent-kind-variable",
       "parent": "\"index\".CapacitorElectronConfig.splashScreen.__type.splashOptions"
     },
@@ -69,7 +69,7 @@
       "id": 7,
       "kind": 32,
       "name": "imageFilePath",
-      "url": "interfaces/_index_.capacitorelectronconfig.html#splashscreen.__type-6.splashoptions.__type-7.imagefilepath",
+      "url": "interfaces/_index_.capacitorelectronconfig.html#splashscreen.__type-4.splashoptions.__type-5.imagefilepath",
       "classes": "tsd-kind-variable tsd-parent-kind-type-literal",
       "parent": "\"index\".CapacitorElectronConfig.splashScreen.__type.splashOptions.__type"
     },
@@ -77,7 +77,7 @@
       "id": 8,
       "kind": 32,
       "name": "windowWidth",
-      "url": "interfaces/_index_.capacitorelectronconfig.html#splashscreen.__type-6.splashoptions.__type-7.windowwidth",
+      "url": "interfaces/_index_.capacitorelectronconfig.html#splashscreen.__type-4.splashoptions.__type-5.windowwidth",
       "classes": "tsd-kind-variable tsd-parent-kind-type-literal",
       "parent": "\"index\".CapacitorElectronConfig.splashScreen.__type.splashOptions.__type"
     },
@@ -85,7 +85,7 @@
       "id": 9,
       "kind": 32,
       "name": "windowHeight",
-      "url": "interfaces/_index_.capacitorelectronconfig.html#splashscreen.__type-6.splashoptions.__type-7.windowheight",
+      "url": "interfaces/_index_.capacitorelectronconfig.html#splashscreen.__type-4.splashoptions.__type-5.windowheight",
       "classes": "tsd-kind-variable tsd-parent-kind-type-literal",
       "parent": "\"index\".CapacitorElectronConfig.splashScreen.__type.splashOptions.__type"
     },
@@ -93,7 +93,7 @@
       "id": 10,
       "kind": 32,
       "name": "textColor",
-      "url": "interfaces/_index_.capacitorelectronconfig.html#splashscreen.__type-6.splashoptions.__type-7.textcolor",
+      "url": "interfaces/_index_.capacitorelectronconfig.html#splashscreen.__type-4.splashoptions.__type-5.textcolor",
       "classes": "tsd-kind-variable tsd-parent-kind-type-literal",
       "parent": "\"index\".CapacitorElectronConfig.splashScreen.__type.splashOptions.__type"
     },
@@ -101,7 +101,7 @@
       "id": 11,
       "kind": 32,
       "name": "loadingText",
-      "url": "interfaces/_index_.capacitorelectronconfig.html#splashscreen.__type-6.splashoptions.__type-7.loadingtext",
+      "url": "interfaces/_index_.capacitorelectronconfig.html#splashscreen.__type-4.splashoptions.__type-5.loadingtext",
       "classes": "tsd-kind-variable tsd-parent-kind-type-literal",
       "parent": "\"index\".CapacitorElectronConfig.splashScreen.__type.splashOptions.__type"
     },
@@ -109,7 +109,7 @@
       "id": 12,
       "kind": 32,
       "name": "textPercentageFromTop",
-      "url": "interfaces/_index_.capacitorelectronconfig.html#splashscreen.__type-6.splashoptions.__type-7.textpercentagefromtop",
+      "url": "interfaces/_index_.capacitorelectronconfig.html#splashscreen.__type-4.splashoptions.__type-5.textpercentagefromtop",
       "classes": "tsd-kind-variable tsd-parent-kind-type-literal",
       "parent": "\"index\".CapacitorElectronConfig.splashScreen.__type.splashOptions.__type"
     },
@@ -117,7 +117,7 @@
       "id": 13,
       "kind": 32,
       "name": "transparentWindow",
-      "url": "interfaces/_index_.capacitorelectronconfig.html#splashscreen.__type-6.splashoptions.__type-7.transparentwindow",
+      "url": "interfaces/_index_.capacitorelectronconfig.html#splashscreen.__type-4.splashoptions.__type-5.transparentwindow",
       "classes": "tsd-kind-variable tsd-parent-kind-type-literal",
       "parent": "\"index\".CapacitorElectronConfig.splashScreen.__type.splashOptions.__type"
     },
@@ -125,7 +125,7 @@
       "id": 14,
       "kind": 32,
       "name": "autoHideLaunchSplash",
-      "url": "interfaces/_index_.capacitorelectronconfig.html#splashscreen.__type-6.splashoptions.__type-7.autohidelaunchsplash",
+      "url": "interfaces/_index_.capacitorelectronconfig.html#splashscreen.__type-4.splashoptions.__type-5.autohidelaunchsplash",
       "classes": "tsd-kind-variable tsd-parent-kind-type-literal",
       "parent": "\"index\".CapacitorElectronConfig.splashScreen.__type.splashOptions.__type"
     },
@@ -133,12 +133,20 @@
       "id": 15,
       "kind": 32,
       "name": "customHtml",
-      "url": "interfaces/_index_.capacitorelectronconfig.html#splashscreen.__type-6.splashoptions.__type-7.customhtml",
+      "url": "interfaces/_index_.capacitorelectronconfig.html#splashscreen.__type-4.splashoptions.__type-5.customhtml",
       "classes": "tsd-kind-variable tsd-parent-kind-type-literal",
       "parent": "\"index\".CapacitorElectronConfig.splashScreen.__type.splashOptions.__type"
     },
     {
       "id": 16,
+      "kind": 1024,
+      "name": "applicationMenuTemplate",
+      "url": "interfaces/_index_.capacitorelectronconfig.html#applicationmenutemplate",
+      "classes": "tsd-kind-property tsd-parent-kind-interface",
+      "parent": "\"index\".CapacitorElectronConfig"
+    },
+    {
+      "id": 17,
       "kind": 1024,
       "name": "mainWindow",
       "url": "interfaces/_index_.capacitorelectronconfig.html#mainwindow",
@@ -146,7 +154,7 @@
       "parent": "\"index\".CapacitorElectronConfig"
     },
     {
-      "id": 17,
+      "id": 18,
       "kind": 65536,
       "name": "__type",
       "url": "interfaces/_index_.capacitorelectronconfig.html#mainwindow.__type-2",
@@ -154,63 +162,7 @@
       "parent": "\"index\".CapacitorElectronConfig.mainWindow"
     },
     {
-      "id": 18,
-      "kind": 32,
-      "name": "devMode",
-      "url": "interfaces/_index_.capacitorelectronconfig.html#mainwindow.__type-2.devmode",
-      "classes": "tsd-kind-variable tsd-parent-kind-type-literal",
-      "parent": "\"index\".CapacitorElectronConfig.mainWindow.__type"
-    },
-    {
       "id": 19,
-      "kind": 65536,
-      "name": "__type",
-      "url": "interfaces/_index_.capacitorelectronconfig.html#mainwindow.__type-2.devmode.__type-3",
-      "classes": "tsd-kind-type-literal tsd-parent-kind-variable",
-      "parent": "\"index\".CapacitorElectronConfig.mainWindow.__type.devMode"
-    },
-    {
-      "id": 20,
-      "kind": 32,
-      "name": "applicationMenu",
-      "url": "interfaces/_index_.capacitorelectronconfig.html#mainwindow.__type-2.devmode.__type-3.applicationmenu",
-      "classes": "tsd-kind-variable tsd-parent-kind-type-literal",
-      "parent": "\"index\".CapacitorElectronConfig.mainWindow.__type.devMode.__type"
-    },
-    {
-      "id": 21,
-      "kind": 65536,
-      "name": "__type",
-      "url": "interfaces/_index_.capacitorelectronconfig.html#mainwindow.__type-2.devmode.__type-3.applicationmenu.__type-4",
-      "classes": "tsd-kind-type-literal tsd-parent-kind-variable",
-      "parent": "\"index\".CapacitorElectronConfig.mainWindow.__type.devMode.__type.applicationMenu"
-    },
-    {
-      "id": 22,
-      "kind": 32,
-      "name": "showMenu",
-      "url": "interfaces/_index_.capacitorelectronconfig.html#mainwindow.__type-2.devmode.__type-3.applicationmenu.__type-4.showmenu",
-      "classes": "tsd-kind-variable tsd-parent-kind-type-literal",
-      "parent": "\"index\".CapacitorElectronConfig.mainWindow.__type.devMode.__type.applicationMenu.__type"
-    },
-    {
-      "id": 23,
-      "kind": 32,
-      "name": "customTemplate",
-      "url": "interfaces/_index_.capacitorelectronconfig.html#mainwindow.__type-2.devmode.__type-3.applicationmenu.__type-4.customtemplate",
-      "classes": "tsd-kind-variable tsd-parent-kind-type-literal",
-      "parent": "\"index\".CapacitorElectronConfig.mainWindow.__type.devMode.__type.applicationMenu.__type"
-    },
-    {
-      "id": 24,
-      "kind": 32,
-      "name": "showWebDevTools",
-      "url": "interfaces/_index_.capacitorelectronconfig.html#mainwindow.__type-2.devmode.__type-3.showwebdevtools",
-      "classes": "tsd-kind-variable tsd-parent-kind-type-literal",
-      "parent": "\"index\".CapacitorElectronConfig.mainWindow.__type.devMode.__type"
-    },
-    {
-      "id": 25,
       "kind": 32,
       "name": "windowOptions",
       "url": "interfaces/_index_.capacitorelectronconfig.html#mainwindow.__type-2.windowoptions",
@@ -218,47 +170,39 @@
       "parent": "\"index\".CapacitorElectronConfig.mainWindow.__type"
     },
     {
-      "id": 26,
+      "id": 20,
       "kind": 65536,
       "name": "__type",
-      "url": "interfaces/_index_.capacitorelectronconfig.html#mainwindow.__type-2.windowoptions.__type-5",
+      "url": "interfaces/_index_.capacitorelectronconfig.html#mainwindow.__type-2.windowoptions.__type-3",
       "classes": "tsd-kind-type-literal tsd-parent-kind-variable",
       "parent": "\"index\".CapacitorElectronConfig.mainWindow.__type.windowOptions"
     },
     {
-      "id": 27,
+      "id": 21,
       "kind": 32,
       "name": "height",
-      "url": "interfaces/_index_.capacitorelectronconfig.html#mainwindow.__type-2.windowoptions.__type-5.height",
+      "url": "interfaces/_index_.capacitorelectronconfig.html#mainwindow.__type-2.windowoptions.__type-3.height",
       "classes": "tsd-kind-variable tsd-parent-kind-type-literal",
       "parent": "\"index\".CapacitorElectronConfig.mainWindow.__type.windowOptions.__type"
     },
     {
-      "id": 28,
+      "id": 22,
       "kind": 32,
       "name": "width",
-      "url": "interfaces/_index_.capacitorelectronconfig.html#mainwindow.__type-2.windowoptions.__type-5.width",
+      "url": "interfaces/_index_.capacitorelectronconfig.html#mainwindow.__type-2.windowoptions.__type-3.width",
       "classes": "tsd-kind-variable tsd-parent-kind-type-literal",
       "parent": "\"index\".CapacitorElectronConfig.mainWindow.__type.windowOptions.__type"
     },
     {
-      "id": 29,
+      "id": 23,
       "kind": 32,
       "name": "icon",
-      "url": "interfaces/_index_.capacitorelectronconfig.html#mainwindow.__type-2.windowoptions.__type-5.icon",
+      "url": "interfaces/_index_.capacitorelectronconfig.html#mainwindow.__type-2.windowoptions.__type-3.icon",
       "classes": "tsd-kind-variable tsd-parent-kind-type-literal",
       "parent": "\"index\".CapacitorElectronConfig.mainWindow.__type.windowOptions.__type"
     },
     {
-      "id": 30,
-      "kind": 32,
-      "name": "title",
-      "url": "interfaces/_index_.capacitorelectronconfig.html#mainwindow.__type-2.windowoptions.__type-5.title",
-      "classes": "tsd-kind-variable tsd-parent-kind-type-literal",
-      "parent": "\"index\".CapacitorElectronConfig.mainWindow.__type.windowOptions.__type"
-    },
-    {
-      "id": 31,
+      "id": 24,
       "kind": 1024,
       "name": "deepLinking",
       "url": "interfaces/_index_.capacitorelectronconfig.html#deeplinking",
@@ -266,7 +210,7 @@
       "parent": "\"index\".CapacitorElectronConfig"
     },
     {
-      "id": 32,
+      "id": 25,
       "kind": 65536,
       "name": "__type",
       "url": "interfaces/_index_.capacitorelectronconfig.html#deeplinking.__type",
@@ -274,7 +218,7 @@
       "parent": "\"index\".CapacitorElectronConfig.deepLinking"
     },
     {
-      "id": 33,
+      "id": 26,
       "kind": 32,
       "name": "useDeeplinking",
       "url": "interfaces/_index_.capacitorelectronconfig.html#deeplinking.__type.usedeeplinking",
@@ -282,7 +226,7 @@
       "parent": "\"index\".CapacitorElectronConfig.deepLinking.__type"
     },
     {
-      "id": 34,
+      "id": 27,
       "kind": 32,
       "name": "deeplinkingHandlerFunction",
       "url": "interfaces/_index_.capacitorelectronconfig.html#deeplinking.__type.deeplinkinghandlerfunction",
@@ -290,7 +234,7 @@
       "parent": "\"index\".CapacitorElectronConfig.deepLinking.__type"
     },
     {
-      "id": 35,
+      "id": 28,
       "kind": 65536,
       "name": "__type",
       "url": "interfaces/_index_.capacitorelectronconfig.html#deeplinking.__type.deeplinkinghandlerfunction.__type-1",
@@ -298,7 +242,7 @@
       "parent": "\"index\".CapacitorElectronConfig.deepLinking.__type.deeplinkingHandlerFunction"
     },
     {
-      "id": 36,
+      "id": 29,
       "kind": 128,
       "name": "CapacitorElectronApp",
       "url": "classes/_index_.capacitorelectronapp.html",
@@ -306,15 +250,7 @@
       "parent": "\"index\""
     },
     {
-      "id": 37,
-      "kind": 1024,
-      "name": "mainWindow",
-      "url": "classes/_index_.capacitorelectronapp.html#mainwindow",
-      "classes": "tsd-kind-property tsd-parent-kind-class tsd-is-not-exported",
-      "parent": "\"index\".CapacitorElectronApp"
-    },
-    {
-      "id": 38,
+      "id": 30,
       "kind": 512,
       "name": "constructor",
       "url": "classes/_index_.capacitorelectronapp.html#constructor",
@@ -322,201 +258,210 @@
       "parent": "\"index\".CapacitorElectronApp"
     },
     {
-      "id": 39,
+      "id": 31,
       "kind": 2048,
       "name": "init",
       "url": "classes/_index_.capacitorelectronapp.html#init",
       "classes": "tsd-kind-method tsd-parent-kind-class tsd-is-not-exported",
       "parent": "\"index\".CapacitorElectronApp"
+    },
+    {
+      "id": 32,
+      "kind": 2048,
+      "name": "loadMainWindow",
+      "url": "classes/_index_.capacitorelectronapp.html#loadmainwindow",
+      "classes": "tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-not-exported",
+      "parent": "\"index\".CapacitorElectronApp"
+    },
+    {
+      "id": 33,
+      "kind": 2048,
+      "name": "getMainWindow",
+      "url": "classes/_index_.capacitorelectronapp.html#getmainwindow",
+      "classes": "tsd-kind-method tsd-parent-kind-class tsd-is-not-exported",
+      "parent": "\"index\".CapacitorElectronApp"
+    },
+    {
+      "id": 34,
+      "kind": 32,
+      "name": "mainWidowReference",
+      "url": "modules/_index_.html#mainwidowreference",
+      "classes": "tsd-kind-variable tsd-parent-kind-module tsd-is-not-exported",
+      "parent": "\"index\""
+    },
+    {
+      "id": 35,
+      "kind": 32,
+      "name": "splashScreenReference",
+      "url": "modules/_index_.html#splashscreenreference",
+      "classes": "tsd-kind-variable tsd-parent-kind-module tsd-is-not-exported",
+      "parent": "\"index\""
     }
   ],
   "index": {
     "version": "2.3.8",
     "fields": ["name", "parent"],
     "fieldVectors": [
-      ["name/0", [0, 24.608]],
+      ["name/0", [0, 19.062]],
       ["parent/0", []],
-      ["name/1", [1, 33.081]],
-      ["parent/1", [0, 2.435]],
-      ["name/2", [2, 33.081]],
-      ["parent/2", [3, 2.435]],
-      ["name/3", [4, 15.735]],
-      ["parent/3", [5, 3.274]],
-      ["name/4", [6, 33.081]],
-      ["parent/4", [7, 2.768]],
-      ["name/5", [8, 33.081]],
-      ["parent/5", [7, 2.768]],
-      ["name/6", [4, 15.735]],
-      ["parent/6", [9, 3.274]],
-      ["name/7", [10, 33.081]],
-      ["parent/7", [11, 1.447]],
-      ["name/8", [12, 33.081]],
-      ["parent/8", [11, 1.447]],
-      ["name/9", [13, 33.081]],
-      ["parent/9", [11, 1.447]],
-      ["name/10", [14, 33.081]],
-      ["parent/10", [11, 1.447]],
-      ["name/11", [15, 33.081]],
-      ["parent/11", [11, 1.447]],
-      ["name/12", [16, 33.081]],
-      ["parent/12", [11, 1.447]],
-      ["name/13", [17, 33.081]],
-      ["parent/13", [11, 1.447]],
-      ["name/14", [18, 33.081]],
-      ["parent/14", [11, 1.447]],
-      ["name/15", [19, 33.081]],
-      ["parent/15", [11, 1.447]],
-      ["name/16", [20, 27.973]],
-      ["parent/16", [3, 2.435]],
-      ["name/17", [4, 15.735]],
-      ["parent/17", [21, 3.274]],
-      ["name/18", [22, 33.081]],
-      ["parent/18", [23, 2.768]],
-      ["name/19", [4, 15.735]],
-      ["parent/19", [24, 3.274]],
-      ["name/20", [25, 33.081]],
-      ["parent/20", [26, 2.768]],
-      ["name/21", [4, 15.735]],
-      ["parent/21", [27, 3.274]],
-      ["name/22", [28, 33.081]],
-      ["parent/22", [29, 2.768]],
-      ["name/23", [30, 33.081]],
-      ["parent/23", [29, 2.768]],
-      ["name/24", [31, 33.081]],
-      ["parent/24", [26, 2.768]],
-      ["name/25", [32, 33.081]],
-      ["parent/25", [23, 2.768]],
-      ["name/26", [4, 15.735]],
-      ["parent/26", [33, 3.274]],
-      ["name/27", [34, 33.081]],
-      ["parent/27", [35, 2.187]],
-      ["name/28", [36, 33.081]],
-      ["parent/28", [35, 2.187]],
-      ["name/29", [37, 33.081]],
-      ["parent/29", [35, 2.187]],
-      ["name/30", [38, 33.081]],
-      ["parent/30", [35, 2.187]],
-      ["name/31", [39, 33.081]],
-      ["parent/31", [3, 2.435]],
-      ["name/32", [4, 15.735]],
-      ["parent/32", [40, 3.274]],
-      ["name/33", [41, 33.081]],
-      ["parent/33", [42, 2.768]],
-      ["name/34", [43, 33.081]],
-      ["parent/34", [42, 2.768]],
-      ["name/35", [4, 15.735]],
-      ["parent/35", [44, 3.274]],
-      ["name/36", [45, 33.081]],
-      ["parent/36", [0, 2.435]],
-      ["name/37", [20, 27.973]],
-      ["parent/37", [46, 2.435]],
-      ["name/38", [47, 33.081]],
-      ["parent/38", [46, 2.435]],
-      ["name/39", [48, 33.081]],
-      ["parent/39", [46, 2.435]]
+      ["name/1", [1, 32.055]],
+      ["parent/1", [0, 1.884]],
+      ["name/2", [2, 32.055]],
+      ["parent/2", [3, 2.082]],
+      ["name/3", [4, 17.391]],
+      ["parent/3", [5, 3.168]],
+      ["name/4", [6, 32.055]],
+      ["parent/4", [7, 2.663]],
+      ["name/5", [8, 32.055]],
+      ["parent/5", [7, 2.663]],
+      ["name/6", [4, 17.391]],
+      ["parent/6", [9, 3.168]],
+      ["name/7", [10, 32.055]],
+      ["parent/7", [11, 1.344]],
+      ["name/8", [12, 32.055]],
+      ["parent/8", [11, 1.344]],
+      ["name/9", [13, 32.055]],
+      ["parent/9", [11, 1.344]],
+      ["name/10", [14, 32.055]],
+      ["parent/10", [11, 1.344]],
+      ["name/11", [15, 32.055]],
+      ["parent/11", [11, 1.344]],
+      ["name/12", [16, 32.055]],
+      ["parent/12", [11, 1.344]],
+      ["name/13", [17, 32.055]],
+      ["parent/13", [11, 1.344]],
+      ["name/14", [18, 32.055]],
+      ["parent/14", [11, 1.344]],
+      ["name/15", [19, 32.055]],
+      ["parent/15", [11, 1.344]],
+      ["name/16", [20, 32.055]],
+      ["parent/16", [3, 2.082]],
+      ["name/17", [21, 32.055]],
+      ["parent/17", [3, 2.082]],
+      ["name/18", [4, 17.391]],
+      ["parent/18", [22, 3.168]],
+      ["name/19", [23, 32.055]],
+      ["parent/19", [24, 3.168]],
+      ["name/20", [4, 17.391]],
+      ["parent/20", [25, 3.168]],
+      ["name/21", [26, 32.055]],
+      ["parent/21", [27, 2.331]],
+      ["name/22", [28, 32.055]],
+      ["parent/22", [27, 2.331]],
+      ["name/23", [29, 32.055]],
+      ["parent/23", [27, 2.331]],
+      ["name/24", [30, 32.055]],
+      ["parent/24", [3, 2.082]],
+      ["name/25", [4, 17.391]],
+      ["parent/25", [31, 3.168]],
+      ["name/26", [32, 32.055]],
+      ["parent/26", [33, 2.663]],
+      ["name/27", [34, 32.055]],
+      ["parent/27", [33, 2.663]],
+      ["name/28", [4, 17.391]],
+      ["parent/28", [35, 3.168]],
+      ["name/29", [36, 32.055]],
+      ["parent/29", [0, 1.884]],
+      ["name/30", [37, 32.055]],
+      ["parent/30", [38, 2.082]],
+      ["name/31", [39, 32.055]],
+      ["parent/31", [38, 2.082]],
+      ["name/32", [40, 32.055]],
+      ["parent/32", [38, 2.082]],
+      ["name/33", [41, 32.055]],
+      ["parent/33", [38, 2.082]],
+      ["name/34", [42, 32.055]],
+      ["parent/34", [0, 1.884]],
+      ["name/35", [43, 32.055]],
+      ["parent/35", [0, 1.884]]
     ],
     "invertedIndex": [
       [
         "__type",
         {
           "_index": 4,
-          "name": {
-            "3": {},
-            "6": {},
-            "17": {},
-            "19": {},
-            "21": {},
-            "26": {},
-            "32": {},
-            "35": {}
-          },
+          "name": { "3": {}, "6": {}, "18": {}, "20": {}, "25": {}, "28": {} },
           "parent": {}
         }
       ],
-      ["applicationmenu", { "_index": 25, "name": { "20": {} }, "parent": {} }],
+      [
+        "applicationmenutemplate",
+        { "_index": 20, "name": { "16": {} }, "parent": {} }
+      ],
       [
         "autohidelaunchsplash",
         { "_index": 18, "name": { "14": {} }, "parent": {} }
       ],
       [
         "capacitorelectronapp",
-        { "_index": 45, "name": { "36": {} }, "parent": {} }
+        { "_index": 36, "name": { "29": {} }, "parent": {} }
       ],
       [
         "capacitorelectronconfig",
         { "_index": 1, "name": { "1": {} }, "parent": {} }
       ],
-      ["constructor", { "_index": 47, "name": { "38": {} }, "parent": {} }],
+      ["constructor", { "_index": 37, "name": { "30": {} }, "parent": {} }],
       ["customhtml", { "_index": 19, "name": { "15": {} }, "parent": {} }],
-      ["customtemplate", { "_index": 30, "name": { "23": {} }, "parent": {} }],
-      ["deeplinking", { "_index": 39, "name": { "31": {} }, "parent": {} }],
+      ["deeplinking", { "_index": 30, "name": { "24": {} }, "parent": {} }],
       [
         "deeplinkinghandlerfunction",
-        { "_index": 43, "name": { "34": {} }, "parent": {} }
+        { "_index": 34, "name": { "27": {} }, "parent": {} }
       ],
-      ["devmode", { "_index": 22, "name": { "18": {} }, "parent": {} }],
-      ["height", { "_index": 34, "name": { "27": {} }, "parent": {} }],
-      ["icon", { "_index": 37, "name": { "29": {} }, "parent": {} }],
+      ["getmainwindow", { "_index": 41, "name": { "33": {} }, "parent": {} }],
+      ["height", { "_index": 26, "name": { "21": {} }, "parent": {} }],
+      ["icon", { "_index": 29, "name": { "23": {} }, "parent": {} }],
       ["imagefilepath", { "_index": 10, "name": { "7": {} }, "parent": {} }],
       [
         "index",
-        { "_index": 0, "name": { "0": {} }, "parent": { "1": {}, "36": {} } }
+        {
+          "_index": 0,
+          "name": { "0": {} },
+          "parent": { "1": {}, "29": {}, "34": {}, "35": {} }
+        }
       ],
       [
         "index\".capacitorelectronapp",
-        { "_index": 46, "name": {}, "parent": { "37": {}, "38": {}, "39": {} } }
+        {
+          "_index": 38,
+          "name": {},
+          "parent": { "30": {}, "31": {}, "32": {}, "33": {} }
+        }
       ],
       [
         "index\".capacitorelectronconfig",
-        { "_index": 3, "name": {}, "parent": { "2": {}, "16": {}, "31": {} } }
+        {
+          "_index": 3,
+          "name": {},
+          "parent": { "2": {}, "16": {}, "17": {}, "24": {} }
+        }
       ],
       [
         "index\".capacitorelectronconfig.deeplinking",
-        { "_index": 40, "name": {}, "parent": { "32": {} } }
+        { "_index": 31, "name": {}, "parent": { "25": {} } }
       ],
       [
         "index\".capacitorelectronconfig.deeplinking.__type",
-        { "_index": 42, "name": {}, "parent": { "33": {}, "34": {} } }
+        { "_index": 33, "name": {}, "parent": { "26": {}, "27": {} } }
       ],
       [
         "index\".capacitorelectronconfig.deeplinking.__type.deeplinkinghandlerfunction",
-        { "_index": 44, "name": {}, "parent": { "35": {} } }
+        { "_index": 35, "name": {}, "parent": { "28": {} } }
       ],
       [
         "index\".capacitorelectronconfig.mainwindow",
-        { "_index": 21, "name": {}, "parent": { "17": {} } }
+        { "_index": 22, "name": {}, "parent": { "18": {} } }
       ],
       [
         "index\".capacitorelectronconfig.mainwindow.__type",
-        { "_index": 23, "name": {}, "parent": { "18": {}, "25": {} } }
-      ],
-      [
-        "index\".capacitorelectronconfig.mainwindow.__type.devmode",
         { "_index": 24, "name": {}, "parent": { "19": {} } }
       ],
       [
-        "index\".capacitorelectronconfig.mainwindow.__type.devmode.__type",
-        { "_index": 26, "name": {}, "parent": { "20": {}, "24": {} } }
-      ],
-      [
-        "index\".capacitorelectronconfig.mainwindow.__type.devmode.__type.applicationmenu",
-        { "_index": 27, "name": {}, "parent": { "21": {} } }
-      ],
-      [
-        "index\".capacitorelectronconfig.mainwindow.__type.devmode.__type.applicationmenu.__type",
-        { "_index": 29, "name": {}, "parent": { "22": {}, "23": {} } }
-      ],
-      [
         "index\".capacitorelectronconfig.mainwindow.__type.windowoptions",
-        { "_index": 33, "name": {}, "parent": { "26": {} } }
+        { "_index": 25, "name": {}, "parent": { "20": {} } }
       ],
       [
         "index\".capacitorelectronconfig.mainwindow.__type.windowoptions.__type",
-        {
-          "_index": 35,
-          "name": {},
-          "parent": { "27": {}, "28": {}, "29": {}, "30": {} }
-        }
+        { "_index": 27, "name": {}, "parent": { "21": {}, "22": {}, "23": {} } }
       ],
       [
         "index\".capacitorelectronconfig.splashscreen",
@@ -548,31 +493,34 @@
           }
         }
       ],
-      ["init", { "_index": 48, "name": { "39": {} }, "parent": {} }],
+      ["init", { "_index": 39, "name": { "31": {} }, "parent": {} }],
       ["loadingtext", { "_index": 15, "name": { "11": {} }, "parent": {} }],
+      ["loadmainwindow", { "_index": 40, "name": { "32": {} }, "parent": {} }],
       [
-        "mainwindow",
-        { "_index": 20, "name": { "16": {}, "37": {} }, "parent": {} }
+        "mainwidowreference",
+        { "_index": 42, "name": { "34": {} }, "parent": {} }
       ],
-      ["showmenu", { "_index": 28, "name": { "22": {} }, "parent": {} }],
-      ["showwebdevtools", { "_index": 31, "name": { "24": {} }, "parent": {} }],
+      ["mainwindow", { "_index": 21, "name": { "17": {} }, "parent": {} }],
       ["splashoptions", { "_index": 8, "name": { "5": {} }, "parent": {} }],
       ["splashscreen", { "_index": 2, "name": { "2": {} }, "parent": {} }],
+      [
+        "splashscreenreference",
+        { "_index": 43, "name": { "35": {} }, "parent": {} }
+      ],
       ["textcolor", { "_index": 14, "name": { "10": {} }, "parent": {} }],
       [
         "textpercentagefromtop",
         { "_index": 16, "name": { "12": {} }, "parent": {} }
       ],
-      ["title", { "_index": 38, "name": { "30": {} }, "parent": {} }],
       [
         "transparentwindow",
         { "_index": 17, "name": { "13": {} }, "parent": {} }
       ],
-      ["usedeeplinking", { "_index": 41, "name": { "33": {} }, "parent": {} }],
+      ["usedeeplinking", { "_index": 32, "name": { "26": {} }, "parent": {} }],
       ["usesplashscreen", { "_index": 6, "name": { "4": {} }, "parent": {} }],
-      ["width", { "_index": 36, "name": { "28": {} }, "parent": {} }],
+      ["width", { "_index": 28, "name": { "22": {} }, "parent": {} }],
       ["windowheight", { "_index": 13, "name": { "9": {} }, "parent": {} }],
-      ["windowoptions", { "_index": 32, "name": { "25": {} }, "parent": {} }],
+      ["windowoptions", { "_index": 23, "name": { "19": {} }, "parent": {} }],
       ["windowwidth", { "_index": 12, "name": { "8": {} }, "parent": {} }]
     ],
     "pipeline": []

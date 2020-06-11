@@ -1,8 +1,7 @@
-// @ts-check
 const { app } = require("electron");
 const { CapacitorElectronApp } = require("@capacitor-community/electron");
 
-// The MainWindow can be accessed via myCapacitorApp.getMainWindow()
+// The MainWindow object can be accessed via myCapacitorApp.getMainWindow()
 const myCapacitorApp = new CapacitorElectronApp();
 
 // This method will be called when Electron has finished
