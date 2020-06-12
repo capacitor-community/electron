@@ -1,25 +1,18 @@
-<p align="center">
-
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-
-<a href="#contributors"><img src="https://img.shields.io/badge/all%20contributors-2-orange?style=flat-square" /></a>
-
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
-
-[![](https://img.shields.io/badge/supported%20electron%20version-~9.0.0-blue?style=flat-square)](https://www.electronjs.org/releases/stable?version=9)
-[![](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg?style=flat-square)](https://lerna.js.org/)
-
-</p>
-<p align="center">
-
-[![](https://img.shields.io/npm/v/@capacitor-community/electron-core.svg?color=green&style=flat-square)](https://npmjs.com/package/@capacitor-community/electron-core)
-[![](https://img.shields.io/npm/l/@capacitor-community/electron-core.svg?color=lightgrey&style=flat-square)](https://npmjs.com/package/@capacitor-community/electron-core)
-
-</p>
-
 # Capacitor Electron
 
+<p align="center">
+  <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+  <a href="#contributors"><img src="https://img.shields.io/badge/all%20contributors-2-orange?style=flat-square" /></a><!-- ALL-CONTRIBUTORS-BADGE:END -->
+  <a href="https://www.electronjs.org/releases/stable?version=9"><img src="https://img.shields.io/badge/supported%20electron%20version-~9.0.0-blue?style=flat-square" /></a>
+  <a href="https://lerna.js.org/"><img src="https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg?style=flat-square" /></a>
+</p>
+<p align="center">
+  <a href="https://npmjs.com/package/@capacitor-community/electron-core"><img src="https://img.shields.io/npm/v/@capacitor-community/electron-core.svg?color=green&style=flat-square" /></a>
+  <a href="https://npmjs.com/package/@capacitor-community/electron-core"><img src="https://img.shields.io/npm/l/@capacitor-community/electron-core.svg?color=lightgrey&style=flat-square" /></a>
+</p>
+<p align="center">
 Capacitor community support for the Electron platform.
+</p>
 
 ## Maintainers
 
