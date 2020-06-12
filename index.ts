@@ -91,7 +91,9 @@ export interface CapacitorElectronConfig {
   };
 }
 
+/** @internal */
 let mainWidowReference: Electron.BrowserWindow | null = null;
+/** @internal */
 let splashScreenReference: CapacitorSplashScreen | null = null;
 
 /** @internal */
@@ -541,6 +543,7 @@ class CapacitorElectronApp {
     }
   }
 
+  /** @internal */
   private async loadMainWindow() {
     if (this.devServerUrl !== null) {
       await mainWidowReference.webContents.loadURL(this.devServerUrl);
