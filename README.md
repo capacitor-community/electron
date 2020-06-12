@@ -1,22 +1,20 @@
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
+
+[![](https://img.shields.io/npm/v/@capacitor-community/electron-core.svg?style=flat-square)](https://npmjs.com/package/@capacitor-community/electron-core)
+
+[![](https://img.shields.io/npm/l/@capacitor-community/electron.svg?style=flat-square)](https://npmjs.com/package/@capacitor-community/electron)
+
+[![](https://img.shields.io/badge/supported%20electron%20version-~9.0.0-blue?style=flat-square)](https://www.electronjs.org/releases/stable?version=9)
+
+[![](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg?style=flat-square)](https://lerna.js.org/)
+
 # Capacitor Electron
 
 Capacitor community support for the Electron platform.
-
-<a href="https://npmjs.com/package/@capacitor-community/electron-core">
-  <img src="https://img.shields.io/npm/v/@capacitor-community/electron-core.svg">
-</a>
-<a href="https://npmjs.com/package/@capacitor-community/electron">
-  <img src="https://img.shields.io/npm/l/@capacitor-community/electron.svg">
-</a>
-<a href="https://www.electronjs.org/releases/stable?version=9">
-  <img src="https://img.shields.io/badge/supported%20electron%20version-~9.0.0-blue">
-</a>
-<a href="https://lerna.js.org/">
-  <img src="https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg">
-</a>
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## Maintainers
 
@@ -73,6 +71,18 @@ And more can be found on the [Awesome Electron List](https://github.com/sindreso
 ## Contributors ✨
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="http://ionicframework.com/"><img src="https://avatars3.githubusercontent.com/u/11214?v=4" width="100px;" alt=""/><br /><sub><b>Max Lynch</b></sub></a><br /><a href="https://github.com/IT-MikeS/@capacitor-community/electron/commits?author=mlynch" title="Code">💻</a> <a href="https://github.com/IT-MikeS/@capacitor-community/electron/commits?author=mlynch" title="Documentation">📖</a></td>
+  </tr>
+</table>
+
+<!-- markdownlint-enable -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
 <table>

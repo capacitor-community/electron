@@ -11,10 +11,10 @@
   "commitConvention": "none",
   "contributors": [
     {
-      "login": "IT-MikeS",
-      "name": "Mike S",
-      "avatar_url": "https://avatars0.githubusercontent.com/u/20338451?v=4",
-      "profile": "https://github.com/IT-MikeS",
+      "login": "mlynch",
+      "name": "Max Lynch",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/11214?v=4",
+      "profile": "http://ionicframework.com/",
       "contributions": [
         "code",
         "doc"
