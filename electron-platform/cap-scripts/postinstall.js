@@ -31,6 +31,10 @@ async function doPostInstall() {
       if (!fs.existsSync(destDir)) {
         fs.mkdirSync(destDir, { recursive: true });
         fse.copySync(srcDir, destDir);
+        fse.copySync(
+          usersProjectCapConfig,
+          path.join(destDir, "capacitor.config.json")
+        );
         console.log(await runExec(`cd ${destDir} && npm i`));
         console.log("Electron platform added!");
       } else {
