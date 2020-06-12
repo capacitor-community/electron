@@ -30,8 +30,8 @@ Maintenance Status: Actively Maintained
 
 ## Basic Usage Steps:
 
-1. Run `npx cap add electron` in your project directory.
-2. Open a terminal in the `electron` folder that was created in your project directory and run `npm run electron:start` to start your app with the default config.
+1. Run `npm i @capacitor-community/electron-platform` in your project directory. This will install the platform and its dependancies along with placing a copy of your built webapp into the platform folder `electron`
+2. Open a terminal in the `electron` platform folder and run `npm run electron:start` to start your app with the default config.
 
 ## Using your own image for the Splash Screen
 
