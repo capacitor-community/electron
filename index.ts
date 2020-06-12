@@ -17,8 +17,6 @@ const Menu = electron.Menu;
 /** @hidden */
 const ipcMain = electron.ipcMain;
 /** @hidden */
-const dialog = electron.dialog;
-/** @hidden */
 const mimeTypes = require("mime-types");
 /** @hidden */
 const electronServe = require("electron-serve");
