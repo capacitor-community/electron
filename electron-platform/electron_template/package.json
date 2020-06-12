@@ -10,7 +10,7 @@
     "electron:build-mac": "electron-builder build --mac"
   },
   "dependencies": {
-    "@capacitor-community/electron": "latest"
+    "@capacitor-community/electron-core": "file:/CapacitorCommunity/electron/electron-core"
   },
   "devDependencies": {
     "electron": "~9.0.3",

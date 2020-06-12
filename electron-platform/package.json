@@ -1,0 +1,48 @@
+{
+  "name": "@capacitor-community/electron-platform",
+  "version": "0.0.1-beta.0",
+  "description": "Capacitor community support for the Electron platform.",
+  "scripts": {
+    "shipit": "np",
+    "postinstall": "node cap-scripts/postinstall.js",
+    "copy": "node cap-scripts/copy.js",
+    "update": "echo \"Not yet implemented.\"",
+    "sync": "echo \"Not yet implemented.\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/capacitor-community/electron.git"
+  },
+  "keywords": [
+    "capacitor",
+    "electron"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/capacitor-community/electron/issues"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  },
+  "homepage": "https://github.com/capacitor-community/electron#readme",
+  "devDependencies": {
+    "@types/node": "~12.0.5",
+    "husky": "^4.2.5",
+    "np": "^6.2.4",
+    "prettier": "^2.0.5",
+    "prettier-plugin-java": "^0.8.0",
+    "pretty-quick": "^2.0.1"
+  },
+  "dependencies": {
+    "fs-extra": "~9.0.1"
+  },
+  "directories": {
+    "doc": "docs"
+  },
+  "author": "IT-MikeS",
+  "publishConfig": {
+    "access": "public"
+  }
+}
