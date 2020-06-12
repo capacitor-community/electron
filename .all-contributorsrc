@@ -2,6 +2,7 @@
   "projectName": "@capacitor-community/electron",
   "projectOwner": "mlynch",
   "repoType": "github",
+  "badgeTemplate": "<a href=\"#contributors\"><img src=\"https://img.shields.io/badge/all%20contributors-<%= contributors.length %>-orange?style=flat-square\" /></a>",
   "repoHost": "https://github.com",
   "files": [
     "README.md"
@@ -15,16 +16,6 @@
       "name": "Max Lynch",
       "avatar_url": "https://avatars3.githubusercontent.com/u/11214?v=4",
       "profile": "http://ionicframework.com/",
-      "contributions": [
-        "code",
-        "doc"
-      ]
-    },
-    {
-      "login": "IT-MikeS",
-      "name": "Mike S",
-      "avatar_url": "https://avatars0.githubusercontent.com/u/20338451?v=4",
-      "profile": "https://github.com/IT-MikeS",
       "contributions": [
         "code",
         "doc"
