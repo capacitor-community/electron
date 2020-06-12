@@ -1,8 +1,9 @@
 {
   "name": "@capacitor-community/electron-core",
-  "version": "0.0.1-beta.0",
+  "version": "0.0.1",
   "description": "Capacitor core for the Capacitor Community Electron platform.",
   "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
   "scripts": {
     "build": "npm run clean && npm run transpile && npm run rollup && npm run minify && npm run transpile-index",
     "clean": "rimraf dist",

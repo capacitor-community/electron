@@ -1,28 +1,22 @@
 {
   "name": "@capacitor-community/electron",
-  "version": "0.0.1-beta.0",
   "description": "Containing project for Capacitor community support for the Electron platform.",
-  "scripts": {},
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/capacitor-community/electron.git"
+  "private": true,
+  "scripts": {
+    "publish": "lerna run build && lerna publish --force-publish --skip-git && npm run publish-push",
+    "publish-push": "bash scripts/deploy.sh"
   },
-  "keywords": [
-    "capacitor",
-    "electron"
-  ],
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/capacitor-community/electron/issues"
-  },
   "husky": {
     "hooks": {
       "pre-commit": "pretty-quick --staged"
     }
   },
-  "homepage": "https://github.com/capacitor-community/electron#readme",
   "directories": {
     "doc": "docs"
   },
-  "author": "IT-MikeS"
+  "author": "IT-MikeS",
+  "dependencies": {
+    "lerna": "^2.4.0"
+  }
 }
