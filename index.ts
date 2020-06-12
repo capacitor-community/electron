@@ -307,7 +307,7 @@ class CapacitorSplashScreen {
 
 /** @internal */
 class CapacitorDeeplinking {
-  private deeplinkingUrl = "";
+  private passedDeeplinkingUrl = "";
   private internalDeeplinkHandler: (deeplinkUrl: string) => void = (
     deeplinkUrl: string
   ) => {
@@ -319,7 +319,9 @@ class CapacitorDeeplinking {
         break;
       }
     }
-    if (url.length > 0) {
+    this.passedDeeplinkingUrl = url;
+
+    if (this.passedDeeplinkingUrl.length > 0) {
       mainWidowReference.webContents.send("appUrlOpen", url);
       if (this.userDeeplinkHandler !== null) this.userDeeplinkHandler(url);
     }
@@ -338,14 +340,14 @@ class CapacitorDeeplinking {
   init(deepLinkHandler?: (deeplinkUrl: string) => void) {
     if (deepLinkHandler) this.userDeeplinkHandler = deepLinkHandler;
 
-    const gotTheLock = app.requestSingleInstanceLock();
-    if (gotTheLock) {
+    const instanceLock = app.requestSingleInstanceLock();
+    if (instanceLock) {
       //@ts-ignore
       app.on("second-instance", (event, argv) => {
         if (process.platform == "win32") {
-          this.deeplinkingUrl = argv.slice(1).toString();
+          this.passedDeeplinkingUrl = argv.slice(1).toString();
         }
-        this.internalDeeplinkHandler(this.deeplinkingUrl);
+        this.internalDeeplinkHandler(this.passedDeeplinkingUrl);
 
         if (mainWidowReference) {
           if (mainWidowReference.isMinimized()) mainWidowReference.restore();
@@ -358,28 +360,33 @@ class CapacitorDeeplinking {
     }
 
     if (!app.isDefaultProtocolClient(this.deeplinkingOptions.customProtocol)) {
-      // Define custom protocol handler.
       // Deep linking only works on packaged versions of the app!
       app.setAsDefaultProtocolClient(this.deeplinkingOptions.customProtocol);
     }
 
-    app.on("will-finish-launching", function () {
-      app.on("open-url", function (event, url) {
-        console.log("open-url");
-        dialog.showMessageBox(mainWidowReference, { message: "open-url" });
+    app.on("will-finish-launching", () => {
+      app.on("open-url", (event, url) => {
         event.preventDefault();
+        this.passedDeeplinkingUrl = url;
         this.internalDeeplinkHandler(url);
       });
     });
 
     if (process.platform == "win32") {
-      this.deeplinkingUrl = process.argv.slice(1).toString();
-      this.internalDeeplinkHandler(this.deeplinkingUrl);
+      this.passedDeeplinkingUrl = process.argv.slice(1).toString();
+      this.internalDeeplinkHandler(this.passedDeeplinkingUrl);
     }
+  }
+
+  /** @internal */
+  getPassedDeeplinkUrl(): string {
+    return this.passedDeeplinkingUrl;
   }
 }
 
 class CapacitorElectronApp {
+  /** @internal */
+  private isProgramColdStart = true;
   /** @internal */
   private deepLinking: any = null;
   /** @internal */
@@ -528,17 +535,31 @@ class CapacitorElectronApp {
         this.config.splashScreen.splashOptions
       );
       splashScreenReference.init();
-    }
-    setTimeout(() => {
+      setTimeout(() => {
+        this.loadMainWindow();
+      }, this.capConfigLaunchShowDuration);
+    } else {
       this.loadMainWindow();
-    }, this.capConfigLaunchShowDuration);
+    }
   }
 
   private async loadMainWindow() {
     if (this.devServerUrl !== null) {
-      mainWidowReference.webContents.loadURL(this.devServerUrl);
+      await mainWidowReference.webContents.loadURL(this.devServerUrl);
     } else {
       await loadWebApp(mainWidowReference);
+    }
+    if (this.deepLinking !== null && this.isProgramColdStart) {
+      if (this.deepLinking.getPassedDeeplinkUrl().length > 0) {
+        this.isProgramColdStart = false;
+        // Pass deeplink if there was one, to webapp after it has loaded on first launch
+        setTimeout(() => {
+          mainWidowReference.webContents.send(
+            "appUrlOpen",
+            this.deepLinking.getPassedDeeplinkUrl()
+          );
+        }, 500);
+      }
     }
   }
 
