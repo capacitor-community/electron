@@ -4,9 +4,9 @@
 
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-[![](https://img.shields.io/npm/v/@capacitor-community/electron-core.svg?style=flat-square)](https://npmjs.com/package/@capacitor-community/electron-core)
+[![](https://img.shields.io/npm/v/@capacitor-community/electron-core.svg?color=green&style=flat-square)](https://npmjs.com/package/@capacitor-community/electron-core)
 
-[![](https://img.shields.io/npm/l/@capacitor-community/electron.svg?style=flat-square)](https://npmjs.com/package/@capacitor-community/electron)
+[![](https://img.shields.io/npm/l/@capacitor-community/electron-core.svg?color=lightgrey&style=flat-square)](https://npmjs.com/package/@capacitor-community/electron-core)
 
 [![](https://img.shields.io/badge/supported%20electron%20version-~9.0.0-blue?style=flat-square)](https://www.electronjs.org/releases/stable?version=9)
 
