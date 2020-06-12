@@ -84,15 +84,3 @@ And more can be found on the [Awesome Electron List](https://github.com/sindreso
 <!-- prettier-ignore-end -->
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
-<table>
-  <tr>
-    <td align="center"><a href="https://github.com/IT-MikeS"><img src="https://avatars0.githubusercontent.com/u/20338451?v=4" width="100px;" alt=""/><br /><sub><b>Mike S</b></sub></a><br /><a href="https://github.com/IT-MikeS/@capacitor-community/electron/commits?author=IT-MikeS" title="Code">💻</a> <a href="https://github.com/IT-MikeS/@capacitor-community/electron/commits?author=IT-MikeS" title="Documentation">📖</a></td>
-  </tr>
-</table>
-
-<!-- markdownlint-enable -->
-<!-- prettier-ignore-end -->
-
-<!-- ALL-CONTRIBUTORS-LIST:END -->

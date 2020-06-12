@@ -18,5 +18,8 @@
   "author": "IT-MikeS",
   "dependencies": {
     "lerna": "^2.4.0"
+  },
+  "devDependencies": {
+    "all-contributors-cli": "^6.16.0"
   }
 }
