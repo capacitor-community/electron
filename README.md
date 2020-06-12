@@ -2,7 +2,6 @@
 
 Capacitor community support for the Electron platform.
 
-<!-- Badges -->
 <a href="https://npmjs.com/package/@capacitor-community/electron-core">
   <img src="https://img.shields.io/npm/v/@capacitor-community/electron-core.svg">
 </a>
@@ -15,6 +14,9 @@ Capacitor community support for the Electron platform.
 <a href="https://lerna.js.org/">
   <img src="https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg">
 </a>
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## Maintainers
 
@@ -67,3 +69,19 @@ Maintenance Status: Actively Maintained
 - [Electron-Store](https://github.com/sindresorhus/electron-store): Simple data persistence for your Electron app - Save and load user preferences, app state, cache, etc
 
 And more can be found on the [Awesome Electron List](https://github.com/sindresorhus/awesome-electron).
+
+## Contributors ✨
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/IT-MikeS"><img src="https://avatars0.githubusercontent.com/u/20338451?v=4" width="100px;" alt=""/><br /><sub><b>Mike S</b></sub></a><br /><a href="https://github.com/IT-MikeS/@capacitor-community/electron/commits?author=IT-MikeS" title="Code">💻</a> <a href="https://github.com/IT-MikeS/@capacitor-community/electron/commits?author=IT-MikeS" title="Documentation">📖</a></td>
+  </tr>
+</table>
+
+<!-- markdownlint-enable -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
