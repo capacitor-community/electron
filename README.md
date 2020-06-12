@@ -2,7 +2,7 @@
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 
-<a href="#contributors"><img src="https://img.shields.io/badge/all%20contributors-1-orange?style=flat-square" /></a>
+<a href="#contributors"><img src="https://img.shields.io/badge/all%20contributors-2-orange?style=flat-square" /></a>
 
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
@@ -81,6 +81,7 @@ And more can be found on the [Awesome Electron List](https://github.com/sindreso
 <table>
   <tr>
     <td align="center"><a href="http://ionicframework.com/"><img src="https://avatars3.githubusercontent.com/u/11214?v=4" width="100px;" alt=""/><br /><sub><b>Max Lynch</b></sub></a><br /><a href="https://github.com/mlynch/@capacitor-community/electron/commits?author=mlynch" title="Code">💻</a> <a href="https://github.com/mlynch/@capacitor-community/electron/commits?author=mlynch" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/IT-MikeS"><img src="https://avatars0.githubusercontent.com/u/20338451?v=4" width="100px;" alt=""/><br /><sub><b>Mike S</b></sub></a><br /><a href="https://github.com/mlynch/@capacitor-community/electron/commits?author=IT-MikeS" title="Code">💻</a> <a href="https://github.com/mlynch/@capacitor-community/electron/commits?author=IT-MikeS" title="Documentation">📖</a></td>
   </tr>
 </table>
 
