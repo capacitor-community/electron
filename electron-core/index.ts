@@ -473,7 +473,7 @@ class CapacitorElectronApp {
           app.getAppPath(),
           "node_modules",
           "@capacitor-community",
-          "electron",
+          "electron-core",
           "dist",
           "electron-bridge.js"
         ),

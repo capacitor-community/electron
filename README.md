@@ -1,17 +1,19 @@
 # Capacitor Electron
 
+<p align="center">
 Capacitor community support for the Electron platform.
-
-<!-- Badges -->
-<a href="https://npmjs.com/package/@capacitor-community/electron">
-  <img src="https://img.shields.io/npm/v/@capacitor-community/electron.svg">
-</a>
-<a href="https://npmjs.com/package/@capacitor-community/electron">
-  <img src="https://img.shields.io/npm/l/@capacitor-community/electron.svg">
-</a>
-<a href="https://www.electronjs.org/releases/stable?version=9">
-  <img src="https://img.shields.io/badge/supported%20electron%20version-~9.0.0-blue">
-</a>
+</p>
+<p align="center">
+  <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+<a href="#contributors"><img src="https://img.shields.io/badge/all%20contributors-2-orange?style=flat-square" /></a>
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
+  <a href="https://www.electronjs.org/releases/stable?version=9"><img src="https://img.shields.io/badge/supported%20electron%20version-~9.0.0-blue?style=flat-square" /></a>
+  <a href="https://lerna.js.org/"><img src="https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg?style=flat-square" /></a>
+</p>
+<p align="center">
+  <a href="https://npmjs.com/package/@capacitor-community/electron-core"><img src="https://img.shields.io/npm/v/@capacitor-community/electron-core.svg?color=green&style=flat-square" /></a>
+  <a href="https://npmjs.com/package/@capacitor-community/electron-core"><img src="https://img.shields.io/npm/l/@capacitor-community/electron-core.svg?color=lightgrey&style=flat-square" /></a>
+</p>
 
 ## Maintainers
 
@@ -28,8 +30,8 @@ Maintenance Status: Actively Maintained
 
 ## Basic Usage Steps:
 
-1. Run `npx cap add electron` in your project directory.
-2. Open a terminal in the `electron` folder that was created in your project directory and run `npm run electron:start` to start your app with the default config.
+1. Run `npm i @capacitor-community/electron-platform` in your project directory. This will install the platform and its dependancies along with placing a copy of your built webapp into the platform folder `electron`
+2. Open a terminal in the `electron` platform folder and run `npm run electron:start` to start your app with the default config.
 
 ## Using your own image for the Splash Screen
 
@@ -64,3 +66,20 @@ Maintenance Status: Actively Maintained
 - [Electron-Store](https://github.com/sindresorhus/electron-store): Simple data persistence for your Electron app - Save and load user preferences, app state, cache, etc
 
 And more can be found on the [Awesome Electron List](https://github.com/sindresorhus/awesome-electron).
+
+## Contributors ✨
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="http://ionicframework.com/"><img src="https://avatars3.githubusercontent.com/u/11214?v=4" width="75px;" alt=""/><br /><sub><b>Max Lynch</b></sub></a><br /><a href="https://github.com/mlynch/@capacitor-community/electron/commits?author=mlynch" title="Code">💻</a> <a href="https://github.com/mlynch/@capacitor-community/electron/commits?author=mlynch" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/IT-MikeS"><img src="https://avatars0.githubusercontent.com/u/20338451?v=4" width="75px;" alt=""/><br /><sub><b>Mike S</b></sub></a><br /><a href="https://github.com/mlynch/@capacitor-community/electron/commits?author=IT-MikeS" title="Code">💻</a> <a href="https://github.com/mlynch/@capacitor-community/electron/commits?author=IT-MikeS" title="Documentation">📖</a></td>
+  </tr>
+</table>
+
+<!-- markdownlint-enable -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->

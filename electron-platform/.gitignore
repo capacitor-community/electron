@@ -1,9 +1,8 @@
 .idea/
+dist/
 node_modules/
 .DS_Store
 .vscode/
 npm-debug.log
 electron_template/package-lock.json
 /package-lock.json
-/electron-core
-/electron-platform

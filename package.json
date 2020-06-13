@@ -1,66 +1,25 @@
 {
   "name": "@capacitor-community/electron",
-  "version": "0.1.1-beta.7",
-  "description": "Capacitor community support for the Electron platform.",
-  "main": "dist/index.js",
+  "description": "Containing project for Capacitor community support for the Electron platform.",
+  "private": true,
   "scripts": {
-    "build": "npm run clean && npm run transpile && npm run rollup && npm run minify && npm run transpile-index",
-    "clean": "rimraf dist",
-    "minify": "uglifyjs --mangle --compress --source-map \"content='dist/electron-bridge.js.map',url='electron-bridge.js.map'\" --comments '/^/*!/' --output dist/electron-bridge.js dist/electron-bridge.js",
-    "prepublishOnly": "npm run build",
-    "rollup": "rollup --config rollup.config.js",
-    "transpile": "tsc --module ES2015 --target ES5 --outDir dist/esm",
-    "transpile-index": "tsc ./index.ts --module ES2015 --target ES5 --outDir dist --moduleResolution Node --allowSyntheticDefaultImports --sourceMap --declaration",
-    "transpile-no-helpers": "tsc --module ES2015 --target ES5 --noEmitHelpers true --outDir dist/esm",
-    "typedoc:run": "typedoc --out docs ./index.ts --excludeExternals --stripInternal --readme ./README.md --theme minimal --includeVersion",
-    "shipit": "np"
+    "publish": "lerna run build && lerna publish --force-publish --skip-git && npm run publish-push",
+    "publish-push": "bash scripts/deploy.sh"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/capacitor-community/electron.git"
-  },
-  "keywords": [
-    "capacitor",
-    "electron"
-  ],
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/capacitor-community/electron/issues"
-  },
   "husky": {
     "hooks": {
       "pre-commit": "pretty-quick --staged"
     }
   },
-  "homepage": "https://github.com/capacitor-community/electron#readme",
-  "devDependencies": {
-    "@types/node": "~12.0.5",
-    "husky": "^4.2.5",
-    "np": "^6.2.4",
-    "prettier": "^2.0.5",
-    "prettier-plugin-java": "^0.8.0",
-    "pretty-quick": "^2.0.1",
-    "rimraf": "^3.0.2",
-    "rollup": "^2.13.1",
-    "rollup-plugin-node-resolve": "^5.2.0",
-    "ts-lint": "^4.5.1",
-    "tslint-ionic-rules": "0.0.21",
-    "typedoc": "^0.17.7",
-    "typescript": "^3.4.3",
-    "uglify-js": "^3.9.4"
-  },
-  "dependencies": {
-    "@capacitor/core": "latest",
-    "electron-is-dev": "^1.2.0",
-    "electron": "~9.0.0",
-    "electron-serve": "^1.0.0",
-    "mime-types": "~2.1.27"
-  },
   "directories": {
     "doc": "docs"
   },
   "author": "IT-MikeS",
-  "publishConfig": {
-    "access": "public"
+  "dependencies": {
+    "lerna": "^2.4.0"
+  },
+  "devDependencies": {
+    "all-contributors-cli": "^6.16.0"
   }
 }
