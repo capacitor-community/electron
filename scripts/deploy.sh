@@ -3,7 +3,7 @@ set -e
 LERNA_JSON=`cat lerna.json`;
 export LERNA_VERSION="$(node -pe "JSON.parse(\`$LERNA_JSON\`)['version']")"
 
-echo "Deploying Capacitor v$LERNA_VERSION"
+echo "Deploying Capacitor-Electron v$LERNA_VERSION"
 
 # This is what we do instead of letting lerna git commit for us
 git add lerna.json
