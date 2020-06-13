@@ -5,5 +5,3 @@ node_modules/
 npm-debug.log
 electron_template/package-lock.json
 /package-lock.json
-/electron-core
-/electron-platform
