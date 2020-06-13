@@ -5,4 +5,4 @@ npm-debug.log
 .vscode/
 /.gitignore
 .github/
-.no-postinstall
+.no-postinstall-script
