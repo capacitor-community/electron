@@ -94,6 +94,9 @@ async function doPostInstall() {
           "No capacitor.config.json file found. Did you initiate capcacitor for this project?"
         );
       }
+    } else {
+      requirementsStepSpinner.info("Dev enviroment, skipping...");
+      platformSpinner.info("Skipped.");
     }
   } catch (e) {
     requirementsStepSpinner.fail(`${e.message}`);
