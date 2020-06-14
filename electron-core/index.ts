@@ -72,7 +72,7 @@ export interface CapacitorElectronConfig {
    *   ]
    * ```
    */
-  applicationMenuTemplate: { [key: string]: any }[] | null;
+  applicationMenuTemplate?: { [key: string]: any }[] | null;
   mainWindow?: {
     windowOptions?: {
       /** Start height of the main application window in px. __Default is: 920__ */
@@ -384,7 +384,7 @@ class CapacitorDeeplinking {
   }
 }
 
-class CapacitorElectronApp {
+export class CapacitorElectronApp {
   /** @internal */
   private isProgramColdStart = true;
   /** @internal */
