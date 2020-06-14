@@ -2,5 +2,5 @@
 # In order to prevent that, we remove the initial "."
 # And the CLI then renames it
 
-app/
-node_modules/
+app
+node_modules

@@ -3,6 +3,5 @@ node_modules/
 npm-debug.log
 .idea/
 .vscode/
-/.gitignore
 .github/
 .no-postinstall-script
