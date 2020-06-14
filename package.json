@@ -5,7 +5,7 @@
   "scripts": {
     "publish": "lerna publish --force-publish --skip-git && npm run publish-push",
     "publish-push": "bash scripts/deploy.sh",
-    "generate-changelog": "conventional-changelog -p conventionalcommits -o CHANGELOG.md -r 0"
+    "generate-changelog": "conventional-changelog -p conventionalcommits -o CHANGELOG.md -r 0 --config changelog.config.json"
   },
   "license": "MIT",
   "husky": {
@@ -22,6 +22,7 @@
   },
   "devDependencies": {
     "all-contributors-cli": "^6.16.0",
-    "conventional-changelog-cli": "^2.0.34"
+    "conventional-changelog-cli": "^2.0.34",
+    "conventional-changelog-conventionalcommits": "^4.3.0"
   }
 }
