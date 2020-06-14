@@ -384,7 +384,7 @@ class CapacitorDeeplinking {
   }
 }
 
-export class CapacitorElectronApp {
+class CapacitorElectronApp {
   /** @internal */
   private isProgramColdStart = true;
   /** @internal */
@@ -570,4 +570,4 @@ export class CapacitorElectronApp {
 }
 
 /** @hidden */
-module.exports = { CapacitorElectronApp };
+module.exports = CapacitorElectronApp;
