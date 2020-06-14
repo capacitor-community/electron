@@ -23,7 +23,7 @@ async function doPostInstall() {
     );
     const srcDir = path.join(__dirname, "../", "electron_template");
     const destDir = path.join(process.env.INIT_CWD, "electron");
-    if (fs.existsSync(usersProjectCapConfig)) {
+    if (usersProjectCapConfig) {
       const capConfigJson = JSON.parse(
         fs.readFileSync(usersProjectCapConfig, "utf-8")
       );
@@ -32,28 +32,29 @@ async function doPostInstall() {
           process.env.INIT_CWD,
           capConfigJson.webDir
         );
-        if (!fs.existsSync(destDir)) {
-          fs.mkdirSync(destDir, { recursive: true });
-          fse.copySync(srcDir, destDir);
-          fse.copySync(
-            usersProjectCapConfig,
-            path.join(destDir, "capacitor.config.json")
-          );
-          console.log(await runExec(`cd ${destDir} && npm i`));
-          console.log("Electron platform added!");
-        } else {
-          console.warn(`${destDir} already exists.`);
-        }
-        if (fs.existsSync(webDirPath)) {
-          fse.copySync(webDirPath, path.join(destDir, "app"));
-          console.log("Webapp copied to Electron Platform!");
+        if (fs.exists(webDirPath)) {
+          if (!fs.exists(destDir)) {
+            fs.mkdirSync(destDir, { recursive: true });
+            fse.copySync(srcDir, destDir);
+            fse.copySync(
+              usersProjectCapConfig,
+              path.join(destDir, "capacitor.config.json")
+            );
+            fse.copySync(webDirPath, path.join(destDir, "app"));
+            console.log(await runExec(`cd ${destDir} && npm i`));
+            console.log("Electron platform added!");
+          } else {
+            throw new Error("Electron platform folder already exists.");
+          }
         } else {
           throw new Error(
             "The webDir referenced in capcacitor.config.json does not exsist."
           );
         }
       } else {
-        throw new Error("webDir is not defined in capacitor.config.json");
+        throw new Error(
+          "Property webDir is not defined in capacitor.config.json."
+        );
       }
     } else {
       throw new Error(
