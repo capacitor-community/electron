@@ -1,6 +1,6 @@
 {
   "name": "@capacitor-community/electron-core",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "Capacitor core for the Capacitor Community Electron platform.",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -64,5 +64,5 @@
   "publishConfig": {
     "access": "public"
   },
-  "gitHead": "513bb0ce0aa1aa8e5343a0534f389a0afdfe4dde"
+  "gitHead": "5d28945528f8c1c02acbd7339162a7bcf81741a8"
 }
