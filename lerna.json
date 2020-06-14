@@ -2,5 +2,5 @@
   "lerna": "2.4.0",
   "gitVersionPrefix": "",
   "packages": ["electron-core", "electron-platform"],
-  "version": "0.0.15"
+  "version": "0.0.16"
 }

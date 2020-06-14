@@ -1,6 +1,6 @@
 {
   "name": "@capacitor-community/electron-platform",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "description": "Capacitor community support for the Electron platform.",
   "scripts": {
     "shipit": "np",
@@ -46,5 +46,5 @@
   "publishConfig": {
     "access": "public"
   },
-  "gitHead": "5d28945528f8c1c02acbd7339162a7bcf81741a8"
+  "gitHead": "70113b065d49fe5a40dc8f67a8a0b8f9f417cc8c"
 }
