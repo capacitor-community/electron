@@ -1,5 +1,15 @@
 ## (2020-06-14)
 
+### [0.0.17](https://github.com/capacitor-community/electron/compare/0.0.16...0.0.17) (2020-06-14)
+
+### Bug Fixes
+
+- **platform:** used wrong exists function ([a8eba2a](https://github.com/capacitor-community/electron/commit/a8eba2a684532149212a2f087a807b6c7a8d6258))
+
+### Chores
+
+- update changelog to 0.0.16 ([122120e](https://github.com/capacitor-community/electron/commit/122120e7917e8d02f2c37c0fde114d0a917cff7b))
+
 ### [0.0.16](https://github.com/capacitor-community/electron/compare/0.0.15...0.0.16) (2020-06-14)
 
 ### Bug Fixes
