@@ -1,5 +1,15 @@
 ## (2020-06-14)
 
+### [0.1.1](https://github.com/capacitor-community/electron/compare/0.1.0...0.1.1) (2020-06-14)
+
+### Bug Fixes
+
+- **platform:** update require statment ([5db7ce4](https://github.com/capacitor-community/electron/commit/5db7ce4cfb444eda5de25a79cda55c760e988c21))
+
+### Chores
+
+- update changelog to 0.1.0 ([bb3349c](https://github.com/capacitor-community/electron/commit/bb3349cc7abb6241c9077664b159f644b453cb6c))
+
 ## [0.1.0](https://github.com/capacitor-community/electron/compare/0.0.19...0.1.0) (2020-06-14)
 
 ### Bug Fixes
