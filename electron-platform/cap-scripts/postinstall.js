@@ -56,8 +56,8 @@ async function doPostInstall() {
             process.env.INIT_CWD,
             capConfigJson.webDir
           );
-          if (fs.exists(webDirPath)) {
-            if (!fs.exists(destDir)) {
+          if (fs.existsSync(webDirPath)) {
+            if (!fs.existsSync(destDir)) {
               requirementsStepSpinner.succeed();
               createElectronFolderStepSpinner.start();
               fs.mkdirSync(destDir, { recursive: true });
