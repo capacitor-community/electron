@@ -1,5 +1,15 @@
 ## (2020-06-14)
 
+## [0.1.0](https://github.com/capacitor-community/electron/compare/0.0.19...0.1.0) (2020-06-14)
+
+### Bug Fixes
+
+- **core:** typings issue ([7695ca5](https://github.com/capacitor-community/electron/commit/7695ca584ead1322292a7a88ee48cc92910cc20c))
+
+### Chores
+
+- update changelog to 0.0.19 ([08b274f](https://github.com/capacitor-community/electron/commit/08b274f2970f19b230e475ea3eb1b007644ba5e5))
+
 ### [0.0.19](https://github.com/capacitor-community/electron/compare/0.0.18...0.0.19) (2020-06-14)
 
 ### Bug Fixes
