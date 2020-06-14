@@ -1,5 +1,5 @@
 const { app } = require("electron");
-const { CapacitorElectronApp } = require("@capacitor-community/electron-core");
+const CapacitorElectronApp = require("@capacitor-community/electron-core");
 
 // The MainWindow object can be accessed via myCapacitorApp.getMainWindow()
 const myCapacitorApp = new CapacitorElectronApp();
