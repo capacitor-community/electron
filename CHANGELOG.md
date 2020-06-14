@@ -1,5 +1,12 @@
 ## (2020-06-14)
 
+### [0.0.18](https://github.com/capacitor-community/electron/compare/0.0.17...0.0.18) (2020-06-14)
+
+### Chores
+
+- **platform:** fix spinner indents ([eb50a16](https://github.com/capacitor-community/electron/commit/eb50a16242959ec77ea0864ab1b28068185ca051))
+- update changelog 0.0.17 ([705bce5](https://github.com/capacitor-community/electron/commit/705bce5fd39bee2bd1215811c0f31838d84b58c5))
+
 ### [0.0.17](https://github.com/capacitor-community/electron/compare/0.0.16...0.0.17) (2020-06-14)
 
 ### Bug Fixes
