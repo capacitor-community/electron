@@ -1,5 +1,15 @@
 ## (2020-06-14)
 
+### [0.0.16](https://github.com/capacitor-community/electron/compare/0.0.15...0.0.16) (2020-06-14)
+
+### Bug Fixes
+
+- postinstall issue in dev ([70113b0](https://github.com/capacitor-community/electron/commit/70113b065d49fe5a40dc8f67a8a0b8f9f417cc8c))
+
+### Chores
+
+- commit changelog ([433229a](https://github.com/capacitor-community/electron/commit/433229afec72034ba54f9d68ca781aed129f4411))
+
 ### [0.0.15](https://github.com/capacitor-community/electron/compare/v0.0.13...0.0.15) (2020-06-14)
 
 ### Chores
