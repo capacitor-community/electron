@@ -1,5 +1,16 @@
 ## (2020-06-14)
 
+### [0.0.19](https://github.com/capacitor-community/electron/compare/0.0.18...0.0.19) (2020-06-14)
+
+### Bug Fixes
+
+- **core:** missing export on CapacitorElectronApp ([6a42dc7](https://github.com/capacitor-community/electron/commit/6a42dc7c9895ce7b306508241648a1578ee1fa30))
+
+### Chores
+
+- **platform:** gitignore missing in template ([39fb702](https://github.com/capacitor-community/electron/commit/39fb7022fe0bcf8ef68aa471c53f03343134ecd6))
+- update changelog to 0.0.18 ([a1d2f38](https://github.com/capacitor-community/electron/commit/a1d2f3808be7c0f26ecb1ccf9549a300f84141b5))
+
 ### [0.0.18](https://github.com/capacitor-community/electron/compare/0.0.17...0.0.18) (2020-06-14)
 
 ### Chores
