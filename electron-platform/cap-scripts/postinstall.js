@@ -20,23 +20,18 @@ async function doPostInstall() {
   const platformSpinner = ora("Installing Electron Platform...").start();
   const requirementsStepSpinner = ora({
     text: "Checking requirements...",
-    indent: 4,
   });
   const createElectronFolderStepSpinner = ora({
-    text: "Checking requirements...",
-    indent: 4,
+    text: "Creating electron platform folder...",
   });
   const copyCapacitorConfigStepSpinner = ora({
-    text: "Checking requirements...",
-    indent: 4,
+    text: "Copying capacitor.config.json to platform...",
   });
   const copyWebDirStepSpinner = ora({
-    text: "Checking requirements...",
-    indent: 4,
+    text: "Copying webDir to platform...",
   });
   const npmInstallForPlatformStepSpinner = ora({
-    text: "Checking requirements...",
-    indent: 4,
+    text: "Running npm install on platform...",
   });
   try {
     requirementsStepSpinner.start();

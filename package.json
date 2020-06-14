@@ -3,7 +3,8 @@
   "description": "Containing project for Capacitor community support for the Electron platform.",
   "private": true,
   "scripts": {
-    "lerna-publish": "lerna publish --force-publish --skip-git && npm run publish-push",
+    "shipit": "npm run lerna-publish && npm run publish-push",
+    "lerna-publish": "lerna publish --force-publish --skip-git",
     "publish-push": "bash scripts/deploy.sh",
     "generate-changelog": "conventional-changelog -o CHANGELOG.md -r 0 --config changelog.config.js"
   },
