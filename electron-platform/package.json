@@ -3,7 +3,6 @@
   "version": "0.1.7",
   "description": "Capacitor community support for the Electron platform.",
   "scripts": {
-    "shipit": "np",
     "postinstall": "node cap-scripts/postinstall.js",
     "copy": "node cap-scripts/copy.js",
     "update": "echo \"Not yet implemented.\"",
@@ -30,7 +29,6 @@
   "devDependencies": {
     "@types/node": "~12.0.5",
     "husky": "^4.2.5",
-    "np": "^6.2.4",
     "prettier": "^2.0.5",
     "prettier-plugin-java": "^0.8.0",
     "pretty-quick": "^2.0.1"
