@@ -67,6 +67,7 @@ function createElectronFolder(srcDir, destDir) {
   try {
     fs.mkdirSync(destDir, { recursive: true });
     fse.copySync(srcDir, destDir);
+    fs.renameSync(path.join(destDir, 'gitignore'), path.join(destDir, '.gitignore'));
     createElectronFolderStepSpinner.succeed();
   } catch (e) {
     createElectronFolderStepSpinner.fail();
