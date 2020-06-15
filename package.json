@@ -3,10 +3,9 @@
   "description": "Containing project for Capacitor community support for the Electron platform.",
   "private": true,
   "scripts": {
-    "lerna-deploy": "npm run lerna-version && npm run lerna-publish",
-    "lerna-version": "lerna version --force-publish --conventional-commits --changelog-preset ./changelog.config.js",
+    "lerna-deploy": "npm run lerna-version && npm run lerna-publish && npm run generate-changelog",
+    "lerna-version": "lerna version --force-publish --conventional-commits --no-changelog",
     "lerna-publish": "lerna publish from-git",
-    "publish-push": "bash scripts/deploy.sh",
     "generate-changelog": "conventional-changelog -o CHANGELOG.md -r 0 --config changelog.config.js"
   },
   "license": "MIT",
