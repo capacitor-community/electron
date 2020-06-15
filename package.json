@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "lerna-deploy": "npm run lerna-version && npm run lerna-publish && npm run generate-changelog",
-    "lerna-version": "lerna version --force-publish --conventional-commits --no-changelog",
+    "lerna-version": "lerna version --force-publish --conventional-commits --changelog-preset conventional-changelog-conventionalcommits --no-changelog",
     "lerna-publish": "lerna publish from-git",
     "generate-changelog": "conventional-changelog -o CHANGELOG.md -r 0 --config changelog.config.js"
   },
