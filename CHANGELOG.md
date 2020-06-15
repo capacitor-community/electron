@@ -1,4 +1,12 @@
-## [](https://github.com/capacitor-community/electron/compare/v0.1.5...v) (2020-06-15)
+## [](https://github.com/capacitor-community/electron/compare/v0.1.6...v) (2020-06-15)
+
+### [0.1.6](https://github.com/capacitor-community/electron/compare/v0.1.5...v0.1.6) (2020-06-15)
+
+### Chores
+
+- add auto deploy for changelog ([26a5197](https://github.com/capacitor-community/electron/commit/26a519706688aa6fcfa8e09528c1b00dd4ec685c))
+- **platform:** cleanup postinstall & copy script ([7b691b7](https://github.com/capacitor-community/electron/commit/7b691b7acf25f64acf6b0bb5dfc58826cf51eeea))
+- update changelog to 0.1.5 ([d99af9b](https://github.com/capacitor-community/electron/commit/d99af9b2e1432eecdccd3781a7d68fab3ca7c38d))
 
 ### [0.1.5](https://github.com/capacitor-community/electron/compare/v0.1.4...v0.1.5) (2020-06-15)
 
