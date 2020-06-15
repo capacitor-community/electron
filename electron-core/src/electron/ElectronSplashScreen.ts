@@ -1,161 +1,15 @@
 /** @hidden */
 import Electron from "electron";
 /** @hidden */
-const path = require("path");
-/** @hidden */
-const electronIsDev = require("electron-is-dev");
-/** @hidden */
-const electron = require("electron");
-/** @hidden */
-const app = electron.app;
-/** @hidden */
-const fs = require("fs");
-/** @hidden */
-const BrowserWindow = electron.BrowserWindow;
-/** @hidden */
-const Menu = electron.Menu;
-/** @hidden */
-const ipcMain = electron.ipcMain;
+const { app, BrowserWindow, ipcMain } = require("electron");
 /** @hidden */
 const mimeTypes = require("mime-types");
 /** @hidden */
-const electronServe = require("electron-serve");
+const path = require("path");
 /** @hidden */
-const loadWebApp = electronServe({
-  directory: path.join(app.getAppPath(), "app"),
-  scheme: "capacitor-electron",
-});
-
-/** @internal */
-interface SplashOptions {
-  imageFilePath?: string;
-  windowWidth?: number;
-  windowHeight?: number;
-  textColor?: string;
-  loadingText?: string;
-  textPercentageFromTop?: number;
-  transparentWindow?: boolean;
-  autoHideLaunchSplash?: boolean;
-  customHtml?: string | null;
-}
-
-/** @internal */
-interface DeeplinkingOptions {
-  customProtocol: string;
-}
-
-export interface CapacitorElectronConfig {
-  splashScreen?: {
-    /** Whether or not to show a splash screen on startup. __Default is: true__ */
-    useSplashScreen?: boolean;
-    splashOptions?: {
-      /** Where the splash screen image is located. __Default is:__ `path.join(app.getAppPath(), "assets", "splash.png")` */
-      imageFilePath?: string;
-      /** Window width in px. __Default is: 400__ */
-      windowWidth?: number;
-      /** Window height in px. __Default is: 400__ */
-      windowHeight?: number;
-      textColor?: string;
-      loadingText?: string;
-      textPercentageFromTop?: number;
-      transparentWindow?: boolean;
-      /** Whether or not to auto hide a splash screen or if the app will hide it. __Default is: true__ */
-      autoHideLaunchSplash?: boolean;
-      customHtml?: string | null;
-    };
-  };
-  /** Define your applications native menu bar. Set to _null_ if you want to hide the bar. __Default is:__
-   * ```
-   *   [
-   *     {role: process.platform === "darwin" ? 'appMenu' : 'fileMenu'},
-   *     { role: "viewMenu" }
-   *   ]
-   * ```
-   */
-  applicationMenuTemplate?: { [key: string]: any }[] | null;
-  mainWindow?: {
-    windowOptions?: {
-      /** Start height of the main application window in px. __Default is: 920__ */
-      height?: number;
-      /** Start width of the main application window in px. __Default is: 1600__ */
-      width?: number;
-      /** Path of the icon file for the main window. __Default is:__ `path.join(app.getAppPath(), "assets", process.platform === "win32" ? "appIcon.ico" : "appIcon.png")` */
-      icon?: string;
-    };
-  };
-  deepLinking?: {
-    /** Whether or not deeplinking should be enabled on the url provided in `capacitor.config.json -> server -> hostname` (`'app'` is used if hostname is undefined). __Default is: false__ */
-    useDeeplinking: boolean;
-    /** Optional handler to deal with deeplink urls in the main process of electron. __Default is: null__ */
-    deeplinkingHandlerFunction?: (deeplinkingUrl: string) => void | null;
-  };
-}
-
-/** @internal */
-let mainWidowReference: Electron.BrowserWindow | null = null;
-/** @internal */
-let splashScreenReference: CapacitorSplashScreen | null = null;
-
-/** @internal */
-function deepMerge(target: any, _objects: any[] = []) {
-  // Credit for origanal function: Josh Cole(saikojosh)[https://github.com/saikojosh]
-  const quickCloneArray = function (input: any) {
-    return input.map(cloneValue);
-  };
-  const cloneValue = function (value: any) {
-    if (getTypeOf(value) === "object") return quickCloneObject(value);
-    else if (getTypeOf(value) === "array") return quickCloneArray(value);
-    return value;
-  };
-  const getTypeOf = function (input: any) {
-    if (input === null) return "null";
-    else if (typeof input === "undefined") return "undefined";
-    else if (typeof input === "object")
-      return Array.isArray(input) ? "array" : "object";
-    return typeof input;
-  };
-  const quickCloneObject = function (input: any) {
-    const output: any = {};
-    for (const key in input) {
-      if (!input.hasOwnProperty(key)) {
-        continue;
-      }
-      output[key] = cloneValue(input[key]);
-    }
-    return output;
-  };
-  const objects = _objects.map((object) => object || {});
-  const output = target || {};
-  for (let oindex = 0; oindex < objects.length; oindex++) {
-    const object = objects[oindex];
-    const keys = Object.keys(object);
-    for (let kindex = 0; kindex < keys.length; kindex++) {
-      const key = keys[kindex];
-      const value = object[key];
-      const type = getTypeOf(value);
-      const existingValueType = getTypeOf(output[key]);
-      if (type === "object") {
-        if (existingValueType !== "undefined") {
-          const existingValue =
-            existingValueType === "object" ? output[key] : {};
-          output[key] = deepMerge({}, [existingValue, quickCloneObject(value)]);
-        } else {
-          output[key] = quickCloneObject(value);
-        }
-      } else if (type === "array") {
-        if (existingValueType === "array") {
-          const newValue = quickCloneArray(value);
-          output[key] = newValue;
-        } else {
-          output[key] = quickCloneArray(value);
-        }
-      } else {
-        output[key] = value;
-      }
-    }
-  }
-  return output;
-}
+const fs = require("fs");
+/** @hidden */
+import { SplashOptions } from "./interfaces";
 
 /** @internal */
 async function encodeFromFile(filePath: string): Promise<string> {
@@ -175,30 +29,9 @@ async function encodeFromFile(filePath: string): Promise<string> {
 }
 
 /** @internal */
-async function configCapacitor(mainWindow: Electron.BrowserWindow) {
-  let capConfigJson = JSON.parse(
-    fs.readFileSync(`./capacitor.config.json`, "utf-8")
-  );
-  const appendUserAgent =
-    capConfigJson.electron && capConfigJson.electron.appendUserAgent
-      ? capConfigJson.electron.appendUserAgent
-      : capConfigJson.appendUserAgent;
-  if (appendUserAgent) {
-    mainWindow.webContents.setUserAgent(
-      mainWindow.webContents.getUserAgent() + " " + appendUserAgent
-    );
-  }
-  const overrideUserAgent =
-    capConfigJson.electron && capConfigJson.electron.overrideUserAgent
-      ? capConfigJson.electron.overrideUserAgent
-      : capConfigJson.overrideUserAgent;
-  if (overrideUserAgent) {
-    mainWindow.webContents.setUserAgent(overrideUserAgent);
-  }
-}
+export class CapacitorSplashScreen {
+  private mainWindowReference: Electron.BrowserWindow = null;
 
-/** @internal */
-class CapacitorSplashScreen {
   private splashWin: Electron.BrowserWindow | null = null;
   private splashOptions: SplashOptions = {
     imageFilePath: path.join(app.getAppPath(), "assets", "splash.png"),
@@ -212,7 +45,12 @@ class CapacitorSplashScreen {
     customHtml: null,
   };
 
-  constructor(splashOptions?: SplashOptions) {
+  constructor(
+    mainWindowRef: Electron.BrowserWindow,
+    splashOptions?: SplashOptions
+  ) {
+    this.mainWindowReference = mainWindowRef;
+
     if (splashOptions) this.splashOptions = { ...splashOptions };
 
     try {
@@ -274,7 +112,7 @@ class CapacitorSplashScreen {
       this.splashOptions.customHtml ||
       `<html style="width: 100%; height: 100%; margin: 0; overflow: hidden;"><body style="width: 100%; height: 100%;"><div style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: ${this.splashOptions.textColor}; position: absolute; top: ${this.splashOptions.textPercentageFromTop}%; text-align: center; font-size: 16pt; width: 100vw; display: block; z-index: 9999;">${this.splashOptions.loadingText}</div><div style="background-image: url('${imageUrl}'); background-position: center center; background-repeat: no-repeat; width: 100%; height: 100%; margin: 0; overflow: hidden; position: absolute; top: 0; left: 0; z-index: 100;">&nbsp;</div></body></html>`;
 
-    mainWidowReference.on("closed", () => {
+    this.mainWindowReference.on("closed", () => {
       if (this.splashWin && !this.splashWin.isDestroyed()) {
         this.splashWin.close();
       }
@@ -285,10 +123,10 @@ class CapacitorSplashScreen {
     );
 
     this.splashWin.webContents.on("dom-ready", async () => {
-      splashScreenReference.show();
+      this.show();
       if (this.splashOptions.autoHideLaunchSplash) {
         setTimeout(() => {
-          splashScreenReference.hide();
+          this.hide();
         }, 4500);
       }
     });
@@ -296,278 +134,11 @@ class CapacitorSplashScreen {
 
   show() {
     this.splashWin.show();
-    mainWidowReference.hide();
+    this.mainWindowReference.hide();
   }
 
   hide() {
-    mainWidowReference.show();
+    this.mainWindowReference.show();
     this.splashWin.hide();
   }
 }
-
-/** @internal */
-class CapacitorDeeplinking {
-  private passedDeeplinkingUrl = "";
-  private internalDeeplinkHandler: (deeplinkUrl: string) => void = (
-    deeplinkUrl: string
-  ) => {
-    const paramsArr = deeplinkUrl.split(",");
-    let url = "";
-    for (let item of paramsArr) {
-      if (item.indexOf(this.deeplinkingOptions.customProtocol) >= 0) {
-        url = item;
-        break;
-      }
-    }
-    this.passedDeeplinkingUrl = url;
-
-    if (this.passedDeeplinkingUrl.length > 0) {
-      mainWidowReference.webContents.send("appUrlOpen", url);
-      if (this.userDeeplinkHandler !== null) this.userDeeplinkHandler(url);
-    }
-  };
-  deeplinkingOptions: DeeplinkingOptions = {
-    customProtocol: "app",
-  };
-  userDeeplinkHandler: (deeplinkUrl: string) => void | null = null;
-
-  constructor(options?: DeeplinkingOptions) {
-    if (options) {
-      this.deeplinkingOptions = Object.assign(this.deeplinkingOptions, options);
-    }
-  }
-
-  init(deepLinkHandler?: (deeplinkUrl: string) => void) {
-    if (deepLinkHandler) this.userDeeplinkHandler = deepLinkHandler;
-
-    const instanceLock = app.requestSingleInstanceLock();
-    if (instanceLock) {
-      //@ts-ignore
-      app.on("second-instance", (event, argv) => {
-        if (process.platform == "win32") {
-          this.passedDeeplinkingUrl = argv.slice(1).toString();
-        }
-        this.internalDeeplinkHandler(this.passedDeeplinkingUrl);
-
-        if (mainWidowReference) {
-          if (mainWidowReference.isMinimized()) mainWidowReference.restore();
-          mainWidowReference.focus();
-        }
-      });
-    } else {
-      app.quit();
-      return;
-    }
-
-    if (!app.isDefaultProtocolClient(this.deeplinkingOptions.customProtocol)) {
-      // Deep linking only works on packaged versions of the app!
-      app.setAsDefaultProtocolClient(this.deeplinkingOptions.customProtocol);
-    }
-
-    app.on("will-finish-launching", () => {
-      app.on("open-url", (event, url) => {
-        event.preventDefault();
-        this.passedDeeplinkingUrl = url;
-        this.internalDeeplinkHandler(url);
-      });
-    });
-
-    if (process.platform == "win32") {
-      this.passedDeeplinkingUrl = process.argv.slice(1).toString();
-      this.internalDeeplinkHandler(this.passedDeeplinkingUrl);
-    }
-  }
-
-  /** @internal */
-  getPassedDeeplinkUrl(): string {
-    return this.passedDeeplinkingUrl;
-  }
-}
-
-class CapacitorElectronApp {
-  /** @internal */
-  private isProgramColdStart = true;
-  /** @internal */
-  private deepLinking: any = null;
-  /** @internal */
-  private deeplinkingCustomProtocol: "app";
-  /** @internal */
-  private devServerUrl: string | null = null;
-  /** @internal */
-  private capConfigLaunchShowDuration = 1;
-  /** @internal */
-  private config: CapacitorElectronConfig = {
-    deepLinking: {
-      useDeeplinking: false,
-      deeplinkingHandlerFunction: null,
-    },
-    splashScreen: {
-      useSplashScreen: true,
-      splashOptions: {
-        imageFilePath: path.join(app.getAppPath(), "assets", "splash.png"),
-        windowWidth: 400,
-        windowHeight: 400,
-        textColor: "#FFFFFF",
-        loadingText: "Loading...",
-        textPercentageFromTop: 75,
-        transparentWindow: false,
-        autoHideLaunchSplash: true,
-        customHtml: null,
-      },
-    },
-    applicationMenuTemplate: [
-      { role: process.platform === "darwin" ? "appMenu" : "fileMenu" },
-      { role: "viewMenu" },
-    ],
-    mainWindow: {
-      windowOptions: {
-        height: 920,
-        width: 1600,
-        icon: path.join(
-          app.getAppPath(),
-          "assets",
-          process.platform === "win32" ? "appIcon.ico" : "appIcon.png"
-        ),
-      },
-    },
-  };
-
-  constructor(config?: CapacitorElectronConfig) {
-    if (config) this.config = deepMerge(this.config, [config]);
-
-    const capConfigPath = path.join(app.getAppPath(), "capacitor.config.json");
-    if (fs.existsSync(capConfigPath)) {
-      const capConfig = JSON.parse(fs.readFileSync(capConfigPath, "utf-8"));
-      if (
-        capConfig.plugins &&
-        capConfig.plugins.SplashScreen &&
-        capConfig.plugins.SplashScreen.launchShowDuration
-      ) {
-        this.capConfigLaunchShowDuration =
-          capConfig.plugins.SplashScreen.launchShowDuration;
-      }
-      if (capConfig.server && capConfig.server.url) {
-        this.devServerUrl = capConfig.server.url;
-      }
-      if (this.config.deepLinking.useDeeplinking) {
-        if (capConfig.server && capConfig.server.hostname) {
-          this.deeplinkingCustomProtocol = capConfig.server.hostname;
-        }
-        console.log(
-          `[Capacitor]: Set deeplinking url to: ${this.deeplinkingCustomProtocol}`
-        );
-      }
-    }
-  }
-
-  /** Creates mainwindow and does all setup. _Called after app.on('ready') event fired._ */
-  init() {
-    const neededBrowserWindowConfig = {
-      show: false,
-      webPreferences: {
-        nodeIntegration: true,
-        enableRemoteModule: true,
-        // Use preload to inject the electron varriant overrides for capacitor plugins.
-        // Note: any windows you spawn that you want to include capacitor plugins must have this preload.
-        preload: path.join(
-          app.getAppPath(),
-          "node_modules",
-          "@capacitor-community",
-          "electron-core",
-          "dist",
-          "electron-bridge.js"
-        ),
-      },
-    };
-
-    mainWidowReference = new BrowserWindow(
-      Object.assign(
-        neededBrowserWindowConfig,
-        this.config.mainWindow.windowOptions
-      )
-    );
-
-    if (this.config.deepLinking.useDeeplinking)
-      this.deepLinking = new CapacitorDeeplinking({
-        customProtocol: this.deeplinkingCustomProtocol,
-      });
-
-    configCapacitor(mainWidowReference);
-
-    if (electronIsDev && this.config.applicationMenuTemplate !== null) {
-      // Set our above template to the Menu Object if we are in development mode, dont want users having the devtools.
-      Menu.setApplicationMenu(
-        Menu.buildFromTemplate(this.config.applicationMenuTemplate)
-      );
-    }
-
-    mainWidowReference.webContents.on("dom-ready", () => {
-      if (
-        this.config.splashScreen.useSplashScreen &&
-        this.config.splashScreen.splashOptions.autoHideLaunchSplash
-      ) {
-        splashScreenReference.hide();
-      } else {
-        mainWidowReference.show();
-      }
-      // If we are developers we might as well open the devtools by default.
-      if (electronIsDev) {
-        setTimeout(() => {
-          mainWidowReference.webContents.openDevTools();
-        }, 200);
-      }
-    });
-
-    // Setup the handler for deeplinking if it has been setup.
-    if (this.deepLinking !== null) {
-      if (this.config.deepLinking.deeplinkingHandlerFunction !== null) {
-        this.deepLinking.init(
-          this.config.deepLinking.deeplinkingHandlerFunction
-        );
-      } else {
-        this.deepLinking.init();
-      }
-    }
-
-    // Based on Splashscreen choice actually load the window.
-    if (this.config.splashScreen.useSplashScreen) {
-      splashScreenReference = new CapacitorSplashScreen(
-        this.config.splashScreen.splashOptions
-      );
-      splashScreenReference.init();
-      setTimeout(() => {
-        this.loadMainWindow();
-      }, this.capConfigLaunchShowDuration);
-    } else {
-      this.loadMainWindow();
-    }
-  }
-
-  /** @internal */
-  private async loadMainWindow() {
-    if (this.devServerUrl !== null) {
-      await mainWidowReference.webContents.loadURL(this.devServerUrl);
-    } else {
-      await loadWebApp(mainWidowReference);
-    }
-    if (this.deepLinking !== null && this.isProgramColdStart) {
-      if (this.deepLinking.getPassedDeeplinkUrl().length > 0) {
-        this.isProgramColdStart = false;
-        // Pass deeplink if there was one, to webapp after it has loaded on first launch
-        setTimeout(() => {
-          mainWidowReference.webContents.send(
-            "appUrlOpen",
-            this.deepLinking.getPassedDeeplinkUrl()
-          );
-        }, 500);
-      }
-    }
-  }
-
-  getMainWindow() {
-    return mainWidowReference;
-  }
-}
-
-/** @hidden */
-module.exports = CapacitorElectronApp;

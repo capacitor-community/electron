@@ -1,8 +1,10 @@
 const { app } = require("electron");
-const CapacitorElectronApp = require("@capacitor-community/electron-core");
+const {
+  createCapacitorElectronApp,
+} = require("@capacitor-community/electron-core");
 
 // The MainWindow object can be accessed via myCapacitorApp.getMainWindow()
-const myCapacitorApp = new CapacitorElectronApp();
+const myCapacitorApp = createCapacitorElectronApp();
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.

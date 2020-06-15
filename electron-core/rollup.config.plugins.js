@@ -4,7 +4,7 @@ const banner =
   "/*! Capacitor-Community: https://github.com/capacitor-community - MIT License */";
 
 export default {
-  input: "dist/esm/index.js",
+  input: "dist/esm-plugins/index.js",
   output: {
     file: "dist/electron-bridge.js",
     format: "iife",

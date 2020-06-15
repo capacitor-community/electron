@@ -1,5 +1,21 @@
-/** @hidden */
-import Electron from "electron";
+/** @internal */
+export interface SplashOptions {
+  imageFilePath?: string;
+  windowWidth?: number;
+  windowHeight?: number;
+  textColor?: string;
+  loadingText?: string;
+  textPercentageFromTop?: number;
+  transparentWindow?: boolean;
+  autoHideLaunchSplash?: boolean;
+  customHtml?: string | null;
+}
+
+/** @internal */
+export interface DeeplinkingOptions {
+  customProtocol: string;
+}
+
 export interface CapacitorElectronConfig {
   splashScreen?: {
     /** Whether or not to show a splash screen on startup. __Default is: true__ */
@@ -28,11 +44,7 @@ export interface CapacitorElectronConfig {
    *   ]
    * ```
    */
-  applicationMenuTemplate?:
-    | {
-        [key: string]: any;
-      }[]
-    | null;
+  applicationMenuTemplate?: { [key: string]: any }[] | null;
   mainWindow?: {
     windowOptions?: {
       /** Start height of the main application window in px. __Default is: 920__ */
@@ -49,24 +61,4 @@ export interface CapacitorElectronConfig {
     /** Optional handler to deal with deeplink urls in the main process of electron. __Default is: null__ */
     deeplinkingHandlerFunction?: (deeplinkingUrl: string) => void | null;
   };
-}
-export declare class CapacitorElectronApp {
-  /** @internal */
-  private isProgramColdStart;
-  /** @internal */
-  private deepLinking;
-  /** @internal */
-  private deeplinkingCustomProtocol;
-  /** @internal */
-  private devServerUrl;
-  /** @internal */
-  private capConfigLaunchShowDuration;
-  /** @internal */
-  private config;
-  constructor(config?: CapacitorElectronConfig);
-  /** Creates mainwindow and does all setup. _Called after app.on('ready') event fired._ */
-  init(): void;
-  /** @internal */
-  private loadMainWindow;
-  getMainWindow(): Electron.BrowserWindow;
 }
