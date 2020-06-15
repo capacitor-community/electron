@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>0.1.3 (2020-06-15)</small>
+
+- chore: lerna config ([dbe7e74](https://github.com/capacitor-community/electron/commit/dbe7e74))
+
 ## [0.1.2](https://github.com/capacitor-community/electron/compare/v0.0.13...v0.1.2) (2020-06-15)
 
 ## 0.1.1 (2020-06-14)

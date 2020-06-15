@@ -1,6 +1,6 @@
 {
   "name": "@capacitor-community/electron-platform",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Capacitor community support for the Electron platform.",
   "scripts": {
     "shipit": "np",
