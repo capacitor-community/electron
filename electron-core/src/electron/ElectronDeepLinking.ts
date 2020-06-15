@@ -1,7 +1,9 @@
 /** @hidden */
 import Electron from "electron";
 /** @hidden */
-const { app } = require("electron");
+const electron = require("electron");
+/** @hidden */
+const app = electron.app;
 /** @hidden */
 import { DeeplinkingOptions } from "./interfaces";
 

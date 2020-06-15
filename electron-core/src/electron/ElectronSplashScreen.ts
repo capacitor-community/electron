@@ -1,7 +1,13 @@
 /** @hidden */
 import Electron from "electron";
 /** @hidden */
-const { app, BrowserWindow, ipcMain } = require("electron");
+const electron = require("electron");
+/** @hidden */
+const app = electron.app;
+/** @hidden */
+const BrowserWindow = electron.BrowserWindow;
+/** @hidden */
+const ipcMain = electron.ipcMain;
 /** @hidden */
 const mimeTypes = require("mime-types");
 /** @hidden */

@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html class="default no-js">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>@capacitor-community/electron-core</title>
+    <meta
+      name="description"
+      content="Documentation for @capacitor-community/electron-core"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+  </head>
+  <body>
+    <header>
+      <div class="tsd-page-toolbar">
+        <div class="container">
+          <div class="table-wrap">
+            <div
+              class="table-cell"
+              id="tsd-search"
+              data-index="assets/js/search.json"
+              data-base="."
+            >
+              <div class="field">
+                <label
+                  for="tsd-search-field"
+                  class="tsd-widget search no-caption"
+                  >Search</label
+                >
+                <input id="tsd-search-field" type="text" />
+              </div>
+              <ul class="results">
+                <li class="state loading">Preparing search index...</li>
+                <li class="state failure">The search index is not available</li>
+              </ul>
+              <a href="index.html" class="title"
+                >@capacitor-community/electron-core</a
+              >
+            </div>
+            <div class="table-cell" id="tsd-widgets">
+              <div id="tsd-filter">
+                <a
+                  href="#"
+                  class="tsd-widget options no-caption"
+                  data-toggle="options"
+                  >Options</a
+                >
+                <div class="tsd-filter-group">
+                  <div class="tsd-select" id="tsd-filter-visibility">
+                    <span class="tsd-select-label">All</span>
+                    <ul class="tsd-select-list">
+                      <li data-value="public">Public</li>
+                      <li data-value="protected">Public/Protected</li>
+                      <li data-value="private" class="selected">All</li>
+                    </ul>
+                  </div>
+                  <input type="checkbox" id="tsd-filter-inherited" checked />
+                  <label class="tsd-widget" for="tsd-filter-inherited"
+                    >Inherited</label
+                  >
+                  <input type="checkbox" id="tsd-filter-externals" checked />
+                  <label class="tsd-widget" for="tsd-filter-externals"
+                    >Externals</label
+                  >
+                  <input type="checkbox" id="tsd-filter-only-exported" />
+                  <label class="tsd-widget" for="tsd-filter-only-exported"
+                    >Only exported</label
+                  >
+                </div>
+              </div>
+              <a href="#" class="tsd-widget menu no-caption" data-toggle="menu"
+                >Menu</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tsd-page-title">
+        <div class="container">
+          <ul class="tsd-breadcrumb">
+            <li>
+              <a href="globals.html">Globals</a>
+            </li>
+          </ul>
+          <h1>@capacitor-community/electron-core</h1>
+        </div>
+      </div>
+    </header>
+    <div class="container container-main">
+      <div class="row">
+        <div class="col-8 col-content">
+          <div class="tsd-panel tsd-typography">
+            <a
+              href="#capacitor-electron"
+              id="capacitor-electron"
+              style="color: inherit; text-decoration: none;"
+            >
+              <h1>Capacitor Electron</h1>
+            </a>
+            <p align="center">
+              Capacitor community support for the Electron platform.
+            </p>
+            <p align="center">
+              <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+              <a href="#contributors"
+                ><img
+                  src="https://img.shields.io/badge/all%20contributors-2-orange?style=flat-square"
+              /></a>
+              <!-- ALL-CONTRIBUTORS-BADGE:END -->
+              <a href="https://www.electronjs.org/releases/stable?version=9"
+                ><img
+                  src="https://img.shields.io/badge/supported%20electron%20version-~9.0.0-blue?style=flat-square"
+              /></a>
+              <a href="https://lerna.js.org/"
+                ><img
+                  src="https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg?style=flat-square"
+              /></a>
+            </p>
+            <p align="center">
+              <a
+                href="https://npmjs.com/package/@capacitor-community/electron-core"
+                ><img
+                  src="https://img.shields.io/npm/v/@capacitor-community/electron-core.svg?color=green&style=flat-square"
+              /></a>
+              <a
+                href="https://npmjs.com/package/@capacitor-community/electron-core"
+                ><img
+                  src="https://img.shields.io/npm/l/@capacitor-community/electron-core.svg?color=lightgrey&style=flat-square"
+              /></a>
+            </p>
+            <a
+              href="#maintainers"
+              id="maintainers"
+              style="color: inherit; text-decoration: none;"
+            >
+              <h2>Maintainers</h2>
+            </a>
+            <table>
+              <thead>
+                <tr>
+                  <th>Maintainer</th>
+                  <th>GitHub</th>
+                  <th>Social</th>
+                  <th>Sponsoring Company</th>
+                  <th>Primary</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Mike S.</td>
+                  <td><a href="https://github.com/IT-MikeS">IT-MikeS</a></td>
+                  <td><a href="https://twitter.com/IT_MikeS">@IT_MikeS</a></td>
+                  <td>Volunteer</td>
+                  <td>Yes</td>
+                </tr>
+                <tr>
+                  <td>Max Lynch</td>
+                  <td><a href="https://github.com/mlynch">mlynch</a></td>
+                  <td><a href="https://twitter.com/maxlynch">@maxlynch</a></td>
+                  <td>Ionic</td>
+                  <td><em>No</em></td>
+                </tr>
+              </tbody>
+            </table>
+            <p>Maintenance Status: Actively Maintained</p>
+            <a
+              href="#basic-usage-steps"
+              id="basic-usage-steps"
+              style="color: inherit; text-decoration: none;"
+            >
+              <h2>Basic Usage Steps:</h2>
+            </a>
+            <ol>
+              <li>
+                Run <code>npm i @capacitor-community/electron-platform</code> in
+                your project directory. This will install the platform and its
+                dependancies along with placing a copy of your built webapp into
+                the platform folder <code>electron</code>
+              </li>
+              <li>
+                Open a terminal in the <code>electron</code> platform folder and
+                run <code>npm run electron:start</code> to start your app with
+                the default config.
+              </li>
+            </ol>
+            <a
+              href="#using-your-own-image-for-the-splash-screen"
+              id="using-your-own-image-for-the-splash-screen"
+              style="color: inherit; text-decoration: none;"
+            >
+              <h2>Using your own image for the Splash Screen</h2>
+            </a>
+            <p>
+              <code>@capacitor-community/electron</code> looks in the
+              <code>YOUR_APP_ROOT/electron/assets</code> folder for a
+              <code>splash.png</code> file by default, but you can use your own
+              image by using one of the following methods:
+            </p>
+            <ol>
+              <li>Editing the <code>splash.png</code> file directly.</li>
+              <li>
+                Place your own image file into the <code>assets</code> folder
+                and pass the <code>imageFilePath</code> property as part of
+                <code>splashScreen -&gt; splashOptions</code> into
+                <code>CapacitorElectronApp()</code>. For example if your image
+                was named <code>myImage.gif</code> (yes animated GIF&#39;s are
+                valid) you would pass it like this:
+              </li>
+            </ol>
+            <pre><code class="language-typescript">  <span class="hljs-keyword">const</span> {app, ......} = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;electron&#x27;</span>);
+  <span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;path&#x27;</span>);
+
+  .....
+
+  <span class="hljs-keyword">const</span> myCapacitorApp = createCapacitorElectronApp({
+    splashScreen: {
+      splashOptions: {
+        imageFilePath: path.join(app.getAppPath(), <span class="hljs-string">&quot;assets&quot;</span>, <span class="hljs-string">&quot;myImage.gif&quot;</span>)
+      }
+    }
+  });</code></pre>
+            <a
+              href="#great-electron-packages-to-consider-for-your-project"
+              id="great-electron-packages-to-consider-for-your-project"
+              style="color: inherit; text-decoration: none;"
+            >
+              <h2>Great electron packages to consider for your project.</h2>
+            </a>
+            <ul>
+              <li>
+                <a href="https://github.com/sindresorhus/electron-unhandled"
+                  >Electron-Unhandled</a
+                >: Catch unhandled errors and promise rejections in your
+                Electron app.
+              </li>
+              <li>
+                <a href="https://github.com/sindresorhus/electron-timber"
+                  >Electron-Timber</a
+                >: Pretty console logger for Electron apps.
+              </li>
+              <li>
+                <a href="https://github.com/sindresorhus/electron-util"
+                  >Electron-Util</a
+                >: Useful utilities for Electron apps and modules.
+              </li>
+              <li>
+                <a href="https://github.com/sindresorhus/electron-debug"
+                  >Electron-Debug</a
+                >: Adds useful debug features to your Electron app.
+              </li>
+              <li>
+                <a href="https://www.electronjs.org/devtron">Devtron</a>: An
+                open source tool to help you inspect, monitor, and debug your
+                Electron app.
+              </li>
+              <li>
+                <a href="https://github.com/sindresorhus/electron-better-ipc"
+                  >Electron-Better-IPC</a
+                >: Simplified IPC communication for Electron apps.
+              </li>
+              <li>
+                <a href="https://github.com/sindresorhus/electron-store"
+                  >Electron-Store</a
+                >: Simple data persistence for your Electron app - Save and load
+                user preferences, app state, cache, etc
+              </li>
+            </ul>
+            <p>
+              And more can be found on the
+              <a href="https://github.com/sindresorhus/awesome-electron"
+                >Awesome Electron List</a
+              >.
+            </p>
+            <a
+              href="#contributors-✨"
+              id="contributors-✨"
+              style="color: inherit; text-decoration: none;"
+            >
+              <h2>Contributors ✨</h2>
+            </a>
+            <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+            <!-- prettier-ignore-start -->
+            <!-- markdownlint-disable -->
+            <table>
+              <tr>
+                <td align="center">
+                  <a href="http://ionicframework.com/"
+                    ><img
+                      src="https://avatars3.githubusercontent.com/u/11214?v=4"
+                      width="75px;"
+                      alt=""
+                    /><br /><sub><b>Max Lynch</b></sub></a
+                  ><br /><a
+                    href="https://github.com/mlynch/@capacitor-community/electron/commits?author=mlynch"
+                    title="Code"
+                    >💻</a
+                  >
+                  <a
+                    href="https://github.com/mlynch/@capacitor-community/electron/commits?author=mlynch"
+                    title="Documentation"
+                    >📖</a
+                  >
+                </td>
+                <td align="center">
+                  <a href="https://github.com/IT-MikeS"
+                    ><img
+                      src="https://avatars0.githubusercontent.com/u/20338451?v=4"
+                      width="75px;"
+                      alt=""
+                    /><br /><sub><b>Mike S</b></sub></a
+                  ><br /><a
+                    href="https://github.com/mlynch/@capacitor-community/electron/commits?author=IT-MikeS"
+                    title="Code"
+                    >💻</a
+                  >
+                  <a
+                    href="https://github.com/mlynch/@capacitor-community/electron/commits?author=IT-MikeS"
+                    title="Documentation"
+                    >📖</a
+                  >
+                </td>
+              </tr>
+            </table>
+            <!-- markdownlint-enable -->
+            <!-- prettier-ignore-end -->
+            <!-- ALL-CONTRIBUTORS-LIST:END -->
+          </div>
+        </div>
+        <div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+          <nav class="tsd-navigation primary">
+            <ul>
+              <li class="globals">
+                <a href="globals.html"><em>Globals</em></a>
+              </li>
+              <li class="label tsd-is-external">
+                <span>Internals</span>
+              </li>
+              <li class="tsd-kind-module">
+                <a href="modules/_index_.html">&quot;index&quot;</a>
+              </li>
+              <li class="label tsd-is-external">
+                <span>Externals</span>
+              </li>
+              <li class="tsd-kind-module tsd-is-external">
+                <a href="modules/_capacitorelectronapp_.html"
+                  >&quot;<wbr />Capacitor<wbr />Electron<wbr />App&quot;</a
+                >
+              </li>
+              <li class="tsd-kind-module tsd-is-external">
+                <a href="modules/_interfaces_.html">&quot;interfaces&quot;</a>
+              </li>
+            </ul>
+          </nav>
+          <nav class="tsd-navigation secondary menu-sticky">
+            <ul class="before-current"></ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+    <footer class="with-border-bottom">
+      <div class="container">
+        <h2>Legend</h2>
+        <div class="tsd-legend-group">
+          <ul class="tsd-legend">
+            <li class="tsd-kind-function">
+              <span class="tsd-kind-icon">Function</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+    <div class="container tsd-generator">
+      <p>
+        Generated using
+        <a href="https://typedoc.org/" target="_blank">TypeDoc</a>
+      </p>
+    </div>
+    <div class="overlay"></div>
+    <script src="assets/js/main.js"></script>
+    <script>
+      if (location.protocol == "file:")
+        document.write('<script src="assets/js/search.js"><' + "/script>");
+    </script>
+  </body>
+</html>

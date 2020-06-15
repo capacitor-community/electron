@@ -24,6 +24,10 @@ Capacitor community support for the Electron platform.
 
 Maintenance Status: Actively Maintained
 
+## Documentation:
+
+[You can find the Typedocs here](https://capacitor-community.github.io/electron/).
+
 ## Basic Usage Steps:
 
 1. Run `npm i @capacitor-community/electron-platform` in your project directory. This will install the platform and its dependancies along with placing a copy of your built webapp into the platform folder `electron`

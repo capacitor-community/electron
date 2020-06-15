@@ -7,7 +7,13 @@ import { CapacitorDeeplinking } from "./ElectronDeepLinking";
 /** @hidden */
 import Electron from "electron";
 /** @hidden */
-const { app, BrowserWindow, Menu } = require("electron");
+const electron = require("electron");
+/** @hidden */
+const app = electron.app;
+/** @hidden */
+const BrowserWindow = electron.BrowserWindow;
+/** @hidden */
+const Menu = electron.Menu;
 /** @hidden */
 const path = require("path");
 /** @hidden */
