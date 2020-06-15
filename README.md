@@ -42,7 +42,7 @@ Maintenance Status: Actively Maintained
 
   .....
 
-  const myCapacitorApp = new CapacitorElectronApp({
+  const myCapacitorApp = createCapacitorElectronApp({
     splashScreen: {
       splashOptions: {
         imageFilePath: path.join(app.getAppPath(), "assets", "myImage.gif")
