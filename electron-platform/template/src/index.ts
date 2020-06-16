@@ -1,7 +1,5 @@
-const { app } = require("electron");
-const {
-  createCapacitorElectronApp,
-} = require("@capacitor-community/electron-core");
+import { app } from "electron";
+import { createCapacitorElectronApp } from "@capacitor-community/electron-core";
 
 // The MainWindow object can be accessed via myCapacitorApp.getMainWindow()
 const myCapacitorApp = createCapacitorElectronApp();
