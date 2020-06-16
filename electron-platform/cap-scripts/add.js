@@ -124,30 +124,21 @@ async function runNpmInstallOnPlatform(destDir) {
 }
 
 async function doPostInstall() {
-  if (!fs.existsSync(path.join(__dirname, "../", ".no-postinstall-script"))) {
-    const requirementsStepSpinner = ora({
-      text: "[Electron Platform] Checking requirements...",
-    });
-    requirementsStepSpinner.start();
-    const paths = checkRequirements();
-    if (paths.errorText === null) {
-      requirementsStepSpinner.succeed();
-      createElectronFolder(paths.srcTemplatePath, paths.destTemplatePath);
-      copyRootCapConfig(
-        paths.usersProjectCapConfigPath,
-        paths.destTemplatePath
-      );
-      copyBuiltWebApp(paths.webAppPath, paths.destTemplatePath);
-      await runNpmInstallOnPlatform(paths.destTemplatePath);
-      console.log("[Electron Platform] Electron platform added!");
-    } else {
-      requirementsStepSpinner.fail();
-      throw new Error(errorText);
-    }
+  const requirementsStepSpinner = ora({
+    text: "[Electron Platform] Checking requirements...",
+  });
+  requirementsStepSpinner.start();
+  const paths = checkRequirements();
+  if (paths.errorText === null) {
+    requirementsStepSpinner.succeed();
+    createElectronFolder(paths.srcTemplatePath, paths.destTemplatePath);
+    copyRootCapConfig(paths.usersProjectCapConfigPath, paths.destTemplatePath);
+    copyBuiltWebApp(paths.webAppPath, paths.destTemplatePath);
+    await runNpmInstallOnPlatform(paths.destTemplatePath);
+    console.log("[Electron Platform] Electron platform added!");
   } else {
-    console.log(
-      "[Electron Platform] Dev enviroment found, skipping postinstall script."
-    );
+    requirementsStepSpinner.fail();
+    throw new Error(errorText);
   }
 }
 

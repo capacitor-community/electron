@@ -42,7 +42,6 @@
     "rimraf": "^3.0.2",
     "rollup": "^2.13.1",
     "rollup-plugin-node-resolve": "^5.2.0",
-    "typedoc": "^0.17.7",
     "typescript": "^3.4.3",
     "uglify-js": "^3.9.4"
   },
