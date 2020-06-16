@@ -43,8 +43,8 @@ Maintenance Status: Actively Maintained
 2. Place your own image file into the `assets` folder and pass the `imageFilePath` property as part of `splashScreen -> splashOptions` into `createCapacitorElectronApp(config)`. For example if your image was named `myImage.gif` (yes animated GIF's are valid) you would pass it like this:
 
 ```typescript
-  const {app, ......} = require('electron');
-  const path = require('path');
+  import {app, ......} from 'electron';
+  import * as path from 'path';
 
   .....
 
