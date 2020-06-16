@@ -28,7 +28,7 @@ function checkRequirements() {
     process.env.INIT_CWD,
     "capacitor.config.json"
   );
-  const srcDir = path.join(__dirname, "../", "electron_template");
+  const srcDir = path.join(__dirname, "../", "template");
   const destDir = path.join(process.env.INIT_CWD, "electron");
   if (usersProjectCapConfig) {
     const capConfigJson = JSON.parse(
@@ -67,7 +67,10 @@ function createElectronFolder(srcDir, destDir) {
   try {
     fs.mkdirSync(destDir, { recursive: true });
     fse.copySync(srcDir, destDir);
-    fs.renameSync(path.join(destDir, 'gitignore'), path.join(destDir, '.gitignore'));
+    fs.renameSync(
+      path.join(destDir, "gitignore"),
+      path.join(destDir, ".gitignore")
+    );
     createElectronFolderStepSpinner.succeed();
   } catch (e) {
     createElectronFolderStepSpinner.fail();
