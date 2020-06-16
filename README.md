@@ -26,7 +26,7 @@ Maintenance Status: Actively Maintained
 
 ## Documentation:
 
-[You can find the electron-core Typedocs here](https://capacitor-community.github.io/electron/).
+[You can find the electron-core docs here](https://github.com/capacitor-community/electron/blob/master/DOCS.md).
 
 ## Basic Usage Steps:
 

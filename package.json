@@ -7,8 +7,7 @@
     "lerna-version": "lerna version --force-publish --conventional-commits --changelog-preset conventional-changelog-conventionalcommits --no-changelog",
     "lerna-publish": "lerna publish from-git",
     "generate-changelog": "conventional-changelog -o CHANGELOG.md -r 0 --config changelog.config.js",
-    "deploy-changelog": "bash ./scripts/deployChangeLog.sh",
-    "generate-docs": "typedoc --out docs electron-core/src/electron/index.ts --ignoreCompilerErrors --stripInternal && node ./scripts/crossTouchNoJekyllDocs.js"
+    "deploy-changelog": "bash ./scripts/deployChangeLog.sh"
   },
   "license": "MIT",
   "husky": {
@@ -28,6 +27,8 @@
     "conventional-changelog-conventionalcommits": "^4.3.0",
     "lerna": "^3.22.1",
     "typedoc": "^0.17.7",
+    "typedoc-neo-theme": "^1.0.8",
+    "typedoc-plugin-markdown": "^2.3.1",
     "typescript": "^3.9.5"
   }
 }
