@@ -18,7 +18,6 @@
     - **getMainWindow()** : _Electron.BrowserWindow_
       - Gets the mainWindow instance for your app.
     - **init()** : _void_
-
       - Creates mainwindow and does all setup. _Call after app.on('ready') event fired._
 
 ---
