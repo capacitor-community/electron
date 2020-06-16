@@ -1,4 +1,6 @@
-# Capacitor Electron
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/20338451/84775741-91e30a00-afad-11ea-8f37-92a7bfd6cd54.png" width="392" height="150" /><br />
+</p>
 
 <p align="center">
 Capacitor community support for the Electron platform.
