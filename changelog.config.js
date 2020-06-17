@@ -8,7 +8,7 @@ module.exports = config({
     { type: "chore", section: "Chores" },
     { type: "docs", section: "Documentation" },
     { type: "style", hidden: true },
-    { type: "refactor", hidden: true },
+    { type: "refactor", section: "Refactors" },
     { type: "perf", hidden: true },
     { type: "test", hidden: true },
   ],
