@@ -26,9 +26,6 @@
     "conventional-changelog-cli": "^2.0.34",
     "conventional-changelog-conventionalcommits": "^4.3.0",
     "lerna": "^3.22.1",
-    "typedoc": "^0.17.7",
-    "typedoc-neo-theme": "^1.0.8",
-    "typedoc-plugin-markdown": "^2.3.1",
     "typescript": "^3.9.5"
   }
 }
