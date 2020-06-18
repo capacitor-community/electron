@@ -3,7 +3,6 @@
   "version": "0.1.7",
   "description": "Capacitor community support for the Electron platform.",
   "scripts": {
-    "postinstall": "npm run capacitor:add",
     "capacitor:add": "node dist/cap-scripts.js add",
     "capacitor:copy": "node dist/cap-scripts.js copy",
     "capacitor:update": "node dist/cap-scripts.js update",
