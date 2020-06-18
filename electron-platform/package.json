@@ -3,11 +3,15 @@
   "version": "0.1.7",
   "description": "Capacitor community support for the Electron platform.",
   "scripts": {
-    "postinstall": "node cap-scripts/add.js && node cap-scripts/update.js",
-    "capacitor:add": "node cap-scripts/add.js",
-    "capacitor:copy": "node cap-scripts/copy.js",
-    "capacitor:update": "node cap-scripts/update.js",
-    "capacitor:sync": "echo \"Not yet implemented.\""
+    "postinstall": "npm run capacitor:add",
+    "capacitor:add": "node dist/cap-scripts.js add",
+    "capacitor:copy": "node dist/cap-scripts.js copy",
+    "capacitor:update": "node dist/cap-scripts.js update",
+    "capacitor:sync": "node dist/cap-scripts.js sync",
+    "build": "rimraf ./dist && npm run transpile && npm run compile && rimraf ./build",
+    "compile": "parcel build ./build/index.js --out-file ./dist/cap-scripts.js --target node --no-minify",
+    "transpile": "tsc --project ./tsconfig.json",
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -28,11 +32,15 @@
   },
   "homepage": "https://github.com/capacitor-community/electron#readme",
   "devDependencies": {
-    "@types/node": "~12.0.5",
+    "@types/node": "^12.0.0",
     "husky": "^4.2.5",
+    "parcel-bundler": "^1.12.4",
     "prettier": "^2.0.5",
     "prettier-plugin-java": "^0.8.0",
-    "pretty-quick": "^2.0.1"
+    "pretty-quick": "^2.0.1",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.17.0",
+    "rollup-plugin-node-resolve": "^5.2.0"
   },
   "dependencies": {
     "chalk": "^4.1.0",

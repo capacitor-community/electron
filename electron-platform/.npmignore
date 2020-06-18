@@ -4,3 +4,6 @@ npm-debug.log
 .idea/
 .vscode/
 .github/
+build/
+cap-scripts/
+.cache/
