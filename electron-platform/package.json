@@ -8,7 +8,7 @@
     "capacitor:update": "node dist/cap-scripts.js update",
     "capacitor:sync": "node dist/cap-scripts.js sync",
     "build": "rimraf ./dist && npm run transpile && npm run compile && rimraf ./build",
-    "compile": "parcel build ./build/index.js --out-file ./dist/cap-scripts.js --target node --no-minify",
+    "compile": "parcel build ./build/index.js --out-file ./dist/cap-scripts.js --target node",
     "transpile": "tsc --project ./tsconfig.json",
     "prepublishOnly": "npm run build"
   },
@@ -37,9 +37,7 @@
     "prettier": "^2.0.5",
     "prettier-plugin-java": "^0.8.0",
     "pretty-quick": "^2.0.1",
-    "rimraf": "^3.0.2",
-    "rollup": "^2.17.0",
-    "rollup-plugin-node-resolve": "^5.2.0"
+    "rimraf": "^3.0.2"
   },
   "dependencies": {
     "chalk": "^4.1.0",
