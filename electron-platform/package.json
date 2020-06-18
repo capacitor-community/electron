@@ -34,6 +34,7 @@
     "pretty-quick": "^2.0.1"
   },
   "dependencies": {
+    "chalk": "^4.1.0",
     "fs-extra": "~9.0.1",
     "ora": "^4.0.4"
   },
