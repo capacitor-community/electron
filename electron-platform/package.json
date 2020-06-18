@@ -1,11 +1,12 @@
 {
-  "name": "@capacitor-community/electron",
+  "name": "@capacitor-community/electron-platform",
   "version": "0.1.7",
   "description": "Capacitor community support for the Electron platform.",
   "scripts": {
+    "postinstall": "node cap-scripts/add.js && node cap-scripts/update.js",
     "capacitor:add": "node cap-scripts/add.js",
     "capacitor:copy": "node cap-scripts/copy.js",
-    "capacitor:update": "echo \"Not yet implemented.\"",
+    "capacitor:update": "node cap-scripts/update.js",
     "capacitor:sync": "echo \"Not yet implemented.\""
   },
   "repository": {
