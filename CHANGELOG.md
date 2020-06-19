@@ -1,4 +1,14 @@
-## [](https://github.com/capacitor-community/electron/compare/v0.2.0...v) (2020-06-19)
+## [](https://github.com/capacitor-community/electron/compare/v0.2.1...v) (2020-06-19)
+
+### [0.2.1](https://github.com/capacitor-community/electron/compare/v0.2.0...v0.2.1) (2020-06-19)
+
+### Bug Fixes
+
+- **platform:** dir issue for cap config detect ([326080e](https://github.com/capacitor-community/electron/commit/326080ecce952c47a9dae1d3e24daafb40fe3df4))
+
+### Chores
+
+- update changelog for 0.2.0 ([836f2a1](https://github.com/capacitor-community/electron/commit/836f2a12d49e73444e6d04efce887a3dccb9123e))
 
 ## [0.2.0](https://github.com/capacitor-community/electron/compare/v0.1.7...v0.2.0) (2020-06-19)
 
