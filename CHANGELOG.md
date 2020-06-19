@@ -1,4 +1,54 @@
-## [](https://github.com/capacitor-community/electron/compare/v0.1.7...v) (2020-06-15)
+## [](https://github.com/capacitor-community/electron/compare/v0.2.0...v) (2020-06-19)
+
+## [0.2.0](https://github.com/capacitor-community/electron/compare/v0.1.7...v0.2.0) (2020-06-19)
+
+### Features
+
+- support for plugins ([901f820](https://github.com/capacitor-community/electron/commit/901f82026c8edcfe061e51653937e50d33d9a917))
+- **platform:** typescript in template ([317a4b3](https://github.com/capacitor-community/electron/commit/317a4b3ae0c7b54e4f5545f13efd92e91a7cfa31))
+- support purposed cli hooks ([994df88](https://github.com/capacitor-community/electron/commit/994df8804c8fb35baff83a1e33b8eacc786ba3e4))
+
+### Bug Fixes
+
+- typings wrong version for LTS node ([fb3f974](https://github.com/capacitor-community/electron/commit/fb3f97421b3eb1bd36e539e2f3c77c605ba03190))
+- **platform:** add template tsconfig missed option ([de4f439](https://github.com/capacitor-community/electron/commit/de4f43929b01ab9433cf7082ef9ace1b27425301))
+- **platform:** swap requires to imports ([ccf7df6](https://github.com/capacitor-community/electron/commit/ccf7df6e5a2bacbce620bf19e7cfab7a27c9f85b))
+
+### Refactors
+
+- change to just template named folder ([e924cc3](https://github.com/capacitor-community/electron/commit/e924cc383546982f03204bcc627ba43ffa62cf2e))
+
+### Chores
+
+- add config option to build ([1921b63](https://github.com/capacitor-community/electron/commit/1921b63480f5f290ede7720c6a8f5ceb4762cde3))
+- add typedocs back ([e2be41a](https://github.com/capacitor-community/electron/commit/e2be41a576070b631cedc4be8bb5bdefa3e6a9bd))
+- better cli support and ts scripts ([82d0839](https://github.com/capacitor-community/electron/commit/82d0839e5336b424b56a2bbb0c5d2ca8e78eaf61))
+- clarify typedocs in readme ([986c745](https://github.com/capacitor-community/electron/commit/986c7458d927b6293d1612548ea901d86f7e13ca))
+- cleanup ([140e173](https://github.com/capacitor-community/electron/commit/140e1737ff5aa32a3be976eed4a6820f280830b7))
+- cleanup devDependencies ([67bc526](https://github.com/capacitor-community/electron/commit/67bc526643c6d2fbe46ce5909c82dc1ba8d5e07b))
+- cleanup devDeps ([7ceb515](https://github.com/capacitor-community/electron/commit/7ceb515206b28c959955f38051e76d2f3da18314))
+- cleanup leftover files/code ([a031c8b](https://github.com/capacitor-community/electron/commit/a031c8bb52e74214b514d81d9addc17c25626055))
+- cleanup requires to imports ([9e9b84e](https://github.com/capacitor-community/electron/commit/9e9b84ed5b647ad05a28fa0eae623410985ccde8))
+- create plugin guide ([511ef5d](https://github.com/capacitor-community/electron/commit/511ef5dc936432334ee8bc6defeb05dddf756937))
+- different docs ([24e8272](https://github.com/capacitor-community/electron/commit/24e82729b6af97b921fe0143d355487ecfa89ec0))
+- docs in readme ([2019f79](https://github.com/capacitor-community/electron/commit/2019f791813a9aa545c4f6517b60e05ed942a9f5))
+- fix package naming ([6f5a2b4](https://github.com/capacitor-community/electron/commit/6f5a2b4058f746482a6f9615c4655904cbd65e0a))
+- fix typo in package json ([4bd1785](https://github.com/capacitor-community/electron/commit/4bd1785203a24d1dd623e9952bc343249986012b))
+- forgot to remove postinstall script ([7501381](https://github.com/capacitor-community/electron/commit/7501381248dfdc8bb0dc4fdbfe58c2db0602a3a7))
+- formatting fix DOCS ([74f6ece](https://github.com/capacitor-community/electron/commit/74f6ece6df87608c006d5681559cbad89e52fa06))
+- made ci build check on PR ([1c17f44](https://github.com/capacitor-community/electron/commit/1c17f44ffa6a71bd3c88fb8cd48e321079d8a606))
+- missed reference in readme ([d97463a](https://github.com/capacitor-community/electron/commit/d97463a861bce7e11bf9caab71de38bc848fb87a))
+- prep ([c88a5c0](https://github.com/capacitor-community/electron/commit/c88a5c0cf6e64af89ca95b32c9f92e5640ca968f))
+- start better plugin support ([cef3e45](https://github.com/capacitor-community/electron/commit/cef3e452b6ba052d669e05119bf4d6e36012c042))
+- switch to strict TS for cli hook scripts ([dbb35d2](https://github.com/capacitor-community/electron/commit/dbb35d29ef15397e166ee02eec3de09947638f5c))
+- temp postinstall support ([22daf21](https://github.com/capacitor-community/electron/commit/22daf21559501481b9801cd5e1fa61743427a97b))
+- temp postinstall support ([318e21a](https://github.com/capacitor-community/electron/commit/318e21a968d255002a4bace7f2cd8d5d2eae0cf8))
+- test ci ([092402b](https://github.com/capacitor-community/electron/commit/092402ba90e7ee0814af00b5edfe7deea808a6d1))
+- update changelog config ([9736d99](https://github.com/capacitor-community/electron/commit/9736d99b7690c07e2fb6f52dd9e5e86ee13f24cf))
+- update changelog for 0.1.7 ([4e0ab66](https://github.com/capacitor-community/electron/commit/4e0ab66ea0a852fa3973e01702d7dcc19b6fe299))
+- update readme ([914f050](https://github.com/capacitor-community/electron/commit/914f05036d961883041ad32995f288fe729aa4ff))
+- update readme to TS ([b43f091](https://github.com/capacitor-community/electron/commit/b43f09182ed391595b7f47cbfec131358441eef4))
+- update readme usage section ([eef07dd](https://github.com/capacitor-community/electron/commit/eef07dd9b9a2f9051aa67b94204589b7ac6d714f))
 
 ### [0.1.7](https://github.com/capacitor-community/electron/compare/v0.1.6...v0.1.7) (2020-06-15)
 
@@ -200,6 +250,10 @@
 ### Bug Fixes
 
 - updated deeplinking ([e11934e](https://github.com/capacitor-community/electron/commit/e11934ec42bde0c5a000f0ee204532db04203712))
+
+### Refactors
+
+- move config options around and ico win32 ([890325f](https://github.com/capacitor-community/electron/commit/890325f69411fc6a8a43643e2daa9e57043bbc88))
 
 ### Chores
 
