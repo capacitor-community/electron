@@ -10,5 +10,6 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true
   },
+  "exclude": ["node_modules"],
   "files": ["cap-scripts/index.ts"]
 }
