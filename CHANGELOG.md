@@ -1,4 +1,14 @@
-## [](https://github.com/capacitor-community/electron/compare/v0.2.1...v) (2020-06-19)
+## [](https://github.com/capacitor-community/electron/compare/v0.2.2...v) (2020-06-19)
+
+### [0.2.2](https://github.com/capacitor-community/electron/compare/v0.2.1...v0.2.2) (2020-06-19)
+
+### Bug Fixes
+
+- **platform:** dir path issue ([0ef8958](https://github.com/capacitor-community/electron/commit/0ef8958de700973bd2f79dfd96c476322ed69c8f))
+
+### Chores
+
+- update changelog for 0.2.1 ([d36fd3e](https://github.com/capacitor-community/electron/commit/d36fd3e06674e31b967304493c21b8210ff6ecee))
 
 ### [0.2.1](https://github.com/capacitor-community/electron/compare/v0.2.0...v0.2.1) (2020-06-19)
 
