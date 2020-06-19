@@ -4,6 +4,7 @@ import { join } from "path";
 import { getCwd, runExec, readJSON } from "./common";
 
 function checkRequirements() {
+  const cwd = join(getCwd(), "../", "../", "../");
   const outPaths: {
     errorText: null | string;
     usersProjectCapConfigPath: null | string;
@@ -17,19 +18,13 @@ function checkRequirements() {
     destTemplatePath: null,
     webAppPath: null,
   };
-  const usersProjectCapConfig = join(
-    getCwd(),
-    "../",
-    "../",
-    "../",
-    "capacitor.config.json"
-  );
+  const usersProjectCapConfig = join(cwd, "capacitor.config.json");
   const srcDir = join(__dirname, "../", "template");
-  const destDir = join(getCwd(), "electron");
-  if (usersProjectCapConfig) {
+  const destDir = join(cwd, "electron");
+  if (existsSync(usersProjectCapConfig)) {
     const capConfigJson = readJSON(usersProjectCapConfig);
     if (capConfigJson.webDir) {
-      const webDirPath = join(getCwd(), capConfigJson.webDir);
+      const webDirPath = join(cwd, capConfigJson.webDir);
       if (existsSync(webDirPath)) {
         if (!existsSync(destDir)) {
           outPaths.destTemplatePath = destDir;

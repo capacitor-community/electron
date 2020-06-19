@@ -62,22 +62,23 @@ parcelRequire = (function (e, r, t, n) {
     FoEN: [
       function (require, module, exports) {
         "use strict";
-        Object.defineProperty(exports, "__esModule", { value: !0 });
+        Object.defineProperty(exports, "__esModule", { value: !0 }),
+          (exports.runTask = exports.resolveElectronPlugin = exports.resolvePlugin = exports.resolveNodeFrom = exports.resolveNode = exports.hashJsFileName = exports.fixName = exports.runExec = exports.readJSON = exports.getCwd = void 0);
         const e = require("path"),
           r = require("fs"),
           t = require("child_process"),
-          n = require("crypto");
-        function o() {
+          o = require("crypto");
+        function s() {
           return process.env.INIT_CWD;
         }
-        function s(e) {
+        function n(e) {
           const t = r.readFileSync(e, "utf8");
           return JSON.parse(t);
         }
         function i(e) {
-          return new Promise((r, n) => {
-            t.exec(e, (e, t, o) => {
-              e ? n(t + o) : r(t);
+          return new Promise((r, o) => {
+            t.exec(e, (e, t, s) => {
+              e ? o(t + s) : r(t);
             });
           });
         }
@@ -93,48 +94,48 @@ parcelRequire = (function (e, r, t, n) {
           );
         }
         function a(e, r) {
-          return `${e}-${n
+          return `${e}-${o
             .createHash("md5")
             .update(`${Date.now()}-${r}-${e}`)
             .digest("hex")}.js`;
         }
-        function u(...r) {
+        function l(...r) {
           const t = r[0],
-            n = r.slice(1);
-          let s;
-          const i = [o()];
-          for (let e of i) if ((s = l(e, t))) break;
-          return s ? e.join(s, ...n) : null;
+            o = r.slice(1);
+          let n;
+          const i = [s()];
+          for (let e of i) if ((n = u(e, t))) break;
+          return n ? e.join(n, ...o) : null;
         }
-        function l(t, n) {
-          const o = e.parse(t).root;
-          let s,
+        function u(t, o) {
+          const s = e.parse(t).root;
+          let n,
             i = e.resolve(t);
           for (;;) {
-            if (((s = e.join(i, "node_modules", n)), r.existsSync(s))) return s;
-            if (i === o) return null;
+            if (((n = e.join(i, "node_modules", o)), r.existsSync(n))) return n;
+            if (i === s) return null;
             i = e.dirname(i);
           }
         }
         async function p(r) {
           try {
-            const n = u(r);
-            if (!n)
+            const o = l(r);
+            if (!o)
               return (
                 console.error(
                   `Unable to find node_modules/${r}. Are you sure ${r} is installed?`
                 ),
                 null
               );
-            const o = e.join(n, "package.json"),
-              i = await s(o);
+            const s = e.join(o, "package.json"),
+              i = await n(s);
             if (!i) return null;
             if (i.capacitor)
               return {
                 id: r,
                 name: c(r),
                 version: i.version,
-                rootPath: n,
+                rootPath: o,
                 repository: i.repository,
                 manifest: i.capacitor,
               };
@@ -146,40 +147,40 @@ parcelRequire = (function (e, r, t, n) {
             ? e.join(r.rootPath, r.manifest.electron.src)
             : null;
         }
-        async function d(e, r) {
+        async function x(e, r) {
           const t = require("ora")(e).start();
           try {
-            const o = process.hrtime();
-            let s;
-            const i = await r((e) => (s = e)),
-              c = process.hrtime(o),
+            const s = process.hrtime();
+            let n;
+            const i = await r((e) => (n = e)),
+              c = process.hrtime(s),
               a = require("chalk");
             return (
-              s
-                ? t.info(`${e} ${a.dim("– " + s)}`)
-                : t.succeed(`${e} ${a.dim("in " + x(c))}`),
+              n
+                ? t.info(`${e} ${a.dim("– " + n)}`)
+                : t.succeed(`${e} ${a.dim("in " + m(c))}`),
               i
             );
-          } catch (n) {
-            throw (t.fail(`${e}: ${n.message ? n.message : ""}`), t.stop(), n);
+          } catch (o) {
+            throw (t.fail(`${e}: ${o.message ? o.message : ""}`), t.stop(), o);
           }
         }
-        (exports.getCwd = o),
-          (exports.readJSON = s),
+        (exports.getCwd = s),
+          (exports.readJSON = n),
           (exports.runExec = i),
           (exports.fixName = c),
           (exports.hashJsFileName = a),
-          (exports.resolveNode = u),
-          (exports.resolveNodeFrom = l),
+          (exports.resolveNode = l),
+          (exports.resolveNodeFrom = u),
           (exports.resolvePlugin = p),
           (exports.resolveElectronPlugin = f),
-          (exports.runTask = d);
-        const m = ["s", "ms", "μp"];
-        function x(e) {
+          (exports.runTask = x);
+        const d = ["s", "ms", "μp"];
+        function m(e) {
           let r = e[0] + e[1] / 1e9,
             t = 0;
-          for (; t < m.length - 1 && !(r >= 1); t++, r *= 1e3);
-          return r.toFixed(2) + m[t];
+          for (; t < d.length - 1 && !(r >= 1); t++, r *= 1e3);
+          return r.toFixed(2) + d[t];
         }
       },
       {},
@@ -187,7 +188,8 @@ parcelRequire = (function (e, r, t, n) {
     lx7y: [
       function (require, module, exports) {
         "use strict";
-        Object.defineProperty(exports, "__esModule", { value: !0 });
+        Object.defineProperty(exports, "__esModule", { value: !0 }),
+          (exports.doUpdate = void 0);
         const e = require("path"),
           n = require("fs"),
           r = require("fs-extra"),
@@ -204,24 +206,24 @@ parcelRequire = (function (e, r, t, n) {
               t.resolveElectronPlugin(e)
             );
           d = d.filter((e) => !!e);
-          const u = e.join(o, "electron", "plugins");
-          r.removeSync(u), n.mkdirSync(u);
-          const p = [];
+          const p = e.join(o, "electron", "plugins");
+          r.removeSync(p), n.mkdirSync(p);
+          const u = [];
           for (let r = 0; r < d.length; r++) {
             const o = `${d[r]}`;
             let s = o.substr(o.lastIndexOf(e.sep) + 1);
             (s = t.hashJsFileName(s, r)),
-              n.copyFileSync(n.realpathSync(o), e.join(u, s)),
-              p.push(s);
+              n.copyFileSync(n.realpathSync(o), e.join(p, s)),
+              u.push(s);
           }
           let f =
             "require('./node_modules/@capacitor-community/electron-core/dist/electron-bridge.js');";
-          for (const e of p) f += `require('./plugins/${e}');`;
+          for (const e of u) f += `require('./plugins/${e}');`;
           return (
             n.writeFileSync(e.join(o, "electron", "preloader.js"), f, {
               encoding: "utf8",
             }),
-            p
+            u
           );
         }
         exports.doUpdate = o;
@@ -231,7 +233,8 @@ parcelRequire = (function (e, r, t, n) {
     cMRE: [
       function (require, module, exports) {
         "use strict";
-        Object.defineProperty(exports, "__esModule", { value: !0 });
+        Object.defineProperty(exports, "__esModule", { value: !0 }),
+          (exports.doAdd = void 0);
         const e = require("fs"),
           t = require("fs-extra"),
           r = require("path"),
@@ -244,7 +247,13 @@ parcelRequire = (function (e, r, t, n) {
               destTemplatePath: null,
               webAppPath: null,
             },
-            n = r.join(o.getCwd(), "capacitor.config.json"),
+            n = r.join(
+              o.getCwd(),
+              "../",
+              "../",
+              "../",
+              "capacitor.config.json"
+            ),
             a = r.join(__dirname, "../", "template"),
             i = r.join(o.getCwd(), "electron");
           if (n) {
@@ -293,44 +302,45 @@ parcelRequire = (function (e, r, t, n) {
     iozI: [
       function (require, module, exports) {
         "use strict";
-        Object.defineProperty(exports, "__esModule", { value: !0 });
+        Object.defineProperty(exports, "__esModule", { value: !0 }),
+          (exports.doCopy = void 0);
         const e = require("fs"),
-          t = require("fs-extra"),
-          o = require("./common"),
+          o = require("fs-extra"),
+          t = require("./common"),
           r = require("path");
         function n() {
-          const t = {
+          const o = {
               errorText: null,
               usersProjectCapConfigPath: null,
               destTemplatePath: null,
               webAppPath: null,
             },
-            n = r.join(o.getCwd(), "capacitor.config.json"),
-            i = r.join(o.getCwd(), "electron");
+            n = r.join(t.getCwd(), "capacitor.config.json"),
+            i = r.join(t.getCwd(), "electron");
           if (n) {
-            const c = o.readJSON(n);
-            if (c.webDir) {
-              const s = r.join(o.getCwd(), c.webDir);
-              e.existsSync(s)
+            const s = t.readJSON(n);
+            if (s.webDir) {
+              const c = r.join(t.getCwd(), s.webDir);
+              e.existsSync(c)
                 ? e.existsSync(i)
-                  ? ((t.destTemplatePath = i),
-                    (t.usersProjectCapConfigPath = n),
-                    (t.webAppPath = s))
-                  : (t.errorText = "Electron platform not installed.")
-                : (t.errorText =
+                  ? ((o.destTemplatePath = i),
+                    (o.usersProjectCapConfigPath = n),
+                    (o.webAppPath = c))
+                  : (o.errorText = "Electron platform not installed.")
+                : (o.errorText =
                     "WebDir defined in capacitor.config.json does not exist, did you build your webapp?");
-            } else t.errorText = "No webDir defined in capacitor.config.json.";
+            } else o.errorText = "No webDir defined in capacitor.config.json.";
           } else
-            t.errorText =
+            o.errorText =
               "capacitor.config.json does not exist, did you setup capacitor in your project root?";
-          return t;
+          return o;
         }
         async function i() {
-          const o = n();
-          if (null !== o.errorText) throw new Error(o.errorText);
+          const t = n();
+          if (null !== t.errorText) throw new Error(t.errorText);
           try {
-            const n = r.join(o.destTemplatePath, "app");
-            e.existsSync(n) && t.removeSync(n), t.copySync(o.webAppPath, n);
+            const n = r.join(t.destTemplatePath, "app");
+            e.existsSync(n) && o.removeSync(n), o.copySync(t.webAppPath, n);
           } catch (i) {
             throw i;
           }
