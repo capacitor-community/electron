@@ -1,8 +1,7 @@
-const { dirname, join, parse, resolve } = require("path");
+import { dirname, join, parse, resolve } from "path";
 import { readFileSync, existsSync } from "fs";
-const { exec } = require("child_process");
-const { createHash } = require("crypto");
-const cwd = process.env.INIT_CWD;
+import { exec } from "child_process";
+import { createHash } from "crypto";
 
 export function getCwd(): string | null {
   // console.log(process.env);
@@ -51,7 +50,7 @@ export function resolveNode(...pathSegments) {
   const path = pathSegments.slice(1);
 
   let modulePath;
-  const starts = [cwd];
+  const starts = [getCwd()];
   for (let start of starts) {
     modulePath = resolveNodeFrom(start, id);
     if (modulePath) {
