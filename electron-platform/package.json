@@ -1,6 +1,6 @@
 {
   "name": "@capacitor-community/electron",
-  "version": "0.1.7",
+  "version": "0.2.0",
   "description": "Capacitor community support for the Electron platform.",
   "scripts": {
     "postinstall": "npm run capacitor:add",
