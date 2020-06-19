@@ -17,7 +17,13 @@ function checkRequirements() {
     destTemplatePath: null,
     webAppPath: null,
   };
-  const usersProjectCapConfig = join(getCwd(), "capacitor.config.json");
+  const usersProjectCapConfig = join(
+    getCwd(),
+    "../",
+    "../",
+    "../",
+    "capacitor.config.json"
+  );
   const srcDir = join(__dirname, "../", "template");
   const destDir = join(getCwd(), "electron");
   if (usersProjectCapConfig) {
