@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "lib": ["es2016"],
+    "outDir": "build",
+    "module": "commonjs",
+    "target": "es2017",
+    "moduleResolution": "node",
+    "pretty": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true
+  },
+  "exclude": ["node_modules"],
+  "files": ["cap-scripts/index.ts"]
+}
