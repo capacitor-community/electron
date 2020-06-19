@@ -1,3 +1,5 @@
+import { existsSync } from "fs";
+import { join } from "path";
 import { runTask } from "./common";
 import { doUpdate } from "./update";
 import { doAdd } from "./add";
@@ -26,8 +28,10 @@ async function doCopyTask() {
   if (scriptToRun !== null) {
     switch (scriptToRun) {
       case "add":
-        await doAddTask();
-        await doUpdateTask();
+        if (!existsSync(join(__dirname, "../", ".no-dev-postinstall"))) {
+          await doAddTask();
+          await doUpdateTask();
+        }
         break;
       case "copy":
         await doCopyTask();
