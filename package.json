@@ -1,5 +1,5 @@
 {
-  "name": "@capacitor-community/electron",
+  "name": "@capacitor-community/electron-platform",
   "description": "Containing project for Capacitor community support for the Electron platform.",
   "private": true,
   "scripts": {
