@@ -25,7 +25,7 @@ export async function doUpdate() {
   // Filter out null returns
   plugins = plugins.filter((p) => !!p);
   // Get only the ones with electron "native" plugins
-  let pluginPaths = plugins.map((plugin) => resolveElectronPlugin(plugin));
+  let pluginPaths = plugins.map((plugin) => resolveElectronPlugin(plugin!));
   // Filter out nulls
   pluginPaths = pluginPaths.filter((pluginPath) => !!pluginPath);
   // Now have list of paths to rollupJs files of electron plugins to use in preload

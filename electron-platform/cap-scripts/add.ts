@@ -4,7 +4,13 @@ import { join } from "path";
 import { getCwd, runExec, readJSON } from "./common";
 
 function checkRequirements() {
-  const outPaths = {
+  const outPaths: {
+    errorText: null | string;
+    usersProjectCapConfigPath: null | string;
+    srcTemplatePath: null | string;
+    destTemplatePath: null | string;
+    webAppPath: null | string;
+  } = {
     errorText: null,
     usersProjectCapConfigPath: null,
     srcTemplatePath: null,
@@ -45,17 +51,17 @@ export async function doAdd() {
   const paths = checkRequirements();
   if (paths.errorText === null) {
     try {
-      mkdirSync(paths.destTemplatePath, { recursive: true });
-      copySync(paths.srcTemplatePath, paths.destTemplatePath);
+      mkdirSync(paths.destTemplatePath!, { recursive: true });
+      copySync(paths.srcTemplatePath!, paths.destTemplatePath!);
       renameSync(
-        join(paths.destTemplatePath, "gitignore"),
-        join(paths.destTemplatePath, ".gitignore")
+        join(paths.destTemplatePath!, "gitignore"),
+        join(paths.destTemplatePath!, ".gitignore")
       );
       copySync(
-        paths.usersProjectCapConfigPath,
-        join(paths.destTemplatePath, "capacitor.config.json")
+        paths.usersProjectCapConfigPath!,
+        join(paths.destTemplatePath!, "capacitor.config.json")
       );
-      copySync(paths.webAppPath, join(paths.destTemplatePath, "app"));
+      copySync(paths.webAppPath!, join(paths.destTemplatePath!, "app"));
       await runExec(`cd ${paths.destTemplatePath} && npm i`);
     } catch (e) {
       throw e;

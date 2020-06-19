@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "strict": false,
+    "strict": true,
     "lib": ["es2016"],
     "outDir": "build",
     "module": "commonjs",

@@ -4,7 +4,12 @@ import { getCwd, readJSON } from "./common";
 import { join } from "path";
 
 function checkRequirements() {
-  const outPaths = {
+  const outPaths: {
+    errorText: null | string;
+    usersProjectCapConfigPath: null | string;
+    destTemplatePath: null | string;
+    webAppPath: null | string;
+  } = {
     errorText: null,
     usersProjectCapConfigPath: null,
     destTemplatePath: null,
@@ -42,9 +47,9 @@ export async function doCopy() {
   const paths = checkRequirements();
   if (paths.errorText === null) {
     try {
-      const platformAppFolder = join(paths.destTemplatePath, "app");
+      const platformAppFolder = join(paths.destTemplatePath!, "app");
       if (existsSync(platformAppFolder)) removeSync(platformAppFolder);
-      copySync(paths.webAppPath, platformAppFolder);
+      copySync(paths.webAppPath!, platformAppFolder);
     } catch (e) {
       throw e;
     }

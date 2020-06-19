@@ -3,11 +3,45 @@ import { readFileSync, existsSync } from "fs";
 import { exec } from "child_process";
 import { createHash } from "crypto";
 
-export function getCwd(): string | null {
+const enum PluginType {
+  Core,
+  Cordova,
+  Incompatible,
+}
+interface PluginManifest {
+  electron: {
+    src: string;
+  };
+  ios: {
+    src: string;
+    doctor?: any[];
+  };
+  android: {
+    src: string;
+  };
+}
+interface Plugin {
+  id: string;
+  name: string;
+  version: string;
+  rootPath: string;
+  manifest?: PluginManifest;
+  repository?: any;
+  xml?: any;
+  ios?: {
+    name: string;
+    type: PluginType;
+    path: string;
+  };
+  android?: {
+    type: PluginType;
+    path: string;
+  };
+}
+
+export function getCwd(): string {
   // console.log(process.env);
-  const _cwd = process.env.INIT_CWD
-    ? join(process.env.INIT_CWD, "../", "../", "../")
-    : null;
+  const _cwd = process.env.INIT_CWD!;
   return _cwd;
 }
 
@@ -16,7 +50,7 @@ export function readJSON(pathToUse: string): { [key: string]: any } {
   return JSON.parse(data);
 }
 
-export function runExec(command) {
+export function runExec(command: string) {
   return new Promise((resolve, reject) => {
     exec(command, (error, stdout, stderr) => {
       if (error) {
@@ -28,7 +62,7 @@ export function runExec(command) {
   });
 }
 
-export function fixName(name) {
+export function fixName(name: string) {
   name = name
     .replace(/\//g, "_")
     .replace(/-/g, "_")
@@ -38,14 +72,14 @@ export function fixName(name) {
   return name.charAt(0).toUpperCase() + name.slice(1);
 }
 
-export function hashJsFileName(filename, slt) {
+export function hashJsFileName(filename: string, slt: number) {
   const hash = createHash("md5")
     .update(`${Date.now()}-${slt}-${filename}`)
     .digest("hex");
   return `${filename}-${hash}.js`;
 }
 
-export function resolveNode(...pathSegments) {
+export function resolveNode(...pathSegments: string[]) {
   const id = pathSegments[0];
   const path = pathSegments.slice(1);
 
@@ -64,7 +98,7 @@ export function resolveNode(...pathSegments) {
   return join(modulePath, ...path);
 }
 
-export function resolveNodeFrom(start, id) {
+export function resolveNodeFrom(start: string, id: string) {
   const rootPath = parse(start).root;
   let basePath = resolve(start);
   let modulePath;
@@ -80,7 +114,7 @@ export function resolveNodeFrom(start, id) {
   }
 }
 
-export async function resolvePlugin(name) {
+export async function resolvePlugin(name: string) {
   try {
     const rootPath = resolveNode(name);
     if (!rootPath) {
@@ -109,7 +143,7 @@ export async function resolvePlugin(name) {
   return null;
 }
 
-export function resolveElectronPlugin(plugin) {
+export function resolveElectronPlugin(plugin: Plugin) {
   if (
     plugin.manifest &&
     plugin.manifest.electron &&
@@ -121,13 +155,18 @@ export function resolveElectronPlugin(plugin) {
   }
 }
 
-export async function runTask(title, fn) {
+type TaskInfoProvider = (messsage: string) => void;
+
+export async function runTask<T>(
+  title: string,
+  fn: (info: TaskInfoProvider) => Promise<T>
+) {
   const ora = require("ora");
   const spinner = ora(title).start();
   try {
     const start = process.hrtime();
     let taskInfoMessage;
-    const value = await fn((message) => (taskInfoMessage = message));
+    const value = await fn((message: string) => (taskInfoMessage = message));
     const elapsed = process.hrtime(start);
     const chalk = require("chalk");
     if (taskInfoMessage) {
@@ -142,8 +181,10 @@ export async function runTask(title, fn) {
     throw e;
   }
 }
+
 const TIME_UNITS = ["s", "ms", "μp"];
-function formatHrTime(hrtime) {
+
+function formatHrTime(hrtime: any) {
   let time = hrtime[0] + hrtime[1] / 1e9;
   let index = 0;
   for (; index < TIME_UNITS.length - 1; index++, time *= 1000) {
