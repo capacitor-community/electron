@@ -193,40 +193,40 @@ parcelRequire = (function (e, r, t, n) {
         const e = require("path"),
           n = require("fs"),
           r = require("fs-extra"),
-          t = require("./common");
-        async function o() {
-          const o = t.getCwd();
-          if (null === o) throw new Error("CWD ERROR");
-          const s = await t.readJSON(e.join(o, "package.json")),
-            c = s.dependencies ? s.dependencies : {},
-            i = s.devDependencies ? s.devDependencies : {},
-            l = Object.keys(c).concat(Object.keys(i));
-          let a = await Promise.all(l.map(async (e) => t.resolvePlugin(e))),
+          o = require("./common");
+        async function t() {
+          const t = e.join(o.getCwd(), "../", "../", "../");
+          if (null === t) throw new Error("CWD ERROR");
+          const s = await o.readJSON(e.join(t, "package.json")),
+            i = s.dependencies ? s.dependencies : {},
+            c = s.devDependencies ? s.devDependencies : {},
+            l = Object.keys(i).concat(Object.keys(c));
+          let a = await Promise.all(l.map(async (e) => o.resolvePlugin(e))),
             d = (a = a.filter((e) => !!e)).map((e) =>
-              t.resolveElectronPlugin(e)
+              o.resolveElectronPlugin(e)
             );
           d = d.filter((e) => !!e);
-          const p = e.join(o, "electron", "plugins");
+          const p = e.join(t, "electron", "plugins");
           r.removeSync(p), n.mkdirSync(p);
           const u = [];
           for (let r = 0; r < d.length; r++) {
-            const o = `${d[r]}`;
-            let s = o.substr(o.lastIndexOf(e.sep) + 1);
-            (s = t.hashJsFileName(s, r)),
-              n.copyFileSync(n.realpathSync(o), e.join(p, s)),
+            const t = `${d[r]}`;
+            let s = t.substr(t.lastIndexOf(e.sep) + 1);
+            (s = o.hashJsFileName(s, r)),
+              n.copyFileSync(n.realpathSync(t), e.join(p, s)),
               u.push(s);
           }
           let f =
             "require('./node_modules/@capacitor-community/electron-core/dist/electron-bridge.js');";
           for (const e of u) f += `require('./plugins/${e}');`;
           return (
-            n.writeFileSync(e.join(o, "electron", "preloader.js"), f, {
+            n.writeFileSync(e.join(t, "electron", "preloader.js"), f, {
               encoding: "utf8",
             }),
             u
           );
         }
-        exports.doUpdate = o;
+        exports.doUpdate = t;
       },
       { "./common": "FoEN" },
     ],
@@ -240,62 +240,57 @@ parcelRequire = (function (e, r, t, n) {
           r = require("path"),
           o = require("./common");
         function n() {
-          const t = {
+          const t = r.join(o.getCwd(), "../", "../", "../"),
+            n = {
               errorText: null,
               usersProjectCapConfigPath: null,
               srcTemplatePath: null,
               destTemplatePath: null,
               webAppPath: null,
             },
-            n = r.join(
-              o.getCwd(),
-              "../",
-              "../",
-              "../",
-              "capacitor.config.json"
-            ),
+            i = r.join(t, "capacitor.config.json"),
             a = r.join(__dirname, "../", "template"),
-            i = r.join(o.getCwd(), "electron");
-          if (n) {
-            const c = o.readJSON(n);
-            if (c.webDir) {
-              const s = r.join(o.getCwd(), c.webDir);
-              e.existsSync(s)
-                ? e.existsSync(i)
-                  ? (t.errorText = "Electron platform already exists.")
-                  : ((t.destTemplatePath = i),
-                    (t.srcTemplatePath = a),
-                    (t.usersProjectCapConfigPath = n),
-                    (t.webAppPath = s))
-                : (t.errorText =
+            c = r.join(t, "electron");
+          if (e.existsSync(i)) {
+            const s = o.readJSON(i);
+            if (s.webDir) {
+              const o = r.join(t, s.webDir);
+              e.existsSync(o)
+                ? e.existsSync(c)
+                  ? (n.errorText = "Electron platform already exists.")
+                  : ((n.destTemplatePath = c),
+                    (n.srcTemplatePath = a),
+                    (n.usersProjectCapConfigPath = i),
+                    (n.webAppPath = o))
+                : (n.errorText =
                     "WebDir defined in capacitor.config.json does not exist, did you build your webapp?");
-            } else t.errorText = "No webDir defined in capacitor.config.json.";
+            } else n.errorText = "No webDir defined in capacitor.config.json.";
           } else
-            t.errorText =
+            n.errorText =
               "capacitor.config.json does not exist, did you setup capacitor in your project root?";
-          return t;
+          return n;
         }
-        async function a() {
-          const a = n();
-          if (null !== a.errorText) throw new Error(a.errorText);
+        async function i() {
+          const i = n();
+          if (null !== i.errorText) throw new Error(i.errorText);
           try {
-            e.mkdirSync(a.destTemplatePath, { recursive: !0 }),
-              t.copySync(a.srcTemplatePath, a.destTemplatePath),
+            e.mkdirSync(i.destTemplatePath, { recursive: !0 }),
+              t.copySync(i.srcTemplatePath, i.destTemplatePath),
               e.renameSync(
-                r.join(a.destTemplatePath, "gitignore"),
-                r.join(a.destTemplatePath, ".gitignore")
+                r.join(i.destTemplatePath, "gitignore"),
+                r.join(i.destTemplatePath, ".gitignore")
               ),
               t.copySync(
-                a.usersProjectCapConfigPath,
-                r.join(a.destTemplatePath, "capacitor.config.json")
+                i.usersProjectCapConfigPath,
+                r.join(i.destTemplatePath, "capacitor.config.json")
               ),
-              t.copySync(a.webAppPath, r.join(a.destTemplatePath, "app")),
-              await o.runExec(`cd ${a.destTemplatePath} && npm i`);
-          } catch (i) {
-            throw i;
+              t.copySync(i.webAppPath, r.join(i.destTemplatePath, "app")),
+              await o.runExec(`cd ${i.destTemplatePath} && npm i`);
+          } catch (a) {
+            throw a;
           }
         }
-        exports.doAdd = a;
+        exports.doAdd = i;
       },
       { "./common": "FoEN" },
     ],
