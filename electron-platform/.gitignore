@@ -6,3 +6,4 @@ node_modules/
 .cache/
 npm-debug.log
 electron_template/package-lock.json
+package-lock.json
