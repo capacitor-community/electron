@@ -28,7 +28,8 @@ Maintenance Status: Actively Maintained
 
 ## Documentation:
 
-[Doc: Class usage and config options](https://github.com/capacitor-community/electron/blob/master/docs/PlatformDocs.md).
+[Doc: Class usage and config options](https://github.com/capacitor-community/electron/blob/master/docs/PlatformDocs.md)
+
 [Doc: Create a plugin for the Electron platform](https://github.com/capacitor-community/electron/blob/master/docs/CreateElectronPluginGuide.md)
 
 ## Basic Usage Steps:
