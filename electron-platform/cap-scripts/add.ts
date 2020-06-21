@@ -1,7 +1,7 @@
 import { existsSync, mkdirSync, renameSync } from "fs";
 import { copySync } from "fs-extra";
 import { join } from "path";
-import { getCwd, runExec, readJSON } from "./common";
+import { getCwd, runExec, readJSON, writePrettyJSON } from "./common";
 
 function checkRequirements() {
   const cwd = join(getCwd(), "../", "../", "../");
@@ -61,6 +61,18 @@ export async function doAdd() {
       copySync(
         paths.usersProjectCapConfigPath!,
         join(paths.destTemplatePath!, "capacitor.config.json")
+      );
+      const electronConfig = readJSON(
+        join(paths.destTemplatePath!, "capacitor.config.json")
+      );
+      const appName: string = electronConfig.appName!;
+      const electronPackageJson = readJSON(
+        join(paths.destTemplatePath!, "package.json")
+      );
+      electronPackageJson.name = appName;
+      writePrettyJSON(
+        join(paths.destTemplatePath!, "package.json"),
+        electronPackageJson
       );
       copySync(paths.webAppPath!, join(paths.destTemplatePath!, "app"));
       await runExec(`cd ${paths.destTemplatePath} && npm i`);

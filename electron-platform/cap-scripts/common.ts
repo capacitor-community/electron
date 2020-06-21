@@ -1,5 +1,5 @@
 import { dirname, join, parse, resolve } from "path";
-import { readFileSync, existsSync } from "fs";
+import { readFileSync, existsSync, writeFileSync } from "fs";
 import { exec } from "child_process";
 import { createHash } from "crypto";
 
@@ -96,6 +96,10 @@ export function resolveNode(...pathSegments: string[]) {
   }
 
   return join(modulePath, ...path);
+}
+
+export function writePrettyJSON(path: string, data: any) {
+  return writeFileSync(path, JSON.stringify(data, null, "  ") + "\n");
 }
 
 export function resolveNodeFrom(start: string, id: string) {
