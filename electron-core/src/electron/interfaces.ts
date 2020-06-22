@@ -1,3 +1,5 @@
+import { BrowserWindowConstructorOptions } from "electron";
+
 /** @internal */
 export interface SplashOptions {
   imageFilePath?: string;
@@ -46,14 +48,7 @@ export interface CapacitorElectronConfig {
    */
   applicationMenuTemplate?: { [key: string]: any }[] | null;
   mainWindow?: {
-    windowOptions?: {
-      /** Start height of the main application window in px. __Default is: 920__ */
-      height?: number;
-      /** Start width of the main application window in px. __Default is: 1600__ */
-      width?: number;
-      /** Path of the icon file for the main window. __Default is:__ `path.join(app.getAppPath(), "assets", process.platform === "win32" ? "appIcon.ico" : "appIcon.png")` */
-      icon?: string;
-    };
+    windowOptions?: BrowserWindowConstructorOptions;
   };
   deepLinking?: {
     /** Whether or not deeplinking should be enabled on the url provided in `capacitor.config.json -> server -> hostname` (`'app'` is used if hostname is undefined). __Default is: false__ */
