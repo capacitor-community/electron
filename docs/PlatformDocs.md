@@ -50,7 +50,7 @@
       - **_Description:_** Whether or not deeplinking should be enabled on the url provided in `capacitor.config.json -> server -> hostname` (`'app'` is used if `hostname` is undefined).
       - **_Default:_** _false_
   - **mainWindow**? : _object_
-    - **windowOptions**? : _object_
+    - **windowOptions**? : _object_ **_(All Electron.BrowserWindowConstructorOptions props exposed, these are just defaults)_**
       - **height**? : _number_
         - **_Description:_** Start height of the main application window in px.
         - **_Default:_** _920_
