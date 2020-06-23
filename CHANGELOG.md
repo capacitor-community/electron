@@ -1,4 +1,31 @@
-## [](https://github.com/capacitor-community/electron/compare/v0.2.2...v) (2020-06-19)
+## [](https://github.com/capacitor-community/electron/compare/v0.3.0...v) (2020-06-23)
+
+## [0.3.0](https://github.com/capacitor-community/electron/compare/v0.2.2...v0.3.0) (2020-06-23)
+
+### Features
+
+- **core:** use BrowserWindowConstructorOptions interface for windowOptions ([424b16f](https://github.com/capacitor-community/electron/commit/424b16fd619a6e262cc5e08bea542a4924326b1b))
+
+### Bug Fixes
+
+- **core:** swap order for option overwites ([5c91ace](https://github.com/capacitor-community/electron/commit/5c91aceb9fad01461ee18b856392c6cd5d8dd2b4))
+- **platform:** copy appName to package json ([8d7c47f](https://github.com/capacitor-community/electron/commit/8d7c47f22de5d587a4f0c134c192e1e4b868f822))
+
+### Chores
+
+- all contributors update ([3227c92](https://github.com/capacitor-community/electron/commit/3227c925eb9eab51f705ad17fbdfc0967c55cb54))
+- cleanup ([c8ae956](https://github.com/capacitor-community/electron/commit/c8ae95635e5a14845dbc19682095de3fe9b71aa0))
+- doc reflect capacitor-community/electron[#10](https://github.com/capacitor-community/electron/issues/10) ([f00b40e](https://github.com/capacitor-community/electron/commit/f00b40e94f745b9bb9e4bf655c3678b43cdbdb86))
+- fix spacing ([9bfdef1](https://github.com/capacitor-community/electron/commit/9bfdef1ddd1e310a871aefafb09e78d0add5fb8d))
+- move doc files to folder ([dfc1385](https://github.com/capacitor-community/electron/commit/dfc1385baa0d52ac2b5252647e18514d3b1aa17f))
+- npmignore ([e7d1bbd](https://github.com/capacitor-community/electron/commit/e7d1bbd017b206f5e89e947d0498f801d6d91c29))
+- remove package-lock files ([12f23f0](https://github.com/capacitor-community/electron/commit/12f23f03745b666138cd98a9b02853f4a311d2ee))
+- rename docs folder ([1683dbc](https://github.com/capacitor-community/electron/commit/1683dbc652f30e9d810975b2c7f7fe616913da86))
+- update changelog for 0.2.2 ([ac8ba63](https://github.com/capacitor-community/electron/commit/ac8ba6300919138d5dcbd1cf1afc0a9288df8a85))
+- update npmignore ([d08b2c3](https://github.com/capacitor-community/electron/commit/d08b2c31554abca700aa0aaffbbd4c6dd4094e86))
+- update readme ([6ce3ae2](https://github.com/capacitor-community/electron/commit/6ce3ae2a8868bd068c7ba957a927ad7533c6525d))
+- update readme ([753b95b](https://github.com/capacitor-community/electron/commit/753b95b4a6d53c287f900a2501407fcbbce8a0e7))
+- update readme for docs folder ([d33ace2](https://github.com/capacitor-community/electron/commit/d33ace290c1d86439c6d9788ad9f1ac78dd9ee86))
 
 ### [0.2.2](https://github.com/capacitor-community/electron/compare/v0.2.1...v0.2.2) (2020-06-19)
 
