@@ -206,8 +206,8 @@ export class CapacitorElectronApp {
 
     this.mainWindowReference = new BrowserWindow(
       Object.assign(
-        neededBrowserWindowConfig,
-        this.config.mainWindow.windowOptions
+        this.config.mainWindow.windowOptions,
+        neededBrowserWindowConfig
       )
     );
 
