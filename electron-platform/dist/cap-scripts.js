@@ -63,22 +63,22 @@ parcelRequire = (function (e, r, t, n) {
       function (require, module, exports) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: !0 }),
-          (exports.runTask = exports.resolveElectronPlugin = exports.resolvePlugin = exports.resolveNodeFrom = exports.resolveNode = exports.hashJsFileName = exports.fixName = exports.runExec = exports.readJSON = exports.getCwd = void 0);
+          (exports.runTask = exports.resolveElectronPlugin = exports.resolvePlugin = exports.resolveNodeFrom = exports.writePrettyJSON = exports.resolveNode = exports.hashJsFileName = exports.fixName = exports.runExec = exports.readJSON = exports.getCwd = void 0);
         const e = require("path"),
           r = require("fs"),
           t = require("child_process"),
           o = require("crypto");
-        function s() {
+        function n() {
           return process.env.INIT_CWD;
         }
-        function n(e) {
+        function s(e) {
           const t = r.readFileSync(e, "utf8");
           return JSON.parse(t);
         }
         function i(e) {
           return new Promise((r, o) => {
-            t.exec(e, (e, t, s) => {
-              e ? o(t + s) : r(t);
+            t.exec(e, (e, t, n) => {
+              e ? o(t + n) : r(t);
             });
           });
         }
@@ -93,33 +93,36 @@ parcelRequire = (function (e, r, t, n) {
               .toUpperCase() + e.slice(1)
           );
         }
-        function a(e, r) {
+        function l(e, r) {
           return `${e}-${o
             .createHash("md5")
             .update(`${Date.now()}-${r}-${e}`)
             .digest("hex")}.js`;
         }
-        function l(...r) {
+        function u(...r) {
           const t = r[0],
             o = r.slice(1);
-          let n;
-          const i = [s()];
-          for (let e of i) if ((n = u(e, t))) break;
-          return n ? e.join(n, ...o) : null;
+          let s;
+          const i = [n()];
+          for (let e of i) if ((s = p(e, t))) break;
+          return s ? e.join(s, ...o) : null;
         }
-        function u(t, o) {
-          const s = e.parse(t).root;
-          let n,
+        function a(e, t) {
+          return r.writeFileSync(e, JSON.stringify(t, null, "  ") + "\n");
+        }
+        function p(t, o) {
+          const n = e.parse(t).root;
+          let s,
             i = e.resolve(t);
           for (;;) {
-            if (((n = e.join(i, "node_modules", o)), r.existsSync(n))) return n;
-            if (i === s) return null;
+            if (((s = e.join(i, "node_modules", o)), r.existsSync(s))) return s;
+            if (i === n) return null;
             i = e.dirname(i);
           }
         }
-        async function p(r) {
+        async function f(r) {
           try {
-            const o = l(r);
+            const o = u(r);
             if (!o)
               return (
                 console.error(
@@ -127,8 +130,8 @@ parcelRequire = (function (e, r, t, n) {
                 ),
                 null
               );
-            const s = e.join(o, "package.json"),
-              i = await n(s);
+            const n = e.join(o, "package.json"),
+              i = await s(n);
             if (!i) return null;
             if (i.capacitor)
               return {
@@ -142,45 +145,46 @@ parcelRequire = (function (e, r, t, n) {
           } catch (t) {}
           return null;
         }
-        function f(r) {
+        function x(r) {
           return r.manifest && r.manifest.electron && r.manifest.electron.src
             ? e.join(r.rootPath, r.manifest.electron.src)
             : null;
         }
-        async function x(e, r) {
+        async function d(e, r) {
           const t = require("ora")(e).start();
           try {
-            const s = process.hrtime();
-            let n;
-            const i = await r((e) => (n = e)),
-              c = process.hrtime(s),
-              a = require("chalk");
+            const n = process.hrtime();
+            let s;
+            const i = await r((e) => (s = e)),
+              c = process.hrtime(n),
+              l = require("chalk");
             return (
-              n
-                ? t.info(`${e} ${a.dim("– " + n)}`)
-                : t.succeed(`${e} ${a.dim("in " + m(c))}`),
+              s
+                ? t.info(`${e} ${l.dim("– " + s)}`)
+                : t.succeed(`${e} ${l.dim("in " + h(c))}`),
               i
             );
           } catch (o) {
             throw (t.fail(`${e}: ${o.message ? o.message : ""}`), t.stop(), o);
           }
         }
-        (exports.getCwd = s),
-          (exports.readJSON = n),
+        (exports.getCwd = n),
+          (exports.readJSON = s),
           (exports.runExec = i),
           (exports.fixName = c),
-          (exports.hashJsFileName = a),
-          (exports.resolveNode = l),
-          (exports.resolveNodeFrom = u),
-          (exports.resolvePlugin = p),
-          (exports.resolveElectronPlugin = f),
-          (exports.runTask = x);
-        const d = ["s", "ms", "μp"];
-        function m(e) {
+          (exports.hashJsFileName = l),
+          (exports.resolveNode = u),
+          (exports.writePrettyJSON = a),
+          (exports.resolveNodeFrom = p),
+          (exports.resolvePlugin = f),
+          (exports.resolveElectronPlugin = x),
+          (exports.runTask = d);
+        const m = ["s", "ms", "μp"];
+        function h(e) {
           let r = e[0] + e[1] / 1e9,
             t = 0;
-          for (; t < d.length - 1 && !(r >= 1); t++, r *= 1e3);
-          return r.toFixed(2) + d[t];
+          for (; t < m.length - 1 && !(r >= 1); t++, r *= 1e3);
+          return r.toFixed(2) + m[t];
         }
       },
       {},
@@ -237,60 +241,66 @@ parcelRequire = (function (e, r, t, n) {
           (exports.doAdd = void 0);
         const e = require("fs"),
           t = require("fs-extra"),
-          r = require("path"),
-          o = require("./common");
-        function n() {
-          const t = r.join(o.getCwd(), "../", "../", "../"),
-            n = {
+          o = require("path"),
+          r = require("./common");
+        function a() {
+          const t = o.join(r.getCwd(), "../", "../", "../"),
+            a = {
               errorText: null,
               usersProjectCapConfigPath: null,
               srcTemplatePath: null,
               destTemplatePath: null,
               webAppPath: null,
             },
-            i = r.join(t, "capacitor.config.json"),
-            a = r.join(__dirname, "../", "template"),
-            c = r.join(t, "electron");
-          if (e.existsSync(i)) {
-            const s = o.readJSON(i);
-            if (s.webDir) {
-              const o = r.join(t, s.webDir);
-              e.existsSync(o)
-                ? e.existsSync(c)
-                  ? (n.errorText = "Electron platform already exists.")
-                  : ((n.destTemplatePath = c),
-                    (n.srcTemplatePath = a),
-                    (n.usersProjectCapConfigPath = i),
-                    (n.webAppPath = o))
-                : (n.errorText =
+            n = o.join(t, "capacitor.config.json"),
+            i = o.join(__dirname, "../", "template"),
+            s = o.join(t, "electron");
+          if (e.existsSync(n)) {
+            const c = r.readJSON(n);
+            if (c.webDir) {
+              const r = o.join(t, c.webDir);
+              e.existsSync(r)
+                ? e.existsSync(s)
+                  ? (a.errorText = "Electron platform already exists.")
+                  : ((a.destTemplatePath = s),
+                    (a.srcTemplatePath = i),
+                    (a.usersProjectCapConfigPath = n),
+                    (a.webAppPath = r))
+                : (a.errorText =
                     "WebDir defined in capacitor.config.json does not exist, did you build your webapp?");
-            } else n.errorText = "No webDir defined in capacitor.config.json.";
+            } else a.errorText = "No webDir defined in capacitor.config.json.";
           } else
-            n.errorText =
+            a.errorText =
               "capacitor.config.json does not exist, did you setup capacitor in your project root?";
-          return n;
+          return a;
         }
-        async function i() {
-          const i = n();
-          if (null !== i.errorText) throw new Error(i.errorText);
+        async function n() {
+          const n = a();
+          if (null !== n.errorText) throw new Error(n.errorText);
           try {
-            e.mkdirSync(i.destTemplatePath, { recursive: !0 }),
-              t.copySync(i.srcTemplatePath, i.destTemplatePath),
+            e.mkdirSync(n.destTemplatePath, { recursive: !0 }),
+              t.copySync(n.srcTemplatePath, n.destTemplatePath),
               e.renameSync(
-                r.join(i.destTemplatePath, "gitignore"),
-                r.join(i.destTemplatePath, ".gitignore")
+                o.join(n.destTemplatePath, "gitignore"),
+                o.join(n.destTemplatePath, ".gitignore")
               ),
               t.copySync(
-                i.usersProjectCapConfigPath,
-                r.join(i.destTemplatePath, "capacitor.config.json")
-              ),
-              t.copySync(i.webAppPath, r.join(i.destTemplatePath, "app")),
-              await o.runExec(`cd ${i.destTemplatePath} && npm i`);
-          } catch (a) {
-            throw a;
+                n.usersProjectCapConfigPath,
+                o.join(n.destTemplatePath, "capacitor.config.json")
+              );
+            const a = r.readJSON(
+                o.join(n.destTemplatePath, "capacitor.config.json")
+              ).appName,
+              s = r.readJSON(o.join(n.destTemplatePath, "package.json"));
+            (s.name = a),
+              r.writePrettyJSON(o.join(n.destTemplatePath, "package.json"), s),
+              t.copySync(n.webAppPath, o.join(n.destTemplatePath, "app")),
+              await r.runExec(`cd ${n.destTemplatePath} && npm i`);
+          } catch (i) {
+            throw i;
           }
         }
-        exports.doAdd = i;
+        exports.doAdd = n;
       },
       { "./common": "FoEN" },
     ],
@@ -348,49 +358,46 @@ parcelRequire = (function (e, r, t, n) {
       function (require, module, exports) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: !0 });
-        const a = require("fs"),
-          e = require("path"),
-          r = require("./common"),
-          t = require("./update"),
-          n = require("./add"),
-          i = require("./copy");
-        async function s() {
-          return await r.runTask(
+        const a = require("./common"),
+          r = require("./update"),
+          e = require("./add"),
+          t = require("./copy");
+        async function n() {
+          return await a.runTask(
             "Updating Electron plugins",
-            async () => await t.doUpdate()
-          );
-        }
-        async function o() {
-          return await r.runTask(
-            "Adding Electron platform",
-            async () => await n.doAdd()
+            async () => await r.doUpdate()
           );
         }
         async function c() {
-          return await r.runTask(
+          return await a.runTask(
+            "Adding Electron platform",
+            async () => await e.doAdd()
+          );
+        }
+        async function i() {
+          return await a.runTask(
             "Copying Web App to Electron platform",
-            async () => await i.doCopy()
+            async () => await t.doCopy()
           );
         }
         (async () => {
-          const r = process.argv[2] ? process.argv[2] : null;
-          if (null === r) throw new Error(`Invalid script chosen: ${r}`);
-          switch (r) {
+          const a = process.argv[2] ? process.argv[2] : null;
+          if (null === a) throw new Error(`Invalid script chosen: ${a}`);
+          switch (a) {
             case "add":
-              a.existsSync(e.join(__dirname, "../", ".no-dev-postinstall")) ||
-                (await o(), await s());
+              await c(), await n();
               break;
             case "copy":
-              await c();
+              await i();
               break;
             case "update":
-              await s();
+              await n();
               break;
             case "sync":
-              await c(), await s();
+              await i(), await n();
               break;
             default:
-              throw new Error(`Invalid script chosen: ${r}`);
+              throw new Error(`Invalid script chosen: ${a}`);
           }
         })();
       },
