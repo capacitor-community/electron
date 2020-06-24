@@ -13,8 +13,8 @@ Capacitor community support for the Electron platform.
   <a href="https://lerna.js.org/"><img src="https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg?style=flat-square" /></a>
 </p>
 <p align="center">
-  <a href="https://npmjs.com/package/@capacitor-community/electron-core"><img src="https://img.shields.io/npm/v/@capacitor-community/electron-core.svg?color=green&style=flat-square" /></a>
-  <a href="https://npmjs.com/package/@capacitor-community/electron-core"><img src="https://img.shields.io/npm/l/@capacitor-community/electron-core.svg?color=lightgrey&style=flat-square" /></a>
+  <a href="https://npmjs.com/package/@capacitor-community/electron"><img src="https://img.shields.io/npm/v/@capacitor-community/electron.svg?color=green&style=flat-square" /></a>
+  <a href="https://npmjs.com/package/@capacitor-community/electron"><img src="https://img.shields.io/npm/l/@capacitor-community/electron.svg?color=lightgrey&style=flat-square" /></a>
 </p>
 
 ## Maintainers
