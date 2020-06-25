@@ -8,4 +8,4 @@ echo "Deploying Capacitor v$LERNA_VERSION changelog"
 # This is what we do instead of letting lerna git commit for us
 git add CHANGELOG.md
 git commit -m "chore: update changelog for $LERNA_VERSION"
-git push origin master
+git push origin main
