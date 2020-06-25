@@ -1,10 +1,11 @@
 import { existsSync, mkdirSync, renameSync } from "fs";
 import { copySync } from "fs-extra";
 import { join } from "path";
-import { getCwd, runExec, readJSON, writePrettyJSON } from "./common";
+import { getCwd, runExec, readJSON, writePrettyJSON, errorLog } from "./common";
 
 function checkRequirements() {
-  const cwd = join(getCwd(), "../", "../", "../");
+  const cwd = getCwd();
+  // console.log(`[CWD]: ${cwd}`);
   const outPaths: {
     errorText: null | string;
     usersProjectCapConfigPath: null | string;
@@ -50,6 +51,7 @@ function checkRequirements() {
 
 export async function doAdd() {
   const paths = checkRequirements();
+  // console.log(chalk.dim(JSON.stringify(paths)));
   if (paths.errorText === null) {
     try {
       mkdirSync(paths.destTemplatePath!, { recursive: true });
@@ -77,9 +79,11 @@ export async function doAdd() {
       copySync(paths.webAppPath!, join(paths.destTemplatePath!, "app"));
       await runExec(`cd ${paths.destTemplatePath} && npm i`);
     } catch (e) {
+      errorLog(e.message);
       throw e;
     }
   } else {
+    errorLog(paths.errorText);
     throw new Error(paths.errorText);
   }
 }

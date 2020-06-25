@@ -10,7 +10,7 @@ import {
 } from "./common";
 
 export async function doUpdate() {
-  const cwd = join(getCwd(), "../", "../", "../");
+  const cwd = getCwd();
   if (cwd === null) throw new Error("CWD ERROR");
   const webAppPackageJson = await readJSON(join(cwd, "package.json"));
   const dependencies = webAppPackageJson.dependencies

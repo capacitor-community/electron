@@ -2,6 +2,7 @@ import { dirname, join, parse, resolve } from "path";
 import { readFileSync, existsSync, writeFileSync } from "fs";
 import { exec } from "child_process";
 import { createHash } from "crypto";
+const chalk = require("chalk");
 
 const enum PluginType {
   Core,
@@ -39,10 +40,14 @@ interface Plugin {
   };
 }
 
+export function errorLog(message: string) {
+  console.log(chalk.red(`Error: ${message}`));
+}
+
 export function getCwd(): string {
   // console.log(process.env);
   const _cwd = process.env.INIT_CWD!;
-  return _cwd;
+  return join(_cwd, "../", "../", "../");
 }
 
 export function readJSON(pathToUse: string): { [key: string]: any } {
