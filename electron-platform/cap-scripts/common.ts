@@ -45,8 +45,8 @@ export function errorLog(message: string) {
 }
 
 export function getCwd(): string {
-  // console.log(process.env);
-  const _cwd = process.env.INIT_CWD!;
+  console.log(process.env.PWD!);
+  const _cwd = process.env.PWD!;
   return join(_cwd, "../", "../", "../");
 }
 
