@@ -66,25 +66,24 @@ parcelRequire = (function (e, r, t, n) {
           (exports.runTask = exports.resolveElectronPlugin = exports.resolvePlugin = exports.resolveNodeFrom = exports.writePrettyJSON = exports.resolveNode = exports.hashJsFileName = exports.fixName = exports.runExec = exports.readJSON = exports.getCwd = exports.errorLog = void 0);
         const e = require("path"),
           r = require("fs"),
-          o = require("child_process"),
-          t = require("crypto"),
+          t = require("child_process"),
+          o = require("crypto"),
           n = require("chalk");
         function s(e) {
           console.log(n.red(`Error: ${e}`));
         }
         function i() {
-          console.log(process.env.PWD);
           const r = process.env.PWD;
           return e.join(r, "../", "../", "../");
         }
         function c(e) {
-          const o = r.readFileSync(e, "utf8");
-          return JSON.parse(o);
+          const t = r.readFileSync(e, "utf8");
+          return JSON.parse(t);
         }
         function l(e) {
-          return new Promise((r, t) => {
-            o.exec(e, (e, o, n) => {
-              e ? t(o + n) : r(o);
+          return new Promise((r, o) => {
+            t.exec(e, (e, t, n) => {
+              e ? o(t + n) : r(t);
             });
           });
         }
@@ -100,43 +99,43 @@ parcelRequire = (function (e, r, t, n) {
           );
         }
         function a(e, r) {
-          return `${e}-${t
+          return `${e}-${o
             .createHash("md5")
             .update(`${Date.now()}-${r}-${e}`)
             .digest("hex")}.js`;
         }
         function p(...r) {
-          const o = r[0],
-            t = r.slice(1);
+          const t = r[0],
+            o = r.slice(1);
           let n;
           const s = [i()];
-          for (let e of s) if ((n = x(e, o))) break;
-          return n ? e.join(n, ...t) : null;
+          for (let e of s) if ((n = x(e, t))) break;
+          return n ? e.join(n, ...o) : null;
         }
-        function f(e, o) {
-          return r.writeFileSync(e, JSON.stringify(o, null, "  ") + "\n");
+        function f(e, t) {
+          return r.writeFileSync(e, JSON.stringify(t, null, "  ") + "\n");
         }
-        function x(o, t) {
-          const n = e.parse(o).root;
+        function x(t, o) {
+          const n = e.parse(t).root;
           let s,
-            i = e.resolve(o);
+            i = e.resolve(t);
           for (;;) {
-            if (((s = e.join(i, "node_modules", t)), r.existsSync(s))) return s;
+            if (((s = e.join(i, "node_modules", o)), r.existsSync(s))) return s;
             if (i === n) return null;
             i = e.dirname(i);
           }
         }
         async function d(r) {
           try {
-            const t = p(r);
-            if (!t)
+            const o = p(r);
+            if (!o)
               return (
                 console.error(
                   `Unable to find node_modules/${r}. Are you sure ${r} is installed?`
                 ),
                 null
               );
-            const n = e.join(t, "package.json"),
+            const n = e.join(o, "package.json"),
               s = await c(n);
             if (!s) return null;
             if (s.capacitor)
@@ -144,11 +143,11 @@ parcelRequire = (function (e, r, t, n) {
                 id: r,
                 name: u(r),
                 version: s.version,
-                rootPath: t,
+                rootPath: o,
                 repository: s.repository,
                 manifest: s.capacitor,
               };
-          } catch (o) {}
+          } catch (t) {}
           return null;
         }
         function m(r) {
@@ -157,7 +156,7 @@ parcelRequire = (function (e, r, t, n) {
             : null;
         }
         async function g(e, r) {
-          const o = require("ora")(e).start();
+          const t = require("ora")(e).start();
           try {
             const n = process.hrtime();
             let s;
@@ -166,12 +165,12 @@ parcelRequire = (function (e, r, t, n) {
               l = require("chalk");
             return (
               s
-                ? o.info(`${e} ${l.dim("– " + s)}`)
-                : o.succeed(`${e} ${l.dim("in " + v(c))}`),
+                ? t.info(`${e} ${l.dim("– " + s)}`)
+                : t.succeed(`${e} ${l.dim("in " + y(c))}`),
               i
             );
-          } catch (t) {
-            throw (o.fail(`${e}: ${t.message ? t.message : ""}`), o.stop(), t);
+          } catch (o) {
+            throw (t.fail(`${e}: ${o.message ? o.message : ""}`), t.stop(), o);
           }
         }
         (exports.errorLog = s),
@@ -187,11 +186,11 @@ parcelRequire = (function (e, r, t, n) {
           (exports.resolveElectronPlugin = m),
           (exports.runTask = g);
         const h = ["s", "ms", "μp"];
-        function v(e) {
+        function y(e) {
           let r = e[0] + e[1] / 1e9,
-            o = 0;
-          for (; o < h.length - 1 && !(r >= 1); o++, r *= 1e3);
-          return r.toFixed(2) + h[o];
+            t = 0;
+          for (; t < h.length - 1 && !(r >= 1); t++, r *= 1e3);
+          return r.toFixed(2) + h[t];
         }
       },
       {},
