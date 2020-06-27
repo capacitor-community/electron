@@ -5,7 +5,6 @@ import { getCwd, runExec, readJSON, writePrettyJSON, errorLog } from "./common";
 
 function checkRequirements() {
   const cwd = getCwd();
-  // console.log(cwd);
   const outPaths: {
     errorText: null | string;
     usersProjectCapConfigPath: null | string;

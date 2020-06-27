@@ -45,7 +45,7 @@ export function errorLog(message: string) {
 }
 
 export function getCwd(): string {
-  console.log(process.env.PWD!);
+  // console.log(process.env.PWD!);
   const _cwd = process.env.PWD!;
   return join(_cwd, "../", "../", "../");
 }
@@ -171,13 +171,13 @@ export async function runTask<T>(
   fn: (info: TaskInfoProvider) => Promise<T>
 ) {
   const ora = require("ora");
+  const chalk = require("chalk");
   const spinner = ora(title).start();
   try {
     const start = process.hrtime();
     let taskInfoMessage;
     const value = await fn((message: string) => (taskInfoMessage = message));
     const elapsed = process.hrtime(start);
-    const chalk = require("chalk");
     if (taskInfoMessage) {
       spinner.info(`${title} ${chalk.dim("– " + taskInfoMessage)}`);
     } else {
