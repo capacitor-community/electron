@@ -50,7 +50,6 @@ function checkRequirements() {
 
 export async function doAdd() {
   const paths = checkRequirements();
-  // console.log(chalk.dim(JSON.stringify(paths)));
   if (paths.errorText === null) {
     try {
       mkdirSync(paths.destTemplatePath!, { recursive: true });
