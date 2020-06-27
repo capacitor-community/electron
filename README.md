@@ -14,7 +14,9 @@ Capacitor community support for the Electron platform.
 </p>
 <p align="center">
   <a href="https://npmjs.com/package/@capacitor-community/electron"><img src="https://img.shields.io/npm/v/@capacitor-community/electron.svg?color=green&style=flat-square" /></a>
+  <a href="https://npmjs.com/package/@capacitor-community/electron"><img alt="npm" src="https://img.shields.io/npm/dm/@capacitor-community/electron?color=yellow&style=flat-square"></a>
   <a href="https://npmjs.com/package/@capacitor-community/electron"><img src="https://img.shields.io/npm/l/@capacitor-community/electron.svg?color=lightgrey&style=flat-square" /></a>
+  <a href="https://github.com/capacitor-community/electron/actions"><img alt="GitHub Workflow Status" src="https://img.shields.io/github/workflow/status/capacitor-community/electron/CI?style=flat-square"></a>
 </p>
 
 ## Maintainers
