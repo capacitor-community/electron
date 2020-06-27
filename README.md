@@ -22,7 +22,6 @@ Capacitor community support for the Electron platform.
 | Maintainer       | GitHub                                  | Social                                    | Sponsoring Company | Primary |
 | ---------------- | --------------------------------------- | ----------------------------------------- | ------------------ | ------- |
 | Mike Summerfeldt | [IT-MikeS](https://github.com/IT-MikeS) | [@IT_MikeS](https://twitter.com/IT_MikeS) | Volunteer          | Yes     |
-| Max Lynch        | [mlynch](https://github.com/mlynch)     | [@maxlynch](https://twitter.com/maxlynch) | Ionic              | _No_    |
 
 Maintenance Status: Actively Maintained
 
