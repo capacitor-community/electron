@@ -7,6 +7,7 @@
     "capacitor:copy": "node dist/cap-scripts.js copy",
     "capacitor:update": "node dist/cap-scripts.js update",
     "capacitor:sync": "node dist/cap-scripts.js sync",
+    "capacitor:open": "node dist/cap-scripts.js open",
     "build": "rimraf ./dist && npm run transpile && npm run compile && rimraf ./build",
     "compile": "parcel build ./build/index.js --out-file ./dist/cap-scripts.js --target node --no-source-maps",
     "transpile": "tsc --project ./tsconfig.json",
