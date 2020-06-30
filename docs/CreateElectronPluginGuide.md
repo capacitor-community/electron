@@ -1,7 +1,7 @@
 # How to create a Capacitor Electron Plugin.
 
 1. Generate plungin starter with `npx @capacitor/cli plugin:generate`.
-2. Run `npm i -D rollup rollup-plugin-node-resolve` in the new project directory created by the CLI.
+2. Run `npm i -D rollup rollup-plugin-node-resolve electron @types/node@^12.0.0` in the new project directory created by the CLI.
 3. Create a `electron` folder in the root of the new project directory created by the CLI.
 4. Create a `tsconfig.json` file containing the below in the `electron` folder.
    ```json
