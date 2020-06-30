@@ -9,12 +9,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Close old issues that need reply
-        uses: dwieeb/needs-reply@master
+        uses: dwieeb/needs-reply@v1
         with:
           repo-token: ${{ secrets.BOT_TOKEN }}
-          issue-label: 'needs reply'
+          issue-label: "needs reply"
           close-message: |
             It looks like this issue didn't get the information it needed, so I'll close it for now. If I made a mistake, sorry! I am just a bot.
-            
+
             Have a great day!
             Capacitor Community Bot 💙
