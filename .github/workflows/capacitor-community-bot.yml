@@ -18,7 +18,7 @@ jobs:
         with:
           repo-token: ${{ secrets.BOT_TOKEN }}
         env:
-          GIT_AUTHOR_NAME: Capacitron
+          GIT_AUTHOR_NAME: Capacitor Community Bot
           GIT_AUTHOR_EMAIL: hi@ionicframework.com
-          GIT_COMMITTER_NAME: Capacitron
+          GIT_COMMITTER_NAME: Capacitor Community Bot
           GIT_COMMITTER_EMAIL: hi@ionicframework.com
