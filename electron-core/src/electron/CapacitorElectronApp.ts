@@ -123,8 +123,6 @@ export class CapacitorElectronApp {
   private splashScreenReference: CapacitorSplashScreen | null = null;
   /** @internal */
   private trayIcon: Electron.Tray | null = null;
-  /** @internal */
-  private trayMenu: Electron.Menu | null = null;
 
   /** @internal */
   private isProgramColdStart = true;
