@@ -19,6 +19,7 @@ export interface DeeplinkingOptions {
 }
 
 export interface CapacitorElectronConfig {
+  useTrayIcon?: boolean;
   splashScreen?: {
     /** Whether or not to show a splash screen on startup. __Default is: true__ */
     useSplashScreen?: boolean;
@@ -47,6 +48,7 @@ export interface CapacitorElectronConfig {
    * ```
    */
   applicationMenuTemplate?: { [key: string]: any }[] | null;
+  trayContextMenu?: { [key: string]: any }[] | null;
   mainWindow?: {
     windowOptions?: BrowserWindowConstructorOptions;
   };

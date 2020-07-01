@@ -15,6 +15,10 @@ const BrowserWindow = electron.BrowserWindow;
 /** @hidden */
 const Menu = electron.Menu;
 /** @hidden */
+const nativeImage = electron.nativeImage;
+/** @hidden */
+const Tray = electron.Tray;
+/** @hidden */
 const path = require("path");
 /** @hidden */
 const fs = require("fs");
@@ -115,6 +119,10 @@ export class CapacitorElectronApp {
   private mainWindowReference: Electron.BrowserWindow | null = null;
   /** @internal */
   private splashScreenReference: CapacitorSplashScreen | null = null;
+  /** @internal */
+  private trayIcon: Electron.Tray | null = null;
+  /** @internal */
+  private trayMenu: Electron.Menu | null = null;
 
   /** @internal */
   private isProgramColdStart = true;
@@ -128,6 +136,7 @@ export class CapacitorElectronApp {
   private capConfigLaunchShowDuration = 1;
   /** @internal */
   private config: CapacitorElectronConfig = {
+    useTrayIcon: true,
     deepLinking: {
       useDeeplinking: false,
       deeplinkingHandlerFunction: null,
@@ -211,6 +220,31 @@ export class CapacitorElectronApp {
       )
     );
 
+    //  set trayIcon if is true in capacitor.config.json
+    if (this.config.useTrayIcon) {
+      this.trayIcon = new Tray(
+        nativeImage.createFromPath(
+          path.join(
+            app.getAppPath(),
+            "assets",
+            process.platform === "win32" ? "appIcon.ico" : "appIcon.png"
+          )
+        )
+      );
+      this.trayIcon.on("right-click", this.toggleWindow);
+      this.trayIcon.on("double-click", this.toggleWindow);
+      this.trayIcon.on("click", () => {
+        this.toggleWindow();
+      });
+
+      this.trayIcon.setToolTip(app.getName());
+
+      if (this.config.trayContextMenu) {
+        this.trayMenu = Menu.buildFromTemplate(this.config.trayContextMenu);
+        this.trayIcon.setContextMenu(this.trayMenu);
+      }
+    }
+
     if (this.config.deepLinking.useDeeplinking)
       this.deepLinking = new CapacitorDeeplinking(this.mainWindowReference, {
         customProtocol: this.deeplinkingCustomProtocol,
@@ -286,6 +320,23 @@ export class CapacitorElectronApp {
           );
         }, 500);
       }
+    }
+  }
+
+  toggleWindow() {
+    if (this.mainWindowReference) {
+      if (this.mainWindowReference.isVisible()) {
+        this.mainWindowReference.hide();
+      } else {
+        this.showWindow();
+      }
+    }
+  }
+
+  showWindow() {
+    if (this.mainWindowReference) {
+      this.mainWindowReference.show();
+      this.mainWindowReference.focus();
     }
   }
 
