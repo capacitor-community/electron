@@ -1,0 +1,8 @@
+tasks:
+  - name: remove-label
+    on:
+      issue_comment:
+        types: [created]
+    config:
+      label: "needs reply"
+      exclude-labeler: true
