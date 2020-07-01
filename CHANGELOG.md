@@ -1,4 +1,35 @@
-## [](https://github.com/capacitor-community/electron/compare/v0.3.0...v) (2020-06-23)
+## [](https://github.com/capacitor-community/electron/compare/v0.3.1...v) (2020-07-01)
+
+### [0.3.1](https://github.com/capacitor-community/electron/compare/v0.3.0...v0.3.1) (2020-07-01)
+
+### Features
+
+- **core:** add trayMenu config thanks to [@vevedh](https://github.com/vevedh) ([c3154aa](https://github.com/capacitor-community/electron/commit/c3154aa8dddbf94c788a32b6ca0a7b6d233957e7))
+
+### Bug Fixes
+
+- **actions:** better naming ([7f3d562](https://github.com/capacitor-community/electron/commit/7f3d56207fee2d3d6f61a4e9bdc418b14a32d7a0))
+
+### Chores
+
+- edits bring more inline with other options ([f2c5509](https://github.com/capacitor-community/electron/commit/f2c5509a5507640dd23fda00101ad315ac1f49ec))
+- remove unused const ([57ff2d3](https://github.com/capacitor-community/electron/commit/57ff2d35fbe7c5af7a788d49b3224701f0d8477f))
+- **actions:** add bot workflow ([5baffd9](https://github.com/capacitor-community/electron/commit/5baffd97f2cf58fe5f26b123642bffdeaf732607))
+- **github:** correct bot config ([4a01420](https://github.com/capacitor-community/electron/commit/4a0142004b6f0a1c42874d93e33a82cd47d86e68))
+- **github:** remove extra bot task ([989c396](https://github.com/capacitor-community/electron/commit/989c3967f0725569e763f7edc3e0ed48edfaa386))
+- **github:** remove extra task from bot config ([38d1249](https://github.com/capacitor-community/electron/commit/38d1249f137ec6f5b80fea4319fb8ca4ca938e95))
+- **github:** set needs-reply action version ([6b27ae8](https://github.com/capacitor-community/electron/commit/6b27ae8b3ec6491c9718697b53d8fb89cc9555ce))
+- **github:** update code and contributing md ([3458c9e](https://github.com/capacitor-community/electron/commit/3458c9e41f6d47da0883c54af1ef53fd7f62e70e))
+- add prettierignore for .github folder ([3c61e1c](https://github.com/capacitor-community/electron/commit/3c61e1cb5eac020617990e9e35e14a690bddefa7))
+- fix shields in readme ([dd0d184](https://github.com/capacitor-community/electron/commit/dd0d184fef63155aa5539ae6f2b4dbb3f09ef8d5))
+- note about install process being temp. ([ae52189](https://github.com/capacitor-community/electron/commit/ae52189769def529eb8074131eba7ab3dc62cf95))
+- switch delpoy changes script to main branch ([90c921b](https://github.com/capacitor-community/electron/commit/90c921b52c6ba76fee59eeaeec50afb337a53279))
+- update changelog for 0.3.0 ([f889c59](https://github.com/capacitor-community/electron/commit/f889c596c83958faeece304cf7079070b88e5e94))
+
+### Documentation
+
+- update .all-contributorsrc [skip ci](<[562efd8](https://github.com/capacitor-community/electron/commit/562efd866ad3a3e01720fb29c1c2aeef668d9f3a)>)
+- update README.md [skip ci](<[805dd52](https://github.com/capacitor-community/electron/commit/805dd52c3ee4d9a68e9936d2fdfe92857869f9d0)>)
 
 ## [0.3.0](https://github.com/capacitor-community/electron/compare/v0.2.2...v0.3.0) (2020-06-23)
 
