@@ -15,6 +15,8 @@ const BrowserWindow = electron.BrowserWindow;
 /** @hidden */
 const Menu = electron.Menu;
 /** @hidden */
+const MenuItem = electron.MenuItem;
+/** @hidden */
 const nativeImage = electron.nativeImage;
 /** @hidden */
 const Tray = electron.Tray;
@@ -136,7 +138,15 @@ export class CapacitorElectronApp {
   private capConfigLaunchShowDuration = 1;
   /** @internal */
   private config: CapacitorElectronConfig = {
-    useTrayIcon: true,
+    trayMenu: {
+      useTrayMenu: false,
+      trayIconPath: path.join(
+        app.getAppPath(),
+        "assets",
+        process.platform === "win32" ? "appIcon.ico" : "appIcon.png"
+      ),
+      trayContextMenu: [new MenuItem({ label: "Quit App", role: "quit" })],
+    },
     deepLinking: {
       useDeeplinking: false,
       deeplinkingHandlerFunction: null,
@@ -221,17 +231,10 @@ export class CapacitorElectronApp {
     );
 
     //  set trayIcon if is true in capacitor.config.json
-    if (this.config.useTrayIcon) {
+    if (this.config.trayMenu && this.config.trayMenu.useTrayMenu) {
       this.trayIcon = new Tray(
-        nativeImage.createFromPath(
-          path.join(
-            app.getAppPath(),
-            "assets",
-            process.platform === "win32" ? "appIcon.ico" : "appIcon.png"
-          )
-        )
+        nativeImage.createFromPath(this.config.trayMenu.trayIconPath)
       );
-      this.trayIcon.on("right-click", this.toggleWindow);
       this.trayIcon.on("double-click", this.toggleWindow);
       this.trayIcon.on("click", () => {
         this.toggleWindow();
@@ -239,9 +242,10 @@ export class CapacitorElectronApp {
 
       this.trayIcon.setToolTip(app.getName());
 
-      if (this.config.trayContextMenu) {
-        this.trayMenu = Menu.buildFromTemplate(this.config.trayContextMenu);
-        this.trayIcon.setContextMenu(this.trayMenu);
+      if (this.config.trayMenu.trayContextMenu) {
+        this.trayIcon.setContextMenu(
+          Menu.buildFromTemplate(this.config.trayMenu.trayContextMenu)
+        );
       }
     }
 

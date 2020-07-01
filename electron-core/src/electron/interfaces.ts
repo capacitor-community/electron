@@ -1,4 +1,4 @@
-import { BrowserWindowConstructorOptions } from "electron";
+import { BrowserWindowConstructorOptions, MenuItem } from "electron";
 
 /** @internal */
 export interface SplashOptions {
@@ -19,7 +19,11 @@ export interface DeeplinkingOptions {
 }
 
 export interface CapacitorElectronConfig {
-  useTrayIcon?: boolean;
+  trayMenu?: {
+    useTrayMenu?: boolean;
+    trayIconPath?: string;
+    trayContextMenu?: MenuItem[];
+  };
   splashScreen?: {
     /** Whether or not to show a splash screen on startup. __Default is: true__ */
     useSplashScreen?: boolean;
@@ -48,7 +52,6 @@ export interface CapacitorElectronConfig {
    * ```
    */
   applicationMenuTemplate?: { [key: string]: any }[] | null;
-  trayContextMenu?: { [key: string]: any }[] | null;
   mainWindow?: {
     windowOptions?: BrowserWindowConstructorOptions;
   };
