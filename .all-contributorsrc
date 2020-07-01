@@ -1,6 +1,6 @@
 {
-  "projectName": "@capacitor-community/electron",
-  "projectOwner": "mlynch",
+  "projectName": "electron",
+  "projectOwner": "capacitor-community",
   "repoType": "github",
   "badgeTemplate": "<a href=\"#contributors\"><img src=\"https://img.shields.io/badge/all%20contributors-<%= contributors.length %>-orange?style=flat-square\" /></a>",
   "repoHost": "https://github.com",
@@ -39,7 +39,18 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "vevedh",
+      "name": "Hervé de CHAVIGNY",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/1430389?v=4",
+      "profile": "https://github.com/vevedh",
+      "contributions": [
+        "code",
+        "doc"
+      ]
     }
   ],
-  "contributorsPerLine": 7
+  "contributorsPerLine": 7,
+  "skipCi": true
 }
