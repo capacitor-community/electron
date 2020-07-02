@@ -345,4 +345,9 @@ export class CapacitorElectronApp {
   getMainWindow() {
     return this.mainWindowReference;
   }
+
+  //  get reference of TrayIcon
+  getTrayIcon() {
+    return this.trayIcon;
+  }
 }
