@@ -26,6 +26,15 @@
   "license": "MIT",
   "build": {
     "appId": "com.example.capacitor-app",
+    "productName": "Capacitor App",
+    "files": [
+      "assets/*",
+      "build/index.js",
+      "preloader.js",
+      "plugins/*",
+      "capacitor.config.json",
+      "app/**"
+    ],
     "mac": {
       "category": "public.app-category.developer-tools",
       "target": "dmg",
