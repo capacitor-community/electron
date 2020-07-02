@@ -15,6 +15,12 @@ const BrowserWindow = electron.BrowserWindow;
 /** @hidden */
 const Menu = electron.Menu;
 /** @hidden */
+const MenuItem = electron.MenuItem;
+/** @hidden */
+const nativeImage = electron.nativeImage;
+/** @hidden */
+const Tray = electron.Tray;
+/** @hidden */
 const path = require("path");
 /** @hidden */
 const fs = require("fs");
@@ -115,6 +121,8 @@ export class CapacitorElectronApp {
   private mainWindowReference: Electron.BrowserWindow | null = null;
   /** @internal */
   private splashScreenReference: CapacitorSplashScreen | null = null;
+  /** @internal */
+  private trayIcon: Electron.Tray | null = null;
 
   /** @internal */
   private isProgramColdStart = true;
@@ -128,6 +136,15 @@ export class CapacitorElectronApp {
   private capConfigLaunchShowDuration = 1;
   /** @internal */
   private config: CapacitorElectronConfig = {
+    trayMenu: {
+      useTrayMenu: false,
+      trayIconPath: path.join(
+        app.getAppPath(),
+        "assets",
+        process.platform === "win32" ? "appIcon.ico" : "appIcon.png"
+      ),
+      trayContextMenu: [new MenuItem({ label: "Quit App", role: "quit" })],
+    },
     deepLinking: {
       useDeeplinking: false,
       deeplinkingHandlerFunction: null,
@@ -211,6 +228,25 @@ export class CapacitorElectronApp {
       )
     );
 
+    //  set trayIcon if is true in capacitor.config.json
+    if (this.config.trayMenu && this.config.trayMenu.useTrayMenu) {
+      this.trayIcon = new Tray(
+        nativeImage.createFromPath(this.config.trayMenu.trayIconPath)
+      );
+      this.trayIcon.on("double-click", this.toggleWindow);
+      this.trayIcon.on("click", () => {
+        this.toggleWindow();
+      });
+
+      this.trayIcon.setToolTip(app.getName());
+
+      if (this.config.trayMenu.trayContextMenu) {
+        this.trayIcon.setContextMenu(
+          Menu.buildFromTemplate(this.config.trayMenu.trayContextMenu)
+        );
+      }
+    }
+
     if (this.config.deepLinking.useDeeplinking)
       this.deepLinking = new CapacitorDeeplinking(this.mainWindowReference, {
         customProtocol: this.deeplinkingCustomProtocol,
@@ -289,7 +325,29 @@ export class CapacitorElectronApp {
     }
   }
 
+  toggleWindow() {
+    if (this.mainWindowReference) {
+      if (this.mainWindowReference.isVisible()) {
+        this.mainWindowReference.hide();
+      } else {
+        this.showWindow();
+      }
+    }
+  }
+
+  showWindow() {
+    if (this.mainWindowReference) {
+      this.mainWindowReference.show();
+      this.mainWindowReference.focus();
+    }
+  }
+
   getMainWindow() {
     return this.mainWindowReference;
+  }
+
+  //  get reference of TrayIcon
+  getTrayIcon() {
+    return this.trayIcon;
   }
 }
