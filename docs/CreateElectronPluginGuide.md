@@ -102,6 +102,6 @@
     }
     ```
 12. Edit the `"files": [...]` in the root `package.json`, add `"electron/"` to the list.
-13. Edit away in `plugin.ts`.
+13. Create your plugin in `plugin.ts`.
 14. Run `npm run build-electron` to compile the plugin.
 15. Release it to NPM then use in your capacitor apps as any other native plugin like android or ios.
