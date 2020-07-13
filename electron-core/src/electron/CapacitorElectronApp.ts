@@ -5,7 +5,7 @@ import { CapacitorSplashScreen } from "./ElectronSplashScreen";
 /** @hidden */
 import { CapacitorDeeplinking } from "./ElectronDeepLinking";
 /** @hidden */
-import Electron from "electron";
+import Electron, { BrowserWindowConstructorOptions } from "electron";
 /** @hidden */
 const electron = require("electron");
 /** @hidden */
@@ -211,7 +211,7 @@ export class CapacitorElectronApp {
   /** Creates mainwindow and does all setup. _Called after app.on('ready') event fired._ */
   init() {
     const neededBrowserWindowConfig = {
-      show: false,
+      show: true,
       webPreferences: {
         nodeIntegration: true,
         enableRemoteModule: true,
@@ -221,12 +221,12 @@ export class CapacitorElectronApp {
       },
     };
 
-    this.mainWindowReference = new BrowserWindow(
-      Object.assign(
-        this.config.mainWindow.windowOptions,
-        neededBrowserWindowConfig
-      )
+    const browserWindowConfig: BrowserWindowConstructorOptions = Object.assign(
+      neededBrowserWindowConfig,
+      this.config.mainWindow.windowOptions
     );
+
+    this.mainWindowReference = new BrowserWindow(browserWindowConfig);
 
     //  set trayIcon if is true in capacitor.config.json
     if (this.config.trayMenu && this.config.trayMenu.useTrayMenu) {
@@ -268,7 +268,9 @@ export class CapacitorElectronApp {
       ) {
         this.splashScreenReference.hide();
       } else {
-        this.mainWindowReference.show();
+        if (browserWindowConfig.show) {
+          this.mainWindowReference.show();
+        }
       }
       // If we are developers we might as well open the devtools by default.
       if (electronIsDev) {
