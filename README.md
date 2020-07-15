@@ -14,7 +14,9 @@ Capacitor community support for the Electron platform.
 </p>
 <p align="center">
   <a href="https://npmjs.com/package/@capacitor-community/electron"><img src="https://img.shields.io/npm/v/@capacitor-community/electron.svg?color=green&style=flat-square" /></a>
+  <a href="https://npmjs.com/package/@capacitor-community/electron"><img alt="npm" src="https://img.shields.io/npm/dm/@capacitor-community/electron?color=yellow&style=flat-square"></a>
   <a href="https://npmjs.com/package/@capacitor-community/electron"><img src="https://img.shields.io/npm/l/@capacitor-community/electron.svg?color=lightgrey&style=flat-square" /></a>
+  <a href="https://github.com/capacitor-community/electron/actions"><img alt="GitHub Workflow Status" src="https://img.shields.io/github/workflow/status/capacitor-community/electron/CI?style=flat-square"></a>
 </p>
 
 ## Maintainers
@@ -34,8 +36,11 @@ Maintenance Status: Actively Maintained
 ## Basic Usage Steps:
 
 1. Build your webapp in your capacitor initiated project.
-2. Run `npm i @capacitor-community/electron` in your webapp project directory. This will install the platform and its dependancies along with placing a copy of your built webapp into the platform folder `electron`
-3. Open a terminal in the `electron` platform folder and run `npm run electron:start` to start your app with the default config.
+2. Run `npm i @capacitor-community/electron` in your webapp project directory. This will install the platform for use with the `@capacitor/cli`.
+3. Run `npx cap add @capacitor-community/electron` to initiate the platform, this will create the `electron` folder in your webapp project.
+4. CD into the `electron` folder and run the `electron:start` script to see your app in electorn.
+
+**_Note: You can use other `npx cap` commands with the platform by: `npx cap <command> @capacitor-community/electron`_**
 
 ## Using your own image for the Splash Screen
 

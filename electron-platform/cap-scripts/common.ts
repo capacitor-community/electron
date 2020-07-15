@@ -2,6 +2,7 @@ import { dirname, join, parse, resolve } from "path";
 import { readFileSync, existsSync, writeFileSync } from "fs";
 import { exec } from "child_process";
 import { createHash } from "crypto";
+const chalk = require("chalk");
 
 const enum PluginType {
   Core,
@@ -39,10 +40,13 @@ interface Plugin {
   };
 }
 
+export function errorLog(message: string) {
+  console.log(chalk.red(`Error: ${message}`));
+}
+
 export function getCwd(): string {
-  // console.log(process.env);
-  const _cwd = process.env.INIT_CWD!;
-  return _cwd;
+  const _cwd = process.env.PWD!;
+  return join(_cwd, "../", "../", "../");
 }
 
 export function readJSON(pathToUse: string): { [key: string]: any } {
@@ -166,13 +170,13 @@ export async function runTask<T>(
   fn: (info: TaskInfoProvider) => Promise<T>
 ) {
   const ora = require("ora");
+  const chalk = require("chalk");
   const spinner = ora(title).start();
   try {
     const start = process.hrtime();
     let taskInfoMessage;
     const value = await fn((message: string) => (taskInfoMessage = message));
     const elapsed = process.hrtime(start);
-    const chalk = require("chalk");
     if (taskInfoMessage) {
       spinner.info(`${title} ${chalk.dim("– " + taskInfoMessage)}`);
     } else {

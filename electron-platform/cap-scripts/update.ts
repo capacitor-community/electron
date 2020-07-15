@@ -10,7 +10,7 @@ import {
 } from "./common";
 
 export async function doUpdate() {
-  const cwd = join(getCwd(), "../", "../", "../");
+  const cwd = getCwd();
   if (cwd === null) throw new Error("CWD ERROR");
   const webAppPackageJson = await readJSON(join(cwd, "package.json"));
   const dependencies = webAppPackageJson.dependencies
@@ -34,7 +34,6 @@ export async function doUpdate() {
   mkdirSync(copyToPath);
   const filenames = [];
   for (let i = 0; i < pluginPaths.length; i++) {
-    // console.log(pluginPaths[i] + ' --------');
     const path = `${pluginPaths[i]}`;
     let filename = path.substr(path.lastIndexOf(sep) + 1);
     filename = hashJsFileName(filename, i);
@@ -48,7 +47,5 @@ export async function doUpdate() {
   writeFileSync(join(cwd, "electron", "preloader.js"), preloaderString, {
     encoding: "utf8",
   });
-
-  //Copy these js files into a path to be used in the preload function.
   return filenames;
 }
