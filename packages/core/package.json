@@ -7,7 +7,6 @@
   "scripts": {
     "build": "npm run clean && npm run build-plugins && npm run build-electron",
     "clean": "rimraf dist",
-    "prepublishOnly": "npm run build",
     "build-plugins": "npm run transpile-plugins && npm run rollup-plugins && npm run minify-plugins",
     "minify-plugins": "uglifyjs --mangle --compress --source-map \"content='dist/electron-bridge.js.map',url='electron-bridge.js.map'\" --comments '/^/*!/' --output dist/electron-bridge.js dist/electron-bridge.js",
     "rollup-plugins": "rollup --config rollup.config.plugins.js",
@@ -33,18 +32,6 @@
     }
   },
   "homepage": "https://github.com/capacitor-community/electron#readme",
-  "devDependencies": {
-    "@types/node": "~12.0.5",
-    "husky": "^4.2.5",
-    "prettier": "^2.0.5",
-    "prettier-plugin-java": "^0.8.0",
-    "pretty-quick": "^2.0.1",
-    "rimraf": "^3.0.2",
-    "rollup": "^2.13.1",
-    "rollup-plugin-node-resolve": "^5.2.0",
-    "typescript": "^3.4.3",
-    "uglify-js": "^3.9.4"
-  },
   "dependencies": {
     "@capacitor/core": "^2.0.0",
     "electron": "~9.0.0",

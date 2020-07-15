@@ -5,12 +5,6 @@ export interface SplashOptions {
   imageFilePath?: string;
   windowWidth?: number;
   windowHeight?: number;
-  textColor?: string;
-  loadingText?: string;
-  textPercentageFromTop?: number;
-  transparentWindow?: boolean;
-  autoHideLaunchSplash?: boolean;
-  customHtml?: string | null;
 }
 
 /** @internal */
@@ -34,13 +28,6 @@ export interface CapacitorElectronConfig {
       windowWidth?: number;
       /** Window height in px. __Default is: 400__ */
       windowHeight?: number;
-      textColor?: string;
-      loadingText?: string;
-      textPercentageFromTop?: number;
-      transparentWindow?: boolean;
-      /** Whether or not to auto hide a splash screen or if the app will hide it. __Default is: true__ */
-      autoHideLaunchSplash?: boolean;
-      customHtml?: string | null;
     };
   };
   /** Define your applications native menu bar. Set to _null_ if you want to hide the bar. __Default is:__

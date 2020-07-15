@@ -10,8 +10,7 @@
     "capacitor:open": "node dist/cap-scripts.js open",
     "build": "rimraf ./dist && npm run transpile && npm run compile && rimraf ./build",
     "compile": "parcel build ./build/index.js --out-file ./dist/cap-scripts.js --target node --no-source-maps",
-    "transpile": "tsc --project ./tsconfig.json",
-    "prepublishOnly": "npm run build"
+    "transpile": "tsc --project ./tsconfig.json"
   },
   "repository": {
     "type": "git",
@@ -31,17 +30,6 @@
     }
   },
   "homepage": "https://github.com/capacitor-community/electron#readme",
-  "devDependencies": {
-    "@types/fs-extra": "^8.1.0",
-    "@types/node": "^12.0.0",
-    "husky": "^4.2.5",
-    "parcel-bundler": "^1.12.4",
-    "prettier": "^2.0.5",
-    "prettier-plugin-java": "^0.8.0",
-    "pretty-quick": "^2.0.1",
-    "rimraf": "^3.0.2",
-    "typescript": "^3.9.5"
-  },
   "dependencies": {
     "chalk": "^4.1.0",
     "fs-extra": "^8.1.0",
