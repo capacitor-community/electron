@@ -11,7 +11,7 @@
     "electron:build-mac": "npm run build && electron-builder build --mac"
   },
   "dependencies": {
-    "@capacitor-community/electron-core": "latest"
+    "@capacitor-community/electron-core": "^0.4.0"
   },
   "devDependencies": {
     "electron": "~9.0.3",
@@ -26,6 +26,15 @@
   "license": "MIT",
   "build": {
     "appId": "com.example.capacitor-app",
+    "productName": "Capacitor App",
+    "files": [
+      "assets/*",
+      "build/index.js",
+      "preloader.js",
+      "plugins/*",
+      "capacitor.config.json",
+      "app/**"
+    ],
     "mac": {
       "category": "public.app-category.developer-tools",
       "target": "dmg",
@@ -33,7 +42,7 @@
     },
     "win": {
       "target": "nsis",
-      "icon": "appIcon.png"
+      "icon": "appIcon.ico"
     }
   }
 }

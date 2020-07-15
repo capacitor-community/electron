@@ -1,4 +1,21 @@
-## [](https://github.com/capacitor-community/electron/compare/v0.3.1...v) (2020-07-01)
+## [](https://github.com/capacitor-community/electron/compare/v0.4.1...v) (2020-07-02)
+
+### [0.4.1](https://github.com/capacitor-community/electron/compare/v0.4.0...v0.4.1) (2020-07-02)
+
+## [0.4.0](https://github.com/capacitor-community/electron/compare/v0.3.1...v0.4.0) (2020-07-02)
+
+### Features
+
+- **docs:** document getTrayIcon ([38b34b1](https://github.com/capacitor-community/electron/commit/38b34b1bab2bd7bb090f8e4bb235b1f0d91c514f))
+
+### Bug Fixes
+
+- **platform:** fix missed opts in electron-builder ([d67feb4](https://github.com/capacitor-community/electron/commit/d67feb46b6c309652d3ab5fe32e6cecaa87a2b98))
+- **platform:** use ico for building windows ([1652e43](https://github.com/capacitor-community/electron/commit/1652e43b7b5abdb3d3219744ae525e0aa9818144))
+
+### Chores
+
+- update changelog for 0.3.1 ([3046741](https://github.com/capacitor-community/electron/commit/30467413575a279b2e024a734b8253bc92a65294))
 
 ### [0.3.1](https://github.com/capacitor-community/electron/compare/v0.3.0...v0.3.1) (2020-07-01)
 

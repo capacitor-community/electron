@@ -19,6 +19,8 @@
       - Gets the mainWindow instance for your app.
     - **init()** : _void_
       - Creates mainwindow and does all setup. _Call after app.on('ready') event fired._
+    - **getTrayIcon()** : _Electron.Tray_
+      - Gets the Tray (icon/menu) instance for your app.
 
 ---
 
