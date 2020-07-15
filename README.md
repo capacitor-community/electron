@@ -1,8 +1,3 @@
-## DISCLAIMER: This platform is currently in a preview state for installation and will be supported through the Capacitor CLI in an upcomming release of Capacitor.
-
-<br />
-<br />
-
 <p align="center">
   <img src="https://user-images.githubusercontent.com/20338451/84775741-91e30a00-afad-11ea-8f37-92a7bfd6cd54.png" width="392" height="150" /><br />
 </p>
@@ -92,4 +87,5 @@ And more can be found on the [Awesome Electron List](https://github.com/sindreso
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
