@@ -3,11 +3,11 @@
   "version": "0.4.1",
   "description": "Capacitor community support for the Electron platform.",
   "scripts": {
-    "postinstall": "npm run capacitor:add",
     "capacitor:add": "node dist/cap-scripts.js add",
     "capacitor:copy": "node dist/cap-scripts.js copy",
     "capacitor:update": "node dist/cap-scripts.js update",
     "capacitor:sync": "node dist/cap-scripts.js sync",
+    "capacitor:open": "node dist/cap-scripts.js open",
     "build": "rimraf ./dist && npm run transpile && npm run compile && rimraf ./build",
     "compile": "parcel build ./build/index.js --out-file ./dist/cap-scripts.js --target node --no-source-maps",
     "transpile": "tsc --project ./tsconfig.json",
@@ -39,7 +39,8 @@
     "prettier": "^2.0.5",
     "prettier-plugin-java": "^0.8.0",
     "pretty-quick": "^2.0.1",
-    "rimraf": "^3.0.2"
+    "rimraf": "^3.0.2",
+    "typescript": "^3.9.5"
   },
   "dependencies": {
     "chalk": "^4.1.0",

@@ -1,6 +1,6 @@
 import { existsSync } from "fs";
 import { copySync, removeSync } from "fs-extra";
-import { getCwd, readJSON } from "./common";
+import { getCwd, readJSON, errorLog } from "./common";
 import { join } from "path";
 
 function checkRequirements() {
@@ -51,9 +51,11 @@ export async function doCopy() {
       if (existsSync(platformAppFolder)) removeSync(platformAppFolder);
       copySync(paths.webAppPath!, platformAppFolder);
     } catch (e) {
+      errorLog(e.message);
       throw e;
     }
   } else {
+    errorLog(paths.errorText);
     throw new Error(paths.errorText);
   }
 }
