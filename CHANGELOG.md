@@ -1,4 +1,14 @@
-## [](https://github.com/capacitor-community/electron/compare/v0.5.0...v) (2020-07-16)
+## [](https://github.com/capacitor-community/electron/compare/v0.5.1...v) (2020-07-16)
+
+### [0.5.1](https://github.com/capacitor-community/electron/compare/v0.5.0...v0.5.1) (2020-07-16)
+
+### Bug Fixes
+
+- **platform:** cap scripts detecting wrong dir ([53e9764](https://github.com/capacitor-community/electron/commit/53e97644a79f0a491dd9a24bb838108c23471ace))
+
+### Chores
+
+- update changelog for 0.5.0 ([0ffef0a](https://github.com/capacitor-community/electron/commit/0ffef0a71393028c51a97c36bb09499508de3f2b))
 
 ## [0.5.0](https://github.com/capacitor-community/electron/compare/v0.4.1...v0.5.0) (2020-07-16)
 
