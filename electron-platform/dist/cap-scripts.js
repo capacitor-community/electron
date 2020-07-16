@@ -73,7 +73,7 @@ parcelRequire = (function (e, r, t, n) {
           console.log(n.red(`Error: ${e}`));
         }
         function i() {
-          const r = process.env.PWD;
+          const r = process.env.INIT_CWD;
           return e.join(r, "../", "../", "../");
         }
         function c(e) {
@@ -363,30 +363,72 @@ parcelRequire = (function (e, r, t, n) {
       },
       { "./common": "FoEN" },
     ],
+    ToPB: [
+      function (require, module, exports) {
+        "use strict";
+        Object.defineProperty(exports, "__esModule", { value: !0 }),
+          (exports.doOpen = void 0);
+        const e = require("fs"),
+          r = require("path"),
+          t = require("./common");
+        function o() {
+          const o = t.getCwd(),
+            n = { errorText: null, destTemplatePath: null },
+            s = r.join(o, "electron");
+          return (
+            e.existsSync(s)
+              ? (n.destTemplatePath = s)
+              : (n.errorText = "Electron platform does not exist."),
+            n
+          );
+        }
+        async function n() {
+          const e = o();
+          if (null !== e.errorText)
+            throw (t.errorLog(e.errorText), new Error(e.errorText));
+          try {
+            await t.runExec(
+              `cd ${e.destTemplatePath} && npm run electron:start`
+            );
+          } catch (r) {
+            throw (t.errorLog(r.message), r);
+          }
+        }
+        exports.doOpen = n;
+      },
+      { "./common": "FoEN" },
+    ],
     Focm: [
       function (require, module, exports) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: !0 });
         const a = require("./common"),
-          r = require("./update"),
-          e = require("./add"),
-          t = require("./copy");
-        async function n() {
-          return await a.runTask(
-            "Updating Electron plugins",
-            async () => await r.doUpdate()
-          );
-        }
+          e = require("./update"),
+          r = require("./add"),
+          n = require("./copy"),
+          t = require("./open");
         async function c() {
           return await a.runTask(
-            "Adding Electron platform",
-            async () => await e.doAdd()
+            "Updating Electron plugins",
+            async () => await e.doUpdate()
           );
         }
         async function i() {
           return await a.runTask(
+            "Adding Electron platform",
+            async () => await r.doAdd()
+          );
+        }
+        async function o() {
+          return await a.runTask(
             "Copying Web App to Electron platform",
-            async () => await t.doCopy()
+            async () => await n.doCopy()
+          );
+        }
+        async function s() {
+          return await a.runTask(
+            "Opening Electron platform",
+            async () => await t.doOpen()
           );
         }
         (async () => {
@@ -394,16 +436,19 @@ parcelRequire = (function (e, r, t, n) {
           if (null === a) throw new Error(`Invalid script chosen: ${a}`);
           switch (a) {
             case "add":
-              await c(), await n();
+              await i(), await c();
               break;
             case "copy":
-              await i();
+              await o();
+              break;
+            case "open":
+              await s();
               break;
             case "update":
-              await n();
+              await c();
               break;
             case "sync":
-              await i(), await n();
+              await o(), await c();
               break;
             default:
               throw new Error(`Invalid script chosen: ${a}`);
@@ -415,6 +460,7 @@ parcelRequire = (function (e, r, t, n) {
         "./update": "lx7y",
         "./add": "cMRE",
         "./copy": "iozI",
+        "./open": "ToPB",
       },
     ],
   },
