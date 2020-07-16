@@ -1,4 +1,29 @@
-## [](https://github.com/capacitor-community/electron/compare/v0.4.1...v) (2020-07-02)
+## [](https://github.com/capacitor-community/electron/compare/v0.5.0...v) (2020-07-16)
+
+## [0.5.0](https://github.com/capacitor-community/electron/compare/v0.4.1...v0.5.0) (2020-07-16)
+
+### Features
+
+- add open command hook for CLI ([4323f26](https://github.com/capacitor-community/electron/commit/4323f26e04b0e277f6a272f28b2feba04bf172bc))
+
+### Chores
+
+- add missing typescript dep ([4b477ed](https://github.com/capacitor-community/electron/commit/4b477edb9b50432da5c4236df457bbf4f4ca1ab7))
+- clean up code ([cbbb6ea](https://github.com/capacitor-community/electron/commit/cbbb6ea6952c0ee0bd6fea70ba8ff4634931a534))
+- cleanup old console log ([6a1365f](https://github.com/capacitor-community/electron/commit/6a1365f17bcb573a01877d0e83472f0e1f7be690))
+- more clean up ([2b6890e](https://github.com/capacitor-community/electron/commit/2b6890e7a9c609caf38bdba816204c22cd6ea93e))
+- more cleaning ([cfdd184](https://github.com/capacitor-community/electron/commit/cfdd184f37f7f7d7cbd14b0d1e68f9aa594bc6f6))
+- more shields ([1179bda](https://github.com/capacitor-community/electron/commit/1179bda01fa3a6f47ef5ffda10bc3e33da0d281f))
+- readme reflect custom platform usage ([7e4d37a](https://github.com/capacitor-community/electron/commit/7e4d37a0e3a0962526c15009a263742f0d11150f))
+- remove console logs ([c2ad137](https://github.com/capacitor-community/electron/commit/c2ad137af061326d7e06796ca397138ddbe287a0))
+- remove old postinstall checks ([b5e65f7](https://github.com/capacitor-community/electron/commit/b5e65f7ca6c71d9f194f38a51729b90bf4e4715f))
+- remove postinstall hook ([d77081a](https://github.com/capacitor-community/electron/commit/d77081a078ee70f3305fa8f4293901b47ca1fe30))
+- specify versions over using latest tag ([0f02138](https://github.com/capacitor-community/electron/commit/0f021380eb21d273a8d7a7d06deb2dc6a3dc7779))
+- support cap-cli custom platforms spec ([bc3f4e2](https://github.com/capacitor-community/electron/commit/bc3f4e2974fe36cccaac7b2aabd003a6f2bf6ac8))
+- try with PWD ([f3b4fb7](https://github.com/capacitor-community/electron/commit/f3b4fb727b7c0f8b609c93191e2526fd7103da2f))
+- update changelog for 0.4.1 ([d42f617](https://github.com/capacitor-community/electron/commit/d42f6172055e3d1e0a240933ab350a6e8ea9f6c8))
+- update plugin guide ([e323ee8](https://github.com/capacitor-community/electron/commit/e323ee81cf5da8ac9d7f664ef72c37f0e48efe32))
+- update plugin guide ([f75c2c1](https://github.com/capacitor-community/electron/commit/f75c2c1fc1e214bdeceba93b9e1436088efa4491))
 
 ### [0.4.1](https://github.com/capacitor-community/electron/compare/v0.4.0...v0.4.1) (2020-07-02)
 
