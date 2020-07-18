@@ -1,4 +1,20 @@
-## [](https://github.com/capacitor-community/electron/compare/v0.5.1...v) (2020-07-16)
+## [](https://github.com/capacitor-community/electron/compare/v0.5.2...v) (2020-07-18)
+
+### [0.5.2](https://github.com/capacitor-community/electron/compare/v0.5.1...v0.5.2) (2020-07-18)
+
+### Bug Fixes
+
+- Add missing fields in DevicePluginElectron.getInfo() return value ([8adb1e1](https://github.com/capacitor-community/electron/commit/8adb1e19fd04689354536fa359df9ae794fd0a98))
+- Merge nested browser window options instead of replacing them ([1b4752a](https://github.com/capacitor-community/electron/commit/1b4752a8c0ec0f065d929c23023e48e6197ecf0f))
+
+### Chores
+
+- update changelog for 0.5.1 ([ee6f11a](https://github.com/capacitor-community/electron/commit/ee6f11acf54c8f2f13dc3c88b8a6b7e778cf473d))
+
+### Documentation
+
+- update .all-contributorsrc [skip ci](<[9d78e7e](https://github.com/capacitor-community/electron/commit/9d78e7e80798ecf62da887ab705e24cfd0da2e59)>)
+- update README.md [skip ci](<[563a921](https://github.com/capacitor-community/electron/commit/563a921732d610cb87fc587b8b024ddab3e5f898)>)
 
 ### [0.5.1](https://github.com/capacitor-community/electron/compare/v0.5.0...v0.5.1) (2020-07-16)
 
