@@ -222,9 +222,9 @@ export class CapacitorElectronApp {
     };
 
     this.mainWindowReference = new BrowserWindow(
-      Object.assign(
+      deepMerge(
         this.config.mainWindow.windowOptions,
-        neededBrowserWindowConfig
+        [neededBrowserWindowConfig]
       )
     );
 
