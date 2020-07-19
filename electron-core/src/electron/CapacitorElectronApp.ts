@@ -211,7 +211,7 @@ export class CapacitorElectronApp {
   /** Creates mainwindow and does all setup. _Called after app.on('ready') event fired._ */
   init() {
     const neededBrowserWindowConfig = {
-      show: true,
+      show: false,
       webPreferences: {
         nodeIntegration: true,
         enableRemoteModule: true,
@@ -221,12 +221,11 @@ export class CapacitorElectronApp {
       },
     };
 
-    const browserWindowConfig: BrowserWindowConstructorOptions = Object.assign(
-      neededBrowserWindowConfig,
-      this.config.mainWindow.windowOptions
+    this.mainWindowReference = new BrowserWindow(
+      deepMerge(this.config.mainWindow.windowOptions, [
+        neededBrowserWindowConfig,
+      ])
     );
-
-    this.mainWindowReference = new BrowserWindow(browserWindowConfig);
 
     //  set trayIcon if is true in capacitor.config.json
     if (this.config.trayMenu && this.config.trayMenu.useTrayMenu) {
@@ -268,7 +267,7 @@ export class CapacitorElectronApp {
       ) {
         this.splashScreenReference.hide();
       } else {
-        if (browserWindowConfig.show) {
+        if (!this.config.mainWindow.windowOptions.show === false) {
           this.mainWindowReference.show();
         }
       }
