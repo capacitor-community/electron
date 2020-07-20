@@ -169,7 +169,7 @@ export class CapacitorElectronApp {
     ],
     mainWindow: {
       windowOptions: {
-        show: null;
+        show: null,
         height: 920,
         width: 1600,
         icon: path.join(
