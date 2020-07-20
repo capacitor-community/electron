@@ -1,4 +1,24 @@
-## [](https://github.com/capacitor-community/electron/compare/v0.5.2...v) (2020-07-18)
+## [](https://github.com/capacitor-community/electron/compare/v0.5.4...v) (2020-07-20)
+
+### [0.5.4](https://github.com/capacitor-community/electron/compare/v0.5.3...v0.5.4) (2020-07-20)
+
+### [0.5.3](https://github.com/capacitor-community/electron/compare/v0.5.2...v0.5.3) (2020-07-20)
+
+### Bug Fixes
+
+- **core:** add missing default option settings ([3dcef83](https://github.com/capacitor-community/electron/commit/3dcef83f15de54672ab1048949714d8c15775740))
+- **core:** use comma not semicolon ([9a68631](https://github.com/capacitor-community/electron/commit/9a686318d12f441be067f1d3233323839c017cde))
+- add correction for the show window logic ([00401cc](https://github.com/capacitor-community/electron/commit/00401cc0f16998448ac3976128860f2ff39657e3))
+
+### Documentation
+
+- update .all-contributorsrc [skip ci](<[f9c21da](https://github.com/capacitor-community/electron/commit/f9c21da70cf9c5ef05e6c67d9a5074bb63ccac4f)>)
+- update README.md [skip ci](<[4d4bda6](https://github.com/capacitor-community/electron/commit/4d4bda608f5b9bffccf8b3d07df2061aa5fbb6b8)>)
+
+### Chores
+
+- build for 0.5.3 ([0ed996a](https://github.com/capacitor-community/electron/commit/0ed996a6c4b75e22548895d23475c89d3e4bc8f6))
+- update changelog for 0.5.2 ([0821357](https://github.com/capacitor-community/electron/commit/082135734c57975075c457bc320326107d1414fd))
 
 ### [0.5.2](https://github.com/capacitor-community/electron/compare/v0.5.1...v0.5.2) (2020-07-18)
 
