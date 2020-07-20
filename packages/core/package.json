@@ -1,6 +1,6 @@
 {
   "name": "@capacitor-community/electron-core",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-alpha.2",
   "description": "Capacitor core for the Capacitor Community Electron platform.",
   "main": "dist/esm-electron/index.js",
   "typings": "dist/esm-electron/index.d.ts",
