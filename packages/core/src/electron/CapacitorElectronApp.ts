@@ -7,6 +7,8 @@ import { CapacitorDeeplinking } from "./ElectronDeepLinking";
 /** @hidden */
 import Electron from "electron";
 /** @hidden */
+import { configCapacitor, deepMerge } from "./Utils";
+/** @hidden */
 const electron = require("electron");
 /** @hidden */
 const app = electron.app;
@@ -26,88 +28,6 @@ const path = require("path");
 const fs = require("fs");
 /** @hidden */
 const electronIsDev = require("electron-is-dev");
-/** @internal */
-function deepMerge(target: any, _objects: any[] = []) {
-  // Credit for origanal function: Josh Cole(saikojosh)[https://github.com/saikojosh]
-  const quickCloneArray = function (input: any) {
-    return input.map(cloneValue);
-  };
-  const cloneValue = function (value: any) {
-    if (getTypeOf(value) === "object") return quickCloneObject(value);
-    else if (getTypeOf(value) === "array") return quickCloneArray(value);
-    return value;
-  };
-  const getTypeOf = function (input: any) {
-    if (input === null) return "null";
-    else if (typeof input === "undefined") return "undefined";
-    else if (typeof input === "object")
-      return Array.isArray(input) ? "array" : "object";
-    return typeof input;
-  };
-  const quickCloneObject = function (input: any) {
-    const output: any = {};
-    for (const key in input) {
-      if (!input.hasOwnProperty(key)) {
-        continue;
-      }
-      output[key] = cloneValue(input[key]);
-    }
-    return output;
-  };
-  const objects = _objects.map((object) => object || {});
-  const output = target || {};
-  for (let oindex = 0; oindex < objects.length; oindex++) {
-    const object = objects[oindex];
-    const keys = Object.keys(object);
-    for (let kindex = 0; kindex < keys.length; kindex++) {
-      const key = keys[kindex];
-      const value = object[key];
-      const type = getTypeOf(value);
-      const existingValueType = getTypeOf(output[key]);
-      if (type === "object") {
-        if (existingValueType !== "undefined") {
-          const existingValue =
-            existingValueType === "object" ? output[key] : {};
-          output[key] = deepMerge({}, [existingValue, quickCloneObject(value)]);
-        } else {
-          output[key] = quickCloneObject(value);
-        }
-      } else if (type === "array") {
-        if (existingValueType === "array") {
-          const newValue = quickCloneArray(value);
-          output[key] = newValue;
-        } else {
-          output[key] = quickCloneArray(value);
-        }
-      } else {
-        output[key] = value;
-      }
-    }
-  }
-  return output;
-}
-/** @internal */
-async function configCapacitor(mainWindow: Electron.BrowserWindow) {
-  let capConfigJson = JSON.parse(
-    fs.readFileSync(`./capacitor.config.json`, "utf-8")
-  );
-  const appendUserAgent =
-    capConfigJson.electron && capConfigJson.electron.appendUserAgent
-      ? capConfigJson.electron.appendUserAgent
-      : capConfigJson.appendUserAgent;
-  if (appendUserAgent) {
-    mainWindow.webContents.setUserAgent(
-      mainWindow.webContents.getUserAgent() + " " + appendUserAgent
-    );
-  }
-  const overrideUserAgent =
-    capConfigJson.electron && capConfigJson.electron.overrideUserAgent
-      ? capConfigJson.electron.overrideUserAgent
-      : capConfigJson.overrideUserAgent;
-  if (overrideUserAgent) {
-    mainWindow.webContents.setUserAgent(overrideUserAgent);
-  }
-}
 /** @hidden */
 const electronServe = require("electron-serve");
 /** @hidden */
@@ -133,8 +53,6 @@ export class CapacitorElectronApp {
   /** @internal */
   private devServerUrl: string | null = null;
   /** @internal */
-  private capConfigLaunchShowDuration = 1;
-  /** @internal */
   private config: CapacitorElectronConfig = {
     trayMenu: {
       useTrayMenu: false,
@@ -155,12 +73,6 @@ export class CapacitorElectronApp {
         imageFilePath: path.join(app.getAppPath(), "assets", "splash.png"),
         windowWidth: 400,
         windowHeight: 400,
-        textColor: "#FFFFFF",
-        loadingText: "Loading...",
-        textPercentageFromTop: 75,
-        transparentWindow: false,
-        autoHideLaunchSplash: true,
-        customHtml: null,
       },
     },
     applicationMenuTemplate: [
@@ -187,14 +99,6 @@ export class CapacitorElectronApp {
     const capConfigPath = path.join(app.getAppPath(), "capacitor.config.json");
     if (fs.existsSync(capConfigPath)) {
       const capConfig = JSON.parse(fs.readFileSync(capConfigPath, "utf-8"));
-      if (
-        capConfig.plugins &&
-        capConfig.plugins.SplashScreen &&
-        capConfig.plugins.SplashScreen.launchShowDuration
-      ) {
-        this.capConfigLaunchShowDuration =
-          capConfig.plugins.SplashScreen.launchShowDuration;
-      }
       if (capConfig.server && capConfig.server.url) {
         this.devServerUrl = capConfig.server.url;
       }
@@ -234,9 +138,9 @@ export class CapacitorElectronApp {
       this.trayIcon = new Tray(
         nativeImage.createFromPath(this.config.trayMenu.trayIconPath)
       );
-      this.trayIcon.on("double-click", this.toggleWindow);
+      this.trayIcon.on("double-click", this.toggleMainWindow);
       this.trayIcon.on("click", () => {
-        this.toggleWindow();
+        this.toggleMainWindow();
       });
 
       this.trayIcon.setToolTip(app.getName());
@@ -263,13 +167,11 @@ export class CapacitorElectronApp {
     }
 
     this.mainWindowReference.webContents.on("dom-ready", () => {
-      if (
-        this.config.splashScreen.useSplashScreen &&
-        this.config.splashScreen.splashOptions.autoHideLaunchSplash
-      ) {
-        this.splashScreenReference.hide();
-      } else {
-        if (!this.config.mainWindow.windowOptions.show === false) {
+      if (this.config.mainWindow.windowOptions.show === null) {
+        if (this.config.splashScreen.useSplashScreen) {
+          this.splashScreenReference.getSplashWindow().hide();
+          this.mainWindowReference.show();
+        } else {
           this.mainWindowReference.show();
         }
       }
@@ -295,13 +197,9 @@ export class CapacitorElectronApp {
     // Based on Splashscreen choice actually load the window.
     if (this.config.splashScreen.useSplashScreen) {
       this.splashScreenReference = new CapacitorSplashScreen(
-        this.mainWindowReference,
         this.config.splashScreen.splashOptions
       );
-      this.splashScreenReference.init();
-      setTimeout(() => {
-        this.loadMainWindow();
-      }, this.capConfigLaunchShowDuration);
+      this.splashScreenReference.init(this.loadMainWindow);
     } else {
       this.loadMainWindow();
     }
@@ -328,28 +226,48 @@ export class CapacitorElectronApp {
     }
   }
 
-  toggleWindow() {
+  toggleMainWindow() {
     if (this.mainWindowReference) {
       if (this.mainWindowReference.isVisible()) {
         this.mainWindowReference.hide();
       } else {
-        this.showWindow();
+        this.showMainWindow();
       }
     }
   }
 
-  showWindow() {
+  private showMainWindow() {
     if (this.mainWindowReference) {
       this.mainWindowReference.show();
       this.mainWindowReference.focus();
     }
   }
 
+  toggleSplashscreenWindow() {
+    if (this.splashScreenReference) {
+      if (this.splashScreenReference.getSplashWindow().isVisible()) {
+        this.splashScreenReference.getSplashWindow().hide();
+      } else {
+        this.showSplashscreenWindow();
+      }
+    }
+  }
+
+  private showSplashscreenWindow() {
+    if (this.splashScreenReference) {
+      this.splashScreenReference.getSplashWindow().show();
+      this.splashScreenReference.getSplashWindow().focus();
+    }
+  }
+
+  getSplashscreenWindow() {
+    return this.splashScreenReference.getSplashWindow();
+  }
+
   getMainWindow() {
     return this.mainWindowReference;
   }
 
-  //  get reference of TrayIcon
   getTrayIcon() {
     return this.trayIcon;
   }
