@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-Capacitor community support for the Electron platform.
+Capacitor community support for the Electron platform. 
 </p>
 <p align="center">
   <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
