@@ -49,6 +49,24 @@
         "code",
         "doc"
       ]
+    },
+    {
+      "login": "leMaik",
+      "name": "Maik Marschner",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/5544859?v=4",
+      "profile": "http://twitter.com/leMaikOfficial",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "stewwan",
+      "name": "Stew",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/719763?v=4",
+      "profile": "https://stewan.io",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,

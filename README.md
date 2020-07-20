@@ -7,7 +7,7 @@ Capacitor community support for the Electron platform.
 </p>
 <p align="center">
   <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-<a href="#contributors"><img src="https://img.shields.io/badge/all%20contributors-4-orange?style=flat-square" /></a>
+<a href="#contributors"><img src="https://img.shields.io/badge/all%20contributors-6-orange?style=flat-square" /></a>
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
   <a href="https://www.electronjs.org/releases/stable?version=9"><img src="https://img.shields.io/badge/supported%20electron%20version-~9.0.0-blue?style=flat-square" /></a>
   <a href="https://lerna.js.org/"><img src="https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg?style=flat-square" /></a>
@@ -38,7 +38,7 @@ Maintenance Status: Actively Maintained
 1. Build your webapp in your capacitor initiated project.
 2. Run `npm i @capacitor-community/electron` in your webapp project directory. This will install the platform for use with the `@capacitor/cli`.
 3. Run `npx cap add @capacitor-community/electron` to initiate the platform, this will create the `electron` folder in your webapp project.
-4. CD into the `electron` folder and run the `electron:start` script to see your app in electorn.
+4. CD into the `electron` folder and run the `electron:start` script to see your app in electron.
 
 **_Note: You can use other `npx cap` commands with the platform by: `npx cap <command> @capacitor-community/electron`_**
 
@@ -87,6 +87,8 @@ And more can be found on the [Awesome Electron List](https://github.com/sindreso
     <td align="center"><a href="https://github.com/IT-MikeS"><img src="https://avatars0.githubusercontent.com/u/20338451?v=4" width="75px;" alt=""/><br /><sub><b>Mike S</b></sub></a><br /><a href="https://github.com/capacitor-community/electron/commits?author=IT-MikeS" title="Code">💻</a> <a href="https://github.com/capacitor-community/electron/commits?author=IT-MikeS" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/danielsogl"><img src="https://avatars2.githubusercontent.com/u/15234844?v=4" width="75px;" alt=""/><br /><sub><b>Daniel Sogl</b></sub></a><br /><a href="https://github.com/capacitor-community/electron/commits?author=danielsogl" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/vevedh"><img src="https://avatars1.githubusercontent.com/u/1430389?v=4" width="75px;" alt=""/><br /><sub><b>Hervé de CHAVIGNY</b></sub></a><br /><a href="https://github.com/capacitor-community/electron/commits?author=vevedh" title="Code">💻</a> <a href="https://github.com/capacitor-community/electron/commits?author=vevedh" title="Documentation">📖</a></td>
+    <td align="center"><a href="http://twitter.com/leMaikOfficial"><img src="https://avatars2.githubusercontent.com/u/5544859?v=4" width="75px;" alt=""/><br /><sub><b>Maik Marschner</b></sub></a><br /><a href="https://github.com/capacitor-community/electron/commits?author=leMaik" title="Code">💻</a></td>
+    <td align="center"><a href="https://stewan.io"><img src="https://avatars1.githubusercontent.com/u/719763?v=4" width="75px;" alt=""/><br /><sub><b>Stew</b></sub></a><br /><a href="https://github.com/capacitor-community/electron/commits?author=stewwan" title="Code">💻</a></td>
   </tr>
 </table>
 
