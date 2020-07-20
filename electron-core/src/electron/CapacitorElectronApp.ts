@@ -268,7 +268,9 @@ export class CapacitorElectronApp {
       ) {
         this.splashScreenReference.hide();
       } else {
-        this.mainWindowReference.show();
+        if (!this.config.mainWindow.windowOptions.show === false) {
+          this.mainWindowReference.show();
+        }
       }
       // If we are developers we might as well open the devtools by default.
       if (electronIsDev) {
