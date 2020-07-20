@@ -5,7 +5,7 @@ import { CapacitorSplashScreen } from "./ElectronSplashScreen";
 /** @hidden */
 import { CapacitorDeeplinking } from "./ElectronDeepLinking";
 /** @hidden */
-import Electron, { BrowserWindowConstructorOptions } from "electron";
+import Electron from "electron";
 /** @hidden */
 const electron = require("electron");
 /** @hidden */
