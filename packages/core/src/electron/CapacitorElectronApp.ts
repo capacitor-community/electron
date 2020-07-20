@@ -134,6 +134,7 @@ export class CapacitorElectronApp {
 
     this.mainWindowReference.on("closed", () => {
       if (
+        this.splashScreenReference &&
         this.splashScreenReference.getSplashWindow() &&
         !this.splashScreenReference.getSplashWindow().isDestroyed()
       ) {
