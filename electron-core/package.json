@@ -1,6 +1,6 @@
 {
   "name": "@capacitor-community/electron-core",
-  "version": "0.3.1",
+  "version": "0.5.2",
   "description": "Capacitor core for the Capacitor Community Electron platform.",
   "main": "dist/esm-electron/index.js",
   "typings": "dist/esm-electron/index.d.ts",
@@ -46,7 +46,7 @@
     "uglify-js": "^3.9.4"
   },
   "dependencies": {
-    "@capacitor/core": "latest",
+    "@capacitor/core": "^2.0.0",
     "electron": "~9.0.0",
     "electron-is-dev": "^1.2.0",
     "electron-serve": "^1.0.0",

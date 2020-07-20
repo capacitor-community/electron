@@ -49,6 +49,15 @@
         "code",
         "doc"
       ]
+    },
+    {
+      "login": "leMaik",
+      "name": "Maik Marschner",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/5544859?v=4",
+      "profile": "http://twitter.com/leMaikOfficial",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,

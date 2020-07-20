@@ -23,6 +23,8 @@ export class DevicePluginElectron extends WebPlugin implements DevicePlugin {
     var info = await webDevice.getInfo();
 
     return {
+      appId: info.appId,
+      appName: info.appName,
       model: info.model,
       platform: <"electron">"electron",
       appVersion: app.getVersion(),

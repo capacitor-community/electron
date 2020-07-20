@@ -222,9 +222,10 @@ export class CapacitorElectronApp {
     };
 
     this.mainWindowReference = new BrowserWindow(
-      deepMerge(this.config.mainWindow.windowOptions, [
-        neededBrowserWindowConfig,
-      ])
+      deepMerge(
+        this.config.mainWindow.windowOptions,
+        [neededBrowserWindowConfig]
+      )
     );
 
     //  set trayIcon if is true in capacitor.config.json
