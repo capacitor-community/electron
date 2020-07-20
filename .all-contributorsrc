@@ -58,6 +58,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "stewwan",
+      "name": "Stew",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/719763?v=4",
+      "profile": "https://stewan.io",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
