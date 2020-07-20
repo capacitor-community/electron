@@ -42,16 +42,14 @@ export class CapacitorElectronApp {
   /** @internal */
   private splashScreenReference: CapacitorSplashScreen | null = null;
   /** @internal */
-  private trayIcon: Electron.Tray | null = null;
+  private trayIcon: Electron.Tray | null = null; // @ts-ignore
 
-  /** @internal */
-  private isProgramColdStart = true;
+  /** @internal */ private isProgramColdStart = true;
   /** @internal */
   private deepLinking: any = null;
   /** @internal */
-  private deeplinkingCustomProtocol: "app";
-  /** @internal */
-  private devServerUrl: string | null = null;
+  private deeplinkingCustomProtocol: "app"; // @ts-ignore
+  /** @internal */ private devServerUrl: string | null = null;
   /** @internal */
   private config: CapacitorElectronConfig = {
     trayMenu: {
@@ -115,6 +113,8 @@ export class CapacitorElectronApp {
 
   /** Creates mainwindow and does all setup. _Called after app.on('ready') event fired._ */
   init() {
+    console.log(this.config.mainWindow.windowOptions);
+
     const neededBrowserWindowConfig = {
       show: false,
       webPreferences: {
@@ -127,11 +127,21 @@ export class CapacitorElectronApp {
     };
 
     this.mainWindowReference = new BrowserWindow(
-      deepMerge(
-        this.config.mainWindow.windowOptions,
-        [neededBrowserWindowConfig]
-      )
+      deepMerge({ ...this.config.mainWindow.windowOptions }, [
+        neededBrowserWindowConfig,
+      ])
     );
+
+    this.mainWindowReference.on("closed", () => {
+      if (
+        this.splashScreenReference.getSplashWindow() &&
+        !this.splashScreenReference.getSplashWindow().isDestroyed()
+      ) {
+        this.splashScreenReference.getSplashWindow().close();
+      }
+    });
+
+    console.log(this.config.mainWindow.windowOptions);
 
     //  set trayIcon if is true in capacitor.config.json
     if (this.config.trayMenu && this.config.trayMenu.useTrayMenu) {
@@ -166,23 +176,6 @@ export class CapacitorElectronApp {
       );
     }
 
-    this.mainWindowReference.webContents.on("dom-ready", () => {
-      if (this.config.mainWindow.windowOptions.show === null) {
-        if (this.config.splashScreen.useSplashScreen) {
-          this.splashScreenReference.getSplashWindow().hide();
-          this.mainWindowReference.show();
-        } else {
-          this.mainWindowReference.show();
-        }
-      }
-      // If we are developers we might as well open the devtools by default.
-      if (electronIsDev) {
-        setTimeout(() => {
-          this.mainWindowReference.webContents.openDevTools();
-        }, 200);
-      }
-    });
-
     // Setup the handler for deeplinking if it has been setup.
     if (this.deepLinking !== null) {
       if (this.config.deepLinking.deeplinkingHandlerFunction !== null) {
@@ -199,27 +192,47 @@ export class CapacitorElectronApp {
       this.splashScreenReference = new CapacitorSplashScreen(
         this.config.splashScreen.splashOptions
       );
-      this.splashScreenReference.init(this.loadMainWindow);
+      this.splashScreenReference.init(this.loadMainWindow, this);
     } else {
-      this.loadMainWindow();
+      this.loadMainWindow(this);
     }
+
+    this.mainWindowReference.webContents.on("dom-ready", () => {
+      if (this.config.splashScreen.useSplashScreen) {
+        this.splashScreenReference.getSplashWindow().hide();
+      }
+      if (
+        this.config.mainWindow.windowOptions.show === null ||
+        this.config.mainWindow.windowOptions.show === true
+      ) {
+        this.mainWindowReference.show();
+      }
+      // If we are developers we might as well open the devtools by default.
+      if (electronIsDev) {
+        setTimeout(() => {
+          this.mainWindowReference.webContents.openDevTools();
+        }, 200);
+      }
+    });
   }
 
   /** @internal */
-  private async loadMainWindow() {
-    if (this.devServerUrl !== null) {
-      await this.mainWindowReference.webContents.loadURL(this.devServerUrl);
+  private async loadMainWindow(thisRef: any) {
+    if (thisRef.devServerUrl !== null) {
+      await thisRef.mainWindowReference.webContents.loadURL(
+        thisRef.devServerUrl
+      );
     } else {
-      await loadWebApp(this.mainWindowReference);
+      await loadWebApp(thisRef.mainWindowReference);
     }
-    if (this.deepLinking !== null && this.isProgramColdStart) {
-      if (this.deepLinking.getPassedDeeplinkUrl().length > 0) {
-        this.isProgramColdStart = false;
+    if (thisRef.deepLinking !== null && thisRef.isProgramColdStart) {
+      if (thisRef.deepLinking.getPassedDeeplinkUrl().length > 0) {
+        thisRef.isProgramColdStart = false;
         // Pass deeplink if there was one, to webapp after it has loaded on first launch
         setTimeout(() => {
-          this.mainWindowReference.webContents.send(
+          thisRef.mainWindowReference.webContents.send(
             "appUrlOpen",
-            this.deepLinking.getPassedDeeplinkUrl()
+            thisRef.deepLinking.getPassedDeeplinkUrl()
           );
         }, 500);
       }

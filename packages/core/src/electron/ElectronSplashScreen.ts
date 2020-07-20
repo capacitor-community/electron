@@ -19,8 +19,6 @@ import { encodeFromFile } from "./Utils";
 
 /** @internal */
 export class CapacitorSplashScreen {
-  private mainWindowReference: Electron.BrowserWindow = null;
-
   private splashWin: Electron.BrowserWindow | null = null;
   private splashOptions: SplashOptions = {
     imageFilePath: path.join(app.getAppPath(), "assets", "splash.png"),
@@ -59,7 +57,7 @@ export class CapacitorSplashScreen {
     });
   }
 
-  async init(loadMainWindowCallback: any) {
+  async init(loadMainWindowCallback: any, mainWindowThisRef: any) {
     this.splashWin = new BrowserWindow({
       width: this.splashOptions.windowWidth,
       height: this.splashOptions.windowHeight,
@@ -79,12 +77,6 @@ export class CapacitorSplashScreen {
 
     let splashHtml = `<html style="width: 100%; height: 100%; margin: 0; overflow: hidden;"><body style="width: 100%; height: 100%;"><div style="background-image: url('${imageUrl}'); background-position: center center; background-repeat: no-repeat; width: 100%; height: 100%; margin: 0; overflow: hidden; position: absolute; top: 0; left: 0; z-index: 100;">&nbsp;</div></body></html>`;
 
-    this.mainWindowReference.on("closed", () => {
-      if (this.splashWin && !this.splashWin.isDestroyed()) {
-        this.splashWin.close();
-      }
-    });
-
     this.splashWin.loadURL(
       `data:text/html;charset=UTF-8,${encodeURIComponent(splashHtml)}`
     );
@@ -92,7 +84,7 @@ export class CapacitorSplashScreen {
     this.splashWin.webContents.on("dom-ready", async () => {
       this.splashWin.show();
       setTimeout(() => {
-        loadMainWindowCallback();
+        loadMainWindowCallback(mainWindowThisRef);
       }, 1000);
     });
   }
