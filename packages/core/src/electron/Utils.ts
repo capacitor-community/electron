@@ -1,11 +1,8 @@
-/** @hidden */
-const fs = require("fs");
-/** @hidden */
-const mimeTypes = require("mime-types");
-/** @hidden */
 import Electron from "electron";
 
-/** @internal */
+const fs = require("fs");
+const mimeTypes = require("mime-types");
+
 export function deepMerge(target: any, _objects: any[] = []) {
   // Credit for origanal function: Josh Cole(saikojosh)[https://github.com/saikojosh]
   const quickCloneArray = function (input: any) {
@@ -66,7 +63,6 @@ export function deepMerge(target: any, _objects: any[] = []) {
   return output;
 }
 
-/** @internal */
 export async function configCapacitor(mainWindow: Electron.BrowserWindow) {
   let capConfigJson = JSON.parse(
     fs.readFileSync(`./capacitor.config.json`, "utf-8")
@@ -89,7 +85,6 @@ export async function configCapacitor(mainWindow: Electron.BrowserWindow) {
   }
 }
 
-/** @internal */
 export async function encodeFromFile(filePath: string): Promise<string> {
   if (!filePath) {
     throw new Error("filePath is required.");

@@ -1,23 +1,14 @@
-/** @hidden */
 import Electron from "electron";
-/** @hidden */
-const electron = require("electron");
-/** @hidden */
-const app = electron.app;
-/** @hidden */
-const BrowserWindow = electron.BrowserWindow;
-/** @hidden */
-const ipcMain = electron.ipcMain;
-/** @hidden */
-const path = require("path");
-/** @hidden */
-const fs = require("fs");
-/** @hidden */
 import { SplashOptions } from "./interfaces";
-/** @hidden */
 import { encodeFromFile } from "./Utils";
 
-/** @internal */
+const electron = require("electron");
+const app = electron.app;
+const BrowserWindow = electron.BrowserWindow;
+const ipcMain = electron.ipcMain;
+const path = require("path");
+const fs = require("fs");
+
 export class CapacitorSplashScreen {
   private splashWin: Electron.BrowserWindow | null = null;
   private splashOptions: SplashOptions = {

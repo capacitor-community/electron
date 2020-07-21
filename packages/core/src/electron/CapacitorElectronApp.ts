@@ -1,56 +1,36 @@
-/** @hidden */
 import { CapacitorElectronConfig } from "./interfaces";
-/** @hidden */
 import { CapacitorSplashScreen } from "./ElectronSplashScreen";
-/** @hidden */
 import { CapacitorDeeplinking } from "./ElectronDeepLinking";
-/** @hidden */
 import Electron from "electron";
-/** @hidden */
 import { configCapacitor, deepMerge } from "./Utils";
-/** @hidden */
+
 const electron = require("electron");
-/** @hidden */
 const app = electron.app;
-/** @hidden */
 const BrowserWindow = electron.BrowserWindow;
-/** @hidden */
 const Menu = electron.Menu;
-/** @hidden */
 const MenuItem = electron.MenuItem;
-/** @hidden */
 const nativeImage = electron.nativeImage;
-/** @hidden */
 const Tray = electron.Tray;
-/** @hidden */
 const path = require("path");
-/** @hidden */
 const fs = require("fs");
-/** @hidden */
 const electronIsDev = require("electron-is-dev");
-/** @hidden */
 const electronServe = require("electron-serve");
-/** @hidden */
+
 const loadWebApp = electronServe({
   directory: path.join(app.getAppPath(), "app"),
   scheme: "capacitor-electron",
 });
 
 export class CapacitorElectronApp {
-  /** @internal */
   private mainWindowReference: Electron.BrowserWindow | null = null;
-  /** @internal */
   private splashScreenReference: CapacitorSplashScreen | null = null;
-  /** @internal */
-  private trayIcon: Electron.Tray | null = null; // @ts-ignore
-
-  /** @internal */ private isProgramColdStart = true;
-  /** @internal */
+  private trayIcon: Electron.Tray | null = null;
+  // @ts-ignore
+  private isProgramColdStart = true;
   private deepLinking: any = null;
-  /** @internal */
-  private deeplinkingCustomProtocol: "app"; // @ts-ignore
-  /** @internal */ private devServerUrl: string | null = null;
-  /** @internal */
+  private deeplinkingCustomProtocol: "app";
+  // @ts-ignore
+  private devServerUrl: string | null = null;
   private config: CapacitorElectronConfig = {
     trayMenu: {
       useTrayMenu: false,
@@ -217,7 +197,6 @@ export class CapacitorElectronApp {
     });
   }
 
-  /** @internal */
   private async loadMainWindow(thisRef: any) {
     if (thisRef.devServerUrl !== null) {
       await thisRef.mainWindowReference.webContents.loadURL(

@@ -1,13 +1,9 @@
-/** @hidden */
 import Electron from "electron";
-/** @hidden */
-const electron = require("electron");
-/** @hidden */
-const app = electron.app;
-/** @hidden */
 import { DeeplinkingOptions } from "./interfaces";
 
-/** @internal */
+const electron = require("electron");
+const app = electron.app;
+
 export class CapacitorDeeplinking {
   private mainWindowReference: Electron.BrowserWindow = null;
 
@@ -87,7 +83,6 @@ export class CapacitorDeeplinking {
     }
   }
 
-  /** @internal */
   getPassedDeeplinkUrl(): string {
     return this.passedDeeplinkingUrl;
   }
