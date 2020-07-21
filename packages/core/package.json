@@ -34,7 +34,7 @@
   "homepage": "https://github.com/capacitor-community/electron#readme",
   "dependencies": {
     "@capacitor/core": "^2.0.0",
-    "electron": "~9.0.0",
+    "electron": "^9.1.1",
     "electron-is-dev": "^1.2.0",
     "electron-serve": "^1.0.0",
     "mime-types": "~2.1.27"
