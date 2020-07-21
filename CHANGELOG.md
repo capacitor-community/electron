@@ -1,4 +1,11 @@
-## [](https://github.com/capacitor-community/electron/compare/v1.0.1...v) (2020-07-21)
+## [](https://github.com/capacitor-community/electron/compare/v1.0.2...v) (2020-07-21)
+
+### [1.0.2](https://github.com/capacitor-community/electron/compare/v1.0.1...v1.0.2) (2020-07-21)
+
+### Chores
+
+- bring template deps up to date ([0ea74f3](https://github.com/capacitor-community/electron/commit/0ea74f372cc79af13f487433088c58e6f258aa2d))
+- update changelog for 1.0.1 ([71bf738](https://github.com/capacitor-community/electron/commit/71bf7386e4e3674d9d5ad070968af0e05fe5854d))
 
 ### [1.0.1](https://github.com/capacitor-community/electron/compare/v1.0.0...v1.0.1) (2020-07-21)
 
