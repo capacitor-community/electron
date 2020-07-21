@@ -1,4 +1,57 @@
-## [](https://github.com/capacitor-community/electron/compare/v0.5.4...v) (2020-07-20)
+## [](https://github.com/capacitor-community/electron/compare/v1.0.1...v) (2020-07-21)
+
+### [1.0.1](https://github.com/capacitor-community/electron/compare/v1.0.0...v1.0.1) (2020-07-21)
+
+### Bug Fixes
+
+- **platform:** template deps fixed to new release ([7380e12](https://github.com/capacitor-community/electron/commit/7380e126bcdb764e4b9ec66c335d640eca66cb00))
+
+## [1.0.0](https://github.com/capacitor-community/electron/compare/v1.0.0-alpha.4...v1.0.0) (2020-07-21)
+
+### Chores
+
+- clean out tsdoc comments ([30815f7](https://github.com/capacitor-community/electron/commit/30815f748437d621c8058ceb9ef5793af26f2301))
+
+## [1.0.0-alpha.4](https://github.com/capacitor-community/electron/compare/v1.0.0-alpha.3...v1.0.0-alpha.4) (2020-07-20)
+
+### Chores
+
+- fix platform install template ([64d6ca5](https://github.com/capacitor-community/electron/commit/64d6ca5452dc07115344821ed6b59edaa50b28c5))
+
+## [1.0.0-alpha.3](https://github.com/capacitor-community/electron/compare/v1.0.0-alpha.2...v1.0.0-alpha.3) (2020-07-20)
+
+### Bug Fixes
+
+- **core:** error fix on quit if no splash used ([30739f9](https://github.com/capacitor-community/electron/commit/30739f9b672386c950a181700b5c5910a863355b))
+
+## [1.0.0-alpha.2](https://github.com/capacitor-community/electron/compare/v1.0.0-alpha.1...v1.0.0-alpha.2) (2020-07-20)
+
+### Bug Fixes
+
+- **core:** splash hide and no main show ([8c9d411](https://github.com/capacitor-community/electron/commit/8c9d411f7536853c0ca11c0de3e732f29b00d22c))
+
+## [1.0.0-alpha.1](https://github.com/capacitor-community/electron/compare/v1.0.0-alpha.0...v1.0.0-alpha.1) (2020-07-20)
+
+## [1.0.0-alpha.0](https://github.com/capacitor-community/electron/compare/v0.5.4...v1.0.0-alpha.0) (2020-07-20)
+
+### ⚠ BREAKING CHANGES
+
+- beta for 1.0
+
+### Features
+
+- beta for 1.0 ([f0935ea](https://github.com/capacitor-community/electron/commit/f0935ea6ecbce15361b3a2aae9c04bd5744afb1d))
+
+### Refactors
+
+- lerna and more upgrades ([2e48da7](https://github.com/capacitor-community/electron/commit/2e48da7519c7c4f5d624d79625ab2e439bd89fa6))
+
+### Chores
+
+- fix lerna versioning ([366433f](https://github.com/capacitor-community/electron/commit/366433fd864e22e41a2902d8078bbf8644144ae4))
+- update changelog for 0.5.4 ([368eae9](https://github.com/capacitor-community/electron/commit/368eae931c18af0a7868e62a2e8c68126a945ae3))
+- **github:** update CI checks for new structure ([79d1b85](https://github.com/capacitor-community/electron/commit/79d1b85000e7a47adcc19cd1ac1ba0b891228593))
+- remove warn from readme ([6716d8f](https://github.com/capacitor-community/electron/commit/6716d8fb44592a870fdc38b1f522c4a0834d518c))
 
 ### [0.5.4](https://github.com/capacitor-community/electron/compare/v0.5.3...v0.5.4) (2020-07-20)
 
