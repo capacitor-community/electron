@@ -26,6 +26,7 @@ jobs:
         with:
           node-version: 12.x
       - uses: actions/checkout@v2
+      - run: npm i -g lerna
       - run: npm install
       - run: lerna bootstrap
       - run: lerna run build
