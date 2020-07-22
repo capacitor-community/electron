@@ -12,13 +12,13 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build-core:
+  build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     timeout-minutes: 30
     defaults:
       run:
-        working-directory: ./packages/core
+        working-directory: ./
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -27,21 +27,5 @@ jobs:
           node-version: 12.x
       - uses: actions/checkout@v2
       - run: npm install
-      - run: npm run build
-
-  build-platform:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-    timeout-minutes: 30
-    defaults:
-      run:
-        working-directory: ./packages/platform
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 12.x
-      - uses: actions/checkout@v2
-      - run: npm install
-      - run: npm run build
+      - run: lerna bootstrap
+      - run: lerna run build
