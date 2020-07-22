@@ -44,7 +44,7 @@ export interface CapacitorElectronConfig {
   };
   deepLinking?: {
     /** Whether or not deeplinking should be enabled on the url provided in `capacitor.config.json -> server -> hostname` (`'app'` is used if hostname is undefined). __Default is: false__ */
-    useDeeplinking: boolean;
+    customProtocol: null | string;
     /** Optional handler to deal with deeplink urls in the main process of electron. __Default is: null__ */
     deeplinkingHandlerFunction?: (deeplinkingUrl: string) => void | null;
   };
