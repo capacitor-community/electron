@@ -28,7 +28,7 @@ export class CapacitorElectronApp {
   // @ts-ignore
   private isProgramColdStart = true;
   private deepLinking: any = null;
-  private deeplinkingCustomProtocol: "app";
+  private deeplinkingCustomProtocol: string = "app";
   // @ts-ignore
   private devServerUrl: string | null = null;
   private config: CapacitorElectronConfig = {
