@@ -16,9 +16,6 @@
       "pre-commit": "pretty-quick --staged"
     }
   },
-  "directories": {
-    "doc": "docs"
-  },
   "author": "IT-MikeS",
   "devDependencies": {
     "@types/fs-extra": "^8.1.0",
