@@ -1,8 +1,12 @@
-## [](https://github.com/capacitor-community/electron/compare/v1.1.0...v) (2020-07-23)
+## [](https://github.com/capacitor-community/electron/compare/v1.1.1...v) (2020-07-23)
+
+### [1.1.1](https://github.com/capacitor-community/electron/compare/v1.1.0...v1.1.1) (2020-07-23)
 
 ### Chores
 
 - cleanup deps ([d3522ba](https://github.com/capacitor-community/electron/commit/d3522baf3890230570c91937ad3ec3d09eaa9037))
+- cleanup package.json ([e67a129](https://github.com/capacitor-community/electron/commit/e67a129369951c24f0453dc67b119effbda6e4a4))
+- update changelog for 1.1.0 ([5c298e9](https://github.com/capacitor-community/electron/commit/5c298e962f48051b32d07a5d5a000a1487a78210))
 
 ## [1.1.0](https://github.com/capacitor-community/electron/compare/v1.0.2...v1.1.0) (2020-07-23)
 
