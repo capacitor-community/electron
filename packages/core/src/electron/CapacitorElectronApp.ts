@@ -28,7 +28,7 @@ export class CapacitorElectronApp {
   // @ts-ignore
   private isProgramColdStart = true;
   private deepLinking: any = null;
-  private deeplinkingCustomProtocol: "app";
+  private deeplinkingCustomProtocol: string = "app";
   // @ts-ignore
   private devServerUrl: string | null = null;
   private config: CapacitorElectronConfig = {
@@ -42,7 +42,7 @@ export class CapacitorElectronApp {
       trayContextMenu: [new MenuItem({ label: "Quit App", role: "quit" })],
     },
     deepLinking: {
-      useDeeplinking: false,
+      customProtocol: null,
       deeplinkingHandlerFunction: null,
     },
     splashScreen: {
@@ -80,10 +80,8 @@ export class CapacitorElectronApp {
       if (capConfig.server && capConfig.server.url) {
         this.devServerUrl = capConfig.server.url;
       }
-      if (this.config.deepLinking.useDeeplinking) {
-        if (capConfig.server && capConfig.server.hostname) {
-          this.deeplinkingCustomProtocol = capConfig.server.hostname;
-        }
+      if (this.config.deepLinking.customProtocol !== null) {
+        this.deeplinkingCustomProtocol = this.config.deepLinking.customProtocol;
         console.log(
           `[Capacitor]: Set deeplinking url to: ${this.deeplinkingCustomProtocol}`
         );
@@ -143,7 +141,7 @@ export class CapacitorElectronApp {
       }
     }
 
-    if (this.config.deepLinking.useDeeplinking)
+    if (this.config.deepLinking.customProtocol !== null)
       this.deepLinking = new CapacitorDeeplinking(this.mainWindowReference, {
         customProtocol: this.deeplinkingCustomProtocol,
       });

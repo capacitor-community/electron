@@ -1,0 +1,22 @@
+# Sidebar navigation
+
+- label: "Introduction"
+  link: "/"
+- label: "Getting started"
+  link: "/getting-started"
+- label: Common Usage
+  items:
+    - label: "Custom Splashscreen"
+      link: "/usage/custom-splashscreen"
+    - label: "Deeplinking"
+      link: "/usage/deeplinking"
+    - label: "Creating an App Menu"
+      link: "/usage/app-menu"
+    - label: "Tray Only App"
+      link: "/usage/tray-only"
+- label: More Info
+  items:
+    - label: "Config Options"
+      link: "/extra/config-options"
+    - label: "Create Electron Plugin"
+      link: "/extra/create-plugin"

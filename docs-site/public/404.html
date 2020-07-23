@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="generator" content="Gatsby 2.24.10" />
+    <style type="text/css">
+      .anchor.before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: translateX(-100%);
+        padding-right: 4px;
+      }
+      .anchor.after {
+        display: inline-block;
+        padding-left: 4px;
+      }
+      h1 .anchor svg,
+      h2 .anchor svg,
+      h3 .anchor svg,
+      h4 .anchor svg,
+      h5 .anchor svg,
+      h6 .anchor svg {
+        visibility: hidden;
+      }
+      h1:hover .anchor svg,
+      h2:hover .anchor svg,
+      h3:hover .anchor svg,
+      h4:hover .anchor svg,
+      h5:hover .anchor svg,
+      h6:hover .anchor svg,
+      h1 .anchor:focus svg,
+      h2 .anchor:focus svg,
+      h3 .anchor:focus svg,
+      h4 .anchor:focus svg,
+      h5 .anchor:focus svg,
+      h6 .anchor:focus svg {
+        visibility: visible;
+      }
+    </style>
+    <script>
+      document.addEventListener("DOMContentLoaded", function (event) {
+        var hash = window.decodeURI(location.hash.replace("#", ""));
+        if (hash !== "") {
+          var element = document.getElementById(hash);
+          if (element) {
+            var scrollTop =
+              window.pageYOffset ||
+              document.documentElement.scrollTop ||
+              document.body.scrollTop;
+            var clientTop =
+              document.documentElement.clientTop ||
+              document.body.clientTop ||
+              0;
+            var offset =
+              element.getBoundingClientRect().top + scrollTop - clientTop;
+            // Wait for the browser to finish rendering before scrolling.
+            setTimeout(function () {
+              window.scrollTo(0, offset - 0);
+            }, 0);
+          }
+        }
+      });
+    </script>
+    <title data-react-helmet="true">
+      404: Not found | Capacitor Community Electron Platform Docs
+    </title>
+    <meta
+      data-react-helmet="true"
+      name="description"
+      content="Deploy your Capacitor apps to Linux, Mac, and Windows desktops, with the Electron platform! 🖥️"
+    />
+    <meta
+      data-react-helmet="true"
+      name="image"
+      content="https://rocketdocs.netlify.com/banner.png"
+    />
+    <meta
+      data-react-helmet="true"
+      http-equiv="x-ua-compatible"
+      content="IE=edge,chrome=1"
+    />
+    <meta data-react-helmet="true" name="MobileOptimized" content="320" />
+    <meta data-react-helmet="true" name="HandheldFriendly" content="True" />
+    <meta data-react-helmet="true" name="google" content="notranslate" />
+    <meta
+      data-react-helmet="true"
+      name="referrer"
+      content="no-referrer-when-downgrade"
+    />
+    <meta
+      data-react-helmet="true"
+      property="og:url"
+      content="https://rocketdocs.netlify.com"
+    />
+    <meta data-react-helmet="true" property="og:type" content="website" />
+    <meta
+      data-react-helmet="true"
+      property="og:title"
+      content="404: Not found | Capacitor Community Electron Platform Docs"
+    />
+    <meta
+      data-react-helmet="true"
+      property="og:description"
+      content="Deploy your Capacitor apps to Linux, Mac, and Windows desktops, with the Electron platform! 🖥️"
+    />
+    <meta data-react-helmet="true" property="og:locale" content="en" />
+    <meta
+      data-react-helmet="true"
+      property="og:site_name"
+      content="Capacitor Community Electron Platform Docs"
+    />
+    <meta
+      data-react-helmet="true"
+      property="og:image"
+      content="https://rocketdocs.netlify.com/banner.png"
+    />
+    <meta
+      data-react-helmet="true"
+      property="og:image:secure_url"
+      content="https://rocketdocs.netlify.com/banner.png"
+    />
+    <meta data-react-helmet="true" property="og:image:alt" content="Banner" />
+    <meta
+      data-react-helmet="true"
+      property="og:image:type"
+      content="image/png"
+    />
+    <meta data-react-helmet="true" property="og:image:width" content="1200" />
+    <meta data-react-helmet="true" property="og:image:height" content="630" />
+    <meta
+      data-react-helmet="true"
+      name="twitter:card"
+      content="summary_large_image"
+    />
+    <meta
+      data-react-helmet="true"
+      name="twitter:title"
+      content="404: Not found | Capacitor Community Electron Platform Docs"
+    />
+    <meta data-react-helmet="true" name="twitter:site" content="@IT-MikeS" />
+    <meta data-react-helmet="true" name="twitter:creator" content="@IT-MikeS" />
+    <meta
+      data-react-helmet="true"
+      name="twitter:image"
+      content="https://rocketdocs.netlify.com/banner.png"
+    />
+    <meta
+      data-react-helmet="true"
+      name="twitter:image:src"
+      content="https://rocketdocs.netlify.com/banner.png"
+    />
+    <meta data-react-helmet="true" name="twitter:image:alt" content="Banner" />
+    <meta data-react-helmet="true" name="twitter:image:width" content="1200" />
+    <meta data-react-helmet="true" name="twitter:image:height" content="630" />
+    <script data-react-helmet="true" type="application/ld+json">
+      [
+        {
+          "@context": "http://schema.org",
+          "@type": "WebSite",
+          "url": "https://rocketdocs.netlify.com",
+          "name": "404: Not found",
+          "alternateName": "cap-community-electron-docs"
+        }
+      ]
+    </script>
+    <link
+      rel="icon"
+      href="/favicon-32x32.png?v=4a03eeb1864fc6a4cf3fa3a36752c1d6"
+    />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link
+      rel="apple-touch-icon"
+      sizes="48x48"
+      href="/icons/icon-48x48.png?v=4a03eeb1864fc6a4cf3fa3a36752c1d6"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="72x72"
+      href="/icons/icon-72x72.png?v=4a03eeb1864fc6a4cf3fa3a36752c1d6"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="96x96"
+      href="/icons/icon-96x96.png?v=4a03eeb1864fc6a4cf3fa3a36752c1d6"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="144x144"
+      href="/icons/icon-144x144.png?v=4a03eeb1864fc6a4cf3fa3a36752c1d6"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="192x192"
+      href="/icons/icon-192x192.png?v=4a03eeb1864fc6a4cf3fa3a36752c1d6"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="256x256"
+      href="/icons/icon-256x256.png?v=4a03eeb1864fc6a4cf3fa3a36752c1d6"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="384x384"
+      href="/icons/icon-384x384.png?v=4a03eeb1864fc6a4cf3fa3a36752c1d6"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="512x512"
+      href="/icons/icon-512x512.png?v=4a03eeb1864fc6a4cf3fa3a36752c1d6"
+    />
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+    <link
+      rel="canonical"
+      href="https://rocketdocs.netlify.com/404.html"
+      data-baseprotocol="https:"
+      data-basehost="rocketdocs.netlify.com"
+    />
+    <link
+      as="script"
+      rel="preload"
+      href="/webpack-runtime-f58890138189340e9429.js"
+    />
+    <link as="script" rel="preload" href="/framework-85aff51d15c28c7fbe5f.js" />
+    <link as="script" rel="preload" href="/f0e45107-ff2c7ac7fae000cceb4b.js" />
+    <link as="script" rel="preload" href="/app-4f6146ca1250ea7d886b.js" />
+    <link as="script" rel="preload" href="/545f34e4-5ad47dd60d402bdffae8.js" />
+    <link as="script" rel="preload" href="/5e2a4920-b71d4aaefb263d56b92c.js" />
+    <link
+      as="script"
+      rel="preload"
+      href="/a7629950cb7a18c7593baf47d0acfe798f1cddc4-098f7e1c0a7c815e4fb6.js"
+    />
+    <link
+      as="script"
+      rel="preload"
+      href="/component---src-pages-404-js-04beac219105c3e149b3.js"
+    />
+    <link
+      as="fetch"
+      rel="preload"
+      href="/page-data\404.html\page-data.json"
+      crossorigin="anonymous"
+    />
+    <link
+      as="fetch"
+      rel="preload"
+      href="/page-data\app-data.json"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div id="___gatsby">
+      <style data-emotion-css="170xdhw">
+        @import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
+        *,
+        *::after,
+        *::before {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+        *::selection {
+          background: #d0d0d5 !important;
+        }
+        body {
+          font-size: 16px;
+          font-family: "Roboto", sans-serif;
+          background-color: #fff;
+          text-rendering: optimizelegibility;
+        }
+        h1 {
+          font-size: 32px;
+          color: #333;
+          font-weight: normal;
+          margin-bottom: 24px;
+        }
+        h2 {
+          font-size: 24px;
+        }
+        h3 {
+          font-size: 18px;
+        }
+        h4 {
+          font-size: 16px;
+        }
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+          color: #737380;
+          margin: 24px 0 16px 0;
+          font-weight: normal;
+        }
+        p {
+          color: #737380;
+          font-size: 16px;
+          line-height: 28px;
+          margin-bottom: 16px;
+          font-weight: 400;
+        }
+        code.inline-code {
+          display: inline-block;
+          vertical-align: middle;
+          line-height: 1;
+          padding: 0.2em 0.2em 0.3em 0.2em;
+          background-color: #44475a;
+          color: rgba(248, 248, 242);
+          font-size: 14px;
+          border-radius: 3px;
+          font-feature-settings: "clig" 0, "calt" 0;
+          font-variant: no-common-ligatures no-discretionary-ligatures
+            no-historical-ligatures no-contextual;
+        }
+        a {
+          color: #737380;
+          font-weight: bold;
+        }
+        a:hover {
+          color: #53b9ff !important;
+          -webkit-transition: all 100ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+          transition: all 100ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+          opacity: 1 !important;
+        }
+        blockquote {
+          margin: 0;
+        }
+        blockquote p {
+          padding: 1rem;
+          background: #f5f5fa;
+          border-radius: 5px;
+        }
+        hr {
+          border: 0;
+          height: 0;
+          border-top: 1px solid rgba(0, 0, 0, 0.1);
+          border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        table {
+          border-collapse: collapse;
+          border-spacing: 0;
+          width: 100%;
+          margin-bottom: 16px;
+          color: #444;
+        }
+        th,
+        td {
+          text-align: left;
+          padding: 12px;
+        }
+        tr:nth-of-type(2n) td {
+          background-color: #f5f5fa;
+        }
+        tr {
+          background-color: #ffffff;
+        }
+        iframe {
+          margin-bottom: 16px;
+        }
+        img {
+          max-width: 100%;
+        }
+        ul,
+        ol {
+          color: #737380;
+          padding-left: 15px;
+          margin-bottom: 16px;
+        }
+        ul li,
+        ol li {
+          line-height: 28px;
+        }
+        .gatsby-highlight {
+          position: relative;
+        }
+        .gatsby-highlight .token {
+          font-style: normal !important;
+        }
+        pre[class*="language-"]::before {
+          background: #d9d7e0;
+          border-radius: 0 0 4px 4px;
+          color: #232129;
+          font-size: 12px;
+          font-family: SFMono-Regular, Menlo, Monaco, Consolas,
+            "Liberation Mono", "Courier New", monospace;
+          -webkit-letter-spacing: 0.075em;
+          -moz-letter-spacing: 0.075em;
+          -ms-letter-spacing: 0.075em;
+          letter-spacing: 0.075em;
+          line-height: 1;
+          padding: 0.25rem 0.5rem;
+          position: absolute;
+          left: 1rem;
+          text-align: right;
+          text-transform: uppercase;
+          top: 0;
+        }
+        pre[class*="language-"] code {
+          font-family: SFMono-Regular, Menlo, Monaco, Consolas,
+            "Liberation Mono", "Courier New", monospace;
+          font-variant: no-common-ligatures no-discretionary-ligatures
+            no-historical-ligatures no-contextual;
+        }
+        pre[class~="language-js"]::before,
+        pre[class~="language-javascript"]::before {
+          content: "js";
+          background: #f7df1e;
+        }
+        pre[class~="language-jsx"]::before {
+          content: "jsx";
+          background: #61dafb;
+        }
+        pre[class~="language-typescript"]::before,
+        pre[class~="language-ts"]::before {
+          content: "ts";
+          background: #294e80;
+          color: #fff;
+        }
+        pre[class~="language-tsx"]::before {
+          content: "tsx";
+          background: #294e80;
+          color: #fff;
+        }
+        pre[class~="language-graphql"]::before {
+          content: "GraphQL";
+          background: #e10098;
+          color: #fff;
+        }
+        pre[class~="language-html"]::before {
+          content: "html";
+          background: #005a9c;
+          color: #fff;
+        }
+        pre[class~="language-css"]::before {
+          content: "css";
+          background: #ff9800;
+          color: #fff;
+        }
+        pre[class~="language-mdx"]::before {
+          content: "mdx";
+          background: #f9ac00;
+          color: #fff;
+        }
+        pre[class~="language-shell"]::before {
+          content: "shell";
+        }
+        pre[class~="language-sh"]::before {
+          content: "sh";
+        }
+        pre[class~="language-bash"]::before {
+          content: "bash";
+        }
+        pre[class~="language-yaml"]::before {
+          content: "yaml";
+          background: #ffa8df;
+        }
+        pre[class~="language-markdown"]::before {
+          content: "md";
+        }
+        pre[class~="language-json"]::before,
+        pre[class~="language-json5"]::before {
+          content: "json";
+          background: linen;
+        }
+        pre[class~="language-diff"]::before {
+          content: "diff";
+          background: #e6ffed;
+        }
+        pre[class~="language-text"]::before {
+          content: "text";
+          background: #fff;
+        }
+        pre[class~="language-flow"]::before {
+          content: "flow";
+          background: #e8bd36;
+        }
+      </style>
+      <div style="outline: none;" tabindex="-1" id="gatsby-focus-wrapper">
+        <style data-emotion-css="18x4tik">
+          .css-18x4tik {
+            width: 20%;
+            max-width: 280px;
+            min-width: 280px;
+            background-color: #ffffff;
+            position: fixed;
+            overflow-y: auto;
+            left: 0;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: justify;
+            -webkit-justify-content: space-between;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+            -webkit-align-items: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-flex-direction: column;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            -webkit-transition: -webkit-transform 0.5s;
+            -webkit-transition: transform 0.5s;
+            transition: transform 0.5s;
+            height: 100vh;
+          }
+          .css-18x4tik nav {
+            width: 100%;
+            -webkit-align-self: flex-start;
+            -ms-flex-item-align: start;
+            align-self: flex-start;
+            margin-bottom: 20px;
+            -webkit-flex: 1;
+            -ms-flex: 1;
+            flex: 1;
+          }
+          .css-18x4tik footer {
+            padding: 24px 0 24px 30px;
+            width: 100%;
+          }
+          .css-18x4tik footer p {
+            color: #a8a8b3;
+            font-size: 12px;
+            margin: 0;
+          }
+          @media (max-width: 780px) {
+            .css-18x4tik {
+              max-width: 240px;
+              min-width: 240px;
+              -webkit-transform: translate3d(-100%, 0, 0);
+              -ms-transform: translate3d(-100%, 0, 0);
+              transform: translate3d(-100%, 0, 0);
+            }
+          }
+        </style>
+        <aside class="css-18x4tik e1wh78ri0">
+          <style data-emotion-css="16x2xrx">
+            .css-16x2xrx {
+              width: 100%;
+              height: 100%;
+              max-height: 100px;
+              min-height: 100px;
+              padding: 20px 0;
+            }
+            .css-16x2xrx a {
+              width: 100%;
+              height: 100%;
+              padding-left: 30px;
+              display: -webkit-box;
+              display: -webkit-flex;
+              display: -ms-flexbox;
+              display: flex;
+              -webkit-box-pack: start;
+              -webkit-justify-content: flex-start;
+              -ms-flex-pack: start;
+              justify-content: flex-start;
+              -webkit-align-items: center;
+              -webkit-box-align: center;
+              -ms-flex-align: center;
+              align-items: center;
+            }
+          </style>
+          <div class="css-16x2xrx e1wh78ri1">
+            <a href="/"
+              ><style data-emotion-css="pvw8gu">
+                .css-pvw8gu {
+                  width: 160px;
+                  height: 62px;
+                  background-size: contain;
+                  background: url(data:image/png;base64,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)
+                    center no-repeat;
+                }
+              </style>
+              <div class="css-pvw8gu e1y0n8oq0"></div
+            ></a>
+          </div>
+          <nav>
+            <style data-emotion-css="mbmci8">
+              .css-mbmci8 {
+                list-style: none;
+                width: 100%;
+                padding-left: 0;
+                display: -webkit-box;
+                display: -webkit-flex;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-box-pack: start;
+                -webkit-justify-content: flex-start;
+                -ms-flex-pack: start;
+                justify-content: flex-start;
+                -webkit-align-items: center;
+                -webkit-box-align: center;
+                -ms-flex-align: center;
+                align-items: center;
+                -webkit-flex-direction: column;
+                -ms-flex-direction: column;
+                flex-direction: column;
+              }
+            </style>
+            <ul class="css-mbmci8 e1wh78ri2">
+              <style data-emotion-css="vd7v6s">
+                .css-vd7v6s {
+                  font-size: 15px;
+                  width: 100%;
+                  -webkit-transition: all 200ms ease-in-out;
+                  transition: all 200ms ease-in-out;
+                  padding: 0 20px;
+                }
+                .css-vd7v6s a,
+                .css-vd7v6s span {
+                  display: block;
+                  font-size: 15px;
+                  color: #999;
+                  background-color: #ffffff;
+                  padding: 4px 10px;
+                  margin: 4px 0;
+                  border-radius: 4px;
+                  font-weight: normal;
+                  -webkit-text-decoration: none;
+                  text-decoration: none;
+                  width: 100%;
+                  height: 100%;
+                  display: -webkit-box;
+                  display: -webkit-flex;
+                  display: -ms-flexbox;
+                  display: flex;
+                  -webkit-box-pack: start;
+                  -webkit-justify-content: flex-start;
+                  -ms-flex-pack: start;
+                  justify-content: flex-start;
+                  -webkit-align-items: center;
+                  -webkit-box-align: center;
+                  -ms-flex-align: center;
+                  align-items: center;
+                  cursor: pointer;
+                  margin: 0 auto;
+                  -webkit-transition: background-color 0.2s, color 0.2s,
+                    padding-left 0.2s;
+                  transition: background-color 0.2s, color 0.2s,
+                    padding-left 0.2s;
+                }
+                .css-vd7v6s a svg,
+                .css-vd7v6s span svg {
+                  width: 20px;
+                  height: 20px;
+                  margin-right: 10px;
+                }
+                .css-vd7v6s a:not(.active-link):hover,
+                .css-vd7v6s span:not(.active-link):hover {
+                  padding-left: 20px;
+                  color: #666;
+                }
+                .css-vd7v6s a.active-link,
+                .css-vd7v6s span.active-link {
+                  color: #666;
+                  background-color: #f5f5fa;
+                }
+              </style>
+              <li class="css-vd7v6s e1wh78ri4"><a href="/">Introduction</a></li>
+              <li class="css-vd7v6s e1wh78ri4">
+                <a href="/getting-started">Getting started</a>
+              </li>
+              <style data-emotion-css="7f2m0f">
+                .css-7f2m0f {
+                  padding-left: 30px;
+                  width: 100%;
+                  text-transform: uppercase;
+                  font-size: 13px;
+                  font-weight: bold;
+                  margin-top: 20px;
+                  color: #53b9ff;
+                  -webkit-letter-spacing: 0.142em;
+                  -moz-letter-spacing: 0.142em;
+                  -ms-letter-spacing: 0.142em;
+                  letter-spacing: 0.142em;
+                }
+              </style>
+              <li class="css-7f2m0f e1wh78ri3">Common Usage</li>
+              <style data-emotion-css="1ggkth3">
+                .css-1ggkth3 {
+                  list-style: none;
+                  width: 100%;
+                  padding-left: 0;
+                  display: -webkit-box;
+                  display: -webkit-flex;
+                  display: -ms-flexbox;
+                  display: flex;
+                  -webkit-box-pack: start;
+                  -webkit-justify-content: flex-start;
+                  -ms-flex-pack: start;
+                  justify-content: flex-start;
+                  -webkit-align-items: center;
+                  -webkit-box-align: center;
+                  -ms-flex-align: center;
+                  align-items: center;
+                  -webkit-flex-direction: column;
+                  -ms-flex-direction: column;
+                  flex-direction: column;
+                  margin-top: 5px;
+                }
+              </style>
+              <ul class="css-1ggkth3 e1wh78ri5">
+                <li class="css-vd7v6s e1wh78ri4">
+                  <a href="/usage/custom-splashscreen">Custom Splashscreen</a>
+                </li>
+                <li class="css-vd7v6s e1wh78ri4">
+                  <a href="/usage/deeplinking">Deeplinking</a>
+                </li>
+                <li class="css-vd7v6s e1wh78ri4">
+                  <a href="/usage/app-menu">Creating an App Menu</a>
+                </li>
+                <li class="css-vd7v6s e1wh78ri4">
+                  <a href="/usage/tray-only">Tray Only App</a>
+                </li>
+              </ul>
+              <li class="css-7f2m0f e1wh78ri3">More Info</li>
+              <ul class="css-1ggkth3 e1wh78ri5">
+                <li class="css-vd7v6s e1wh78ri4">
+                  <a href="/extra/config-options">Config Options</a>
+                </li>
+                <li class="css-vd7v6s e1wh78ri4">
+                  <a href="/extra/create-plugin">Create Electron Plugin</a>
+                </li>
+              </ul>
+            </ul>
+          </nav>
+          <footer><p>Theme by Rocketseat</p></footer>
+        </aside>
+        <div class="headroom-wrapper">
+          <div
+            style="
+              position: relative;
+              top: 0;
+              left: 0;
+              right: 0;
+              z-index: 1;
+              -webkit-transform: translate3D(0, 0, 0);
+              -ms-transform: translate3D(0, 0, 0);
+              transform: translate3D(0, 0, 0);
+            "
+            class="headroom headroom--unfixed"
+          >
+            <style data-emotion-css="1dnpj6z">
+              .css-1dnpj6z {
+                display: -webkit-box;
+                display: -webkit-flex;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-box-pack: start;
+                -webkit-justify-content: flex-start;
+                -ms-flex-pack: start;
+                justify-content: flex-start;
+                -webkit-align-items: center;
+                -webkit-box-align: center;
+                -ms-flex-align: center;
+                align-items: center;
+                height: 60px;
+                padding: 0 24px;
+                background: #fff;
+                -webkit-transition: -webkit-transform 0.5s;
+                -webkit-transition: transform 0.5s;
+                transition: transform 0.5s;
+                -webkit-transform: translate3d(0, 0, 0);
+                -ms-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+              }
+              .css-1dnpj6z h2 {
+                margin: 0;
+                border: none;
+                padding: 0;
+                font-size: 18px;
+                color: #000;
+              }
+              .css-1dnpj6z button {
+                border: none;
+                background: #fff;
+                cursor: pointer;
+                margin-right: 16px;
+              }
+              @media (min-width: 780px) {
+                .css-1dnpj6z {
+                  display: none;
+                }
+              }
+            </style>
+            <header class="css-1dnpj6z esnpb7p0">
+              <button aria-label="Open sidebar" type="button">
+                <svg
+                  stroke="currentColor"
+                  fill="currentColor"
+                  stroke-width="0"
+                  viewBox="0 0 512 512"
+                  size="23"
+                  height="23"
+                  width="23"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M32 96v64h448V96H32zm0 128v64h448v-64H32zm0 128v64h448v-64H32z"
+                  ></path>
+                </svg>
+              </button>
+              <h2>cap-community-electron-docs</h2>
+            </header>
+          </div>
+        </div>
+        <style data-emotion-css="f2zvwr">
+          .css-f2zvwr {
+            padding-left: 280px;
+            -webkit-transition: -webkit-transform 0.5s;
+            -webkit-transition: transform 0.5s;
+            transition: transform 0.5s;
+          }
+          @media (max-width: 780px) {
+            .css-f2zvwr {
+              padding-left: 0;
+              -webkit-transform: translate3d(0, 0, 0);
+              -ms-transform: translate3d(0, 0, 0);
+              transform: translate3d(0, 0, 0);
+            }
+          }
+        </style>
+        <div class="css-f2zvwr eees1d52">
+          <style data-emotion-css="844t05">
+            .css-844t05 {
+              padding: 40px 0 0 40px;
+            }
+            @media (max-width: 780px) {
+              .css-844t05 {
+                padding: 24px 0 0 24px;
+              }
+            }
+          </style>
+          <h1 class="css-844t05 eees1d53">Page not found!</h1>
+          <style data-emotion-css="1bi9pyf">
+            .css-1bi9pyf {
+              padding: 0 40px;
+              height: 100%;
+            }
+            @media (max-width: 780px) {
+              .css-1bi9pyf {
+                padding: 24px 24px 48px 24px;
+              }
+            }
+          </style>
+          <main class="css-1bi9pyf eees1d50">
+            <style data-emotion-css="kvs0zy">
+              .css-kvs0zy {
+                width: 100%;
+                min-width: 75%;
+                max-width: 75%;
+              }
+              @media (max-width: 1200px) {
+                .css-kvs0zy {
+                  min-width: 100%;
+                  max-width: 100%;
+                }
+              }
+            </style>
+            <div class="css-kvs0zy eees1d51">
+              <p>
+                You just hit a route that doesn&#x27;t exist... the sadness.
+              </p>
+              <p>
+                If you&#x27;d like to go back to homepage,
+                <a href="/">click here</a>.
+              </p>
+            </div>
+          </main>
+        </div>
+      </div>
+      <div
+        id="gatsby-announcer"
+        style="
+          position: absolute;
+          top: 0;
+          width: 1px;
+          height: 1px;
+          padding: 0;
+          overflow: hidden;
+          clip: rect(0, 0, 0, 0);
+          white-space: nowrap;
+          border: 0;
+        "
+        aria-live="assertive"
+        aria-atomic="true"
+      ></div>
+    </div>
+    <script id="gatsby-script-loader">
+      /*<![CDATA[*/ window.pagePath = "/404.html"; /*]]>*/
+    </script>
+    <script id="gatsby-chunk-mapping">
+      /*<![CDATA[*/ window.___chunkMapping = {
+        polyfill: ["/polyfill-db2f4e55589df5b85311.js"],
+        app: ["/app-4f6146ca1250ea7d886b.js"],
+        "component---cache-caches-gatsby-plugin-offline-app-shell-js": [
+          "/component---cache-caches-gatsby-plugin-offline-app-shell-js-5a1ee105f05b3144b807.js",
+        ],
+        "component---node-modules-rocketseat-gatsby-theme-docs-core-src-templates-docs-query-js": [
+          "/component---node-modules-rocketseat-gatsby-theme-docs-core-src-templates-docs-query-js-9002056845372a363ac2.js",
+        ],
+        "component---node-modules-rocketseat-gatsby-theme-docs-core-src-templates-homepage-query-js": [
+          "/component---node-modules-rocketseat-gatsby-theme-docs-core-src-templates-homepage-query-js-eb5c2326e6e3be0e21a7.js",
+        ],
+        "component---src-pages-404-js": [
+          "/component---src-pages-404-js-04beac219105c3e149b3.js",
+        ],
+      }; /*]]>*/
+    </script>
+    <script src="/polyfill-db2f4e55589df5b85311.js" nomodule=""></script>
+    <script
+      src="/component---src-pages-404-js-04beac219105c3e149b3.js"
+      async=""
+    ></script>
+    <script
+      src="/a7629950cb7a18c7593baf47d0acfe798f1cddc4-098f7e1c0a7c815e4fb6.js"
+      async=""
+    ></script>
+    <script src="/5e2a4920-b71d4aaefb263d56b92c.js" async=""></script>
+    <script src="/545f34e4-5ad47dd60d402bdffae8.js" async=""></script>
+    <script src="/app-4f6146ca1250ea7d886b.js" async=""></script>
+    <script src="/f0e45107-ff2c7ac7fae000cceb4b.js" async=""></script>
+    <script src="/framework-85aff51d15c28c7fbe5f.js" async=""></script>
+    <script src="/webpack-runtime-f58890138189340e9429.js" async=""></script>
+  </body>
+</html>
