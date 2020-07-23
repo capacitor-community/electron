@@ -29,40 +29,7 @@ Maintenance Status: Actively Maintained
 
 ## Documentation:
 
-[Doc: Class usage and config options](https://github.com/capacitor-community/electron/blob/master/docs/PlatformDocs.md)
-
-[Doc: Create a plugin for the Electron platform](https://github.com/capacitor-community/electron/blob/master/docs/CreateElectronPluginGuide.md)
-
-## Basic Usage Steps:
-
-1. Build your webapp in your capacitor initiated project.
-2. Run `npm i @capacitor-community/electron` in your webapp project directory. This will install the platform for use with the `@capacitor/cli`.
-3. Run `npx cap add @capacitor-community/electron` to initiate the platform, this will create the `electron` folder in your webapp project.
-4. CD into the `electron` folder and run the `electron:start` script to see your app in electron.
-
-**_Note: You can use other `npx cap` commands with the platform by: `npx cap <command> @capacitor-community/electron`_**
-
-## Using your own image for the Splash Screen
-
-`@capacitor-community/electron` looks in the `YOUR_APP_ROOT/electron/assets` folder for a `splash.png` file by default, but you can use your own image by using one of the following methods:
-
-1. Editing the `splash.png` file directly.
-2. Place your own image file into the `assets` folder and pass the `imageFilePath` property as part of `splashScreen -> splashOptions` into `createCapacitorElectronApp(config)`. For example if your image was named `myImage.gif` (yes animated GIF's are valid) you would pass it like this:
-
-```typescript
-  import {app, ......} from 'electron';
-  import * as path from 'path';
-
-  .....
-
-  const myCapacitorApp = createCapacitorElectronApp({
-    splashScreen: {
-      splashOptions: {
-        imageFilePath: path.join(app.getAppPath(), "assets", "myImage.gif")
-      }
-    }
-  });
-```
+[You can find the docs site here.](https://capacitor-community-electron-docs-site.vercel.app/)
 
 ## Great electron packages to consider for your project.
 
