@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "strict": true,
-    "lib": ["es2016"],
+    "lib": ["es2016", "DOM"],
     "outDir": "build",
     "module": "commonjs",
     "target": "es2017",
