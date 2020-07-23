@@ -1,4 +1,29 @@
-## [](https://github.com/capacitor-community/electron/compare/v1.0.2...v) (2020-07-21)
+## [](https://github.com/capacitor-community/electron/compare/v1.1.0...v) (2020-07-23)
+
+### Chores
+
+- cleanup deps ([d3522ba](https://github.com/capacitor-community/electron/commit/d3522baf3890230570c91937ad3ec3d09eaa9037))
+
+## [1.1.0](https://github.com/capacitor-community/electron/compare/v1.0.2...v1.1.0) (2020-07-23)
+
+### Features
+
+- **docs:** add docs site inital ([c920dcb](https://github.com/capacitor-community/electron/commit/c920dcbf1d55eaf69d02b6bec487023107fa91ab))
+- deeplink protocol in CapacitorElectronApp ([5e01a6d](https://github.com/capacitor-community/electron/commit/5e01a6d5885b2b091c8ed780c5247d3bbe21af25))
+
+### Bug Fixes
+
+- default config type error ([46333b3](https://github.com/capacitor-community/electron/commit/46333b34e07e7c76104e404dcc89cf93c9bfb184))
+- update deeplinking options interface ([c27c189](https://github.com/capacitor-community/electron/commit/c27c18957bf7882c8cdad65695e25b50bdf153e2))
+
+### Chores
+
+- ci for lerna v3 ([f2a72c9](https://github.com/capacitor-community/electron/commit/f2a72c9f33a5a9ea1ce50631c0fe25646f00f3a2))
+- lerna 3 in ci ([fa8b27a](https://github.com/capacitor-community/electron/commit/fa8b27a74bc7fe1a9b4f088b19f171b86e69d61d))
+- move docs to different repo for vercel host ([bfab893](https://github.com/capacitor-community/electron/commit/bfab89338017519e9cc950170801985ec69b9b4c))
+- update readme with docs site ([129f2d7](https://github.com/capacitor-community/electron/commit/129f2d76ee7fa6df0fbd4488f1c593fe5bd3dde5))
+- **docs:** make docs site part of lerna ([fc15a28](https://github.com/capacitor-community/electron/commit/fc15a286b25b480153a209f2a99af4b50bae63b2))
+- update changelog for 1.0.2 ([3c2a8ba](https://github.com/capacitor-community/electron/commit/3c2a8ba310e11b19bed0f5d417d8262dfa1be1f5))
 
 ### [1.0.2](https://github.com/capacitor-community/electron/compare/v1.0.1...v1.0.2) (2020-07-21)
 
