@@ -1,0 +1,55 @@
+{
+  "data": {
+    "allSidebarItems": {
+      "edges": [
+        {
+          "node": {
+            "label": "Introduction",
+            "link": "/",
+            "items": null,
+            "id": "c16c17f2-5a5b-5e14-81b2-674ef131957e"
+          }
+        },
+        {
+          "node": {
+            "label": "Getting started",
+            "link": "/getting-started",
+            "items": null,
+            "id": "2c6f4948-e29f-5bbf-b844-4701d1bbe70a"
+          }
+        },
+        {
+          "node": {
+            "label": "Common Usage",
+            "link": null,
+            "items": [
+              {
+                "label": "Custom Splashscreen",
+                "link": "/usage/custom-splashscreen"
+              },
+              { "label": "Deeplinking", "link": "/usage/deeplinking" },
+              { "label": "Creating an App Menu", "link": "/usage/app-menu" },
+              { "label": "Tray Only App", "link": "/usage/tray-only" }
+            ],
+            "id": "8c2b4549-386d-569d-bcca-ff9a04121c6a"
+          }
+        },
+        {
+          "node": {
+            "label": "More Info",
+            "link": null,
+            "items": [
+              { "label": "Config Options", "link": "/extra/config-options" },
+              {
+                "label": "Create Electron Plugin",
+                "link": "/extra/create-plugin"
+              }
+            ],
+            "id": "8a6eded7-5672-572c-be2f-f37e5d8894a3"
+          }
+        }
+      ]
+    },
+    "site": { "siteMetadata": { "basePath": "/" } }
+  }
+}
