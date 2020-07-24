@@ -1,4 +1,15 @@
-## [](https://github.com/capacitor-community/electron/compare/v1.1.1...v) (2020-07-23)
+## [](https://github.com/capacitor-community/electron/compare/v1.1.2...v) (2020-07-24)
+
+### [1.1.2](https://github.com/capacitor-community/electron/compare/v1.1.1...v1.1.2) (2020-07-24)
+
+### Bug Fixes
+
+- **core:** Menu now set in prod mode, fixes [#40](https://github.com/capacitor-community/electron/issues/40) ([72447ab](https://github.com/capacitor-community/electron/commit/72447abad7c81e1976127b9cbd0b2e5f36488cf8))
+- **core:** no js.map on electron-bridge, fixes [#41](https://github.com/capacitor-community/electron/issues/41) ([de97fac](https://github.com/capacitor-community/electron/commit/de97facc712cef296a0d0332a66f92c64b857eeb))
+
+### Chores
+
+- update changelog for 1.1.1 ([bd4c78a](https://github.com/capacitor-community/electron/commit/bd4c78a40191f2aa863577766abbe3f3a0a8c0b0))
 
 ### [1.1.1](https://github.com/capacitor-community/electron/compare/v1.1.0...v1.1.1) (2020-07-23)
 
