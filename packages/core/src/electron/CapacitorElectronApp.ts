@@ -148,11 +148,12 @@ export class CapacitorElectronApp {
 
     configCapacitor(this.mainWindowReference);
 
-    if (electronIsDev && this.config.applicationMenuTemplate !== null) {
-      // Set our above template to the Menu Object if we are in development mode, dont want users having the devtools.
+    if (this.config.applicationMenuTemplate !== null) {
       Menu.setApplicationMenu(
         Menu.buildFromTemplate(this.config.applicationMenuTemplate)
       );
+    } else {
+      Menu.setApplicationMenu(null);
     }
 
     // Setup the handler for deeplinking if it has been setup.
