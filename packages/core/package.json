@@ -8,7 +8,7 @@
     "build": "npm run clean && npm run build-plugins && npm run build-electron",
     "clean": "rimraf dist",
     "build-plugins": "npm run transpile-plugins && npm run rollup-plugins && npm run minify-plugins",
-    "minify-plugins": "uglifyjs --mangle --compress --source-map \"content='dist/electron-bridge.js.map',url='electron-bridge.js.map'\" --comments '/^/*!/' --output dist/electron-bridge.js dist/electron-bridge.js",
+    "minify-plugins": "uglifyjs --mangle --compress --comments '/^/*!/' --output dist/electron-bridge.js dist/electron-bridge.js",
     "rollup-plugins": "rollup --config rollup.config.plugins.js",
     "transpile-plugins": "tsc --project ./tsconfig.plugins.json --module ES2015 --target ES5 --outDir dist/esm-plugins",
     "build-electron": "npm run transpile-electron",

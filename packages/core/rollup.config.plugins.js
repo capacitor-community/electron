@@ -9,7 +9,7 @@ export default {
     file: "dist/electron-bridge.js",
     format: "iife",
     name: "capacitorExports",
-    sourcemap: true,
+    sourcemap: false,
     banner,
   },
   plugins: [nodeResolve()],
