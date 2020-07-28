@@ -1,4 +1,7 @@
-import { CapacitorElectronConfig } from "./interfaces";
+import {
+  CapacitorElectronConfig,
+  ElectronDeeplinkingConfig,
+} from "./interfaces";
 import { CapacitorSplashScreen } from "./ElectronSplashScreen";
 import { CapacitorDeeplinking } from "./ElectronDeepLinking";
 import Electron from "electron";
@@ -15,6 +18,10 @@ const path = require("path");
 const fs = require("fs");
 const electronIsDev = require("electron-is-dev");
 const electronServe = require("electron-serve");
+
+const EventEmitter = require("events");
+class CapElectronEmitter extends EventEmitter {}
+const theEmitter = new CapElectronEmitter();
 
 const loadWebApp = electronServe({
   directory: path.join(app.getAppPath(), "app"),
@@ -187,12 +194,12 @@ export class CapacitorElectronApp {
       ) {
         this.mainWindowReference.show();
       }
-      // If we are developers we might as well open the devtools by default.
-      if (electronIsDev) {
-        setTimeout(() => {
+      setTimeout(() => {
+        if (electronIsDev) {
           this.mainWindowReference.webContents.openDevTools();
-        }, 200);
-      }
+        }
+        theEmitter.emit("CAPELECTRON_DeeplinkListenerInitialized", "");
+      }, 400);
     });
   }
 
@@ -262,5 +269,94 @@ export class CapacitorElectronApp {
 
   getTrayIcon() {
     return this.trayIcon;
+  }
+}
+
+export class ElectronDeeplinking {
+  private customProtocol: string = "mycapacitorapp";
+  private lastPassedUrl: null | string = null;
+  private customHandler: (url: string) => void | null = null;
+  private capacitorAppRef: any = null;
+
+  constructor(capacitorApp: any, config: ElectronDeeplinkingConfig) {
+    this.capacitorAppRef = capacitorApp;
+    this.customProtocol = config.customProtocol;
+    if (config.customHandler) this.customHandler = config.customHandler;
+
+    theEmitter.on("CAPELECTRON_DeeplinkListenerInitialized", () => {
+      if (
+        this.capacitorAppRef !== null &&
+        this.capacitorAppRef.getMainWindow() &&
+        !this.capacitorAppRef.getMainWindow().isDestroyed() &&
+        this.lastPassedUrl !== null
+      )
+        this.capacitorAppRef
+          .getMainWindow()
+          .webContents.send("appUrlOpen", this.lastPassedUrl);
+      this.lastPassedUrl = null;
+    });
+
+    const instanceLock = app.requestSingleInstanceLock();
+    if (instanceLock) {
+      app.on("second-instance", (_event, argv) => {
+        if (process.platform == "win32") {
+          this.lastPassedUrl = argv.slice(1).toString();
+          this.internalHandler(this.lastPassedUrl);
+        }
+        if (!this.capacitorAppRef.getMainWindow().isDestroyed()) {
+          if (this.capacitorAppRef.getMainWindow().isMinimized())
+            this.capacitorAppRef.getMainWindow().restore();
+          this.capacitorAppRef.getMainWindow().focus();
+        } else {
+          this.capacitorAppRef.init();
+        }
+      });
+    } else {
+      app.quit();
+    }
+
+    if (!app.isDefaultProtocolClient(this.customProtocol))
+      app.setAsDefaultProtocolClient(this.customProtocol);
+    app.on("open-url", (event, url) => {
+      event.preventDefault();
+      this.lastPassedUrl = url;
+      this.internalHandler(url);
+      if (
+        this.capacitorAppRef &&
+        this.capacitorAppRef.getMainWindow() &&
+        this.capacitorAppRef.getMainWindow().isDestroyed()
+      )
+        this.capacitorAppRef.init();
+    });
+
+    if (process.platform == "win32") {
+      this.lastPassedUrl = process.argv.slice(1).toString();
+      this.internalHandler(this.lastPassedUrl);
+    }
+  }
+
+  private internalHandler(urlLink: string | null) {
+    if (urlLink !== null) {
+      const paramsArr = urlLink.split(",");
+      let url = "";
+      for (let item of paramsArr) {
+        if (item.indexOf(this.customProtocol) >= 0) {
+          url = item;
+          break;
+        }
+      }
+      if (url.length > 0) {
+        if (this.customHandler !== null && url !== null)
+          this.customHandler(url);
+        if (
+          this.capacitorAppRef !== null &&
+          this.capacitorAppRef.getMainWindow() &&
+          !this.capacitorAppRef.getMainWindow().isDestroyed()
+        )
+          this.capacitorAppRef
+            .getMainWindow()
+            .webContents.send("appUrlOpen", url);
+      }
+    }
   }
 }

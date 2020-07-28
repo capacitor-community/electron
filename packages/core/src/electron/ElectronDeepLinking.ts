@@ -48,6 +48,7 @@ export class CapacitorDeeplinking {
     if (instanceLock) {
       //@ts-ignore
       app.on("second-instance", (event, argv) => {
+        console.log("second inst");
         if (process.platform == "win32") {
           this.passedDeeplinkingUrl = argv.slice(1).toString();
         }
@@ -69,13 +70,13 @@ export class CapacitorDeeplinking {
       app.setAsDefaultProtocolClient(this.deeplinkingOptions.customProtocol);
     }
 
-    app.on("will-finish-launching", () => {
-      app.on("open-url", (event, url) => {
-        event.preventDefault();
-        this.passedDeeplinkingUrl = url;
-        this.internalDeeplinkHandler(url);
-      });
+    //app.on("will-finish-launching", () => {
+    app.on("open-url", (event, url) => {
+      event.preventDefault();
+      this.passedDeeplinkingUrl = url;
+      this.internalDeeplinkHandler(url);
     });
+    //});
 
     if (process.platform == "win32") {
       this.passedDeeplinkingUrl = process.argv.slice(1).toString();

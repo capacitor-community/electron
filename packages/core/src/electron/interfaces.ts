@@ -49,3 +49,8 @@ export interface CapacitorElectronConfig {
     deeplinkingHandlerFunction?: (deeplinkingUrl: string) => void | null;
   };
 }
+
+export interface ElectronDeeplinkingConfig {
+  customProtocol: string;
+  customHandler?: (url: string) => void;
+}
