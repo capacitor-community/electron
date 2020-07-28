@@ -3,7 +3,6 @@ import {
   ElectronDeeplinkingConfig,
 } from "./interfaces";
 import { CapacitorSplashScreen } from "./ElectronSplashScreen";
-import { CapacitorDeeplinking } from "./ElectronDeepLinking";
 import Electron from "electron";
 import { configCapacitor, deepMerge } from "./Utils";
 
@@ -33,10 +32,6 @@ export class CapacitorElectronApp {
   private splashScreenReference: CapacitorSplashScreen | null = null;
   private trayIcon: Electron.Tray | null = null;
   // @ts-ignore
-  private isProgramColdStart = true;
-  private deepLinking: any = null;
-  private deeplinkingCustomProtocol: string = "app";
-  // @ts-ignore
   private devServerUrl: string | null = null;
   private config: CapacitorElectronConfig = {
     trayMenu: {
@@ -47,10 +42,6 @@ export class CapacitorElectronApp {
         process.platform === "win32" ? "appIcon.ico" : "appIcon.png"
       ),
       trayContextMenu: [new MenuItem({ label: "Quit App", role: "quit" })],
-    },
-    deepLinking: {
-      customProtocol: null,
-      deeplinkingHandlerFunction: null,
     },
     splashScreen: {
       useSplashScreen: true,
@@ -86,12 +77,6 @@ export class CapacitorElectronApp {
       const capConfig = JSON.parse(fs.readFileSync(capConfigPath, "utf-8"));
       if (capConfig.server && capConfig.server.url) {
         this.devServerUrl = capConfig.server.url;
-      }
-      if (this.config.deepLinking.customProtocol !== null) {
-        this.deeplinkingCustomProtocol = this.config.deepLinking.customProtocol;
-        console.log(
-          `[Capacitor]: Set deeplinking url to: ${this.deeplinkingCustomProtocol}`
-        );
       }
     }
   }
@@ -148,11 +133,6 @@ export class CapacitorElectronApp {
       }
     }
 
-    if (this.config.deepLinking.customProtocol !== null)
-      this.deepLinking = new CapacitorDeeplinking(this.mainWindowReference, {
-        customProtocol: this.deeplinkingCustomProtocol,
-      });
-
     configCapacitor(this.mainWindowReference);
 
     if (this.config.applicationMenuTemplate !== null) {
@@ -161,17 +141,6 @@ export class CapacitorElectronApp {
       );
     } else {
       Menu.setApplicationMenu(null);
-    }
-
-    // Setup the handler for deeplinking if it has been setup.
-    if (this.deepLinking !== null) {
-      if (this.config.deepLinking.deeplinkingHandlerFunction !== null) {
-        this.deepLinking.init(
-          this.config.deepLinking.deeplinkingHandlerFunction
-        );
-      } else {
-        this.deepLinking.init();
-      }
     }
 
     // Based on Splashscreen choice actually load the window.
@@ -210,18 +179,6 @@ export class CapacitorElectronApp {
       );
     } else {
       await loadWebApp(thisRef.mainWindowReference);
-    }
-    if (thisRef.deepLinking !== null && thisRef.isProgramColdStart) {
-      if (thisRef.deepLinking.getPassedDeeplinkUrl().length > 0) {
-        thisRef.isProgramColdStart = false;
-        // Pass deeplink if there was one, to webapp after it has loaded on first launch
-        setTimeout(() => {
-          thisRef.mainWindowReference.webContents.send(
-            "appUrlOpen",
-            thisRef.deepLinking.getPassedDeeplinkUrl()
-          );
-        }, 500);
-      }
     }
   }
 
@@ -272,7 +229,7 @@ export class CapacitorElectronApp {
   }
 }
 
-export class ElectronDeeplinking {
+export class ElectronCapacitorDeeplinking {
   private customProtocol: string = "mycapacitorapp";
   private lastPassedUrl: null | string = null;
   private customHandler: (url: string) => void | null = null;
@@ -288,7 +245,8 @@ export class ElectronDeeplinking {
         this.capacitorAppRef !== null &&
         this.capacitorAppRef.getMainWindow() &&
         !this.capacitorAppRef.getMainWindow().isDestroyed() &&
-        this.lastPassedUrl !== null
+        this.lastPassedUrl !== null &&
+        this.lastPassedUrl.length > 0
       )
         this.capacitorAppRef
           .getMainWindow()
@@ -336,7 +294,7 @@ export class ElectronDeeplinking {
   }
 
   private internalHandler(urlLink: string | null) {
-    if (urlLink !== null) {
+    if (urlLink !== null && urlLink.length > 0) {
       const paramsArr = urlLink.split(",");
       let url = "";
       for (let item of paramsArr) {
