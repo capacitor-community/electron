@@ -44,7 +44,7 @@ export interface CapacitorElectronConfig {
   };
 }
 
-export interface ElectronDeeplinkingConfig {
+export interface ElectronCapacitorDeeplinkingConfig {
   customProtocol: string;
   customHandler?: (url: string) => void;
 }

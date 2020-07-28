@@ -3,11 +3,11 @@ export * from "./CapacitorElectronApp";
 
 import {
   CapacitorElectronConfig,
-  ElectronDeeplinkingConfig,
+  ElectronCapacitorDeeplinkingConfig,
 } from "./interfaces";
 import {
   CapacitorElectronApp,
-  ElectronDeeplinking,
+  ElectronCapacitorDeeplinking,
 } from "./CapacitorElectronApp";
 
 export function createCapacitorElectronApp(
@@ -19,7 +19,7 @@ export function createCapacitorElectronApp(
 
 export function createCapacitorElectronDeepinking(
   capacitorElectronApp: CapacitorElectronApp,
-  config: ElectronDeeplinkingConfig
-): ElectronDeeplinking {
-  return new ElectronDeeplinking(capacitorElectronApp, config);
+  config: ElectronCapacitorDeeplinkingConfig
+): ElectronCapacitorDeeplinking {
+  return new ElectronCapacitorDeeplinking(capacitorElectronApp, config);
 }

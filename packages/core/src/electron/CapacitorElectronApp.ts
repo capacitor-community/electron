@@ -1,6 +1,6 @@
 import {
   CapacitorElectronConfig,
-  ElectronDeeplinkingConfig,
+  ElectronCapacitorDeeplinkingConfig,
 } from "./interfaces";
 import { CapacitorSplashScreen } from "./ElectronSplashScreen";
 import Electron from "electron";
@@ -235,7 +235,7 @@ export class ElectronCapacitorDeeplinking {
   private customHandler: (url: string) => void | null = null;
   private capacitorAppRef: any = null;
 
-  constructor(capacitorApp: any, config: ElectronDeeplinkingConfig) {
+  constructor(capacitorApp: any, config: ElectronCapacitorDeeplinkingConfig) {
     this.capacitorAppRef = capacitorApp;
     this.customProtocol = config.customProtocol;
     if (config.customHandler) this.customHandler = config.customHandler;
