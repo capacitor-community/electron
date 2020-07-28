@@ -69,12 +69,10 @@ export class CapacitorDeeplinking {
       app.setAsDefaultProtocolClient(this.deeplinkingOptions.customProtocol);
     }
 
-    app.on("will-finish-launching", () => {
-      app.on("open-url", (event, url) => {
-        event.preventDefault();
-        this.passedDeeplinkingUrl = url;
-        this.internalDeeplinkHandler(url);
-      });
+    app.on("open-url", (event, url) => {
+      event.preventDefault();
+      this.passedDeeplinkingUrl = url;
+      this.internalDeeplinkHandler(url);
     });
 
     if (process.platform == "win32") {
