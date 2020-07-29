@@ -8,6 +8,7 @@ export * from "./electron/filesystem";
 export * from "./electron/modals";
 export * from "./electron/network";
 export * from "./electron/splashscreen";
+export * from "./electron/local-notifications";
 
 mergeWebPlugins(Plugins);
 
