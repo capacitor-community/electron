@@ -5,10 +5,10 @@ export * from "./electron/app";
 export * from "./electron/clipboard";
 export * from "./electron/device";
 export * from "./electron/filesystem";
+export * from "./electron/local-notifications";
 export * from "./electron/modals";
 export * from "./electron/network";
 export * from "./electron/splashscreen";
-export * from "./electron/local-notifications";
 
 mergeWebPlugins(Plugins);
 
