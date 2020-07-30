@@ -1,6 +1,6 @@
 {
   "name": "@capacitor-community/electron",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Capacitor community support for the Electron platform.",
   "scripts": {
     "capacitor:add": "node dist/cap-scripts.js add",
