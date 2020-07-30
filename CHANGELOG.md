@@ -1,4 +1,14 @@
-## [](https://github.com/capacitor-community/electron/compare/v1.2.0...v) (2020-07-30)
+## [](https://github.com/capacitor-community/electron/compare/v1.2.1...v) (2020-07-30)
+
+### [1.2.1](https://github.com/capacitor-community/electron/compare/v1.2.0...v1.2.1) (2020-07-30)
+
+### Bug Fixes
+
+- update template to reflect bug fix in 1.2.0 ([27fb593](https://github.com/capacitor-community/electron/commit/27fb593e962539cb04ba011921323a1156bba7c6))
+
+### Chores
+
+- update changelog for 1.2.0 ([2dcb102](https://github.com/capacitor-community/electron/commit/2dcb10200475d4406d25e8eefe5f475b95e1d5ec))
 
 ## [1.2.0](https://github.com/capacitor-community/electron/compare/v1.1.2...v1.2.0) (2020-07-30)
 
