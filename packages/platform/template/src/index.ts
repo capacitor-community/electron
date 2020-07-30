@@ -23,9 +23,7 @@ app.on("window-all-closed", function () {
 app.on("activate", function () {
   // On OS X it's common to re-create a window in the app when the
   // dock icon is clicked and there are no other windows open.
-  if (myCapacitorApp.getMainWindow() === null) {
-    myCapacitorApp.init();
-  }
+  if (myCapacitorApp.getMainWindow().isDestroyed()) myCapacitorApp.init();
 });
 
 // Define any IPC or other custom functionality below here
