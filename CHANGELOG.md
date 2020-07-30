@@ -1,4 +1,25 @@
-## [](https://github.com/capacitor-community/electron/compare/v1.1.2...v) (2020-07-24)
+## [](https://github.com/capacitor-community/electron/compare/v1.2.0...v) (2020-07-30)
+
+## [1.2.0](https://github.com/capacitor-community/electron/compare/v1.1.2...v1.2.0) (2020-07-30)
+
+### Features
+
+- **core:** better deeplinking, closes [#43](https://github.com/capacitor-community/electron/issues/43) ([8f07b94](https://github.com/capacitor-community/electron/commit/8f07b94ed18dbe97ebd5f7df0b03be826be29b5d))
+
+### Bug Fixes
+
+- **core:** fix build error from type naming ([88ccd61](https://github.com/capacitor-community/electron/commit/88ccd611fa264cbfd82825bc36e454cb3b6c39b1))
+
+### Chores
+
+- deeplinking changes to test ([ca38197](https://github.com/capacitor-community/electron/commit/ca3819709a5780389c0a83d82604f3b8586e18fe))
+- update changelog for 1.1.2 ([24e729a](https://github.com/capacitor-community/electron/commit/24e729a5c43c2da28e431d1889f623252490288c))
+- update shield/badge ([2ce7fa8](https://github.com/capacitor-community/electron/commit/2ce7fa83d155d1dc5d87e4d82858c6bdeb8cc37c))
+
+### Documentation
+
+- update .all-contributorsrc [skip ci](<[22663f5](https://github.com/capacitor-community/electron/commit/22663f5e95f69062df84ad068a29fe0f23a591d2)>)
+- update README.md [skip ci](<[ac0ad00](https://github.com/capacitor-community/electron/commit/ac0ad00cd6b263b55273e2b203ea3c173a54a98e)>)
 
 ### [1.1.2](https://github.com/capacitor-community/electron/compare/v1.1.1...v1.1.2) (2020-07-24)
 
