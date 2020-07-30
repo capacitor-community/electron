@@ -17,7 +17,7 @@ export function createCapacitorElectronApp(
   return new CapacitorElectronApp();
 }
 
-export function createCapacitorElectronDeepinking(
+export function createCapacitorElectronDeepLinking(
   capacitorElectronApp: CapacitorElectronApp,
   config: ElectronCapacitorDeeplinkingConfig
 ): ElectronCapacitorDeeplinking {
