@@ -62,4 +62,5 @@ And more can be found on the [Awesome Electron List](https://github.com/sindreso
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
