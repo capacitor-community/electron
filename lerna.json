@@ -1,6 +1,6 @@
 {
   "gitVersionPrefix": "",
   "packages": ["packages/core", "packages/platform"],
-  "version": "1.2.0",
+  "version": "1.2.1",
   "npmClient": "npm"
 }
