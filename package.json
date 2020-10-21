@@ -6,7 +6,7 @@
   "main": "dist/esm-electron/index.js",
   "typings": "dist/esm-electron/index.d.ts",
   "scripts": {
-    "shipit": "np",
+    "shipit": "np && npm run generate-changelog && npm run deploy-changelog",
     "clean": "rimraf ./dist",
     "build": "npm run clean && npm run build-core && npm run build-platform",
     "capacitor:add": "node dist/cap-scripts.js add",
@@ -22,7 +22,9 @@
     "build-plugins": "npm run transpile-plugins && npm run rollup-plugins && npm run minify-plugins",
     "transpile-plugins": "tsc --project ./tsconfig.plugins.json --module ES2015 --target ES5 --outDir dist/esm-plugins",
     "rollup-plugins": "rollup --config rollup.config.plugins.js",
-    "minify-plugins": "uglifyjs --mangle --compress --comments '/^/*!/' --output dist/electron-bridge.js dist/electron-bridge.js"
+    "minify-plugins": "uglifyjs --mangle --compress --comments '/^/*!/' --output dist/electron-bridge.js dist/electron-bridge.js",
+    "generate-changelog": "conventional-changelog -o CHANGELOG.md -r 0 --config changelog.config.js",
+    "deploy-changelog": "bash ./deployChangeLog.sh"
   },
   "license": "MIT",
   "husky": {
