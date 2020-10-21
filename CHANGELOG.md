@@ -1,4 +1,16 @@
-## [](https://github.com/capacitor-community/electron/compare/v1.2.3...v) (2020-07-30)
+## [1.3.0](https://github.com/capacitor-community/electron/compare/v1.2.3...v1.3.0) (2020-10-21)
+
+### Bug Fixes
+
+- move electron to dev dep. ([9facef5](https://github.com/capacitor-community/electron/commit/9facef58be5d5dd19ba6a5d4e931dcfc23f29e95))
+
+### Chores
+
+- cleanup package.json ([aa42795](https://github.com/capacitor-community/electron/commit/aa42795092905662b02202169e131dc0018cb00e))
+- create docs placeholder ([9e01c63](https://github.com/capacitor-community/electron/commit/9e01c63f5ebdbe66cc0b8ed1f8a04bd6b175c5ae))
+- re-add changelog script and config ([cd3f523](https://github.com/capacitor-community/electron/commit/cd3f523f98995fb827a011dcc2bd08c92531c90f))
+- update changelog for 1.2.3 ([96afd90](https://github.com/capacitor-community/electron/commit/96afd90453650003e9f9e6a9475581c7d1bf5205))
+- update electron version in readme ([62dd5bc](https://github.com/capacitor-community/electron/commit/62dd5bcc1b5c8cbec9afa898bcc332cb98661810))
 
 ### [1.2.3](https://github.com/capacitor-community/electron/compare/v1.2.2...v1.2.3) (2020-07-30)
 
@@ -40,8 +52,8 @@
 
 ### Documentation
 
-- update .all-contributorsrc [skip ci](<[22663f5](https://github.com/capacitor-community/electron/commit/22663f5e95f69062df84ad068a29fe0f23a591d2)>)
-- update README.md [skip ci](<[ac0ad00](https://github.com/capacitor-community/electron/commit/ac0ad00cd6b263b55273e2b203ea3c173a54a98e)>)
+- update .all-contributorsrc [skip ci] ([22663f5](https://github.com/capacitor-community/electron/commit/22663f5e95f69062df84ad068a29fe0f23a591d2))
+- update README.md [skip ci] ([ac0ad00](https://github.com/capacitor-community/electron/commit/ac0ad00cd6b263b55273e2b203ea3c173a54a98e))
 
 ### [1.1.2](https://github.com/capacitor-community/electron/compare/v1.1.1...v1.1.2) (2020-07-24)
 
@@ -155,8 +167,8 @@
 
 ### Documentation
 
-- update .all-contributorsrc [skip ci](<[f9c21da](https://github.com/capacitor-community/electron/commit/f9c21da70cf9c5ef05e6c67d9a5074bb63ccac4f)>)
-- update README.md [skip ci](<[4d4bda6](https://github.com/capacitor-community/electron/commit/4d4bda608f5b9bffccf8b3d07df2061aa5fbb6b8)>)
+- update .all-contributorsrc [skip ci] ([f9c21da](https://github.com/capacitor-community/electron/commit/f9c21da70cf9c5ef05e6c67d9a5074bb63ccac4f))
+- update README.md [skip ci] ([4d4bda6](https://github.com/capacitor-community/electron/commit/4d4bda608f5b9bffccf8b3d07df2061aa5fbb6b8))
 
 ### Chores
 
@@ -176,8 +188,8 @@
 
 ### Documentation
 
-- update .all-contributorsrc [skip ci](<[9d78e7e](https://github.com/capacitor-community/electron/commit/9d78e7e80798ecf62da887ab705e24cfd0da2e59)>)
-- update README.md [skip ci](<[563a921](https://github.com/capacitor-community/electron/commit/563a921732d610cb87fc587b8b024ddab3e5f898)>)
+- update .all-contributorsrc [skip ci] ([9d78e7e](https://github.com/capacitor-community/electron/commit/9d78e7e80798ecf62da887ab705e24cfd0da2e59))
+- update README.md [skip ci] ([563a921](https://github.com/capacitor-community/electron/commit/563a921732d610cb87fc587b8b024ddab3e5f898))
 
 ### [0.5.1](https://github.com/capacitor-community/electron/compare/v0.5.0...v0.5.1) (2020-07-16)
 
@@ -259,8 +271,8 @@
 
 ### Documentation
 
-- update .all-contributorsrc [skip ci](<[562efd8](https://github.com/capacitor-community/electron/commit/562efd866ad3a3e01720fb29c1c2aeef668d9f3a)>)
-- update README.md [skip ci](<[805dd52](https://github.com/capacitor-community/electron/commit/805dd52c3ee4d9a68e9936d2fdfe92857869f9d0)>)
+- update .all-contributorsrc [skip ci] ([562efd8](https://github.com/capacitor-community/electron/commit/562efd866ad3a3e01720fb29c1c2aeef668d9f3a))
+- update README.md [skip ci] ([805dd52](https://github.com/capacitor-community/electron/commit/805dd52c3ee4d9a68e9936d2fdfe92857869f9d0))
 
 ## [0.3.0](https://github.com/capacitor-community/electron/compare/v0.2.2...v0.3.0) (2020-06-23)
 
