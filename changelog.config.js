@@ -11,5 +11,6 @@ module.exports = config({
     { type: "refactor", section: "Refactors" },
     { type: "perf", hidden: true },
     { type: "test", hidden: true },
+    { type: "changelog", hidden: true },
   ],
 });

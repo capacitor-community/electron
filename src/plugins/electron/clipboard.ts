@@ -7,7 +7,8 @@ import {
 
 const { clipboard, nativeImage } = require("electron");
 
-export class ClipboardPluginElectron extends WebPlugin
+export class ClipboardPluginElectron
+  extends WebPlugin
   implements ClipboardPlugin {
   constructor() {
     super({

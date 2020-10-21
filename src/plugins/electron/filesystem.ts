@@ -26,7 +26,8 @@ import {
   FileDeleteOptions,
 } from "@capacitor/core";
 
-export class FilesystemPluginElectron extends WebPlugin
+export class FilesystemPluginElectron
+  extends WebPlugin
   implements FilesystemPlugin {
   NodeFS: any = null;
   fileLocations: any = null;

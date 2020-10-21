@@ -1,0 +1,13 @@
+.cache/
+.github/
+node_modules/
+src/
+docs/
+.all-contributorsrc
+.gitignore
+CODE_OF_CONDUCT.md
+CONTRIBUTING.md
+rollup.config.plugins.js
+./tsconfig.json
+./tsconfig.electron.json
+./tsconfig.plugins.json
