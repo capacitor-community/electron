@@ -47,7 +47,8 @@
     "pretty-quick": "^2.0.1",
     "parcel-bundler": "^1.12.4",
     "uglify-js": "^3.11.3",
-    "typescript": "^4.0.3"
+    "typescript": "^4.0.3",
+    "electron": "^10.1.4"
   },
   "dependencies": {
     "chalk": "^4.1.0",
