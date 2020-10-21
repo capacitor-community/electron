@@ -1,3 +1,5 @@
+## [1.3.0-1](https://github.com/capacitor-community/electron/compare/v1.3.0-0...v1.3.0-1) (2020-10-21)
+
 ## [1.3.0-0](https://github.com/capacitor-community/electron/compare/v1.2.3...v1.3.0-0) (2020-10-21)
 
 ### Bug Fixes
