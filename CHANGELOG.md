@@ -1,3 +1,20 @@
+## [1.3.0-0](https://github.com/capacitor-community/electron/compare/v1.2.3...v1.3.0-0) (2020-10-21)
+
+### Bug Fixes
+
+- move electron to dev dep. ([9facef5](https://github.com/capacitor-community/electron/commit/9facef58be5d5dd19ba6a5d4e931dcfc23f29e95))
+
+### Chores
+
+- changelog cleanup ([f824b89](https://github.com/capacitor-community/electron/commit/f824b89651e7c5a1795bef7a867f2a86f09732b7))
+- cleanup changelog scripts ([d4802a9](https://github.com/capacitor-community/electron/commit/d4802a91b4a2e3d08b80e74a37aa2cba2cb3552b))
+- cleanup package.json ([aa42795](https://github.com/capacitor-community/electron/commit/aa42795092905662b02202169e131dc0018cb00e))
+- create docs placeholder ([9e01c63](https://github.com/capacitor-community/electron/commit/9e01c63f5ebdbe66cc0b8ed1f8a04bd6b175c5ae))
+- make electron platform dep, patch level ([1ca0ad8](https://github.com/capacitor-community/electron/commit/1ca0ad8013c282a7708e49ec8f7ab586151ccd85))
+- re-add changelog script and config ([cd3f523](https://github.com/capacitor-community/electron/commit/cd3f523f98995fb827a011dcc2bd08c92531c90f))
+- update changelog for 1.2.3 ([96afd90](https://github.com/capacitor-community/electron/commit/96afd90453650003e9f9e6a9475581c7d1bf5205))
+- update electron version in readme ([62dd5bc](https://github.com/capacitor-community/electron/commit/62dd5bcc1b5c8cbec9afa898bcc332cb98661810))
+
 ### [1.2.3](https://github.com/capacitor-community/electron/compare/v1.2.2...v1.2.3) (2020-07-30)
 
 ### Chores
