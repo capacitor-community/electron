@@ -40,7 +40,7 @@ export async function doUpdate() {
     copyFileSync(realpathSync(path), join(copyToPath, filename));
     filenames.push(filename);
   }
-  let preloaderString = `require('./node_modules/@capacitor-community/electron-core/dist/electron-bridge.js');`;
+  let preloaderString = `require('./node_modules/@capacitor-community/electron/dist/electron-bridge.js');`;
   for (const fname of filenames) {
     preloaderString += `require('./plugins/${fname}');`;
   }

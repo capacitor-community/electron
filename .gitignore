@@ -1,9 +1,10 @@
 .idea/
+.cache/
+build/
+dist/
 node_modules/
 .DS_Store
 .vscode/
 npm-debug.log
 electron_template/package-lock.json
-lerna-debug.log
-~
 package-lock.json

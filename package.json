@@ -1,14 +1,28 @@
 {
-  "name": "@capacitor-community/electron-platform",
-  "description": "Containing project for Capacitor community support for the Electron platform.",
-  "private": true,
+  "name": "@capacitor-community/electron",
+  "version": "1.3.0",
+  "description": "Capacitor community support for the Electron platform.",
+  "private": false,
+  "main": "dist/esm-electron/index.js",
+  "typings": "dist/esm-electron/index.d.ts",
   "scripts": {
-    "lerna-deploy": "npm run lerna-build && npm run lerna-version && npm run lerna-publish && npm run generate-changelog && npm run deploy-changelog",
-    "lerna-version": "lerna version --force-publish --conventional-commits --changelog-preset conventional-changelog-conventionalcommits --no-changelog",
-    "lerna-publish": "lerna publish from-git",
-    "lerna-build": "lerna run build",
-    "generate-changelog": "conventional-changelog -o CHANGELOG.md -r 0 --config changelog.config.js",
-    "deploy-changelog": "bash ./deployChangeLog.sh"
+    "shipit": "np",
+    "clean": "rimraf ./dist",
+    "build": "npm run clean && npm run build-core && npm run build-platform",
+    "capacitor:add": "node dist/cap-scripts.js add",
+    "capacitor:copy": "node dist/cap-scripts.js copy",
+    "capacitor:update": "node dist/cap-scripts.js update",
+    "capacitor:sync": "node dist/cap-scripts.js sync",
+    "capacitor:open": "node dist/cap-scripts.js open",
+    "build-platform": "npm run transpile-platform && npm run compile-platform && rimraf ./build",
+    "compile-platform": "parcel build ./build/index.js --out-file ./dist/cap-scripts.js --target node --no-source-maps",
+    "transpile-platform": "tsc --project ./tsconfig.json",
+    "build-core": "npm run build-electron && npm run build-plugins",
+    "build-electron": "tsc --project ./tsconfig.electron.json --outDir dist/esm-electron",
+    "build-plugins": "npm run transpile-plugins && npm run rollup-plugins && npm run minify-plugins",
+    "transpile-plugins": "tsc --project ./tsconfig.plugins.json --module ES2015 --target ES5 --outDir dist/esm-plugins",
+    "rollup-plugins": "rollup --config rollup.config.plugins.js",
+    "minify-plugins": "uglifyjs --mangle --compress --comments '/^/*!/' --output dist/electron-bridge.js dist/electron-bridge.js"
   },
   "license": "MIT",
   "husky": {
@@ -18,25 +32,31 @@
   },
   "author": "IT-MikeS",
   "devDependencies": {
-    "@types/fs-extra": "^8.1.0",
-    "@types/node": "^12.0.0",
-    "all-contributors-cli": "^6.16.0",
+    "@types/fs-extra": "^5.0.2",
+    "@types/node": "^12.12.2",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.28.2",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "husky": "^4.2.5",
     "conventional-changelog-cli": "^2.0.34",
     "conventional-changelog-conventionalcommits": "^4.3.0",
-    "husky": "^4.2.5",
-    "lerna": "^3.22.1",
-    "parcel-bundler": "^1.12.4",
     "prettier": "^2.0.5",
     "prettier-plugin-java": "^0.8.0",
     "pretty-quick": "^2.0.1",
-    "rimraf": "^3.0.2",
-    "rollup": "^2.13.1",
-    "rollup-plugin-node-resolve": "^5.2.0",
-    "typescript": "^3.9.5",
-    "uglify-js": "^3.9.4"
+    "parcel-bundler": "^1.12.4",
+    "uglify-js": "^3.11.3",
+    "typescript": "^4.0.3"
   },
   "dependencies": {
-    "@capacitor-community/electron": "file:packages\\platform",
-    "@capacitor-community/electron-core": "file:packages\\core"
+    "chalk": "^4.1.0",
+    "fs-extra": "^8.1.0",
+    "ora": "^4.0.4",
+    "@capacitor/core": "^2.0.0",
+    "electron-is-dev": "^1.2.0",
+    "electron-serve": "^1.0.0",
+    "mime-types": "~2.1.27"
+  },
+  "peerDependencies": {
+    "electron": "^9.1.1"
   }
 }

@@ -5,7 +5,8 @@ import {
   SplashScreenShowOptions,
 } from "@capacitor/core";
 
-export class SplashScreenPluginElectron extends WebPlugin
+export class SplashScreenPluginElectron
+  extends WebPlugin
   implements SplashScreenPlugin {
   ipc: any = null;
 
