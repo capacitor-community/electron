@@ -2,6 +2,7 @@
 .github/
 node_modules/
 src/
+docs/
 .all-contributorsrc
 .gitignore
 CODE_OF_CONDUCT.md
