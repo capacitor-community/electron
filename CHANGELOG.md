@@ -1,3 +1,9 @@
+### [1.3.1](https://github.com/capacitor-community/electron/compare/v1.3.0...v1.3.1) (2020-10-22)
+
+### Bug Fixes
+
+- addition files in src/ not getting built ([39a8e4b](https://github.com/capacitor-community/electron/commit/39a8e4b62d71d189b77d8d09ec4ee2626fd15939))
+
 ## [1.3.0](https://github.com/capacitor-community/electron/compare/v1.3.0-1...v1.3.0) (2020-10-22)
 
 ### Documentation
