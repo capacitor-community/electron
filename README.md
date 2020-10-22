@@ -28,7 +28,7 @@ Maintenance Status: Actively Maintained
 
 ## Documentation:
 
-[You can find the docs site here.](https://capacitor-community-electron-docs-site.vercel.app/)
+[You can find the docs site here.](https://capacitor-community.github.io/electron/)
 
 ## Great electron packages to consider for your project.
 
