@@ -29,7 +29,7 @@
     "productName": "Capacitor App",
     "files": [
       "assets/*",
-      "build/index.js",
+      "build/*",
       "preloader.js",
       "plugins/*",
       "capacitor.config.json",
