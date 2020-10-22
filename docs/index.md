@@ -1,1 +1,1 @@
-Placeholder
+[Getting Started](/getting-started.md)
