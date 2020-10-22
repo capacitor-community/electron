@@ -1,7 +1,3 @@
----
-title: "Getting started"
----
-
 # **Getting Started**
 
 ## Installation into an existing Capacitor application.

@@ -1,6 +1,6 @@
 <!-- docs/_sidebar.md -->
 
-<img src="./images/capElectronLogo.png" width="192" height="70" />
+![logo](./images/capElectronLogo.png)
 
 - [Introduction](./)
 
