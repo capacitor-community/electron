@@ -1,6 +1,6 @@
 <!-- docs/_sidebar.md -->
 
-&nbsp;&nbsp;![logo](./images/capElectronLogo.png)
+&nbsp;&nbsp;![logo](/images/capElectronLogo.png)
 
 - [Introduction](./)
 
