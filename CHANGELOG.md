@@ -1,4 +1,28 @@
-## [1.3.0] (2020-10-22)
+## [1.3.0](https://github.com/capacitor-community/electron/compare/v1.3.0-1...v1.3.0) (2020-10-22)
+
+### Documentation
+
+- add images ([74b0d88](https://github.com/capacitor-community/electron/commit/74b0d8814e0047e29b2aaaeb7e0401d70203027e))
+- add in other pages ([975d403](https://github.com/capacitor-community/electron/commit/975d4033d5b9e5f51836f6794e276eed9aba544b))
+- first test of docs ([f7e91d3](https://github.com/capacitor-community/electron/commit/f7e91d3354c7e37000b39436807a0fa5701bc5ee))
+- fix image ([e03798f](https://github.com/capacitor-community/electron/commit/e03798f2d8d86083085da682b9812d193719aff4))
+- fix image again again ([4de45db](https://github.com/capacitor-community/electron/commit/4de45db1e4c1e55ba181778a0364d34fa03883bb))
+- fix image again? ([fdb0dc1](https://github.com/capacitor-community/electron/commit/fdb0dc1ccdf5f35b2eaaa19b551556f33cfdf6f0))
+- fix images attempt ([bc248cf](https://github.com/capacitor-community/electron/commit/bc248cfa4e9deafd32a23ca5c26e7d48850370a3))
+- pad logo ([2131274](https://github.com/capacitor-community/electron/commit/2131274c7e16de09390d8246f847b0a419abb620))
+- switch to cdn hosted logo ([267059d](https://github.com/capacitor-community/electron/commit/267059d81d1e747cef374052ae5597536eb93cd1))
+- try again ([05b91e1](https://github.com/capacitor-community/electron/commit/05b91e107f14f8d701301bcc6a2b32532c2af677))
+
+### Chores
+
+- fix changelog script branch target ([bd85a06](https://github.com/capacitor-community/electron/commit/bd85a0637b3e69f67f57e94632c694c81f86bdd8))
+- move docs to github pages ([9b34154](https://github.com/capacitor-community/electron/commit/9b34154b8b1bb3024f90c311da7ef4a9cb26cef1))
+- update CI workflow ([fc32e76](https://github.com/capacitor-community/electron/commit/fc32e76700696b9bd204a66def7199b824ab7bf8))
+- update readme, more specific build badge ([199db63](https://github.com/capacitor-community/electron/commit/199db6306aad076d7d7b08eaab06788ac14f4a39))
+
+## [1.3.0-1](https://github.com/capacitor-community/electron/compare/v1.3.0-0...v1.3.0-1) (2020-10-21)
+
+## [1.3.0-0](https://github.com/capacitor-community/electron/compare/v1.2.3...v1.3.0-0) (2020-10-21)
 
 ### Bug Fixes
 
