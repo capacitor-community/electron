@@ -1,6 +1,6 @@
 <!-- docs/_sidebar.md -->
 
-<img src='/./images/capElectronLogo.png'></img>
+<img src='https://user-images.githubusercontent.com/20338451/96874994-bb70de00-1444-11eb-954a-f1673e36f83a.png'></img>
 
 - [Introduction](./)
 
