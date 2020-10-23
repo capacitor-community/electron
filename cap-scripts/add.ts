@@ -53,9 +53,6 @@ export async function doAdd() {
   if (paths.errorText === null) {
     try {
       mkdirSync(paths.destTemplatePath!, { recursive: true });
-      console.log(
-        `copy from: ${paths.srcTemplatePath} to: ${paths.destTemplatePath}`
-      );
       copySync(paths.srcTemplatePath!, paths.destTemplatePath!);
       renameSync(
         join(paths.destTemplatePath!, "gitignore"),
