@@ -1,6 +1,6 @@
 # **Config Options**
 
-Below are the options for your Electron app. You can use the below options in the `index.ts` file of the electron platform in the line `const myCapacitorApp = createCapacitorElectronApp();`
+You can use the below options in the `index.ts` file of the electron platform in the line `const myCapacitorApp = createCapacitorElectronApp();`
 
 <br />
 
