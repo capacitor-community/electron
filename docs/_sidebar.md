@@ -10,9 +10,9 @@
 
 - [Deeplinking](./deeplinking/index)
 
-- [Creating an App Menu](./app-menu/index)
+<!-- - [Creating an App Menu](./app-menu/index) -->
 
-- [Tray-Only App](./tray-only/index)
+<!-- - [Tray-Only App](./tray-only/index) -->
 
 - [Config Options](./config-options/index)
 
