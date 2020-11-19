@@ -13,7 +13,7 @@
     "outDir": "dist",
     "sourceMap": true,
     "strict": false,
-    "target": "es5"
+    "target": "ES2017"
   },
   "files": ["src/electron/index.ts"]
 }

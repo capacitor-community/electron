@@ -13,7 +13,7 @@
     "noUnusedParameters": true,
     "outDir": "dist",
     "sourceMap": true,
-    "target": "es2015"
+    "target": "ES2017"
   },
   "files": ["src/plugins/index.ts"]
 }
