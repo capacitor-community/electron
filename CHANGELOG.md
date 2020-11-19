@@ -1,3 +1,24 @@
+### [1.3.2](https://github.com/capacitor-community/electron/compare/v1.3.1...v1.3.2) (2020-11-19)
+
+### Bug Fixes
+
+- forgot a console log in add script ([3f91275](https://github.com/capacitor-community/electron/commit/3f91275accacd6542e730f14ee1678b620dd22e2))
+
+### Documentation
+
+- add config options docs ([74458a7](https://github.com/capacitor-community/electron/commit/74458a7da8da7bc52c883eb29d4611c098792f32))
+- clean config options docs ([eaed2ad](https://github.com/capacitor-community/electron/commit/eaed2ad91c56f0586fdb6184d1bf01862a8cb318))
+- hide uncomplete docs pages until finished ([675d011](https://github.com/capacitor-community/electron/commit/675d011b66e80e8220c0cd7c91af955ca2e0d499))
+- update .all-contributorsrc [skip ci] ([ae373d9](https://github.com/capacitor-community/electron/commit/ae373d95e85f5bd7ee6b6165fb89a9921fa514a3))
+- update README.md [skip ci] ([9ebc357](https://github.com/capacitor-community/electron/commit/9ebc3579d1e931aa5772ab9e2073c26afa36992a))
+
+### Chores
+
+- bring up to ES2017 ts config ([edae599](https://github.com/capacitor-community/electron/commit/edae599391059da7a7261c5ba7b14a98ad08148c))
+- readme reflect new electron version ([848edd7](https://github.com/capacitor-community/electron/commit/848edd773b5c8041c68a4112db3af6be8018889e))
+- update reame shield colors [skip ci] ([d9b53fb](https://github.com/capacitor-community/electron/commit/d9b53fbc8cff9ca4eb0810e4ffb1d24efb83fe40))
+- upgrade to electron@^11.0.1 ([ca6595c](https://github.com/capacitor-community/electron/commit/ca6595c826ad7b6efc959e3e7141807235463683))
+
 ### [1.3.1](https://github.com/capacitor-community/electron/compare/v1.3.0...v1.3.1) (2020-10-22)
 
 ### Bug Fixes
