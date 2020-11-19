@@ -19,9 +19,9 @@
     "build-core": "npm run build-electron && npm run build-plugins",
     "build-electron": "tsc --project ./tsconfig.electron.json --outDir dist/esm-electron",
     "build-plugins": "npm run transpile-plugins && npm run rollup-plugins && npm run minify-plugins",
-    "transpile-plugins": "tsc --project ./tsconfig.plugins.json --module ES2015 --target ES5 --outDir dist/esm-plugins",
+    "transpile-plugins": "tsc --project ./tsconfig.plugins.json --module ES2015 --target ES2017 --outDir dist/esm-plugins",
     "rollup-plugins": "rollup --config rollup.config.plugins.js",
-    "minify-plugins": "uglifyjs --mangle --compress --comments '/^/*!/' --output dist/electron-bridge.js dist/electron-bridge.js",
+    "minify-plugins": "terser --mangle --compress --comments '/^/*!/' --output dist/electron-bridge.js dist/electron-bridge.js",
     "generate-changelog": "conventional-changelog -o CHANGELOG.md -r 0 --config changelog.config.js",
     "deploy-changelog": "bash ./deployChangeLog.sh"
   },
@@ -37,7 +37,7 @@
     "@types/node": "^12.12.2",
     "conventional-changelog-cli": "^2.0.34",
     "conventional-changelog-conventionalcommits": "^4.3.0",
-    "electron": "^10.1.4",
+    "electron": "^11.0.1",
     "husky": "^4.2.5",
     "np": "^6.5.0",
     "parcel-bundler": "^1.12.4",
@@ -47,8 +47,8 @@
     "rimraf": "^3.0.2",
     "rollup": "^2.28.2",
     "rollup-plugin-node-resolve": "^5.2.0",
-    "typescript": "^4.0.3",
-    "uglify-js": "^3.11.3"
+    "typescript": "~4.0.5",
+    "terser": "^5.5.0"
   },
   "dependencies": {
     "chalk": "^4.1.0",
