@@ -4,6 +4,7 @@
   "compilerOptions": {
     "outDir": "./build",
     "target": "ES5",
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "typeRoots": ["./node_modules/@types"]
   }
 }
