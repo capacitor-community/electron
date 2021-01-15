@@ -9,10 +9,10 @@ Capacitor community support for the Electron platform.
   <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 <a href="#contributors"><img src="https://img.shields.io/badge/all%20contributors-8-orange?style=flat-square" /></a>
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
-  <a href="https://www.electronjs.org/releases/stable?version=9"><img src="https://img.shields.io/badge/supported%20electron%20version-^11.0.1-blue?style=flat-square" /></a>
+  <a href="https://www.electronjs.org/releases/stable?version=11"><img src="https://img.shields.io/badge/supported%20electron%20version-^11.2.0-blue?style=flat-square" /></a>
 </p>
 <p align="center">
-  <a href="https://npmjs.com/package/@capacitor-community/electron"><img src="https://img.shields.io/npm/v/@capacitor-community/electron.svg?style=flat-square" /></a>
+  <a href="https://npmjs.com/package/@capacitor-community/electron"><img src="https://img.shields.io/npm/v/@capacitor-community/electron/alpha.svg?style=flat-square" /></a>
   <a href="https://npmjs.com/package/@capacitor-community/electron"><img alt="npm" src="https://img.shields.io/npm/dw/@capacitor-community/electron?style=flat-square"></a>
   <a href="https://npmjs.com/package/@capacitor-community/electron"><img src="https://img.shields.io/npm/l/@capacitor-community/electron.svg?style=flat-square" /></a>
   <a href="https://github.com/capacitor-community/electron"><img alt="GitHub Workflow Status" src="https://img.shields.io/github/workflow/status/capacitor-community/electron/CI/main?style=flat-square"></a>
@@ -26,7 +26,7 @@ Capacitor community support for the Electron platform.
 
 Maintenance Status: Actively Maintained
 
-## Documentation:
+## Documentation (Not Updated for V3 Alpha):
 
 [You can find the docs site here.](https://capacitor-community.github.io/electron/)
 
