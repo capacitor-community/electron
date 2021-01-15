@@ -1,8 +1,9 @@
 import { app } from "electron";
 import { createCapacitorElectronApp } from "@capacitor-community/electron";
+import config from "../capacitor.config";
 
 // The MainWindow object can be accessed via myCapacitorApp.getMainWindow()
-const myCapacitorApp = createCapacitorElectronApp();
+const myCapacitorApp = createCapacitorElectronApp((config as any).electron!);
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.

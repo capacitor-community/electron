@@ -7,7 +7,6 @@ const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
 const ipcMain = electron.ipcMain;
 const path = require("path");
-const fs = require("fs");
 
 export class CapacitorSplashScreen {
   private splashWin: Electron.BrowserWindow | null = null;
@@ -19,23 +18,6 @@ export class CapacitorSplashScreen {
 
   constructor(splashOptions?: SplashOptions) {
     if (splashOptions) this.splashOptions = { ...splashOptions };
-
-    try {
-      let capConfigJson = JSON.parse(
-        fs.readFileSync(
-          path.join(app.getAppPath(), "capacitor.config.json"),
-          "utf-8"
-        )
-      );
-      if (capConfigJson.plugins && capConfigJson.plugins.SplashScreen) {
-        this.splashOptions = Object.assign(
-          this.splashOptions,
-          capConfigJson.plugins.SplashScreen
-        );
-      }
-    } catch (e) {
-      console.error(e.message);
-    }
 
     //@ts-ignore
     ipcMain.on("showCapacitorSplashScreen", (event: any, options: any) => {

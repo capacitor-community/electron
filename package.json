@@ -1,6 +1,6 @@
 {
   "name": "@capacitor-community/electron",
-  "version": "1.3.2",
+  "version": "3.0.0-alpha.0",
   "description": "Capacitor community support for the Electron platform.",
   "main": "dist/esm-electron/index.js",
   "typings": "dist/esm-electron/index.d.ts",
@@ -16,12 +16,8 @@
     "build-platform": "npm run transpile-platform && npm run compile-platform && rimraf ./build",
     "compile-platform": "parcel build ./build/index.js --out-file ./dist/cap-scripts.js --target node --no-source-maps",
     "transpile-platform": "tsc --project ./tsconfig.json",
-    "build-core": "npm run build-electron && npm run build-plugins",
+    "build-core": "npm run build-electron",
     "build-electron": "tsc --project ./tsconfig.electron.json --outDir dist/esm-electron",
-    "build-plugins": "npm run transpile-plugins && npm run rollup-plugins && npm run minify-plugins",
-    "transpile-plugins": "tsc --project ./tsconfig.plugins.json --module ES2015 --target ES2017 --outDir dist/esm-plugins",
-    "rollup-plugins": "rollup --config rollup.config.plugins.js",
-    "minify-plugins": "terser --mangle --compress --comments '/^/*!/' --output dist/electron-bridge.js dist/electron-bridge.js",
     "generate-changelog": "conventional-changelog -o CHANGELOG.md -r 0 --config changelog.config.js",
     "deploy-changelog": "bash ./deployChangeLog.sh"
   },
@@ -33,13 +29,13 @@
   },
   "author": "IT-MikeS",
   "devDependencies": {
-    "@types/fs-extra": "^9.0.4",
-    "@types/node": "^12.12.2",
+    "@types/fs-extra": "^9.0.6",
+    "@types/node": "^12.14.21",
     "conventional-changelog-cli": "^2.1.1",
     "conventional-changelog-conventionalcommits": "^4.5.0",
-    "electron": "^11.0.2",
+    "electron": "^11.2.0",
     "husky": "^4.3.0",
-    "np": "^7.0.0",
+    "np": "^7.2.0",
     "parcel-bundler": "^1.12.4",
     "prettier": "^2.2.0",
     "prettier-plugin-java": "^0.8.3",
@@ -47,16 +43,18 @@
     "rimraf": "^3.0.2",
     "rollup": "^2.33.3",
     "@rollup/plugin-node-resolve": "^10.0.0",
-    "typescript": "~4.0.5",
+    "typescript": "~4.1.3",
     "terser": "^5.5.0"
   },
   "dependencies": {
+    "@capacitor/cli": "^3.0.0-beta.1",
+    "@capacitor/core": "^3.0.0-beta.1",
+    "@ionic/utils-fs": "^3.1.5",
     "chalk": "^4.1.0",
-    "fs-extra": "^9.0.1",
-    "ora": "^5.1.0",
-    "@capacitor/core": "^2.4.3",
     "electron-is-dev": "^1.2.0",
     "electron-serve": "^1.0.0",
-    "mime-types": "~2.1.27"
+    "fs-extra": "^9.0.1",
+    "mime-types": "~2.1.27",
+    "ora": "^5.1.0"
   }
 }

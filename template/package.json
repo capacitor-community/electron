@@ -2,7 +2,7 @@
   "name": "capacitor-app",
   "version": "1.0.0",
   "description": "An Amazing Capacitor App",
-  "main": "./build/index.js",
+  "main": "./build/src/index.js",
   "scripts": {
     "build": "tsc",
     "electron:start": "npm run build && electron ./",

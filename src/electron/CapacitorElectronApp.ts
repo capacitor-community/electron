@@ -14,7 +14,6 @@ const MenuItem = electron.MenuItem;
 const nativeImage = electron.nativeImage;
 const Tray = electron.Tray;
 const path = require("path");
-const fs = require("fs");
 const electronIsDev = require("electron-is-dev");
 const electronServe = require("electron-serve");
 
@@ -71,14 +70,6 @@ export class CapacitorElectronApp {
 
   constructor(config?: CapacitorElectronConfig) {
     if (config) this.config = deepMerge(this.config, [config]);
-
-    const capConfigPath = path.join(app.getAppPath(), "capacitor.config.json");
-    if (fs.existsSync(capConfigPath)) {
-      const capConfig = JSON.parse(fs.readFileSync(capConfigPath, "utf-8"));
-      if (capConfig.server && capConfig.server.url) {
-        this.devServerUrl = capConfig.server.url;
-      }
-    }
   }
 
   /** Creates mainwindow and does all setup. _Called after app.on('ready') event fired._ */
@@ -133,7 +124,7 @@ export class CapacitorElectronApp {
       }
     }
 
-    configCapacitor(this.mainWindowReference);
+    configCapacitor(this.mainWindowReference, this.config);
 
     if (this.config.applicationMenuTemplate !== null) {
       Menu.setApplicationMenu(

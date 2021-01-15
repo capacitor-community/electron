@@ -44,9 +44,19 @@ export function errorLog(message: string) {
   console.log(chalk.red(`Error: ${message}`));
 }
 
+export function getUsersProjectDir(): string {
+  return process.env.EXEC_CAP_CWD!;
+}
+
+export function getCapacitorElectronNodeModuleDir(): string {
+  const _cwd = process.env.INIT_CWD!;
+  //console.log('_cwd:', _cwd);
+  return _cwd;
+}
+
 export function getCwd(): string {
   const _cwd = process.env.INIT_CWD!;
-  return join(_cwd, "../", "../", "../");
+  return _cwd;
 }
 
 export function readJSON(pathToUse: string): { [key: string]: any } {

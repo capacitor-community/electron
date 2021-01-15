@@ -63,10 +63,11 @@ export function deepMerge(target: any, _objects: any[] = []) {
   return output;
 }
 
-export async function configCapacitor(mainWindow: Electron.BrowserWindow) {
-  let capConfigJson = JSON.parse(
-    fs.readFileSync(`./capacitor.config.json`, "utf-8")
-  );
+export async function configCapacitor(
+  mainWindow: Electron.BrowserWindow,
+  config: any
+) {
+  let capConfigJson = config;
   const appendUserAgent =
     capConfigJson.electron && capConfigJson.electron.appendUserAgent
       ? capConfigJson.electron.appendUserAgent
