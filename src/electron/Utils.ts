@@ -63,6 +63,7 @@ export function deepMerge(target: any, _objects: any[] = []) {
   return output;
 }
 
+// Why the capacitor.config.json path is hard coded here?
 export async function configCapacitor(mainWindow: Electron.BrowserWindow) {
   let capConfigJson = JSON.parse(
     fs.readFileSync(`./capacitor.config.json`, "utf-8")
