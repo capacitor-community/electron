@@ -1,6 +1,6 @@
 {
   "name": "@capacitor-community/electron",
-  "version": "3.0.0-0",
+  "version": "3.0.0-1",
   "description": "Capacitor community support for the Electron platform.",
   "main": "dist/esm-electron/index.js",
   "typings": "dist/esm-electron/index.d.ts",
