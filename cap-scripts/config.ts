@@ -2,9 +2,10 @@ import { resolve } from "path";
 import { pathExists, readJSON } from "@ionic/utils-fs";
 //@ts-ignore
 import {
-  CONFIG_FILE_NAME_JS,
-  CONFIG_FILE_NAME_JSON,
+  //CONFIG_FILE_NAME_JS,
+  //CONFIG_FILE_NAME_JSON,
   CONFIG_FILE_NAME_TS,
+  //@ts-ignore
 } from "@capacitor/cli/dist/config";
 //@ts-ignore
 import { resolveNode, requireTS } from "@capacitor/cli/dist/util/node";
