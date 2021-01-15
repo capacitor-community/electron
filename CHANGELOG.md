@@ -1,5 +1,10 @@
 ## [3.0.0-1](https://github.com/capacitor-community/electron/compare/v1.3.2...v3.0.0-1) (2021-01-15)
 
+### NOTE:
+
+- This is an early version of the electron platform for capacitor 3, electron plugins are currently disabled.
+- Please note that the major version number of the platform will now corrispond with the major version number of capacitor.
+
 ### Features
 
 - heavy refactor for compat with cap3 ([7876c35](https://github.com/capacitor-community/electron/commit/7876c350d6c4c8606a5f57f6b415382c1fd75e8c))
