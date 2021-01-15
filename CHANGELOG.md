@@ -1,3 +1,17 @@
+## [3.0.0-1](https://github.com/capacitor-community/electron/compare/v1.3.2...v3.0.0-1) (2021-01-15)
+
+### Features
+
+- heavy refactor for compat with cap3 ([7876c35](https://github.com/capacitor-community/electron/commit/7876c350d6c4c8606a5f57f6b415382c1fd75e8c))
+
+### Chores
+
+- cleanup ([597a6b3](https://github.com/capacitor-community/electron/commit/597a6b3f1bbb86db80c488f596e6dcd7bf4fc07e))
+- dep updates ([d19e6db](https://github.com/capacitor-community/electron/commit/d19e6dbbff445ff232b1e9cbc2f691e3fa1b9f38))
+- more cleanup ([fd1f75e](https://github.com/capacitor-community/electron/commit/fd1f75ea40e8216d537f21ee27ba6d229ea202f5))
+- prepare for cap-v3 compat. ([c30f0a5](https://github.com/capacitor-community/electron/commit/c30f0a570e4cee45a474af822869bded1d0820dc))
+- readme with alpha ([627bae9](https://github.com/capacitor-community/electron/commit/627bae97092303ba799102402d7215ba5890da54))
+
 ### [1.3.2](https://github.com/capacitor-community/electron/compare/v1.3.1...v1.3.2) (2020-11-19)
 
 ### Bug Fixes
