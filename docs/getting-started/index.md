@@ -11,7 +11,7 @@
 
 **_Note: You can use other `npx cap` commands with the platform by: `npx cap <command> @capacitor-community/electron`_**
 
-<br />
+Running `npx cap copy @capacitor-community/electron` is necessary to update your `electron/app` folder after you make changes.
 
 ## Changing the default configuration
 
