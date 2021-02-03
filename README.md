@@ -30,6 +30,8 @@ Maintenance Status: Actively Maintained
 
 [You can find the docs site here.](https://capacitor-community.github.io/electron/)
 
+### _Please note as of v1.3.3 the electron version used has been reverted back to ~10.3.1 because of a bug with electron. Please see [this issue](https://github.com/capacitor-community/electron/issues/80) for more info._
+
 ## Great electron packages to consider for your project.
 
 - [Electron-Unhandled](https://github.com/sindresorhus/electron-unhandled): Catch unhandled errors and promise rejections in your Electron app.
