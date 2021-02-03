@@ -1,3 +1,10 @@
+### [1.3.3](https://github.com/capacitor-community/electron/compare/v1.3.2...v1.3.3) (2021-02-03)
+
+### Chores
+
+- dep updates ([d19e6db](https://github.com/capacitor-community/electron/commit/d19e6dbbff445ff232b1e9cbc2f691e3fa1b9f38))
+- revert to electron ~10.3.1 ([cb69da7](https://github.com/capacitor-community/electron/commit/cb69da72627bbbe8af9cc64ad4993379ff985f82))
+
 ### [1.3.2](https://github.com/capacitor-community/electron/compare/v1.3.1...v1.3.2) (2020-11-19)
 
 ### Bug Fixes
