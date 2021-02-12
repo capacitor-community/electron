@@ -34,7 +34,7 @@ async function doOpenTask() {
     switch (scriptToRun) {
       case "add":
         await doAddTask();
-        // await doUpdateTask();
+        await doUpdateTask();
         break;
       case "copy":
         await doCopyTask();

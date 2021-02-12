@@ -13,6 +13,7 @@ const Menu = electron.Menu;
 const MenuItem = electron.MenuItem;
 const nativeImage = electron.nativeImage;
 const Tray = electron.Tray;
+const fs = require("fs");
 const path = require("path");
 const electronIsDev = require("electron-is-dev");
 const electronServe = require("electron-serve");
@@ -69,7 +70,16 @@ export class CapacitorElectronApp {
   };
 
   constructor(config?: CapacitorElectronConfig) {
-    if (config) this.config = deepMerge(this.config, [config]);
+    if (config) {
+      const capConfig = JSON.parse(
+        fs.readFileSync(
+          path.join(Electron.app.getAppPath(), "capacitor.config.json")
+        )
+      );
+      if (capConfig.electron)
+        this.config = deepMerge(this.config, [capConfig.electron]);
+      this.config = deepMerge(this.config, [config]);
+    }
   }
 
   /** Creates mainwindow and does all setup. _Called after app.on('ready') event fired._ */
