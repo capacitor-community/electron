@@ -29,6 +29,7 @@
   },
   "author": "IT-MikeS",
   "devDependencies": {
+    "@rollup/plugin-node-resolve": "^10.0.0",
     "@types/fs-extra": "^9.0.6",
     "@types/node": "^12.14.21",
     "conventional-changelog-cli": "^2.1.1",
@@ -42,13 +43,12 @@
     "pretty-quick": "^3.1.0",
     "rimraf": "^3.0.2",
     "rollup": "^2.33.3",
-    "@rollup/plugin-node-resolve": "^10.0.0",
-    "typescript": "~4.1.3",
-    "terser": "^5.5.0"
+    "terser": "^5.5.0",
+    "typescript": "~4.1.3"
   },
   "dependencies": {
-    "@capacitor/cli": "^3.0.0-beta.1",
-    "@capacitor/core": "^3.0.0-beta.1",
+    "@capacitor/cli": "^3.0.0-beta.2",
+    "@capacitor/core": "^3.0.0-beta.2",
     "@ionic/utils-fs": "^3.1.5",
     "chalk": "^4.1.0",
     "electron-is-dev": "^1.2.0",
