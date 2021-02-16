@@ -70,22 +70,20 @@ export class CapacitorElectronApp {
   };
 
   constructor(config?: CapacitorElectronConfig) {
-    if (config) {
-      const capConfig = JSON.parse(
-        fs.readFileSync(
-          path.join(Electron.app.getAppPath(), "capacitor.config.json")
-        )
-      );
-      if (capConfig.electron)
-        this.config = deepMerge(this.config, [capConfig.electron]);
-      this.config = deepMerge(this.config, [config]);
-    }
+    const capConfig = JSON.parse(
+      fs
+        .readFileSync(path.join(app.getAppPath(), "capacitor.config.json"))
+        .toString()
+    );
+    if (capConfig.electron)
+      this.config = deepMerge(this.config, [capConfig.electron]);
+    if (config) this.config = deepMerge(this.config, [config]);
+    // console.log(this.config);
   }
 
   /** Creates mainwindow and does all setup. _Called after app.on('ready') event fired._ */
   init() {
-    console.log(this.config.mainWindow.windowOptions);
-
+    // console.log(this.config.mainWindow.windowOptions);
     const neededBrowserWindowConfig = {
       show: false,
       webPreferences: {
@@ -93,7 +91,7 @@ export class CapacitorElectronApp {
         enableRemoteModule: true,
         // Use preload to inject the electron varriant overrides for capacitor plugins.
         // Note: any windows you spawn that you want to include capacitor plugins must have this preload.
-        preload: path.join(app.getAppPath(), "preloader.js"),
+        preload: path.join(app.getAppPath(), "plugins", "preloader.js"),
       },
     };
 
@@ -113,7 +111,7 @@ export class CapacitorElectronApp {
       }
     });
 
-    console.log(this.config.mainWindow.windowOptions);
+    // console.log(this.config.mainWindow.windowOptions);
 
     //  set trayIcon if is true in capacitor.config.json
     if (this.config.trayMenu && this.config.trayMenu.useTrayMenu) {

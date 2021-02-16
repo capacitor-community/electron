@@ -157,7 +157,11 @@ export function resolveElectronPlugin(plugin: Plugin) {
     plugin.manifest.electron &&
     plugin.manifest.electron.src
   ) {
-    return join(plugin.rootPath, plugin.manifest.electron.src, "../");
+    return join(
+      plugin.rootPath,
+      plugin.manifest.electron.src,
+      "../dist/electron-plugin.js"
+    );
   } else {
     return null;
   }

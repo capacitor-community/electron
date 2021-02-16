@@ -4,7 +4,7 @@
   "description": "An Amazing Capacitor App",
   "main": "./build/index.js",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && tsc --project ./tsconfig.plugins.json",
     "electron:start": "npm run build && electron ./",
     "electron:pack": "npm run build && electron-builder build --dir",
     "electron:build-windows": "npm run build && electron-builder build --windows",
