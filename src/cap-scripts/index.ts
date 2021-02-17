@@ -34,7 +34,7 @@ async function doOpenTask() {
     switch (scriptToRun) {
       case "add":
         await doAddTask();
-        await doUpdateTask();
+        // await doUpdateTask();
         break;
       case "copy":
         await doCopyTask();
@@ -43,11 +43,12 @@ async function doOpenTask() {
         await doOpenTask();
         break;
       case "update":
-        await doUpdateTask();
+        // await doUpdateTask();
+        console.log("Update function currently disabled");
         break;
       case "sync":
         await doCopyTask();
-        await doUpdateTask();
+        // await doUpdateTask();
         break;
       default:
         throw new Error(`Invalid script chosen: ${scriptToRun}`);

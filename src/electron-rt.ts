@@ -353,7 +353,6 @@ export const initBridge = (win: any, cap: any): void => {
       );
   }
 };
-
 export const convertFileSrcServerUrl = (
   webviewServerUrl: string,
   filePath: string
@@ -403,6 +402,7 @@ export const createCapacitorElectron = (win: any) => {
   console.log("createCapacitorElectron");
   console.log(win.Capacitor);
   console.log("---");
+
   const cap = win.Capacitor || ({} as any);
 
   const Plugins = (cap.Plugins = cap.Plugins || ({} as any));
@@ -644,10 +644,8 @@ export const createCapacitorElectron = (win: any) => {
 
   return cap;
 };
-
 export const initCapacitorGlobal = (win: any): CapacitorGlobal =>
   (win.Capacitor = createCapacitorElectron(win));
-
 export const Capacitor = /*#__PURE__*/ initCapacitorGlobal(
   (typeof globalThis !== "undefined"
     ? globalThis
@@ -659,5 +657,4 @@ export const Capacitor = /*#__PURE__*/ initCapacitorGlobal(
     ? global
     : {}) as any
 );
-
 export const registerPlugin = Capacitor.registerPlugin;

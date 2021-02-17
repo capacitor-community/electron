@@ -4,16 +4,18 @@
     "declaration": true,
     "experimentalDecorators": true,
     "noEmitHelpers": true,
-    "importHelpers": true,
-    "moduleResolution": "node",
     "lib": ["dom", "es2020"],
-    "module": "es2020",
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "outDir": "dist",
+    "outDir": "dist/rt",
     "sourceMap": true,
-    "target": "ES2017"
+    "importHelpers": true,
+    "target": "ES2017",
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "allowJs": true
   },
-  "files": ["src/plugins/index.ts"]
+  "files": ["src/electron-rt.ts"]
 }

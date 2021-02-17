@@ -5,9 +5,9 @@ import { readJSON, runExec, writePrettyJSON } from "./common";
 
 export async function doAdd() {
   try {
-    console.log(process.env.CAPACITOR_ROOT_DIR);
-    console.log(process.env.CAPACITOR_WEB_DIR);
-    console.log(process.env.CAPACITOR_CONFIG);
+    //console.log(process.env.CAPACITOR_ROOT_DIR);
+    //console.log(process.env.CAPACITOR_WEB_DIR);
+    //console.log(process.env.CAPACITOR_CONFIG);
     const usersProjectDir = process.env.CAPACITOR_ROOT_DIR!;
     const capacitorElectronNodeModuleTemplateDir = join(
       usersProjectDir,

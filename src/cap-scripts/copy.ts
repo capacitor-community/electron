@@ -3,6 +3,7 @@ import { copySync, removeSync } from "fs-extra";
 import { getCwd, readJSON, errorLog } from "./common";
 import { join } from "path";
 
+/*
 function checkRequirements() {
   const outPaths: {
     errorText: null | string;
@@ -42,20 +43,19 @@ function checkRequirements() {
   }
   return outPaths;
 }
+*/
 
 export async function doCopy() {
-  const paths = checkRequirements();
-  if (paths.errorText === null) {
-    try {
-      const platformAppFolder = join(paths.destTemplatePath!, "app");
-      if (existsSync(platformAppFolder)) removeSync(platformAppFolder);
-      copySync(paths.webAppPath!, platformAppFolder);
-    } catch (e) {
-      errorLog(e.message);
-      throw e;
-    }
-  } else {
-    errorLog(paths.errorText);
-    throw new Error(paths.errorText);
+  const usersProjectDir = process.env.CAPACITOR_ROOT_DIR!;
+  // const configData = JSON.parse(process.env.CAPACITOR_CONFIG!);
+  const builtWebAppDir = process.env.CAPACITOR_WEB_DIR!;
+  const destDir = join(usersProjectDir, "electron", "app");
+
+  try {
+    if (existsSync(destDir)) removeSync(destDir);
+    copySync(builtWebAppDir, destDir);
+  } catch (e) {
+    errorLog(e.message);
+    throw e;
   }
 }
