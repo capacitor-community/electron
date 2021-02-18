@@ -8,7 +8,7 @@
     "noImplicitAny": false,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "outDir": "dist/rt",
+    "outDir": "dist/runtime",
     "sourceMap": true,
     "importHelpers": true,
     "target": "ES2017",
@@ -17,5 +17,5 @@
     "esModuleInterop": true,
     "allowJs": true
   },
-  "files": ["src/electron-rt.ts"]
+  "files": ["src/runtime/electron-rt.ts"]
 }

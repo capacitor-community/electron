@@ -1,14 +1,16 @@
 import { runTask } from "./common";
-import { doUpdate } from "./update";
+// import { doUpdate } from "./update";
 import { doAdd } from "./add";
 import { doCopy } from "./copy";
 import { doOpen } from "./open";
 
+/*
 async function doUpdateTask() {
   return await runTask("Updating Electron plugins", async () => {
     return await doUpdate();
   });
 }
+*/
 
 async function doAddTask() {
   return await runTask("Adding Electron platform", async () => {
