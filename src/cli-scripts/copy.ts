@@ -1,6 +1,6 @@
 import { existsSync } from "fs";
 import { copySync, removeSync } from "fs-extra";
-import { getCwd, readJSON, errorLog } from "./common";
+import { errorLog } from "./common";
 import { join } from "path";
 
 /*
