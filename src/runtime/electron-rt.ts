@@ -490,6 +490,11 @@ export const createCapacitorElectron = (win: any) => {
           typeof jsImplementations[platform] === "function"
             ? (jsImplementation = await jsImplementations[platform]())
             : (jsImplementation = jsImplementations[platform]);
+      } else if (!jsImplementation && "web" in jsImplementations) {
+        jsImplementation =
+          typeof jsImplementations[platform] === "function"
+            ? (jsImplementation = await jsImplementations[platform]())
+            : (jsImplementation = jsImplementations[platform]);
       }
 
       return jsImplementation;
