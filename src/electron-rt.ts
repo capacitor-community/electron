@@ -353,6 +353,7 @@ export const initBridge = (win: any, cap: any): void => {
       );
   }
 };
+
 export const convertFileSrcServerUrl = (
   webviewServerUrl: string,
   filePath: string
@@ -399,10 +400,6 @@ export class CapacitorException extends Error {
 }
 
 export const createCapacitorElectron = (win: any) => {
-  console.log("createCapacitorElectron");
-  console.log(win.Capacitor);
-  console.log("---");
-
   const cap = win.Capacitor || ({} as any);
 
   const Plugins = (cap.Plugins = cap.Plugins || ({} as any));
@@ -414,7 +411,9 @@ export const createCapacitorElectron = (win: any) => {
     return "electron";
   };
 
-  const isNativePlatform = () => true;
+  const isNativePlatform = () => {
+    return true;
+  };
 
   const isPluginAvailable = (pluginName: string): boolean => {
     const plugin = registeredPlugins.get(pluginName);
