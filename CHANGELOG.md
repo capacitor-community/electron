@@ -1,3 +1,13 @@
+## [3.0.0-3](https://github.com/capacitor-community/electron/compare/v3.0.0-2...v3.0.0-3) (2021-02-19)
+
+### Bug Fixes
+
+- load web impl. if no electron impl. for real ([4b6f29c](https://github.com/capacitor-community/electron/commit/4b6f29c81c72f5f519049aad7d9285f49afe9ba2))
+
+### Chores
+
+- change log fix ([5e91496](https://github.com/capacitor-community/electron/commit/5e91496e0d24f638a80c5d6e3eeda927d8a60d3c))
+
 ## [3.0.0-2](https://github.com/capacitor-community/electron/compare/v3.0.0-1...v3.0.0-2) (2021-02-19)
 
 ### Bug Fixes
@@ -7,7 +17,7 @@
 
 ### Chores
 
-- capacitor version to beta 2! ([062ff3a](https://github.com/capacitor-community/electron/commit/062ff3a68be469d8629ae4ec8fa8ed05f517d01e))
+- capacitor version to beta 2 ([062ff3a](https://github.com/capacitor-community/electron/commit/062ff3a68be469d8629ae4ec8fa8ed05f517d01e))
 - clean up rt file ([3ef3aed](https://github.com/capacitor-community/electron/commit/3ef3aed73a73b7505197d3220cb10988c5e559ca))
 - clean-up for next alpha release ([f224deb](https://github.com/capacitor-community/electron/commit/f224deb35c0348eebefb891eb286725cee60e112))
 - cleanup and push changelog ([0aa326d](https://github.com/capacitor-community/electron/commit/0aa326d3dd9bb76a459bc23511cead11209b2275))
