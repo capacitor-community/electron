@@ -1,9 +1,22 @@
+## [3.0.0-2](https://github.com/capacitor-community/electron/compare/v3.0.0-1...v3.0.0-2) (2021-02-19)
+
+### Bug Fixes
+
+- bring to spec with new cli passed config data ([4e5c89b](https://github.com/capacitor-community/electron/commit/4e5c89b8f35d335120dd402774cd56a7c4331499))
+- load web impl. if no electron impl. ([f989c47](https://github.com/capacitor-community/electron/commit/f989c47a5d0b34c7aeb6c17c6ff5b8e977e0d601))
+
+### Chores
+
+- capacitor version to beta 2 ([062ff3a](https://github.com/capacitor-community/electron/commit/062ff3a68be469d8629ae4ec8fa8ed05f517d01e))
+- clean up rt file ([3ef3aed](https://github.com/capacitor-community/electron/commit/3ef3aed73a73b7505197d3220cb10988c5e559ca))
+- clean-up for next alpha release ([f224deb](https://github.com/capacitor-community/electron/commit/f224deb35c0348eebefb891eb286725cee60e112))
+- cleanup and push changelog ([0aa326d](https://github.com/capacitor-community/electron/commit/0aa326d3dd9bb76a459bc23511cead11209b2275))
+- making repo structure a little more clear ([553fb95](https://github.com/capacitor-community/electron/commit/553fb957402318a67fb88c6ad9f2c4c9add3e7b3))
+- missed a file to remove ([30012a5](https://github.com/capacitor-community/electron/commit/30012a524141457a9d654839a3b124ff62500345))
+- start plugin support v3 way ([2b0e91a](https://github.com/capacitor-community/electron/commit/2b0e91ac954870c446cf2289d9497d94f7a51d72))
+- testing new runtime inject ([e9ac61c](https://github.com/capacitor-community/electron/commit/e9ac61ce14f1dd3caa2b51add4b4f5f1bf6c6389))
+
 ## [3.0.0-1](https://github.com/capacitor-community/electron/compare/v1.3.2...v3.0.0-1) (2021-01-15)
-
-### NOTE:
-
-- This is an early version of the electron platform for capacitor 3, electron plugins are currently disabled.
-- Please note that the major version number of the platform will now corrispond with the major version number of capacitor.
 
 ### Features
 
