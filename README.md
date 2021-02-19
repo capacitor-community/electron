@@ -30,6 +30,10 @@ Maintenance Status: Actively Maintained
 
 [You can find the docs site here.](https://capacitor-community.github.io/electron/)
 
+## Security
+
+While this platform strives to be as much inline with current secure practices as possible there are things outside of platform control, and these fall to all of you, the users. Please take the time to read through the [security checklist](https://www.electronjs.org/docs/tutorial/security#checklist-security-recommendations) the electron team has created to keep your application as safe and secure as you possibly can.
+
 ## Great electron packages to consider for your project.
 
 - [Electron-Unhandled](https://github.com/sindresorhus/electron-unhandled): Catch unhandled errors and promise rejections in your Electron app.
