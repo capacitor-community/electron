@@ -88,7 +88,6 @@ export class CapacitorElectronApp {
       show: false,
       webPreferences: {
         nodeIntegration: true,
-        enableRemoteModule: true,
         // Use preload to inject the electron varriant overrides for capacitor plugins.
         // Note: any windows you spawn that you want to include capacitor plugins must have this preload.
         preload: path.join(app.getAppPath(), "preloader.js"),
