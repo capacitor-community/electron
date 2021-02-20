@@ -1,3 +1,17 @@
+## [3.0.0-4](https://github.com/capacitor-community/electron/compare/v3.0.0-3...v3.0.0-4) (2021-02-20)
+
+### Features
+
+- minimized injected modified runtime ([727c29a](https://github.com/capacitor-community/electron/commit/727c29a863a9e951c5ea51e1c235d876678b9d96))
+
+### Bug Fixes
+
+- no longer need remote module enabled 🎉 ([408e94f](https://github.com/capacitor-community/electron/commit/408e94ffad083a26d542e53153de8de667372ff2))
+
+### Chores
+
+- readme update for note on security checklist ([9055497](https://github.com/capacitor-community/electron/commit/9055497c300ab29694f4074b2095270fc137e825))
+
 ## [3.0.0-3](https://github.com/capacitor-community/electron/compare/v3.0.0-2...v3.0.0-3) (2021-02-19)
 
 ### Bug Fixes
