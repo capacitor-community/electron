@@ -90,7 +90,15 @@ export class CapacitorElectronApp {
         nodeIntegration: true,
         // Use preload to inject the electron varriant overrides for capacitor plugins.
         // Note: any windows you spawn that you want to include capacitor plugins must have this preload.
-        preload: path.join(app.getAppPath(), "preloader.js"),
+        preload: path.join(
+          app.getAppPath(),
+          "node_modules",
+          "@capacitor-community",
+          "electron",
+          "dist",
+          "runtime",
+          "electron-rt.js"
+        ),
       },
     };
 
