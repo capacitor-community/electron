@@ -1,3 +1,13 @@
+### [1.3.4](https://github.com/capacitor-community/electron/compare/v1.3.3...v1.3.4) (2021-02-23)
+
+### Features
+
+- allow for custom preload additions ([c704dad](https://github.com/capacitor-community/electron/commit/c704dada362f95295ab393c79d38794ad508ac8f))
+
+### Bug Fixes
+
+- tslib missing ([eda9bd2](https://github.com/capacitor-community/electron/commit/eda9bd2df3f2f0f0b47d6c8aea287294a6f27202))
+
 ### [1.3.3](https://github.com/capacitor-community/electron/compare/v1.3.2...v1.3.3) (2021-02-03)
 
 ### Chores
