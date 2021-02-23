@@ -1,13 +1,13 @@
-import { existsSync, renameSync, writeFileSync } from "fs";
+import { existsSync, renameSync, readFileSync, writeFileSync } from "fs";
 import { copySync } from "fs-extra";
 import { join } from "path";
 import { readJSON, runExec, writePrettyJSON } from "./common";
 
 export async function doAdd() {
   try {
-    //console.log(process.env.CAPACITOR_ROOT_DIR);
-    //console.log(process.env.CAPACITOR_WEB_DIR);
-    //console.log(process.env.CAPACITOR_CONFIG);
+    // console.log(process.env.CAPACITOR_ROOT_DIR);
+    // console.log(process.env.CAPACITOR_WEB_DIR);
+    // console.log(process.env.CAPACITOR_CONFIG);
     const usersProjectDir = process.env.CAPACITOR_ROOT_DIR!;
     const capacitorElectronNodeModuleTemplateDir = join(
       usersProjectDir,
@@ -22,7 +22,7 @@ export async function doAdd() {
     //   "capacitor.config.ts"
     // );
 
-    const configData = JSON.parse(process.env.CAPACITOR_CONFIG!);
+    const configData = JSON.parse(readFileSync(process.env.CAPACITOR_CONFIG!).toString());
 
     const builtWebAppDir = process.env.CAPACITOR_WEB_DIR!;
 

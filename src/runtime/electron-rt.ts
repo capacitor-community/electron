@@ -1,6 +1,7 @@
 import {
   PluginImplementations,
   CapacitorGlobal,
+  RegisterPlugin,
 } from "@capacitor/core/types/definitions";
 
 console.log((window as any).Capacitor);
@@ -248,4 +249,4 @@ export const Capacitor = /*#__PURE__*/ initCapacitorGlobal(
     : {}) as any
 );
 
-export const registerPlugin = Capacitor.registerPlugin;
+export const registerPlugin: RegisterPlugin = Capacitor.registerPlugin;
