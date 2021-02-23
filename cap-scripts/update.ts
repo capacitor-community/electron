@@ -1,6 +1,6 @@
 import { join, sep } from "path";
 import { copyFileSync, writeFileSync, realpathSync, mkdirSync } from "fs";
-import { removeSync } from "fs-extra";
+import { existsSync, removeSync } from "fs-extra";
 import {
   readJSON,
   resolvePlugin,
@@ -43,6 +43,9 @@ export async function doUpdate() {
   let preloaderString = `require('./node_modules/@capacitor-community/electron/dist/electron-bridge.js');`;
   for (const fname of filenames) {
     preloaderString += `require('./plugins/${fname}');`;
+  }
+  if (existsSync(join(cwd, "electron", "user-preload-script.js"))) {
+    preloaderString += `require('./user-preload-script.js');`;
   }
   writeFileSync(join(cwd, "electron", "preloader.js"), preloaderString, {
     encoding: "utf8",
