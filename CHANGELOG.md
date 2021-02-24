@@ -1,3 +1,9 @@
+## [3.0.0-5](https://github.com/capacitor-community/electron/compare/v3.0.0-4...v3.0.0-5) (2021-02-24)
+
+### Bug Fixes
+
+- template not using alpha ([98fe1c0](https://github.com/capacitor-community/electron/commit/98fe1c0ac5047fe7db68c651fe987fa0a3c1d9f7))
+
 ## [3.0.0-4](https://github.com/capacitor-community/electron/compare/v3.0.0-3...v3.0.0-4) (2021-02-20)
 
 ### Features
