@@ -1,3 +1,13 @@
+## [1.4.0](https://github.com/capacitor-community/electron/compare/v1.3.4...v1.4.0) (2021-03-18)
+
+### Features
+
+- update to electron 12 / node 14 ([4a5a3f2](https://github.com/capacitor-community/electron/commit/4a5a3f27039356dd95c6d766294146dd5facf799))
+
+### Chores
+
+- touch up readme and package json ([1796506](https://github.com/capacitor-community/electron/commit/17965061bf004abaadfde1ffa33ee35c17f2b436))
+
 ### [1.3.4](https://github.com/capacitor-community/electron/compare/v1.3.3...v1.3.4) (2021-02-23)
 
 ### Features
