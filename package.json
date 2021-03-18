@@ -5,7 +5,7 @@
   "main": "dist/esm-electron/index.js",
   "typings": "dist/esm-electron/index.d.ts",
   "scripts": {
-    "shipit": "npm run build && np --any-branch && npm run generate-changelog && npm run deploy-changelog",
+    "shipit": "npm run build && np --any-branch --no-tests && npm run generate-changelog && npm run deploy-changelog",
     "clean": "rimraf ./dist",
     "build": "npm run clean && npm run build-core && npm run build-platform",
     "capacitor:add": "node dist/cap-scripts.js add",

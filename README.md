@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/20338451/84775741-91e30a00-afad-11ea-8f37-92a7bfd6cd54.png" width="392" height="150" /><br />
+  <img src="https://user-images.githubusercontent.com/20338451/104735089-2ada2f00-570f-11eb-9f92-1587b473694a.png" width="392" height="150" /><br />
 </p>
 
 <p align="center">
@@ -9,7 +9,7 @@ Capacitor community support for the Electron platform.
   <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 <a href="#contributors"><img src="https://img.shields.io/badge/all%20contributors-8-orange?style=flat-square" /></a>
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
-  <a href="https://www.electronjs.org/releases/stable?version=9"><img src="https://img.shields.io/badge/supported%20electron%20version-~10.3.1-blue?style=flat-square" /></a>
+  <a href="https://www.electronjs.org/releases/stable?version=9"><img src="https://img.shields.io/badge/supported%20electron%20version-^12.0.1-blue?style=flat-square" /></a>
 </p>
 <p align="center">
   <a href="https://npmjs.com/package/@capacitor-community/electron"><img src="https://img.shields.io/npm/v/@capacitor-community/electron.svg?style=flat-square" /></a>
@@ -29,8 +29,6 @@ Maintenance Status: Actively Maintained
 ## Documentation:
 
 [You can find the docs site here.](https://capacitor-community.github.io/electron/)
-
-### _Please note as of v1.3.3 the electron version used has been reverted back to ~10.3.1 because of a bug with electron. Please see [this issue](https://github.com/capacitor-community/electron/issues/80) for more info._
 
 ## Great electron packages to consider for your project.
 
