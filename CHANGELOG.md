@@ -1,3 +1,9 @@
+### [1.4.1](https://github.com/capacitor-community/electron/compare/v1.4.0...v1.4.1) (2021-04-23)
+
+### Chores
+
+- bump up deps and fix readme ([a62f45e](https://github.com/capacitor-community/electron/commit/a62f45eafb5c8a6b3e46737a93e15826292dcefc))
+
 ## [1.4.0](https://github.com/capacitor-community/electron/compare/v1.3.4...v1.4.0) (2021-03-18)
 
 ### Features
