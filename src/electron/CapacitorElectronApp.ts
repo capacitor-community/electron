@@ -84,21 +84,24 @@ export class CapacitorElectronApp {
   /** Creates mainwindow and does all setup. _Called after app.on('ready') event fired._ */
   init() {
     // console.log(this.config.mainWindow.windowOptions);
+    const rtPath = path.join(
+      app.getAppPath(),
+      "node_modules",
+      "@capacitor-community",
+      "electron",
+      "dist",
+      "runtime",
+      "electron-rt.js"
+    )
+
     const neededBrowserWindowConfig = {
       show: false,
       webPreferences: {
         nodeIntegration: true,
         // Use preload to inject the electron varriant overrides for capacitor plugins.
         // Note: any windows you spawn that you want to include capacitor plugins must have this preload.
-        preload: path.join(
-          app.getAppPath(),
-          "node_modules",
-          "@capacitor-community",
-          "electron",
-          "dist",
-          "runtime",
-          "electron-rt.js"
-        ),
+        /*preload: rtPath,
+        //*/
       },
     };
 
@@ -107,6 +110,20 @@ export class CapacitorElectronApp {
         neededBrowserWindowConfig,
       ])
     );
+
+    this.mainWindowReference.webContents.once('dom-ready', () => {
+      this.mainWindowReference.webContents.executeJavaScript(`console.log('dom-ready')`);
+      this.mainWindowReference.webContents.executeJavaScript(fs.readFileSync(rtPath));
+    })
+    this.mainWindowReference.webContents.once('did-finish-load', () => {
+      this.mainWindowReference.webContents.executeJavaScript(`console.log('did-finish-load')`);
+      this.mainWindowReference.webContents.executeJavaScript(fs.readFileSync(rtPath));
+    })
+    this.mainWindowReference.webContents.once('did-start-loading', () => {
+      this.mainWindowReference.webContents.executeJavaScript(`console.log('did-start-loading')`);
+      this.mainWindowReference.webContents.executeJavaScript(fs.readFileSync(rtPath));
+    })
+
 
     this.mainWindowReference.on("closed", () => {
       if (
