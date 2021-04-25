@@ -98,10 +98,10 @@ export class CapacitorElectronApp {
       show: false,
       webPreferences: {
         nodeIntegration: true,
+        contextIsolation: false,
         // Use preload to inject the electron varriant overrides for capacitor plugins.
         // Note: any windows you spawn that you want to include capacitor plugins must have this preload.
-        /*preload: rtPath,
-        //*/
+        preload: rtPath
       },
     };
 
@@ -110,19 +110,6 @@ export class CapacitorElectronApp {
         neededBrowserWindowConfig,
       ])
     );
-
-    this.mainWindowReference.webContents.once('dom-ready', () => {
-      this.mainWindowReference.webContents.executeJavaScript(`console.log('dom-ready')`);
-      this.mainWindowReference.webContents.executeJavaScript(fs.readFileSync(rtPath));
-    })
-    this.mainWindowReference.webContents.once('did-finish-load', () => {
-      this.mainWindowReference.webContents.executeJavaScript(`console.log('did-finish-load')`);
-      this.mainWindowReference.webContents.executeJavaScript(fs.readFileSync(rtPath));
-    })
-    this.mainWindowReference.webContents.once('did-start-loading', () => {
-      this.mainWindowReference.webContents.executeJavaScript(`console.log('did-start-loading')`);
-      this.mainWindowReference.webContents.executeJavaScript(fs.readFileSync(rtPath));
-    })
 
 
     this.mainWindowReference.on("closed", () => {

@@ -1,4 +1,4 @@
-/*
+//*
 import { addPlatform, setPlatform } from "@capacitor/core";
 
 addPlatform("electron", {
@@ -13,7 +13,7 @@ setPlatform("electron");
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-//*
+/*
 import {
   PluginImplementations,
   CapacitorGlobal,
@@ -202,7 +202,7 @@ export const createCapacitorElectron = (win: any) => {
 export const initCapacitorGlobal = (win: any): CapacitorGlobal =>
   (win.Capacitor = createCapacitorElectron(win));
 
-export const Capacitor = /*#__PURE__*/ initCapacitorGlobal(
+export const Capacitor = /*#__PURE__* initCapacitorGlobal(
   (typeof globalThis !== "undefined"
     ? globalThis
     : typeof self !== "undefined"
