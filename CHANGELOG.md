@@ -1,3 +1,9 @@
+### [1.4.2](https://github.com/capacitor-community/electron/compare/v1.4.1...v1.4.2) (2021-04-26)
+
+### Bug Fixes
+
+- **cli:** fix scripts failing on paths with spaces ([016a5ae](https://github.com/capacitor-community/electron/commit/016a5ae142b63ebaf6c94c547aa48f9071828b39))
+
 ### [1.4.1](https://github.com/capacitor-community/electron/compare/v1.4.0...v1.4.1) (2021-04-23)
 
 ### Chores
