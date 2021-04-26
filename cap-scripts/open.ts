@@ -24,7 +24,7 @@ export async function doOpen() {
   const paths = checkRequirements();
   if (paths.errorText === null) {
     try {
-      await runExec(`cd ${paths.destTemplatePath} && npm run electron:start`);
+      await runExec(`cd ${paths.destTemplatePath!.replace(/ /g, '\\ ')} && npm run electron:start`);
     } catch (e) {
       errorLog(e.message);
       throw e;

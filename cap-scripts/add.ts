@@ -75,7 +75,7 @@ export async function doAdd() {
         electronPackageJson
       );
       copySync(paths.webAppPath!, join(paths.destTemplatePath!, "app"));
-      await runExec(`cd ${paths.destTemplatePath} && npm i`);
+      await runExec(`cd ${paths.destTemplatePath!.replace(/ /g, '\\ ')} && npm i`);
     } catch (e) {
       errorLog(e.message);
       throw e;
