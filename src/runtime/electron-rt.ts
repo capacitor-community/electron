@@ -1,4 +1,5 @@
 //*
+console.log('Running ELECTRON-RT.TS Injection (This message will be removed after alpha/beta)')
 import { addPlatform, setPlatform } from "@capacitor/core";
 
 addPlatform("electron", {

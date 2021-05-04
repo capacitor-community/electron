@@ -17,14 +17,11 @@
     "build-platform": "tsc --project ./tsconfig.electron.json",
     "build-runtime": "tsc --project ./tsconfig.runtime.json",
     "generate-changelog": "conventional-changelog -o CHANGELOG.md -r 0 --config changelog.config.js",
-    "deploy-changelog": "bash ./deployChangeLog.sh"
+    "deploy-changelog": "bash ./deployChangeLog.sh",
+    "prepare": "husky install",
+    "pretty-quick": "pretty-quick"
   },
   "license": "MIT",
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged"
-    }
-  },
   "author": "IT-MikeS",
   "devDependencies": {
     "@types/fs-extra": "~9.0.11",
@@ -38,6 +35,7 @@
     "prettier": "~2.2.1",
     "pretty-quick": "~3.1.0",
     "rimraf": "~3.0.2",
+    "tslib": "~2.2.0",
     "typescript": "~4.2.4"
   },
   "dependencies": {
