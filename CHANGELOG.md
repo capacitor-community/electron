@@ -1,3 +1,10 @@
+## [3.0.0-beta.2](https://github.com/capacitor-community/electron/compare/v3.0.0-beta.1...v3.0.0-beta.2) (2021-05-04)
+
+
+### Bug Fixes
+
+* template not using 'next' ([433b887](https://github.com/capacitor-community/electron/commit/433b8872d4a21072009b28efe05e2ebdb1e764be))
+
 ## [3.0.0-beta.1](https://github.com/capacitor-community/electron/compare/v3.0.0-5...v3.0.0-beta.1) (2021-05-04)
 
 
