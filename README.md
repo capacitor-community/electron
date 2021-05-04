@@ -9,7 +9,7 @@ Capacitor community support for the Electron platform.
   <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 <a href="#contributors"><img src="https://img.shields.io/badge/all%20contributors-8-orange?style=flat-square" /></a>
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
-  <a href="https://www.electronjs.org/releases/stable?version=10"><img src="https://img.shields.io/badge/supported%20electron%20version-~10.3.2-blue?style=flat-square" /></a>
+  <a href="https://www.electronjs.org/releases/stable?version=12"><img src="https://img.shields.io/badge/supported%20electron%20version-~12.0.5-blue?style=flat-square" /></a>
 </p>
 <p align="center">
   <a href="https://npmjs.com/package/@capacitor-community/electron"><img src="https://img.shields.io/npm/v/@capacitor-community/electron/alpha.svg?style=flat-square" /></a>
@@ -26,7 +26,7 @@ Capacitor community support for the Electron platform.
 
 Maintenance Status: Actively Maintained
 
-## Documentation (Not Updated for V3 Alpha):
+## Documentation (Not Updated for V3):
 
 [You can find the docs site here.](https://capacitor-community.github.io/electron/)
 

@@ -48,5 +48,12 @@
     "fs-extra": "~9.1.0",
     "mime-types": "~2.1.30",
     "ora": "~5.4.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/capacitor-community/electron"
+  },
+  "bugs": {
+    "url": "https://github.com/capacitor-community/electron/issues"
   }
 }
