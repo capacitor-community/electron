@@ -13,6 +13,7 @@ const Menu = electron.Menu;
 const MenuItem = electron.MenuItem;
 const nativeImage = electron.nativeImage;
 const Tray = electron.Tray;
+const ipcMain = electron.ipcMain;
 const fs = require("fs");
 const path = require("path");
 const electronIsDev = require("electron-is-dev");
@@ -162,6 +163,57 @@ export class CapacitorElectronApp {
     } else {
       this.loadMainWindow(this);
     }
+
+    //setupListeners
+    const rtPluginsPath = path.join(
+      app.getAppPath(),
+      "node_modules",
+      "@capacitor-community",
+      "electron",
+      "dist",
+      "runtime",
+      "electron-plugins.js"
+    )
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    const AsyncFunction = (async () => {}).constructor;
+    const plugins: any = require(rtPluginsPath)
+    const pluginFunctionsRegistry: any = {}
+    for (const pluginKey of Object.keys(plugins)) {
+      console.log(pluginKey)
+      for (const classKey of Object.keys(plugins[pluginKey])) {
+        const functionList = Object.getOwnPropertyNames(plugins[pluginKey][classKey].prototype).filter(v => v !== 'constructor')
+        console.log('  ', classKey)
+        console.log('    ' + JSON.stringify(functionList))
+        console.log('')
+        if (!pluginFunctionsRegistry[classKey]) {
+          pluginFunctionsRegistry[classKey] = {}
+        }
+        for (const functionName of functionList) {
+          if (!pluginFunctionsRegistry[classKey][functionName]) {
+            pluginFunctionsRegistry[classKey][functionName] = ipcMain.on(`${classKey}-${functionName}`, async (event, ...args) => {
+              console.log('args')
+              console.log(args)
+              const pluginRef = new plugins[pluginKey][classKey]()
+              const theCall = pluginRef[functionName]
+              console.log('theCall')
+              console.log(theCall)
+              const isPromise = theCall instanceof Promise || (theCall instanceof AsyncFunction)
+              console.log('isPromise')
+              console.log(isPromise)
+              let returnVal = null
+              if (isPromise) {
+                returnVal = await theCall(...args)
+                event.reply(`${classKey}-${functionName}-reply`, returnVal || null)
+              } else {
+                returnVal = theCall(...args)
+                event.returnValue = returnVal
+              }
+            })
+          }
+        }
+      }
+    }
+
 
     this.mainWindowReference.webContents.on("dom-ready", () => {
       if (this.config.splashScreen.useSplashScreen) {

@@ -160,7 +160,7 @@ export function resolveElectronPlugin(plugin: Plugin) {
     return join(
       plugin.rootPath,
       plugin.manifest.electron.src,
-      "../dist/electron-plugin.js"
+      "dist/plugin.js"
     );
   } else {
     return null;

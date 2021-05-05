@@ -1,16 +1,14 @@
 import { runTask } from "./common";
-// import { doUpdate } from "./update";
+import { doUpdate } from "./update";
 import { doAdd } from "./add";
 import { doCopy } from "./copy";
 import { doOpen } from "./open";
 
-/*
 async function doUpdateTask() {
   return await runTask("Updating Electron plugins", async () => {
     return await doUpdate();
   });
 }
-*/
 
 async function doAddTask() {
   return await runTask("Adding Electron platform", async () => {
@@ -36,7 +34,7 @@ async function doOpenTask() {
     switch (scriptToRun) {
       case "add":
         await doAddTask();
-        // await doUpdateTask();
+        await doUpdateTask();
         break;
       case "copy":
         await doCopyTask();
@@ -45,12 +43,11 @@ async function doOpenTask() {
         await doOpenTask();
         break;
       case "update":
-        // await doUpdateTask();
-        console.log("Update function currently disabled");
+        await doUpdateTask();
         break;
       case "sync":
         await doCopyTask();
-        // await doUpdateTask();
+        await doUpdateTask();
         break;
       default:
         throw new Error(`Invalid script chosen: ${scriptToRun}`);
