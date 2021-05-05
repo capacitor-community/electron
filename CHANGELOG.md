@@ -1,3 +1,16 @@
+## [3.0.0-beta.3](https://github.com/capacitor-community/electron/compare/v3.0.0-beta.2...v3.0.0-beta.3) (2021-05-05)
+
+
+### Features
+
+* big refactor and change how plugins are handled ([8657753](https://github.com/capacitor-community/electron/commit/8657753a64201b193582de1ab4570c469e4d7454))
+
+
+### Chores
+
+* more readme touch up ([5277bac](https://github.com/capacitor-community/electron/commit/5277bac5704a6a1a73f18308ed68af2e78353c2b))
+* touch up readme and repo info ([7984123](https://github.com/capacitor-community/electron/commit/798412361122e32b7c6a933424d25fed1999e741))
+
 ## [3.0.0-beta.2](https://github.com/capacitor-community/electron/compare/v3.0.0-beta.1...v3.0.0-beta.2) (2021-05-04)
 
 
