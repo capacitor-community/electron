@@ -1,3 +1,11 @@
+## [3.0.0-beta.4](https://github.com/capacitor-community/electron/compare/v3.0.0-beta.3...v3.0.0-beta.4) (2021-05-12)
+
+
+### Chores
+
+* add v3 info to readme ([a7da410](https://github.com/capacitor-community/electron/commit/a7da410c1ca47702832b9de38ffb7becab9e68df))
+* cleanup deps ([97a3f03](https://github.com/capacitor-community/electron/commit/97a3f034b88f14f4223790f4836ec3fd7af6b880))
+
 ## [3.0.0-beta.3](https://github.com/capacitor-community/electron/compare/v3.0.0-beta.2...v3.0.0-beta.3) (2021-05-05)
 
 
