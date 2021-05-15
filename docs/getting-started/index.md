@@ -15,7 +15,7 @@
 
 ## Changing the default configuration
 
-In the `*yourAppDir*/electron/src/index.ts` file there will be a line reading: `const myCapacitorApp = createCapacitorElectronApp();` here you can pass an object with your desired config changes ([see config options for details](/extra/config-options)).
+In the `*yourAppDir*/electron/src/index.ts` file there will be a line reading: `const myCapacitorApp = createCapacitorElectronApp();` here you can pass an object with your desired config changes ([see config options for details](/config-options)).
 
 For example if you wanted to disable the splashscreen from showing while the app starts up you would pass an object like the following:
 
