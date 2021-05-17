@@ -13,6 +13,7 @@ export interface DeeplinkingOptions {
 }
 
 export interface CapacitorElectronConfig {
+  customScheme?: string;
   trayMenu?: {
     useTrayMenu?: boolean;
     trayIconPath?: string;

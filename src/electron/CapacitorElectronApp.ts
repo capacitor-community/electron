@@ -22,11 +22,12 @@ const electronServe = require("electron-serve");
 const EventEmitter = require("events");
 class CapElectronEmitter extends EventEmitter {}
 const theEmitter = new CapElectronEmitter();
-
+/*
 const loadWebApp = electronServe({
   directory: path.join(app.getAppPath(), "app"),
   scheme: "capacitor-electron",
 });
+//*/
 
 export class CapacitorElectronApp {
   private mainWindowReference: Electron.BrowserWindow | null = null;
@@ -35,6 +36,7 @@ export class CapacitorElectronApp {
   // @ts-ignore
   private devServerUrl: string | null = null;
   private config: CapacitorElectronConfig = {
+    customScheme: 'capacitor-electron',
     trayMenu: {
       useTrayMenu: false,
       trayIconPath: path.join(
@@ -70,6 +72,10 @@ export class CapacitorElectronApp {
     },
   };
   private userPassedConfig: CapacitorElectronConfig | null = null;
+  private loadWebApp: any = electronServe({
+    directory: path.join(app.getAppPath(), "app"),
+    scheme: this.config.customScheme,
+  });
 
   constructor(config?: CapacitorElectronConfig) {
     if (config) this.userPassedConfig = config;
@@ -87,6 +93,11 @@ export class CapacitorElectronApp {
     }
     if (capConfig.electron) this.config = deepMerge(this.config, [capConfig.electron]);
     if (this.userPassedConfig) this.config = deepMerge(this.config, [this.userPassedConfig]);
+
+    this.loadWebApp = electronServe({
+      directory: path.join(app.getAppPath(), "app"),
+      scheme: this.config.customScheme,
+    });
 
     // console.log(this.config.mainWindow.windowOptions);
     const rtPath = path.join(
@@ -243,7 +254,7 @@ export class CapacitorElectronApp {
         thisRef.devServerUrl
       );
     } else {
-      await loadWebApp(thisRef.mainWindowReference);
+      await this.loadWebApp(thisRef.mainWindowReference);
     }
   }
 
