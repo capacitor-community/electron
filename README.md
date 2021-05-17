@@ -1,6 +1,6 @@
 <h1 align="center">V3 Info</h1>
 
-- Minimum `@capacitor/cli` and `@capacitor/core` version is `> 3.0.0-rc.1`
+- Minimum `@capacitor/cli` and `@capacitor/core` version is `> 3.0.0-rc.2`
 - Plugins from previous versions `@capacitor-community/electron` will not function in V3, however all web plugins will continue to function as normal.
 - There is a basic set of instructions for creating plugins for V3  in the `plugin-example/instructions.md` file in this repo branch
 - V3 comes with no plugins out of the box like previous versions. Instead V3 follows Capacitor in seperated plugins, see [Dialog Plugin](https://capacitorjs.com/docs/v3/apis/dialog) for an example.
