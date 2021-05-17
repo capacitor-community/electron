@@ -7,8 +7,8 @@ const myCapacitorApp = createCapacitorElectronApp();
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some Electron APIs can only be used after this event occurs.
-app.on("ready", () => {
-  myCapacitorApp.init();
+app.on("ready", async () => {
+  await myCapacitorApp.init();
 });
 
 // Quit when all windows are closed.

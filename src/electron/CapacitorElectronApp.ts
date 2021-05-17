@@ -69,21 +69,25 @@ export class CapacitorElectronApp {
       },
     },
   };
+  private userPassedConfig: CapacitorElectronConfig | null = null;
 
   constructor(config?: CapacitorElectronConfig) {
-    const capConfig = JSON.parse(
-      fs
-        .readFileSync(path.join(app.getAppPath(), "capacitor.config.json"))
-        .toString()
-    );
-    if (capConfig.electron)
-      this.config = deepMerge(this.config, [capConfig.electron]);
-    if (config) this.config = deepMerge(this.config, [config]);
-    // console.log(this.config);
+    if (config) this.userPassedConfig = config;
   }
 
   /** Creates mainwindow and does all setup. _Called after app.on('ready') event fired._ */
-  init() {
+  async init() {
+    let capConfig: any = {} 
+    if (fs.existsSync(path.join(app.getAppPath(), "capacitor.config.ts"))) {
+      capConfig = await import(path.join(app.getAppPath(), "capacitor.config.ts"))
+    } else if (fs.existsSync(path.join(app.getAppPath(), "capacitor.config.js"))) {
+      capConfig = require(path.join(app.getAppPath(), "capacitor.config.js"))
+    } else {
+      capConfig = JSON.parse(fs.readFileSync(path.join(app.getAppPath(), "capacitor.config.json")).toString());
+    }
+    if (capConfig.electron) this.config = deepMerge(this.config, [capConfig.electron]);
+    if (this.userPassedConfig) this.config = deepMerge(this.config, [this.userPassedConfig]);
+
     // console.log(this.config.mainWindow.windowOptions);
     const rtPath = path.join(
       app.getAppPath(),
@@ -213,7 +217,6 @@ export class CapacitorElectronApp {
         }
       }
     }
-
 
     this.mainWindowReference.webContents.on("dom-ready", () => {
       if (this.config.splashScreen.useSplashScreen) {
