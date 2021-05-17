@@ -15,5 +15,5 @@
     "strict": false,
     "target": "ES2017"
   },
-  "include": ["src/index.ts"]
+  "include": ["src/**/*"]
 }

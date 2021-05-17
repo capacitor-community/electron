@@ -78,7 +78,7 @@
       "strict": false,
       "target": "ES2017"
     },
-    "include": ["src/index.ts"]
+    "include": ["src/**/*"]
   }
   ```
 8. Modify the main `package.json` in the root directory, add a property to the `capacitor` object so it reflects the following (android and ios shown for example only):

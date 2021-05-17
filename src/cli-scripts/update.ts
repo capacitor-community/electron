@@ -7,6 +7,7 @@ import {
   resolveElectronPlugin,
   hashJsFileName,
   getCwd,
+  runExec
 } from "./common";
 
 
@@ -32,15 +33,28 @@ export async function doUpdate() {
     // Filter out null returns
     plugins = plugins.filter((p) => !!p);
     // Get only the ones with electron "native" plugins
-    let pluginMap: {name: string; path: string | null}[] = plugins.map((plugin) => {
+    let pluginMap: {name: string; path: string | null; installStr: string; id: string}[] = plugins.map((plugin) => {
+      const installStr = `${plugin!.id}@${plugin!.version}`
       const path = resolveElectronPlugin(plugin!)
       const name = plugin!.name
-      return {name, path}
+      const id = plugin!.id
+      return {name, path, installStr, id}
     }).filter(plugin => plugin.path !== null);
+
+    let npmIStr = ''
 
     let outStr = `/* eslint-disable @typescript-eslint/no-var-requires */\n`;
     for (const electronPlugin of pluginMap) {
-      outStr += `const ${electronPlugin.name} = require('${electronPlugin.path!.replace(/\\/g, '\\\\')}')\n`
+      npmIStr += ` ${electronPlugin.installStr}`
+      const tmpPath = join(
+        usersProjectDir,
+        "electron",
+        "node_modules",
+        electronPlugin.id,
+        "electron",
+        "dist/plugin.js"
+      )
+      outStr += `const ${electronPlugin.name} = require('${tmpPath.replace(/\\/g, '\\\\')}')\n`
     }
     outStr += '\nmodule.exports = {\n'
     for (const electronPlugin of pluginMap) {
@@ -48,7 +62,7 @@ export async function doUpdate() {
     }
     outStr += '}'
 
-    console.log('\n' + outStr + '\n\n')
+    // console.log('\n' + outStr + '\n\n')
 
     const capacitorElectronRuntimeFilePath = join(
       usersProjectDir,
@@ -59,21 +73,15 @@ export async function doUpdate() {
       "dist",
       "runtime"
     );
-
-    /*
-    let rtFileContents = readFileSync(capacitorElectronRuntimeFilePath, {encoding: 'utf-8'}).toString()
-
-    console.log(rtFileContents + '\n\n')
-
-    rtFileContents = rtFileContents.replace(/(\/\/--S--\/\/\n\/\/--E--\/\/)|(\/\/--S--\/\/\n(.|\n)*\n\/\/--E--\/\/)/g, outStr)
-
-    console.log(rtFileContents + '\n\n')
-    */
     
-    console.log(join(capacitorElectronRuntimeFilePath, 'electron-plugins.js'))
+    // console.log(join(capacitorElectronRuntimeFilePath, 'electron-plugins.js'))
 
     writeFileSync(join(capacitorElectronRuntimeFilePath, 'electron-plugins.js'), outStr, {encoding: 'utf-8'})
-
+    
+    if (npmIStr.length > 0) {
+      console.log(`\n\nWill install:${npmIStr}\n\n`)
+      await runExec(`cd ${join(usersProjectDir, "electron")} && npm i${npmIStr} && npm run rebuild-deps`);
+    }
   } catch (e) {
     throw e;
   }
