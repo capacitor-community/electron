@@ -1,3 +1,10 @@
+## [3.0.0-beta.5](https://github.com/capacitor-community/electron/compare/v3.0.0-beta.4...v3.0.0-beta.5) (2021-05-17)
+
+
+### Bug Fixes
+
+* install plugins with deps and rebuild native if needed ([27a20ed](https://github.com/capacitor-community/electron/commit/27a20ed3b1c58514446e1ddfa5bc04341586ba0d))
+
 ## [3.0.0-beta.4](https://github.com/capacitor-community/electron/compare/v3.0.0-beta.3...v3.0.0-beta.4) (2021-05-12)
 
 
