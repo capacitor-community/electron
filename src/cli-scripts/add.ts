@@ -1,4 +1,4 @@
-import { existsSync, renameSync, writeFileSync } from "fs";
+import { existsSync, renameSync } from "fs";
 import { copySync } from "fs-extra";
 import { join } from "path";
 import { readJSON, runExec, writePrettyJSON } from "./common";
@@ -17,10 +17,20 @@ export async function doAdd() {
       "template"
     );
     const destDir = join(usersProjectDir, "electron");
-    // const usersProjectCapConfigFile = join(
-    //   usersProjectDir,
-    //   "capacitor.config.ts"
-    // );
+    let usersProjectCapConfigFile: string | undefined = undefined;
+
+    const configFileOptions = {
+      ts: join(usersProjectDir, "capacitor.config.ts"),
+      js: join(usersProjectDir, "capacitor.config.js"),
+      json: join(usersProjectDir, "capacitor.config.json"),
+    }
+    if (existsSync(configFileOptions.ts)) {
+      usersProjectCapConfigFile = configFileOptions.ts
+    } else if (existsSync(configFileOptions.js)) {
+      usersProjectCapConfigFile = configFileOptions.js
+    } else {
+      usersProjectCapConfigFile = configFileOptions.json
+    }
 
     const configData = JSON.parse(process.env.CAPACITOR_CONFIG!);
 
@@ -28,11 +38,11 @@ export async function doAdd() {
 
     if (!existsSync(destDir)) {
       copySync(capacitorElectronNodeModuleTemplateDir, destDir);
-      // copySync(usersProjectCapConfigFile, join(destDir, "capacitor.config.ts"));
-      writeFileSync(
-        join(destDir, "capacitor.config.json"),
-        JSON.stringify(configData)
-      );
+      copySync(usersProjectCapConfigFile, join(destDir, "capacitor.config.ts"));
+      // writeFileSync(
+      //   join(destDir, "capacitor.config.json"),
+      //   JSON.stringify(configData)
+      // );
       renameSync(join(destDir, "gitignore"), join(destDir, ".gitignore"));
       copySync(builtWebAppDir, join(destDir, "app"));
 

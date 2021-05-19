@@ -39,6 +39,7 @@ async function doOpenTask() {
       case "copy":
         await doCopyTask();
         break;
+      case "run":
       case "open":
         await doOpenTask();
         break;

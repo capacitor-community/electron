@@ -1,5 +1,6 @@
 import { join } from "path";
-import { writeFileSync } from "fs";
+import { existsSync, writeFileSync } from "fs";
+import { copySync } from "fs-extra";
 import {
   readJSON,
   resolvePlugin,
@@ -69,6 +70,21 @@ export async function doUpdate() {
     // console.log(join(capacitorElectronRuntimeFilePath, 'electron-plugins.js'))
 
     writeFileSync(join(capacitorElectronRuntimeFilePath, 'electron-plugins.js'), outStr, {encoding: 'utf-8'})
+
+    let usersProjectCapConfigFile: string | undefined = undefined;
+    const configFileOptions = {
+      ts: join(usersProjectDir, "capacitor.config.ts"),
+      js: join(usersProjectDir, "capacitor.config.js"),
+      json: join(usersProjectDir, "capacitor.config.json"),
+    }
+    if (existsSync(configFileOptions.ts)) {
+      usersProjectCapConfigFile = configFileOptions.ts
+    } else if (existsSync(configFileOptions.js)) {
+      usersProjectCapConfigFile = configFileOptions.js
+    } else {
+      usersProjectCapConfigFile = configFileOptions.json
+    }
+    copySync(usersProjectCapConfigFile, join(usersProjectDir, "electron", "capacitor.config.ts"), {overwrite: true});
     
     if (npmIStr.length > 0) {
       console.log(`\n\nWill install:${npmIStr}\n\n`)
