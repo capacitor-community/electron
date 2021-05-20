@@ -1,3 +1,10 @@
+## [3.0.0-rc.3](https://github.com/capacitor-community/electron/compare/v3.0.0-rc.2...v3.0.0-rc.3) (2021-05-20)
+
+
+### Bug Fixes
+
+* built path issue ([82af3b9](https://github.com/capacitor-community/electron/commit/82af3b9e0e047925e3558af16d586610100c36c0))
+
 ## [3.0.0-rc.2](https://github.com/capacitor-community/electron/compare/v3.0.0-rc.1...v3.0.0-rc.2) (2021-05-20)
 
 
