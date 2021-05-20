@@ -1,3 +1,10 @@
+## [3.0.0-rc.4](https://github.com/capacitor-community/electron/compare/v3.0.0-rc.3...v3.0.0-rc.4) (2021-05-20)
+
+
+### Bug Fixes
+
+* config file only outputting ts ([81e2b30](https://github.com/capacitor-community/electron/commit/81e2b30df309b22a27ecc8a7871bb83308b1e899))
+
 ## [3.0.0-rc.3](https://github.com/capacitor-community/electron/compare/v3.0.0-rc.2...v3.0.0-rc.3) (2021-05-20)
 
 
