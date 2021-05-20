@@ -2,7 +2,7 @@
   "name": "capacitor-app",
   "version": "1.0.0",
   "description": "An Amazing Capacitor App",
-  "main": "./build/index.js",
+  "main": "./build/src/index.js",
   "scripts": {
     "build": "tsc",
     "electron:start": "npm run build && electron ./",
@@ -12,7 +12,7 @@
     "rebuild-deps": "electron-rebuild"
   },
   "dependencies": {
-    "@capacitor-community/electron": "^3.0.0-rc.2"
+    "@capacitor-community/electron": "^3.0.0-rc.3"
   },
   "devDependencies": {
     "electron": "~12.0.8",
