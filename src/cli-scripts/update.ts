@@ -72,6 +72,7 @@ export async function doUpdate() {
     writeFileSync(join(capacitorElectronRuntimeFilePath, 'electron-plugins.js'), outStr, {encoding: 'utf-8'})
 
     let usersProjectCapConfigFile: string | undefined = undefined;
+    let configFileName: string | undefined = undefined;
     const configFileOptions = {
       ts: join(usersProjectDir, "capacitor.config.ts"),
       js: join(usersProjectDir, "capacitor.config.js"),
@@ -79,12 +80,15 @@ export async function doUpdate() {
     }
     if (existsSync(configFileOptions.ts)) {
       usersProjectCapConfigFile = configFileOptions.ts
+      configFileName = "capacitor.config.ts"
     } else if (existsSync(configFileOptions.js)) {
       usersProjectCapConfigFile = configFileOptions.js
+      configFileName = "capacitor.config.js"
     } else {
       usersProjectCapConfigFile = configFileOptions.json
+      configFileName = "capacitor.config.json"
     }
-    copySync(usersProjectCapConfigFile, join(usersProjectDir, "electron", "capacitor.config.ts"), {overwrite: true});
+    copySync(usersProjectCapConfigFile, join(usersProjectDir, "electron", configFileName), {overwrite: true});
     
     if (npmIStr.length > 0) {
       console.log(`\n\nWill install:${npmIStr}\n\n`)

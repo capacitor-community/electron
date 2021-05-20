@@ -18,6 +18,7 @@ export async function doAdd() {
     );
     const destDir = join(usersProjectDir, "electron");
     let usersProjectCapConfigFile: string | undefined = undefined;
+    let configFileName: string | undefined = undefined;
 
     const configFileOptions = {
       ts: join(usersProjectDir, "capacitor.config.ts"),
@@ -26,10 +27,13 @@ export async function doAdd() {
     }
     if (existsSync(configFileOptions.ts)) {
       usersProjectCapConfigFile = configFileOptions.ts
+      configFileName = "capacitor.config.ts"
     } else if (existsSync(configFileOptions.js)) {
       usersProjectCapConfigFile = configFileOptions.js
+      configFileName = "capacitor.config.js"
     } else {
       usersProjectCapConfigFile = configFileOptions.json
+      configFileName = "capacitor.config.json"
     }
 
     const configData = JSON.parse(process.env.CAPACITOR_CONFIG!);
@@ -38,7 +42,7 @@ export async function doAdd() {
 
     if (!existsSync(destDir)) {
       copySync(capacitorElectronNodeModuleTemplateDir, destDir);
-      copySync(usersProjectCapConfigFile, join(destDir, "capacitor.config.ts"));
+      copySync(usersProjectCapConfigFile, join(destDir, configFileName));
       // writeFileSync(
       //   join(destDir, "capacitor.config.json"),
       //   JSON.stringify(configData)
