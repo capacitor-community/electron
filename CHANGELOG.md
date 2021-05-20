@@ -1,3 +1,23 @@
+## [3.0.0-rc.1](https://github.com/capacitor-community/electron/compare/v3.0.0-beta.5...v3.0.0-rc.1) (2021-05-19)
+
+
+### Features
+
+* config option for custom url scheme ([8dd30a3](https://github.com/capacitor-community/electron/commit/8dd30a3a4dd0422d430cbd879fa338ff212b02ad))
+* support ts/js/json capacitor config files ([1b2e02f](https://github.com/capacitor-community/electron/commit/1b2e02f2a6a95bb8bd23f03a29ee4854b5982346))
+
+
+### Bug Fixes
+
+* adjust scripts to support run and config ts/js ([b7d8ca2](https://github.com/capacitor-community/electron/commit/b7d8ca2a6afa853f18dc8e0d3fa04f9ee92cfb9b))
+
+
+### Chores
+
+* bump deps ([2d6b697](https://github.com/capacitor-community/electron/commit/2d6b697cee6fe8f2000e81020f194ae666a77486))
+* clean up update script ([0f2e3c4](https://github.com/capacitor-community/electron/commit/0f2e3c41fe96566daa18ec5e973b65112451c34b))
+* deps bump for RC ([36cec94](https://github.com/capacitor-community/electron/commit/36cec9421d36bdf7edf6f14a4421b75b5787de30))
+
 ## [3.0.0-beta.5](https://github.com/capacitor-community/electron/compare/v3.0.0-beta.4...v3.0.0-beta.5) (2021-05-17)
 
 
