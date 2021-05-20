@@ -72,22 +72,14 @@ export class CapacitorElectronApp {
     },
   };
   private userPassedConfig: CapacitorElectronConfig | null = null;
-  private loadWebApp: any = electronServe({
-    directory: path.join(app.getAppPath(), "app"),
-    scheme: this.config.customScheme,
-  });
+  // @ts-ignore
+  private loadWebApp: any;
 
   constructor(config?: CapacitorElectronConfig) {
     if (config) this.userPassedConfig = config;
-  }
-
-  /** Creates mainwindow and does all setup. _Called after app.on('ready') event fired._ */
-  async init() {
     let capConfig: any = {} 
-    if (fs.existsSync(path.join(app.getAppPath(), "capacitor.config.ts"))) {
-      capConfig = await import(path.join(app.getAppPath(), "capacitor.config.ts"))
-    } else if (fs.existsSync(path.join(app.getAppPath(), "capacitor.config.js"))) {
-      capConfig = require(path.join(app.getAppPath(), "capacitor.config.js"))
+    if (fs.existsSync(path.join(app.getAppPath(), "build", "capacitor.config.js"))) {
+      capConfig = require(path.join(app.getAppPath(), "build", "capacitor.config.js"))
     } else {
       capConfig = JSON.parse(fs.readFileSync(path.join(app.getAppPath(), "capacitor.config.json")).toString());
     }
@@ -98,7 +90,10 @@ export class CapacitorElectronApp {
       directory: path.join(app.getAppPath(), "app"),
       scheme: this.config.customScheme,
     });
+  }
 
+  /** Creates mainwindow and does all setup. _Called after app.on('ready') event fired._ */
+  async init() {
     // console.log(this.config.mainWindow.windowOptions);
     const rtPath = path.join(
       app.getAppPath(),
@@ -254,7 +249,7 @@ export class CapacitorElectronApp {
         thisRef.devServerUrl
       );
     } else {
-      await this.loadWebApp(thisRef.mainWindowReference);
+      await thisRef.loadWebApp(thisRef.mainWindowReference);
     }
   }
 
