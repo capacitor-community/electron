@@ -1,3 +1,10 @@
+## [3.0.0-rc.5](https://github.com/capacitor-community/electron/compare/v3.0.0-rc.4...v3.0.0-rc.5) (2021-05-20)
+
+
+### Bug Fixes
+
+* tsconfig misconfigure ([f857b01](https://github.com/capacitor-community/electron/commit/f857b01fb18ddfdaaeb51b9eecc58cfb566535ef))
+
 ## [3.0.0-rc.4](https://github.com/capacitor-community/electron/compare/v3.0.0-rc.3...v3.0.0-rc.4) (2021-05-20)
 
 
