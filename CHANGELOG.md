@@ -1,3 +1,11 @@
+## [3.0.0-rc.2](https://github.com/capacitor-community/electron/compare/v3.0.0-rc.1...v3.0.0-rc.2) (2021-05-20)
+
+
+### Bug Fixes
+
+* config require issue preventing app startup ([970a5b2](https://github.com/capacitor-community/electron/commit/970a5b282b672345e76ccd94546818306391fb38))
+* missing tsconfig changes added ([9a39d87](https://github.com/capacitor-community/electron/commit/9a39d87512330731ebbeca0e1d3a1fba18152b68))
+
 ## [3.0.0-rc.1](https://github.com/capacitor-community/electron/compare/v3.0.0-beta.5...v3.0.0-rc.1) (2021-05-19)
 
 
