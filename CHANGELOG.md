@@ -1,3 +1,15 @@
+## [3.0.0-rc.6](https://github.com/capacitor-community/electron/compare/v3.0.0-rc.5...v3.0.0-rc.6) (2021-05-21)
+
+
+### Bug Fixes
+
+* correct build issue with new template ([2d909cc](https://github.com/capacitor-community/electron/commit/2d909cc3e0eb53eb0594606059e476f519929db9))
+
+
+### Chores
+
+* dep bump in template ([33b85bb](https://github.com/capacitor-community/electron/commit/33b85bb533d39e3337a4a8328b30c84d86c56453))
+
 ## [3.0.0-rc.5](https://github.com/capacitor-community/electron/compare/v3.0.0-rc.4...v3.0.0-rc.5) (2021-05-20)
 
 
