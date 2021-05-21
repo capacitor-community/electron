@@ -40,11 +40,11 @@
     "mac": {
       "category": "public.app-category.developer-tools",
       "target": "dmg",
-      "icon": "appIcon.png"
+      "icon": "assets/appIcon.png"
     },
     "win": {
       "target": "nsis",
-      "icon": "appIcon.ico"
+      "icon": "assets/appIcon.ico"
     }
   }
 }
