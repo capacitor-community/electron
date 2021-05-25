@@ -1,4 +1,4 @@
-import { join } from "path";
+import { join, isAbsolute, resolve, relative } from "path";
 import { existsSync, writeFileSync } from "fs";
 import { copySync } from "fs-extra";
 import {
@@ -20,14 +20,24 @@ export async function doUpdate() {
     const devDependencies = webAppPackageJson.devDependencies
       ? webAppPackageJson.devDependencies
       : {};
-    const deps = Object.keys(dependencies).concat(Object.keys(devDependencies));
+    const deps = {
+      ...dependencies,
+      ...devDependencies
+    };
     // get all cap plugins installed
-    let plugins = await Promise.all(deps.map(async (p) => resolvePlugin(p)));
+    let plugins = await Promise.all(Object.keys(deps).map(async (p) => resolvePlugin(p)));
     // Filter out null returns
     plugins = plugins.filter((p) => !!p);
     // Get only the ones with electron "native" plugins
     let pluginMap: {name: string; path: string | null; installStr: string; id: string}[] = plugins.map((plugin) => {
-      const installStr = `${plugin!.id}@${plugin!.version}`
+      let installStr = ""
+      // consider cases when package is not installed via npm
+      // TODO: add support for packages installed via git etc...
+      if(deps[plugin!.id] && deps[plugin!.id].startsWith("file:")) {
+        const pkgPath = deps[plugin!.id].replace(/^file:/, "");
+        const pkgAbsPath = isAbsolute(pkgPath) ? pkgPath : resolve(usersProjectDir, pkgPath);
+        installStr = relative(join(usersProjectDir, "electron"), pkgAbsPath); // try to use relative path as much as possible
+      } else installStr = `${plugin!.id}@${plugin!.version}`
       const path = resolveElectronPlugin(plugin!)
       const name = plugin!.name
       const id = plugin!.id
@@ -66,7 +76,7 @@ export async function doUpdate() {
       "dist",
       "runtime"
     );
-    
+
     // console.log(join(capacitorElectronRuntimeFilePath, 'electron-plugins.js'))
 
     writeFileSync(join(capacitorElectronRuntimeFilePath, 'electron-plugins.js'), outStr, {encoding: 'utf-8'})
@@ -89,7 +99,7 @@ export async function doUpdate() {
       configFileName = "capacitor.config.json"
     }
     copySync(usersProjectCapConfigFile, join(usersProjectDir, "electron", configFileName), {overwrite: true});
-    
+
     if (npmIStr.length > 0) {
       console.log(`\n\nWill install:${npmIStr}\n\n`)
       await runExec(`cd ${join(usersProjectDir, "electron")} && npm i${npmIStr} && npm run rebuild-deps`);
