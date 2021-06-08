@@ -95,9 +95,11 @@
     }
   },
   ```
-9. Modify the main `package.json` in the root directory, add an entry into the `scripts` object of the following:
+9. Modify the main `package.json` in the root directory, add an entry into the `files` array of the following:
+  `electron/`
+10. Modify the main `package.json` in the root directory, add an entry into the `scripts` object of the following:
   `"build-electron": "tsc --project electron/tsconfig.json && rollup -c electron/rollup.config.js && rimraf ./electron/build",`
-10. Modify the main `package.json` in the root directory, edit the `build` entry in the `scripts` object to be the following:
+11. Modify the main `package.json` in the root directory, edit the `build` entry in the `scripts` object to be the following:
   `"build": "npm run clean && npm run docgen && tsc && rollup -c rollup.config.js && npm run build-electron",`
-11. Run the `build` npm script to build your plugin.
-12. Release it to NPM then use in your capacitor apps as any other native plugin like android or ios. (dont forget to use `npx cap sync/copy/update/open @capacitor-community/electron`)
+12. Run the `build` npm script to build your plugin.
+13. Release it to NPM then use in your capacitor apps as any other native plugin like android or ios. (dont forget to use `npx cap sync/copy/update/open @capacitor-community/electron`)
