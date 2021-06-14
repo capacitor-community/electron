@@ -1,25 +1,13 @@
-export * from "./interfaces";
-export * from "./CapacitorElectronApp";
+export * from "./definitions";
+import { CapElectronEventEmitter, getCapacitorConfig, getWebAppLoader, setupCapacitorElectronPlugins } from "./utils";
+import { CapacitorSplashScreen } from "./ElectronSplashScreen";
+import { setupElectronDeepLinking } from './ElectronDeepLinking'
 
-import {
-  CapacitorElectronConfig,
-  ElectronCapacitorDeeplinkingConfig,
-} from "./interfaces";
-import {
-  CapacitorElectronApp,
-  ElectronCapacitorDeeplinking,
-} from "./CapacitorElectronApp";
-
-export function createCapacitorElectronApp(
-  config?: CapacitorElectronConfig
-): CapacitorElectronApp {
-  if (config) return new CapacitorElectronApp(config);
-  return new CapacitorElectronApp();
-}
-
-export function createCapacitorElectronDeepLinking(
-  capacitorElectronApp: CapacitorElectronApp,
-  config: ElectronCapacitorDeeplinkingConfig
-): ElectronCapacitorDeeplinking {
-  return new ElectronCapacitorDeeplinking(capacitorElectronApp, config);
-}
+export {
+  CapacitorSplashScreen,
+  CapElectronEventEmitter,
+  getCapacitorConfig,
+  getWebAppLoader,
+  setupCapacitorElectronPlugins,
+  setupElectronDeepLinking,
+};

@@ -1,7 +1,22 @@
-import Electron from "electron";
+import { join } from "path";
+import { existsSync, readFileSync } from 'fs';
+import { app, ipcMain } from "electron";
+import type { CapacitorElectronConfig } from "./definitions";
+import EventEmitter from "events";
+import electronServe from 'electron-serve';
+const mimeTypes = require('mime-types');
 
-const fs = require("fs");
-const mimeTypes = require("mime-types");
+class CapElectronEmitter extends EventEmitter {}
+
+export const CapElectronEventEmitter = new CapElectronEmitter();
+
+export function getWebAppLoader(customUrlScheme: string) {
+  return electronServe({
+    directory: join(app.getAppPath(), "app"),
+    // The scheme can be changed to whatever you'd like (ex: someapp)
+    scheme: customUrlScheme,
+  });
+} 
 
 export function deepMerge(target: any, _objects: any[] = []) {
   // Credit for origanal function: Josh Cole(saikojosh)[https://github.com/saikojosh]
@@ -63,26 +78,55 @@ export function deepMerge(target: any, _objects: any[] = []) {
   return output;
 }
 
-export async function configCapacitor(
-  mainWindow: Electron.BrowserWindow,
-  config: any
-) {
-  let capConfigJson = config;
-  const appendUserAgent =
-    capConfigJson.electron && capConfigJson.electron.appendUserAgent
-      ? capConfigJson.electron.appendUserAgent
-      : capConfigJson.appendUserAgent;
-  if (appendUserAgent) {
-    mainWindow.webContents.setUserAgent(
-      mainWindow.webContents.getUserAgent() + " " + appendUserAgent
-    );
-  }
-  const overrideUserAgent =
-    capConfigJson.electron && capConfigJson.electron.overrideUserAgent
-      ? capConfigJson.electron.overrideUserAgent
-      : capConfigJson.overrideUserAgent;
-  if (overrideUserAgent) {
-    mainWindow.webContents.setUserAgent(overrideUserAgent);
+export function setupCapacitorElectronPlugins() {
+  //setupListeners
+  const rtPluginsPath = join(
+    app.getAppPath(),
+    "node_modules",
+    "@capacitor-community",
+    "electron",
+    "dist",
+    "runtime",
+    "electron-plugins.js"
+  )
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  const AsyncFunction = (async () => {}).constructor;
+  const plugins: any = require(rtPluginsPath)
+  const pluginFunctionsRegistry: any = {}
+  for (const pluginKey of Object.keys(plugins)) {
+    console.log(pluginKey)
+    for (const classKey of Object.keys(plugins[pluginKey])) {
+      const functionList = Object.getOwnPropertyNames(plugins[pluginKey][classKey].prototype).filter(v => v !== 'constructor')
+      console.log('  ', classKey)
+      console.log('    ' + JSON.stringify(functionList))
+      console.log('')
+      if (!pluginFunctionsRegistry[classKey]) {
+        pluginFunctionsRegistry[classKey] = {}
+      }
+      for (const functionName of functionList) {
+        if (!pluginFunctionsRegistry[classKey][functionName]) {
+          pluginFunctionsRegistry[classKey][functionName] = ipcMain.on(`${classKey}-${functionName}`, async (event, ...args) => {
+            console.log('args')
+            console.log(args)
+            const pluginRef = new plugins[pluginKey][classKey]()
+            const theCall = pluginRef[functionName]
+            console.log('theCall')
+            console.log(theCall)
+            const isPromise = theCall instanceof Promise || (theCall instanceof AsyncFunction)
+            console.log('isPromise')
+            console.log(isPromise)
+            let returnVal = null
+            if (isPromise) {
+              returnVal = await theCall(...args)
+              event.reply(`${classKey}-${functionName}-reply`, returnVal || null)
+            } else {
+              returnVal = theCall(...args)
+              event.returnValue = returnVal
+            }
+          })
+        }
+      }
+    }
   }
 }
 
@@ -94,10 +138,22 @@ export async function encodeFromFile(filePath: string): Promise<string> {
   if (!mediaType) {
     throw new Error("Media type unreconized.");
   }
-  const fileData = fs.readFileSync(filePath);
+  const fileData = readFileSync(filePath);
   mediaType = /\//.test(mediaType) ? mediaType : "image/" + mediaType;
   let dataBase64 = Buffer.isBuffer(fileData)
     ? fileData.toString("base64")
     : new Buffer(fileData).toString("base64");
   return "data:" + mediaType + ";base64," + dataBase64;
+}
+
+export function getCapacitorConfig() {
+  let config: CapacitorElectronConfig = {};
+  let capFileConfig: any = {}
+  if (existsSync(join(app.getAppPath(), "build", "capacitor.config.js"))) {
+    capFileConfig = require(join(app.getAppPath(), "build", "capacitor.config.js"))
+  } else {
+    capFileConfig = JSON.parse(readFileSync(join(app.getAppPath(), "capacitor.config.json")).toString());
+  }
+  if (capFileConfig.electron) config = deepMerge(config, [capFileConfig.electron]);
+  return config;
 }
