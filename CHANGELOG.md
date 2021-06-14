@@ -1,3 +1,15 @@
+## [3.0.0-rc.7](https://github.com/capacitor-community/electron/compare/v3.0.0-rc.6...v3.0.0-rc.7) (2021-06-14)
+
+
+### Features
+
+* refactor for more dev clarity ([f3387e5](https://github.com/capacitor-community/electron/commit/f3387e5906c661b3714463f72f2715db29804a59))
+
+
+### Bug Fixes
+
+* type in imports ([fb73e86](https://github.com/capacitor-community/electron/commit/fb73e86c59808ff8e7aa5a04de73fc674b1e2fce))
+
 ## [3.0.0-rc.6](https://github.com/capacitor-community/electron/compare/v3.0.0-rc.5...v3.0.0-rc.6) (2021-05-21)
 
 
