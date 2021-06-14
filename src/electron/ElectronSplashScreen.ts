@@ -1,17 +1,12 @@
-import Electron from "electron";
-import { SplashOptions } from "./interfaces";
-import { encodeFromFile } from "./Utils";
-
-const electron = require("electron");
-const app = electron.app;
-const BrowserWindow = electron.BrowserWindow;
-const ipcMain = electron.ipcMain;
-const path = require("path");
+import Electron, { app, BrowserWindow, ipcMain } from "electron";
+import { SplashOptions } from "./definitions";
+import { encodeFromFile } from "./util";
+import { join } from "path";
 
 export class CapacitorSplashScreen {
   private splashWin: Electron.BrowserWindow | null = null;
   private splashOptions: SplashOptions = {
-    imageFilePath: path.join(app.getAppPath(), "assets", "splash.png"),
+    imageFilePath: join(app.getAppPath(), "assets", "splash.png"),
     windowWidth: 400,
     windowHeight: 400,
   };
