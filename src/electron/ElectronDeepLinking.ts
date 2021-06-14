@@ -1,6 +1,6 @@
 import { app } from "electron";
 import { ElectronCapacitorDeeplinkingConfig } from "./definitions";
-import { CapElectronEventEmitter } from "./utils";
+import { CapElectronEventEmitter } from "./util";
 
 export function setupElectronDeepLinking(capacitorElectronApp: any, config: ElectronCapacitorDeeplinkingConfig) {
   return new ElectronCapacitorDeeplinking(capacitorElectronApp, config);

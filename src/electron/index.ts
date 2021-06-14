@@ -1,5 +1,5 @@
 export * from "./definitions";
-import { CapElectronEventEmitter, getCapacitorConfig, getWebAppLoader, setupCapacitorElectronPlugins } from "./utils";
+import { CapElectronEventEmitter, getCapacitorConfig, getWebAppLoader, setupCapacitorElectronPlugins } from "./util";
 import { CapacitorSplashScreen } from "./ElectronSplashScreen";
 import { setupElectronDeepLinking } from './ElectronDeepLinking'
 

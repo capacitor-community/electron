@@ -1,6 +1,6 @@
 import Electron, { app, BrowserWindow, ipcMain } from "electron";
 import { SplashOptions } from "./definitions";
-import { encodeFromFile } from "./utils";
+import { encodeFromFile } from "./util";
 import { join } from "path";
 
 export class CapacitorSplashScreen {
