@@ -1,3 +1,10 @@
+## [3.0.0-rc.8](https://github.com/capacitor-community/electron/compare/v3.0.0-rc.7...v3.0.0-rc.8) (2021-06-15)
+
+
+### Bug Fixes
+
+* event emitter import error ([070a57c](https://github.com/capacitor-community/electron/commit/070a57cebda9a24d1c9965caf7fa8925c9992de2))
+
 ## [3.0.0-rc.7](https://github.com/capacitor-community/electron/compare/v3.0.0-rc.6...v3.0.0-rc.7) (2021-06-14)
 
 
