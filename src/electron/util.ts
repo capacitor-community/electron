@@ -2,9 +2,9 @@ import { join } from "path";
 import { existsSync, readFileSync } from 'fs';
 import { app, ipcMain } from "electron";
 import type { CapacitorElectronConfig } from "./definitions";
-import EventEmitter from "events";
 import electronServe from 'electron-serve';
 const mimeTypes = require('mime-types');
+const EventEmitter = require('events');
 
 class CapElectronEmitter extends EventEmitter {}
 
