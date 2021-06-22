@@ -1,6 +1,3 @@
-console.log(
-  "Running ELECTRON-RT.TS Injection (This message will be removed after alpha/beta)"
-);
 class CapacitorException extends Error {
   constructor(message, _code) {
       super(message);
