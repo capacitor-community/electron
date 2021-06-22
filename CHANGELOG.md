@@ -1,3 +1,10 @@
+### [3.0.1](https://github.com/capacitor-community/electron/compare/v3.0.0...v3.0.1) (2021-06-22)
+
+
+### Chores
+
+* remove beta console logs and dep updates ([773f453](https://github.com/capacitor-community/electron/commit/773f453d43c138e959ce8d12647fb674c13f2af8))
+
 ## [3.0.0](https://github.com/capacitor-community/electron/compare/v3.0.0-rc.8...v3.0.0) (2021-06-22)
 
 
