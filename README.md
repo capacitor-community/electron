@@ -7,7 +7,7 @@ Capacitor community support for the Electron platform.
 </p>
 <p align="center">
   <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-<a href="#contributors"><img src="https://img.shields.io/badge/all%20contributors-8-orange?style=flat-square" /></a>
+<a href="#contributors"><img src="https://img.shields.io/badge/all%20contributors-9-orange?style=flat-square" /></a>
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
   <a href="https://www.electronjs.org/releases/stable?version=12"><img src="https://img.shields.io/badge/supported%20electron%20version-~12.0.5-blue?style=flat-square" /></a>
 </p>

@@ -1,11 +1,19 @@
 {
   "name": "@capacitor-community/electron",
+<<<<<<< HEAD
   "version": "3.0.0-rc.8",
+=======
+  "version": "1.4.2",
+>>>>>>> main
   "description": "Capacitor community support for the Electron platform.",
   "main": "dist/core/index.js",
   "typings": "dist/core/index.d.ts",
   "scripts": {
+<<<<<<< HEAD
     "shipit": "npm run build && np --no-tests --any-branch && npm run generate-changelog && npm run deploy-changelog",
+=======
+    "shipit": "npm run build && np --any-branch --no-tests && npm run generate-changelog && npm run deploy-changelog",
+>>>>>>> main
     "clean": "rimraf ./dist",
     "build": "npm run clean && npm run build-platform && npm run build-runtime && npm run build-cli-scripts",
     "capacitor:add": "node dist/cli-scripts/cap-scripts.js add",
@@ -24,6 +32,7 @@
   "license": "MIT",
   "author": "IT-MikeS",
   "devDependencies": {
+<<<<<<< HEAD
     "@types/events": "~3.0.0",
     "@types/fs-extra": "~9.0.11",
     "@types/node": "~14.14.41",
@@ -57,5 +66,33 @@
   },
   "bugs": {
     "url": "https://github.com/capacitor-community/electron/issues"
+=======
+    "@rollup/plugin-node-resolve": "^10.0.0",
+    "@types/fs-extra": "~9.0.11",
+    "@types/node": "^14.14.41",
+    "conventional-changelog-cli": "^2.1.1",
+    "conventional-changelog-conventionalcommits": "^4.5.0",
+    "electron": "~12.0.5",
+    "husky": "^4.3.0",
+    "np": "^7.0.0",
+    "parcel-bundler": "^1.12.5",
+    "prettier": "^2.2.0",
+    "prettier-plugin-java": "^0.8.3",
+    "pretty-quick": "^3.1.0",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.45.2",
+    "terser": "^5.6.1",
+    "tslib": "^2.1.0",
+    "typescript": "~4.0.5"
+  },
+  "dependencies": {
+    "@capacitor/core": "^2.4.7",
+    "chalk": "^4.1.1",
+    "electron-is-dev": "^2.0.0",
+    "electron-serve": "^1.1.0",
+    "fs-extra": "~9.1.0",
+    "mime-types": "~2.1.27",
+    "ora": "^5.1.0"
+>>>>>>> main
   }
 }
