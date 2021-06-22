@@ -1,6 +1,8 @@
 .cache/
 .github/
 node_modules/
+plugin-example/
+.husky/
 src/
 docs/
 .all-contributorsrc
@@ -13,4 +15,6 @@ rollup.config.plugins.js
 /tsconfig.plugins.json
 deployChangeLog.sh
 CHANGELOG.md
+tsconfig.cli-scripts.json
+tsconfig.runtime.json
 changelog.config.js

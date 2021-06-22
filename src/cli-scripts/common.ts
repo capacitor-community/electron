@@ -46,7 +46,7 @@ export function errorLog(message: string) {
 
 export function getCwd(): string {
   const _cwd = process.env.INIT_CWD!;
-  return join(_cwd, "../", "../", "../");
+  return _cwd;
 }
 
 export function readJSON(pathToUse: string): { [key: string]: any } {
@@ -157,7 +157,11 @@ export function resolveElectronPlugin(plugin: Plugin) {
     plugin.manifest.electron &&
     plugin.manifest.electron.src
   ) {
-    return join(plugin.rootPath, plugin.manifest.electron.src);
+    return join(
+      plugin.rootPath,
+      plugin.manifest.electron.src,
+      "dist/plugin.js"
+    );
   } else {
     return null;
   }

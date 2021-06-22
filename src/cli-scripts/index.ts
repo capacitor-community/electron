@@ -12,7 +12,7 @@ async function doUpdateTask() {
 
 async function doAddTask() {
   return await runTask("Adding Electron platform", async () => {
-    return await doAdd();
+    return doAdd();
   });
 }
 
@@ -39,6 +39,7 @@ async function doOpenTask() {
       case "copy":
         await doCopyTask();
         break;
+      case "run":
       case "open":
         await doOpenTask();
         break;

@@ -1,22 +1,29 @@
 # **Config Options**
 
-You can use the below options in the `index.ts` file of the electron platform in the line `const myCapacitorApp = createCapacitorElectronApp();`
+You can use the below options in the `capacitor.config` file under the `electron` prop. All options are optional and can be omitted if you do not require them. Further you can edit and tinker with the `electron/src/index.ts` file as more is exposed to the developer as of V3.
 
 <br />
 
-`createCapacitorElectronApp([options])`
-
-- `options` Object (optional)
-  - `mainWindow` Object (optional) - Configuration for the main window object.
-    - `windowOptions` [BrowserWindowConstructorOptions](https://www.electronjs.org/docs/api/browser-window#new-browserwindowoptions) (optional) - BrowserWindow options from electron, please refer to electron docs linked.
-  - `trayMenu` Object (optional) - Options for configuring a tray icon / menu
-    - `useTrayMenu` Boolean - Whether or not to enable a tray icon / menu
-    - `trayIconPath` String (optional) - Path to your icon you want to use for the tray icon / menu
-    - `trayContextMenu` [MenuItem[]](https://www.electronjs.org/docs/api/menu-item#new-menuitemoptions) (optional) - Electron MenuItem array, please refer to linked docs
-  - `applicationMenuTemplate` NULL | {role: string} (optional) - Set as `NULL` to hide the menu bar all together, or use the [Roles](https://www.electronjs.org/docs/api/menu-item#new-menuitemoptions) as defined by electron as values for `role` in an object.
-  - `splashScreen` Object (optional) - Custom Splash Screen options
-    - `useSplashScreen` Boolean (optional) - Whether or not to show a splash screen on startup.
-    - `splashOptions` Object (optional) - Options for the Splash Screen window.
-      - `imageFilePath` String (optional) - Path to the Splash Screen image, (PNG, JPG, or GIF are preferable.)
-      - `windowWidth` Number (optional) - Width in pixels of the Splash Screen window.
-      - `windowHeight` Number (optional) - Height in pixels of the Splash Screen window.
+```typescript
+...
+const config = {
+  ...,
+  electron: {
+    // Custom scheme for your app to be served on in the electron window.
+    customUrlScheme: 'capacitor-electron', 
+    // Switch on/off a tray icon and menu, which is customizable in the app.
+    trayIconAndMenuEnabled: false,
+    // Switch on/off whether or not a splashscreen will be used.
+    splashScreenEnabled: false,
+    // Custom image name in the electron/assets folder to use as splash image (.gif included)
+    splashScreenImageName: 'splash.png',
+    // Switch on/off if the main window should be hidden until brought to the front by the tray menu, ect.
+    hideMainWindowOnLaunch: false,
+    // Switch on/off whether or not to use deeplinking in your app.
+    deepLinkingEnabled: false,
+    // Custom protocol to be used with deeplinking for your app.
+    deepLinkingCustomProtocol: 'mycapacitorapp',
+  },
+};
+...
+```

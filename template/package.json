@@ -2,21 +2,25 @@
   "name": "capacitor-app",
   "version": "1.0.0",
   "description": "An Amazing Capacitor App",
-  "main": "./build/index.js",
+  "main": "./build/src/index.js",
   "scripts": {
     "build": "tsc",
     "electron:start": "npm run build && electron ./",
     "electron:pack": "npm run build && electron-builder build --dir",
     "electron:build-windows": "npm run build && electron-builder build --windows",
-    "electron:build-mac": "npm run build && electron-builder build --mac"
+    "electron:build-mac": "npm run build && electron-builder build --mac",
+    "rebuild-deps": "electron-rebuild"
   },
   "dependencies": {
-    "@capacitor-community/electron": "^1.3.1"
+    "@capacitor-community/electron": "^3.0.0-rc.6",
+    "electron-serve": "~1.1.0",
+    "electron-is-dev": "~2.0.0"
   },
   "devDependencies": {
-    "electron": "~10.3.1",
-    "electron-builder": "^22.9.1",
-    "typescript": "~4.0.5"
+    "electron": "~12.0.8",
+    "electron-builder": "~22.9.1",
+    "typescript": "~4.0.5",
+    "electron-rebuild": "~2.3.5"
   },
   "keywords": [
     "capacitor",
@@ -28,21 +32,21 @@
     "appId": "com.example.capacitor-app",
     "productName": "Capacitor App",
     "files": [
-      "assets/*",
-      "build/*",
+      "assets/**",
+      "build/**",
       "preloader.js",
-      "plugins/*",
+      "plugins/**",
       "capacitor.config.json",
       "app/**"
     ],
     "mac": {
       "category": "public.app-category.developer-tools",
       "target": "dmg",
-      "icon": "appIcon.png"
+      "icon": "assets/appIcon.png"
     },
     "win": {
       "target": "nsis",
-      "icon": "appIcon.ico"
+      "icon": "assets/appIcon.ico"
     }
   }
 }

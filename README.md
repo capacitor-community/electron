@@ -9,10 +9,10 @@ Capacitor community support for the Electron platform.
   <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 <a href="#contributors"><img src="https://img.shields.io/badge/all%20contributors-9-orange?style=flat-square" /></a>
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
-  <a href="https://www.electronjs.org/releases/stable?version=12"><img src="https://img.shields.io/badge/supported%20electron%20version-^12.0.5-blue?style=flat-square" /></a>
+  <a href="https://www.electronjs.org/releases/stable?version=12"><img src="https://img.shields.io/badge/supported%20electron%20version-~12.0.5-blue?style=flat-square" /></a>
 </p>
 <p align="center">
-  <a href="https://npmjs.com/package/@capacitor-community/electron"><img src="https://img.shields.io/npm/v/@capacitor-community/electron.svg?style=flat-square" /></a>
+  <a href="https://npmjs.com/package/@capacitor-community/electron"><img src="https://img.shields.io/npm/v/@capacitor-community/electron/next.svg?style=flat-square" /></a>
   <a href="https://npmjs.com/package/@capacitor-community/electron"><img alt="npm" src="https://img.shields.io/npm/dw/@capacitor-community/electron?style=flat-square"></a>
   <a href="https://npmjs.com/package/@capacitor-community/electron"><img src="https://img.shields.io/npm/l/@capacitor-community/electron.svg?style=flat-square" /></a>
   <a href="https://github.com/capacitor-community/electron"><img alt="GitHub Workflow Status" src="https://img.shields.io/github/workflow/status/capacitor-community/electron/CI/main?style=flat-square"></a>
@@ -26,21 +26,20 @@ Capacitor community support for the Electron platform.
 
 Maintenance Status: Actively Maintained
 
+## Version 3 Info
+- Minimum `@capacitor/cli` and `@capacitor/core` version is `>= 3.0.0`
+- The template and inner workings have changed a lot, a migration guide will be done but for now creating a new project to tinker with before migrating main projects is a good idea.
+- Plugins from previous versions `@capacitor-community/electron` will not function in V3, however all web plugins will continue to function as normal.
+- V3 comes with no plugins out of the box like previous versions. Instead V3 follows Capacitor in seperated plugins, see [Dialog Plugin](https://capacitorjs.com/docs/v3/apis/dialog) for an example.
+
 ## Documentation:
 
 [You can find the docs site here.](https://capacitor-community.github.io/electron/)
 
-## Great electron packages to consider for your project.
+## Security
 
-- [Electron-Unhandled](https://github.com/sindresorhus/electron-unhandled): Catch unhandled errors and promise rejections in your Electron app.
-- [Electron-Timber](https://github.com/sindresorhus/electron-timber): Pretty console logger for Electron apps.
-- [Electron-Util](https://github.com/sindresorhus/electron-util): Useful utilities for Electron apps and modules.
-- [Electron-Debug](https://github.com/sindresorhus/electron-debug): Adds useful debug features to your Electron app.
-- [Devtron](https://www.electronjs.org/devtron): An open source tool to help you inspect, monitor, and debug your Electron app.
-- [Electron-Better-IPC](https://github.com/sindresorhus/electron-better-ipc): Simplified IPC communication for Electron apps.
-- [Electron-Store](https://github.com/sindresorhus/electron-store): Simple data persistence for your Electron app - Save and load user preferences, app state, cache, etc
+While this platform strives to be as much inline with current secure practices as possible there are things outside of platform control, and these fall to all of you, the users. Please take the time to read through the [security checklist](https://www.electronjs.org/docs/tutorial/security#checklist-security-recommendations) the electron team has created to keep your application as safe and secure as you possibly can.
 
-And more can be found on the [Awesome Electron List](https://github.com/sindresorhus/awesome-electron).
 
 ## Contributors ✨
 

@@ -1,63 +1,61 @@
 {
   "name": "@capacitor-community/electron",
-  "version": "1.4.2",
+  "version": "3.0.0-rc.8",
   "description": "Capacitor community support for the Electron platform.",
-  "main": "dist/esm-electron/index.js",
-  "typings": "dist/esm-electron/index.d.ts",
+  "main": "dist/core/index.js",
+  "typings": "dist/core/index.d.ts",
   "scripts": {
-    "shipit": "npm run build && np --any-branch --no-tests && npm run generate-changelog && npm run deploy-changelog",
+    "shipit": "npm run build && np --no-tests --any-branch && npm run generate-changelog && npm run deploy-changelog",
     "clean": "rimraf ./dist",
-    "build": "npm run clean && npm run build-core && npm run build-platform",
-    "capacitor:add": "node dist/cap-scripts.js add",
-    "capacitor:copy": "node dist/cap-scripts.js copy",
-    "capacitor:update": "node dist/cap-scripts.js update",
-    "capacitor:sync": "node dist/cap-scripts.js sync",
-    "capacitor:open": "node dist/cap-scripts.js open",
-    "build-platform": "npm run transpile-platform && npm run compile-platform && rimraf ./build",
-    "compile-platform": "parcel build ./build/index.js --out-file ./dist/cap-scripts.js --target node --no-source-maps",
-    "transpile-platform": "tsc --project ./tsconfig.json",
-    "build-core": "npm run build-electron && npm run build-plugins",
-    "build-electron": "tsc --project ./tsconfig.electron.json --outDir dist/esm-electron",
-    "build-plugins": "npm run transpile-plugins && npm run rollup-plugins && npm run minify-plugins",
-    "transpile-plugins": "tsc --project ./tsconfig.plugins.json --module ES2015 --target ES2017 --outDir dist/esm-plugins",
-    "rollup-plugins": "rollup --config rollup.config.plugins.js",
-    "minify-plugins": "terser --mangle --compress --comments '/^/*!/' --output dist/electron-bridge.js dist/electron-bridge.js",
+    "build": "npm run clean && npm run build-platform && npm run build-runtime && npm run build-cli-scripts",
+    "capacitor:add": "node dist/cli-scripts/cap-scripts.js add",
+    "capacitor:copy": "node dist/cli-scripts/cap-scripts.js copy",
+    "capacitor:update": "node dist/cli-scripts/cap-scripts.js update",
+    "capacitor:sync": "node dist/cli-scripts/cap-scripts.js sync",
+    "capacitor:open": "node dist/cli-scripts/cap-scripts.js open",
+    "build-cli-scripts": "tsc --project ./tsconfig.cli-scripts.json && parcel build ./build/index.js --out-dir ./dist/cli-scripts --out-file cap-scripts.js --target node --no-source-maps && rimraf ./build",
+    "build-platform": "tsc --project ./tsconfig.electron.json",
+    "build-runtime": "tsc --project ./tsconfig.runtime.json",
     "generate-changelog": "conventional-changelog -o CHANGELOG.md -r 0 --config changelog.config.js",
-    "deploy-changelog": "bash ./deployChangeLog.sh"
+    "deploy-changelog": "bash ./deployChangeLog.sh",
+    "prepare": "husky install",
+    "pretty-quick": "pretty-quick"
   },
   "license": "MIT",
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged"
-    }
-  },
   "author": "IT-MikeS",
   "devDependencies": {
-    "@rollup/plugin-node-resolve": "^10.0.0",
+    "@types/events": "~3.0.0",
     "@types/fs-extra": "~9.0.11",
-    "@types/node": "^14.14.41",
-    "conventional-changelog-cli": "^2.1.1",
-    "conventional-changelog-conventionalcommits": "^4.5.0",
+    "@types/node": "~14.14.41",
+    "conventional-changelog-cli": "~2.1.1",
+    "conventional-changelog-conventionalcommits": "~4.5.0",
     "electron": "~12.0.5",
-    "husky": "^4.3.0",
-    "np": "^7.0.0",
-    "parcel-bundler": "^1.12.5",
-    "prettier": "^2.2.0",
-    "prettier-plugin-java": "^0.8.3",
-    "pretty-quick": "^3.1.0",
-    "rimraf": "^3.0.2",
-    "rollup": "^2.45.2",
-    "terser": "^5.6.1",
-    "tslib": "^2.1.0",
-    "typescript": "~4.0.5"
+    "husky": "~6.0.0",
+    "np": "~7.4.0",
+    "parcel-bundler": "~1.12.5",
+    "prettier": "~2.2.1",
+    "pretty-quick": "~3.1.0",
+    "rimraf": "~3.0.2",
+    "tslib": "~2.2.0",
+    "typescript": "~4.2.4"
   },
   "dependencies": {
-    "@capacitor/core": "^2.4.7",
-    "chalk": "^4.1.1",
-    "electron-is-dev": "^2.0.0",
-    "electron-serve": "^1.1.0",
+    "@capacitor/cli": "^3.0.0",
+    "@capacitor/core": "^3.0.0",
+    "@ionic/utils-fs": "~3.1.5",
+    "chalk": "~4.1.1",
+    "electron-is-dev": "~2.0.0",
+    "electron-serve": "~1.1.0",
+    "events": "~3.3.0",
     "fs-extra": "~9.1.0",
-    "mime-types": "~2.1.27",
-    "ora": "^5.1.0"
+    "mime-types": "~2.1.30",
+    "ora": "~5.4.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/capacitor-community/electron"
+  },
+  "bugs": {
+    "url": "https://github.com/capacitor-community/electron/issues"
   }
 }

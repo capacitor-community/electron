@@ -11,5 +11,5 @@
     "noUnusedParameters": true
   },
   "exclude": ["node_modules"],
-  "files": ["cap-scripts/index.ts"]
+  "files": ["src/cli-scripts/index.ts"]
 }
