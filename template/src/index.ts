@@ -4,6 +4,9 @@ import electronIsDev from 'electron-is-dev';
 import electronServe from 'electron-serve';
 import { CapElectronEventEmitter, CapacitorSplashScreen, getCapacitorConfig, setupCapacitorElectronPlugins, setupElectronDeepLinking } from "@capacitor-community/electron";
 
+// Get Config options from capacitor.config file
+const CapacitorFileConfig = getCapacitorConfig()
+
 /////////////////////// Menus and Configs - Modify Freely //////////////////////////////////////////////
 const TrayMenuTemplate = [
   new MenuItem({ label: "Quit App", role: "quit" })
@@ -12,13 +15,12 @@ const AppMenuBarMenuTemplate = [
   { role: process.platform === "darwin" ? "appMenu" : "fileMenu" },
   { role: "viewMenu" },
 ];
-const DeepLinkingConfig = {customProtocol: 'mycapacitorapp'};
+const DeepLinkingConfig = {customProtocol: CapacitorFileConfig.deepLinkingCustomProtocol ?? 'mycapacitorapp'};
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // -------------------------------------------------------------------------------------------------- //
 
 /////////////////////// Capacitor Electron Internals Modify At Own risk ////////////////////////////////
-const CapacitorFileConfig = getCapacitorConfig()
 class ElectronCapacitorApp {
   private MainWindow: BrowserWindow | null = null;
   private SplashScreen: CapacitorSplashScreen | null = null;
@@ -95,7 +97,7 @@ class ElectronCapacitorApp {
 
     if (CapacitorFileConfig.splashScreenEnabled) {
       this.SplashScreen = new CapacitorSplashScreen({
-        imageFilePath: join(app.getAppPath(), "assets", "splash.png"),
+        imageFilePath: join(app.getAppPath(), "assets", CapacitorFileConfig.splashScreenImageName ?? "splash.png"),
         windowWidth: 400,
         windowHeight: 400,
       });

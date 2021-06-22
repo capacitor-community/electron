@@ -1,11 +1,3 @@
-<h1 align="center">V3 Info</h1>
-
-- Minimum `@capacitor/cli` and `@capacitor/core` version is `>= 3.0.0`
-- Plugins from previous versions `@capacitor-community/electron` will not function in V3, however all web plugins will continue to function as normal.
-- There is a basic set of instructions for creating plugins for V3  in the `plugin-example/instructions.md` file in this repo branch
-- V3 comes with no plugins out of the box like previous versions. Instead V3 follows Capacitor in seperated plugins, see [Dialog Plugin](https://capacitorjs.com/docs/v3/apis/dialog) for an example.
----
-
 <p align="center">
   <img src="https://user-images.githubusercontent.com/20338451/104735089-2ada2f00-570f-11eb-9f92-1587b473694a.png" width="392" height="150" /><br />
 </p>
@@ -34,7 +26,13 @@ Capacitor community support for the Electron platform.
 
 Maintenance Status: Actively Maintained
 
-## Documentation (Not Updated for V3):
+## Version 3 Info
+- Minimum `@capacitor/cli` and `@capacitor/core` version is `>= 3.0.0`
+- The template and inner workings have changed a lot, a migration guide will be done but for now creating a new project to tinker with before migrating main projects is a good idea.
+- Plugins from previous versions `@capacitor-community/electron` will not function in V3, however all web plugins will continue to function as normal.
+- V3 comes with no plugins out of the box like previous versions. Instead V3 follows Capacitor in seperated plugins, see [Dialog Plugin](https://capacitorjs.com/docs/v3/apis/dialog) for an example.
+
+## Documentation:
 
 [You can find the docs site here.](https://capacitor-community.github.io/electron/)
 
@@ -42,17 +40,6 @@ Maintenance Status: Actively Maintained
 
 While this platform strives to be as much inline with current secure practices as possible there are things outside of platform control, and these fall to all of you, the users. Please take the time to read through the [security checklist](https://www.electronjs.org/docs/tutorial/security#checklist-security-recommendations) the electron team has created to keep your application as safe and secure as you possibly can.
 
-## Great electron packages to consider for your project.
-
-- [Electron-Unhandled](https://github.com/sindresorhus/electron-unhandled): Catch unhandled errors and promise rejections in your Electron app.
-- [Electron-Timber](https://github.com/sindresorhus/electron-timber): Pretty console logger for Electron apps.
-- [Electron-Util](https://github.com/sindresorhus/electron-util): Useful utilities for Electron apps and modules.
-- [Electron-Debug](https://github.com/sindresorhus/electron-debug): Adds useful debug features to your Electron app.
-- [Devtron](https://www.electronjs.org/devtron): An open source tool to help you inspect, monitor, and debug your Electron app.
-- [Electron-Better-IPC](https://github.com/sindresorhus/electron-better-ipc): Simplified IPC communication for Electron apps.
-- [Electron-Store](https://github.com/sindresorhus/electron-store): Simple data persistence for your Electron app - Save and load user preferences, app state, cache, etc
-
-And more can be found on the [Awesome Electron List](https://github.com/sindresorhus/awesome-electron).
 
 ## Contributors ✨
 

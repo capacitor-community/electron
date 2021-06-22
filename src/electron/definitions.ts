@@ -13,6 +13,8 @@ export interface CapacitorElectronConfig {
   customUrlScheme?: string;
   trayIconAndMenuEnabled?: boolean;
   splashScreenEnabled?: boolean;
+  splashScreenImageName?: string;
   hideMainWindowOnLaunch?: boolean;
   deepLinkingEnabled?: boolean;
+  deepLinkingCustomProtocol?: string;
 }

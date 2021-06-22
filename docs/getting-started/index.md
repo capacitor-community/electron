@@ -15,14 +15,4 @@
 
 ## Changing the default configuration
 
-In the `*yourAppDir*/electron/src/index.ts` file there will be a line reading: `const myCapacitorApp = createCapacitorElectronApp();` here you can pass an object with your desired config changes ([see config options for details](/extra/config-options)).
-
-For example if you wanted to disable the splashscreen from showing while the app starts up you would pass an object like the following:
-
-```typescript
-const myCapacitorApp = createCapacitorElectronApp({
-  splashScreen: {
-    useSplashScreen: false,
-  },
-});
-```
+In the `*yourAppDir*/electron/src/index.ts` you can edit anything you'd like, as with V3 a lot of what was hidden in V2 from developers is now exposed to tinker with (or not if you dont want to). However most configuration is done in one of the following files in your apps main directory: `capacitor.config.json`, `capacitor.config.js`, or `capacitor.config.ts`. Please [see config options page for details](/./config-options/index).
