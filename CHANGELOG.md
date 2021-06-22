@@ -1,3 +1,63 @@
+## [3.0.0](https://github.com/capacitor-community/electron/compare/v3.0.0-rc.8...v3.0.0) (2021-06-22)
+
+
+### Documentation
+
+* update .all-contributorsrc [skip ci] ([7501669](https://github.com/capacitor-community/electron/commit/750166911b879bddb7480f2cf2ad7db1083bb32a))
+* update README.md [skip ci] ([5aea24d](https://github.com/capacitor-community/electron/commit/5aea24d9d0b44aad8b34148878449f38d3f6d7c1))
+
+
+### Chores
+
+* doc changes and minor touchups ([6d2a761](https://github.com/capacitor-community/electron/commit/6d2a761afac2295af1677fc2c7c4dcc6d13db6d9))
+* fix release script ([8b6a0c8](https://github.com/capacitor-community/electron/commit/8b6a0c85ee930212ff914f25550632f58e6fcd57))
+* merge leftovers ([a75604e](https://github.com/capacitor-community/electron/commit/a75604e6868f8fec2dd6434ac8d7cc6eb243bf76))
+
+### [1.4.2](https://github.com/capacitor-community/electron/compare/v1.4.1...v1.4.2) (2021-04-26)
+
+
+### Bug Fixes
+
+* **cli:** fix scripts failing on paths with spaces ([016a5ae](https://github.com/capacitor-community/electron/commit/016a5ae142b63ebaf6c94c547aa48f9071828b39))
+
+### [1.4.1](https://github.com/capacitor-community/electron/compare/v1.4.0...v1.4.1) (2021-04-23)
+
+
+### Chores
+
+* bump up deps and fix readme ([a62f45e](https://github.com/capacitor-community/electron/commit/a62f45eafb5c8a6b3e46737a93e15826292dcefc))
+
+## [1.4.0](https://github.com/capacitor-community/electron/compare/v3.0.0-5...v1.4.0) (2021-03-18)
+
+
+### Features
+
+* update to electron 12 / node 14 ([4a5a3f2](https://github.com/capacitor-community/electron/commit/4a5a3f27039356dd95c6d766294146dd5facf799))
+
+
+### Chores
+
+* touch up readme and package json ([1796506](https://github.com/capacitor-community/electron/commit/17965061bf004abaadfde1ffa33ee35c17f2b436))
+
+### [1.3.4](https://github.com/capacitor-community/electron/compare/v3.0.0-4...v1.3.4) (2021-02-23)
+
+
+### Features
+
+* allow for custom preload additions ([c704dad](https://github.com/capacitor-community/electron/commit/c704dada362f95295ab393c79d38794ad508ac8f))
+
+
+### Bug Fixes
+
+* tslib missing ([eda9bd2](https://github.com/capacitor-community/electron/commit/eda9bd2df3f2f0f0b47d6c8aea287294a6f27202))
+
+### [1.3.3](https://github.com/capacitor-community/electron/compare/v3.0.0-1...v1.3.3) (2021-02-03)
+
+
+### Chores
+
+* revert to electron ~10.3.1 ([cb69da7](https://github.com/capacitor-community/electron/commit/cb69da72627bbbe8af9cc64ad4993379ff985f82))
+
 ## [3.0.0-rc.8](https://github.com/capacitor-community/electron/compare/v3.0.0-rc.7...v3.0.0-rc.8) (2021-06-15)
 
 
@@ -113,7 +173,7 @@
 
 * template not using 'next' ([433b887](https://github.com/capacitor-community/electron/commit/433b8872d4a21072009b28efe05e2ebdb1e764be))
 
-## [3.0.0-beta.1](https://github.com/capacitor-community/electron/compare/v3.0.0-5...v3.0.0-beta.1) (2021-05-04)
+## [3.0.0-beta.1](https://github.com/capacitor-community/electron/compare/v1.4.2...v3.0.0-beta.1) (2021-05-04)
 
 
 ### Features
@@ -129,7 +189,7 @@
 * prep for beta and update husky hooks ([aa6d1e1](https://github.com/capacitor-community/electron/commit/aa6d1e18c0579e797660abc33147c31c85a7da50))
 * test ([49fb662](https://github.com/capacitor-community/electron/commit/49fb6628be0513d8c8138c1e0c26d3718d073fb9))
 
-## [3.0.0-5](https://github.com/capacitor-community/electron/compare/v3.0.0-4...v3.0.0-5) (2021-02-24)
+## [3.0.0-5](https://github.com/capacitor-community/electron/compare/v1.3.4...v3.0.0-5) (2021-02-24)
 
 
 ### Bug Fixes
@@ -165,7 +225,7 @@
 
 * change log fix ([5e91496](https://github.com/capacitor-community/electron/commit/5e91496e0d24f638a80c5d6e3eeda927d8a60d3c))
 
-## [3.0.0-2](https://github.com/capacitor-community/electron/compare/v3.0.0-1...v3.0.0-2) (2021-02-19)
+## [3.0.0-2](https://github.com/capacitor-community/electron/compare/v1.3.3...v3.0.0-2) (2021-02-19)
 
 
 ### Bug Fixes
@@ -184,6 +244,227 @@
 * missed a file to remove ([30012a5](https://github.com/capacitor-community/electron/commit/30012a524141457a9d654839a3b124ff62500345))
 * start plugin support v3 way ([2b0e91a](https://github.com/capacitor-community/electron/commit/2b0e91ac954870c446cf2289d9497d94f7a51d72))
 * testing new runtime inject ([e9ac61c](https://github.com/capacitor-community/electron/commit/e9ac61ce14f1dd3caa2b51add4b4f5f1bf6c6389))
+
+## [3.0.0-1](https://github.com/capacitor-community/electron/compare/v1.3.2...v3.0.0-1) (2021-01-15)
+
+
+### Features
+
+* heavy refactor for compat with cap3 ([7876c35](https://github.com/capacitor-community/electron/commit/7876c350d6c4c8606a5f57f6b415382c1fd75e8c))
+
+
+### Chores
+
+* cleanup ([597a6b3](https://github.com/capacitor-community/electron/commit/597a6b3f1bbb86db80c488f596e6dcd7bf4fc07e))
+* more cleanup ([fd1f75e](https://github.com/capacitor-community/electron/commit/fd1f75ea40e8216d537f21ee27ba6d229ea202f5))
+* prepare for cap-v3 compat. ([c30f0a5](https://github.com/capacitor-community/electron/commit/c30f0a570e4cee45a474af822869bded1d0820dc))
+* readme with alpha ([627bae9](https://github.com/capacitor-community/electron/commit/627bae97092303ba799102402d7215ba5890da54))
+
+### [1.4.2](https://github.com/capacitor-community/electron/compare/v1.4.1...v1.4.2) (2021-04-26)
+
+
+### Bug Fixes
+
+* **cli:** fix scripts failing on paths with spaces ([016a5ae](https://github.com/capacitor-community/electron/commit/016a5ae142b63ebaf6c94c547aa48f9071828b39))
+
+### [1.4.1](https://github.com/capacitor-community/electron/compare/v1.4.0...v1.4.1) (2021-04-23)
+
+
+### Chores
+
+* bump up deps and fix readme ([a62f45e](https://github.com/capacitor-community/electron/commit/a62f45eafb5c8a6b3e46737a93e15826292dcefc))
+
+## [1.4.0](https://github.com/capacitor-community/electron/compare/v3.0.0-5...v1.4.0) (2021-03-18)
+
+
+### Features
+
+* update to electron 12 / node 14 ([4a5a3f2](https://github.com/capacitor-community/electron/commit/4a5a3f27039356dd95c6d766294146dd5facf799))
+
+
+### Chores
+
+* touch up readme and package json ([1796506](https://github.com/capacitor-community/electron/commit/17965061bf004abaadfde1ffa33ee35c17f2b436))
+
+### [1.3.4](https://github.com/capacitor-community/electron/compare/v3.0.0-4...v1.3.4) (2021-02-23)
+
+
+### Features
+
+* allow for custom preload additions ([c704dad](https://github.com/capacitor-community/electron/commit/c704dada362f95295ab393c79d38794ad508ac8f))
+
+
+### Bug Fixes
+
+* tslib missing ([eda9bd2](https://github.com/capacitor-community/electron/commit/eda9bd2df3f2f0f0b47d6c8aea287294a6f27202))
+
+### [1.3.3](https://github.com/capacitor-community/electron/compare/v3.0.0-1...v1.3.3) (2021-02-03)
+
+
+### Chores
+
+* revert to electron ~10.3.1 ([cb69da7](https://github.com/capacitor-community/electron/commit/cb69da72627bbbe8af9cc64ad4993379ff985f82))
+
+## [3.0.0-5](https://github.com/capacitor-community/electron/compare/v1.3.4...v3.0.0-5) (2021-02-24)
+
+
+### Bug Fixes
+
+* template not using alpha ([98fe1c0](https://github.com/capacitor-community/electron/commit/98fe1c0ac5047fe7db68c651fe987fa0a3c1d9f7))
+
+## [3.0.0-4](https://github.com/capacitor-community/electron/compare/v3.0.0-3...v3.0.0-4) (2021-02-20)
+
+
+### Features
+
+* minimized injected modified runtime ([727c29a](https://github.com/capacitor-community/electron/commit/727c29a863a9e951c5ea51e1c235d876678b9d96))
+
+
+### Bug Fixes
+
+* no longer need remote module enabled 🎉 ([408e94f](https://github.com/capacitor-community/electron/commit/408e94ffad083a26d542e53153de8de667372ff2))
+
+
+### Chores
+
+* readme update for note on security checklist ([9055497](https://github.com/capacitor-community/electron/commit/9055497c300ab29694f4074b2095270fc137e825))
+
+## [3.0.0-3](https://github.com/capacitor-community/electron/compare/v3.0.0-2...v3.0.0-3) (2021-02-19)
+
+
+### Bug Fixes
+
+* load web impl. if no electron impl. for real ([4b6f29c](https://github.com/capacitor-community/electron/commit/4b6f29c81c72f5f519049aad7d9285f49afe9ba2))
+
+
+### Chores
+
+* change log fix ([5e91496](https://github.com/capacitor-community/electron/commit/5e91496e0d24f638a80c5d6e3eeda927d8a60d3c))
+
+## [3.0.0-2](https://github.com/capacitor-community/electron/compare/v1.3.3...v3.0.0-2) (2021-02-19)
+
+
+### Bug Fixes
+
+* bring to spec with new cli passed config data ([4e5c89b](https://github.com/capacitor-community/electron/commit/4e5c89b8f35d335120dd402774cd56a7c4331499))
+* load web impl. if no electron impl. ([f989c47](https://github.com/capacitor-community/electron/commit/f989c47a5d0b34c7aeb6c17c6ff5b8e977e0d601))
+
+
+### Chores
+
+* capacitor version to beta 2 ([062ff3a](https://github.com/capacitor-community/electron/commit/062ff3a68be469d8629ae4ec8fa8ed05f517d01e))
+* clean up rt file ([3ef3aed](https://github.com/capacitor-community/electron/commit/3ef3aed73a73b7505197d3220cb10988c5e559ca))
+* clean-up for next alpha release ([f224deb](https://github.com/capacitor-community/electron/commit/f224deb35c0348eebefb891eb286725cee60e112))
+* cleanup and push changelog ([0aa326d](https://github.com/capacitor-community/electron/commit/0aa326d3dd9bb76a459bc23511cead11209b2275))
+* making repo structure a little more clear ([553fb95](https://github.com/capacitor-community/electron/commit/553fb957402318a67fb88c6ad9f2c4c9add3e7b3))
+* missed a file to remove ([30012a5](https://github.com/capacitor-community/electron/commit/30012a524141457a9d654839a3b124ff62500345))
+* start plugin support v3 way ([2b0e91a](https://github.com/capacitor-community/electron/commit/2b0e91ac954870c446cf2289d9497d94f7a51d72))
+* testing new runtime inject ([e9ac61c](https://github.com/capacitor-community/electron/commit/e9ac61ce14f1dd3caa2b51add4b4f5f1bf6c6389))
+
+## [3.0.0-1](https://github.com/capacitor-community/electron/compare/v1.3.2...v3.0.0-1) (2021-01-15)
+
+
+### Features
+
+* heavy refactor for compat with cap3 ([7876c35](https://github.com/capacitor-community/electron/commit/7876c350d6c4c8606a5f57f6b415382c1fd75e8c))
+
+
+### Chores
+
+* cleanup ([597a6b3](https://github.com/capacitor-community/electron/commit/597a6b3f1bbb86db80c488f596e6dcd7bf4fc07e))
+* more cleanup ([fd1f75e](https://github.com/capacitor-community/electron/commit/fd1f75ea40e8216d537f21ee27ba6d229ea202f5))
+* prepare for cap-v3 compat. ([c30f0a5](https://github.com/capacitor-community/electron/commit/c30f0a570e4cee45a474af822869bded1d0820dc))
+* readme with alpha ([627bae9](https://github.com/capacitor-community/electron/commit/627bae97092303ba799102402d7215ba5890da54))
+
+### [1.3.4](https://github.com/capacitor-community/electron/compare/v3.0.0-4...v1.3.4) (2021-02-23)
+
+
+### Features
+
+* allow for custom preload additions ([c704dad](https://github.com/capacitor-community/electron/commit/c704dada362f95295ab393c79d38794ad508ac8f))
+
+
+### Bug Fixes
+
+* tslib missing ([eda9bd2](https://github.com/capacitor-community/electron/commit/eda9bd2df3f2f0f0b47d6c8aea287294a6f27202))
+
+### [1.3.3](https://github.com/capacitor-community/electron/compare/v3.0.0-1...v1.3.3) (2021-02-03)
+
+
+### Chores
+
+* revert to electron ~10.3.1 ([cb69da7](https://github.com/capacitor-community/electron/commit/cb69da72627bbbe8af9cc64ad4993379ff985f82))
+
+## [3.0.0-4](https://github.com/capacitor-community/electron/compare/v3.0.0-3...v3.0.0-4) (2021-02-20)
+
+
+### Features
+
+* minimized injected modified runtime ([727c29a](https://github.com/capacitor-community/electron/commit/727c29a863a9e951c5ea51e1c235d876678b9d96))
+
+
+### Bug Fixes
+
+* no longer need remote module enabled 🎉 ([408e94f](https://github.com/capacitor-community/electron/commit/408e94ffad083a26d542e53153de8de667372ff2))
+
+
+### Chores
+
+* readme update for note on security checklist ([9055497](https://github.com/capacitor-community/electron/commit/9055497c300ab29694f4074b2095270fc137e825))
+
+## [3.0.0-3](https://github.com/capacitor-community/electron/compare/v3.0.0-2...v3.0.0-3) (2021-02-19)
+
+
+### Bug Fixes
+
+* load web impl. if no electron impl. for real ([4b6f29c](https://github.com/capacitor-community/electron/commit/4b6f29c81c72f5f519049aad7d9285f49afe9ba2))
+
+
+### Chores
+
+* change log fix ([5e91496](https://github.com/capacitor-community/electron/commit/5e91496e0d24f638a80c5d6e3eeda927d8a60d3c))
+
+## [3.0.0-2](https://github.com/capacitor-community/electron/compare/v1.3.3...v3.0.0-2) (2021-02-19)
+
+
+### Bug Fixes
+
+* bring to spec with new cli passed config data ([4e5c89b](https://github.com/capacitor-community/electron/commit/4e5c89b8f35d335120dd402774cd56a7c4331499))
+* load web impl. if no electron impl. ([f989c47](https://github.com/capacitor-community/electron/commit/f989c47a5d0b34c7aeb6c17c6ff5b8e977e0d601))
+
+
+### Chores
+
+* capacitor version to beta 2 ([062ff3a](https://github.com/capacitor-community/electron/commit/062ff3a68be469d8629ae4ec8fa8ed05f517d01e))
+* clean up rt file ([3ef3aed](https://github.com/capacitor-community/electron/commit/3ef3aed73a73b7505197d3220cb10988c5e559ca))
+* clean-up for next alpha release ([f224deb](https://github.com/capacitor-community/electron/commit/f224deb35c0348eebefb891eb286725cee60e112))
+* cleanup and push changelog ([0aa326d](https://github.com/capacitor-community/electron/commit/0aa326d3dd9bb76a459bc23511cead11209b2275))
+* making repo structure a little more clear ([553fb95](https://github.com/capacitor-community/electron/commit/553fb957402318a67fb88c6ad9f2c4c9add3e7b3))
+* missed a file to remove ([30012a5](https://github.com/capacitor-community/electron/commit/30012a524141457a9d654839a3b124ff62500345))
+* start plugin support v3 way ([2b0e91a](https://github.com/capacitor-community/electron/commit/2b0e91ac954870c446cf2289d9497d94f7a51d72))
+* testing new runtime inject ([e9ac61c](https://github.com/capacitor-community/electron/commit/e9ac61ce14f1dd3caa2b51add4b4f5f1bf6c6389))
+
+## [3.0.0-1](https://github.com/capacitor-community/electron/compare/v1.3.2...v3.0.0-1) (2021-01-15)
+
+
+### Features
+
+* heavy refactor for compat with cap3 ([7876c35](https://github.com/capacitor-community/electron/commit/7876c350d6c4c8606a5f57f6b415382c1fd75e8c))
+
+
+### Chores
+
+* cleanup ([597a6b3](https://github.com/capacitor-community/electron/commit/597a6b3f1bbb86db80c488f596e6dcd7bf4fc07e))
+* more cleanup ([fd1f75e](https://github.com/capacitor-community/electron/commit/fd1f75ea40e8216d537f21ee27ba6d229ea202f5))
+* prepare for cap-v3 compat. ([c30f0a5](https://github.com/capacitor-community/electron/commit/c30f0a570e4cee45a474af822869bded1d0820dc))
+* readme with alpha ([627bae9](https://github.com/capacitor-community/electron/commit/627bae97092303ba799102402d7215ba5890da54))
+
+### [1.3.3](https://github.com/capacitor-community/electron/compare/v3.0.0-1...v1.3.3) (2021-02-03)
+
+
+### Chores
+
+* revert to electron ~10.3.1 ([cb69da7](https://github.com/capacitor-community/electron/commit/cb69da72627bbbe8af9cc64ad4993379ff985f82))
 
 ## [3.0.0-1](https://github.com/capacitor-community/electron/compare/v1.3.2...v3.0.0-1) (2021-01-15)
 
