@@ -21,7 +21,7 @@ for (const pluginKey of Object.keys(plugins)) {
     }
   }
 }
-contextBridge.exposeInMainWorld('CapacitorCustomPlatform', {name: 'electron', alsoLoadWebImplementations: true, plugins: contextApi})
+contextBridge.exposeInMainWorld('CapacitorCustomPlatform', {name: 'electron', useWebFallbackPlugins: true, plugins: contextApi})
 /*
 class CapacitorException extends Error {
   constructor(message, _code) {
