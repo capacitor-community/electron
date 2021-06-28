@@ -1,12 +1,33 @@
+import { ipcRenderer, contextBridge } from "electron";
+////////////////////////////////////////////////////////
+const plugins = require("./electron-plugins");
+console.log(plugins)
+const contextApi: {[plugin: string]: {[functionName: string]: () => Promise<any>}} = {};
+for (const pluginKey of Object.keys(plugins)) {
+  console.log('PluginKey:', pluginKey)
+  for (const classKey of Object.keys(plugins[pluginKey])) {
+    console.log('ClassKey:', classKey)
+    const functionList = Object.getOwnPropertyNames(
+      plugins[pluginKey][classKey].prototype
+    ).filter((v) => v !== "constructor");
+    if (!contextApi[classKey]) {
+      contextApi[classKey] = {};
+    }
+    for (const functionName of functionList) {
+      console.log('FunctionKey:', functionName)
+      if (!contextApi[classKey][functionName]) {
+        contextApi[classKey][functionName] = () => ipcRenderer.invoke(`${classKey}-${functionName}`);
+      }
+    }
+  }
+}
+contextBridge.exposeInMainWorld('CapacitorCustomPlatform', {name: 'electron', alsoLoadWebImplementations: true, plugins: contextApi})
+/*
 class CapacitorException extends Error {
   constructor(message, _code) {
       super(message);
   }
 }
-import { addPlatform, setPlatform } from "@capacitor/core";
-import type { PluginImplementations } from "@capacitor/core";
-const { ipcRenderer } = require("electron");
-const plugins = require("./electron-plugins");
 addPlatform("electron", {
   name: "electron",
   getPlatform: () => {
@@ -156,54 +177,6 @@ addPlatform("electron", {
   },
 });
 setPlatform("electron");
-const pluginsRegistry: any = {};
-const AsyncFunction = (async () => {}).constructor;
-for (const pluginKey of Object.keys(plugins)) {
-  for (const classKey of Object.keys(plugins[pluginKey])) {
-    const functionList = Object.getOwnPropertyNames(
-      plugins[pluginKey][classKey].prototype
-    ).filter((v) => v !== "constructor");
-    if (!pluginsRegistry[classKey]) {
-      pluginsRegistry[classKey] = {};
-    }
-    for (const functionName of functionList) {
-      if (!pluginsRegistry[classKey][functionName]) {
-        const pluginRef = new plugins[pluginKey][classKey]();
-        const isPromise =
-          pluginRef[functionName] instanceof Promise ||
-          pluginRef[functionName] instanceof AsyncFunction;
-        if (isPromise) {
-          pluginsRegistry[classKey][functionName] = (...sendArgs: any) => {
-            return new Promise((resolve, _reject) => {
-              console.log(
-                `sending async ipc from renderer of channel: ${classKey}-${functionName}`
-              );
-              const listener = (_event: any, returnedValue: unknown) => {
-                console.log("got reply of:", returnedValue);
-                ipcRenderer.removeListener(
-                  `${classKey}-${functionName}-reply`,
-                  listener
-                );
-                resolve(returnedValue);
-              };
-              ipcRenderer.on(`${classKey}-${functionName}-reply`, listener);
-              ipcRenderer.send(`${classKey}-${functionName}`, ...sendArgs);
-            });
-          };
-        } else {
-          pluginsRegistry[classKey][functionName] = (...sendArgs: any) => {
-            console.log(
-              `sending sync ipc from renderer of channel: ${classKey}-${functionName}`
-            );
-            return ipcRenderer.sendSync(
-              `${classKey}-${functionName}`,
-              ...sendArgs
-            );
-          };
-        }
-      }
-    }
-  }
-}
-(window as any).CapacitorElectronPlugins = { ...pluginsRegistry };
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+*/
+////////////////////////////////////////////////////////

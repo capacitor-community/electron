@@ -82,11 +82,8 @@ export function setupCapacitorElectronPlugins() {
   //setupListeners
   const rtPluginsPath = join(
     app.getAppPath(),
-    "node_modules",
-    "@capacitor-community",
-    "electron",
-    "dist",
-    "runtime",
+    "src",
+    "rt",
     "electron-plugins.js"
   )
   // eslint-disable-next-line @typescript-eslint/no-empty-function
@@ -105,7 +102,7 @@ export function setupCapacitorElectronPlugins() {
       }
       for (const functionName of functionList) {
         if (!pluginFunctionsRegistry[classKey][functionName]) {
-          pluginFunctionsRegistry[classKey][functionName] = ipcMain.on(`${classKey}-${functionName}`, async (event, ...args) => {
+          pluginFunctionsRegistry[classKey][functionName] = ipcMain.handle(`${classKey}-${functionName}`, async (_event, ...args) => {
             console.log('args')
             console.log(args)
             const pluginRef = new plugins[pluginKey][classKey]()
@@ -118,11 +115,10 @@ export function setupCapacitorElectronPlugins() {
             let returnVal = null
             if (isPromise) {
               returnVal = await theCall(...args)
-              event.reply(`${classKey}-${functionName}-reply`, returnVal || null)
             } else {
               returnVal = theCall(...args)
-              event.returnValue = returnVal
             }
+            return returnVal
           })
         }
       }

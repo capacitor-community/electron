@@ -65,19 +65,12 @@ export async function doUpdate() {
     }
     outStr += '}'
 
-    // console.log('\n' + outStr + '\n\n')
-
     const capacitorElectronRuntimeFilePath = join(
       usersProjectDir,
       "electron",
-      "node_modules",
-      "@capacitor-community",
-      "electron",
-      "dist",
-      "runtime"
+      "src",
+      "rt"
     );
-
-    // console.log(join(capacitorElectronRuntimeFilePath, 'electron-plugins.js'))
 
     writeFileSync(join(capacitorElectronRuntimeFilePath, 'electron-plugins.js'), outStr, {encoding: 'utf-8'})
 
@@ -102,7 +95,7 @@ export async function doUpdate() {
 
     if (npmIStr.length > 0) {
       console.log(`\n\nWill install:${npmIStr}\n\n`)
-      await runExec(`cd ${join(usersProjectDir, "electron")} && npm i${npmIStr} && npm run rebuild-deps`);
+      await runExec(`cd ${join(usersProjectDir, "electron")} && npm i${npmIStr}`);
     }
   } catch (e) {
     throw e;

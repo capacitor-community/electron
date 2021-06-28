@@ -4,6 +4,11 @@ import electronIsDev from 'electron-is-dev';
 import electronServe from 'electron-serve';
 import { CapElectronEventEmitter, CapacitorSplashScreen, getCapacitorConfig, setupCapacitorElectronPlugins, setupElectronDeepLinking } from "@capacitor-community/electron";
 
+// Handle creating/removing shortcuts on Windows when installing/uninstalling.
+if (require('electron-squirrel-startup')) {
+  app.quit();
+}
+
 // Get Config options from capacitor.config file
 const CapacitorFileConfig = getCapacitorConfig()
 
