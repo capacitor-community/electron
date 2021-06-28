@@ -8,4 +8,4 @@ echo "Deploying Capacitor v$PACKAGE_VERSION changelog"
 # This is what we do instead of letting lerna git commit for us
 git add CHANGELOG.md
 git commit -m "changelog: update changelog for $PACKAGE_VERSION"
-git push origin main
+git push origin v4

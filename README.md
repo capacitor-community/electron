@@ -9,10 +9,10 @@ Capacitor community support for the Electron platform.
   <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 <a href="#contributors"><img src="https://img.shields.io/badge/all%20contributors-9-orange?style=flat-square" /></a>
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
-  <a href="https://www.electronjs.org/releases/stable?version=12"><img src="https://img.shields.io/badge/supported%20electron%20version-~12.0.5-blue?style=flat-square" /></a>
+  <a href="https://www.electronjs.org/releases/stable?version=13"><img src="https://img.shields.io/badge/supported%20electron%20version-~13.1.4-blue?style=flat-square" /></a>
 </p>
 <p align="center">
-  <a href="https://npmjs.com/package/@capacitor-community/electron"><img src="https://img.shields.io/npm/v/@capacitor-community/electron.svg?style=flat-square" /></a>
+  <a href="https://npmjs.com/package/@capacitor-community/electron"><img src="https://img.shields.io/npm/v/@capacitor-community/electron/alpha.svg?style=flat-square" /></a>
   <a href="https://npmjs.com/package/@capacitor-community/electron"><img alt="npm" src="https://img.shields.io/npm/dw/@capacitor-community/electron?style=flat-square"></a>
   <a href="https://npmjs.com/package/@capacitor-community/electron"><img src="https://img.shields.io/npm/l/@capacitor-community/electron.svg?style=flat-square" /></a>
   <a href="https://github.com/capacitor-community/electron"><img alt="GitHub Workflow Status" src="https://img.shields.io/github/workflow/status/capacitor-community/electron/CI/main?style=flat-square"></a>
@@ -26,13 +26,13 @@ Capacitor community support for the Electron platform.
 
 Maintenance Status: Actively Maintained
 
-## Version 3 Info
-- Minimum `@capacitor/cli` and `@capacitor/core` version is `>= 3.0.0`
+## Version 4 Info
+- Minimum `@capacitor/cli` and `@capacitor/core` version is `>= 3.0.2`
 - The template and inner workings have changed a lot, a migration guide will be done but for now creating a new project to tinker with before migrating main projects is a good idea.
-- Plugins from previous versions `@capacitor-community/electron` will not function in V3, however all web plugins will continue to function as normal.
-- V3 comes with no plugins out of the box like previous versions. Instead V3 follows Capacitor in seperated plugins, see [Dialog Plugin](https://capacitorjs.com/docs/v3/apis/dialog) for an example.
+- Plugins from previous versions `@capacitor-community/electron` will not function in V4, however all web plugins will continue to function as normal.
+- V4 comes with no plugins out of the box like previous versions. Instead V3 follows Capacitor in seperated plugins, see [Dialog Plugin](https://capacitorjs.com/docs/v3/apis/dialog) for an example.
 
-## Documentation:
+## Documentation (Not Updated for V4):
 
 [You can find the docs site here.](https://capacitor-community.github.io/electron/)
 
