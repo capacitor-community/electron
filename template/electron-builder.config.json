@@ -13,8 +13,7 @@
   },
   "win": {
     "target": "nsis",
-    "icon": "assets/appIcon.ico",
-    "asar": false 
+    "icon": "assets/appIcon.ico"
   },
   "mac": {
     "category": "your.app.category.type",
