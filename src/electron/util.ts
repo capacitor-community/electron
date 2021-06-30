@@ -2,21 +2,12 @@ import { join } from "path";
 import { existsSync, readFileSync } from 'fs';
 import { app, ipcMain } from "electron";
 import type { CapacitorElectronConfig } from "./definitions";
-import electronServe from 'electron-serve';
 const mimeTypes = require('mime-types');
 const EventEmitter = require('events');
 
 class CapElectronEmitter extends EventEmitter {}
 
 export const CapElectronEventEmitter = new CapElectronEmitter();
-
-export function getWebAppLoader(customUrlScheme: string) {
-  return electronServe({
-    directory: join(app.getAppPath(), "app"),
-    // The scheme can be changed to whatever you'd like (ex: someapp)
-    scheme: customUrlScheme,
-  });
-} 
 
 export function deepMerge(target: any, _objects: any[] = []) {
   // Credit for origanal function: Josh Cole(saikojosh)[https://github.com/saikojosh]
@@ -79,39 +70,28 @@ export function deepMerge(target: any, _objects: any[] = []) {
 }
 
 export function setupCapacitorElectronPlugins() {
-  //setupListeners
   const rtPluginsPath = join(
     app.getAppPath(),
+    "build",
     "src",
     "rt",
     "electron-plugins.js"
-  )
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  );
   const AsyncFunction = (async () => {}).constructor;
   const plugins: any = require(rtPluginsPath)
   const pluginFunctionsRegistry: any = {}
   for (const pluginKey of Object.keys(plugins)) {
-    console.log(pluginKey)
     for (const classKey of Object.keys(plugins[pluginKey])) {
       const functionList = Object.getOwnPropertyNames(plugins[pluginKey][classKey].prototype).filter(v => v !== 'constructor')
-      console.log('  ', classKey)
-      console.log('    ' + JSON.stringify(functionList))
-      console.log('')
       if (!pluginFunctionsRegistry[classKey]) {
         pluginFunctionsRegistry[classKey] = {}
       }
       for (const functionName of functionList) {
         if (!pluginFunctionsRegistry[classKey][functionName]) {
           pluginFunctionsRegistry[classKey][functionName] = ipcMain.handle(`${classKey}-${functionName}`, async (_event, ...args) => {
-            console.log('args')
-            console.log(args)
             const pluginRef = new plugins[pluginKey][classKey]()
             const theCall = pluginRef[functionName]
-            console.log('theCall')
-            console.log(theCall)
             const isPromise = theCall instanceof Promise || (theCall instanceof AsyncFunction)
-            console.log('isPromise')
-            console.log(isPromise)
             let returnVal = null
             if (isPromise) {
               returnVal = await theCall(...args)

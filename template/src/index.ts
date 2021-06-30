@@ -2,14 +2,11 @@ import { app, BrowserWindow, Menu, MenuItem, nativeImage, Tray } from "electron"
 import { join } from "path";
 import electronIsDev from 'electron-is-dev';
 import electronServe from 'electron-serve';
-import { CapElectronEventEmitter, CapacitorSplashScreen, getCapacitorConfig, setupCapacitorElectronPlugins, setupElectronDeepLinking } from "@capacitor-community/electron";
+import { autoUpdater } from "electron-updater"
+import { CapElectronEventEmitter, CapacitorSplashScreen, getCapacitorConfig, setupElectronDeepLinking, setupCapacitorElectronPlugins } from "@capacitor-community/electron";
+// const log = require('electron-log');
 
-// Handle creating/removing shortcuts on Windows when installing/uninstalling.
-if (require('electron-squirrel-startup')) {
-  app.quit();
-}
-
-// Get Config options from capacitor.config file
+// Get Config options from capacitor.config 
 const CapacitorFileConfig = getCapacitorConfig()
 
 /////////////////////// Menus and Configs - Modify Freely //////////////////////////////////////////////
@@ -49,16 +46,19 @@ class ElectronCapacitorApp {
   }
 
   async init() {
+    const preloadPath = join(app.getAppPath(), "build", "src", "preload.js");
     this.MainWindow = new BrowserWindow({
       show: false,
       webPreferences: {
         nodeIntegration: true,
-        contextIsolation: false,
+        contextIsolation: true,
         // Use preload to inject the electron varriant overrides for capacitor plugins.
-        // Note: any windows you spawn that you want to include capacitor plugins must have this preload.
-        preload: join(app.getAppPath(), "node_modules", "@capacitor-community", "electron", "dist", "runtime", "electron-rt.js"),
+        // preload: join(app.getAppPath(), "node_modules", "@capacitor-community", "electron", "dist", "runtime", "electron-rt.js"),
+        preload: preloadPath,
       },
     });
+
+    // this.MainWindow.webContents.executeJavaScriptInIsolatedWorld(0, [{code: 'window.RequireCapacitor()'}])
 
     this.MainWindow.on("closed", () => {
       if (this.SplashScreen && this.SplashScreen.getSplashWindow() && !this.SplashScreen.getSplashWindow().isDestroyed()) {
@@ -141,6 +141,7 @@ if (CapacitorFileConfig.deepLinkingEnabled) {
 (async () => {
   await app.whenReady();
   await myCapacitorApp.init()
+  autoUpdater.checkForUpdatesAndNotify()
 })();
 
 app.on("window-all-closed", function () {

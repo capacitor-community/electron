@@ -1,0 +1,23 @@
+{
+  "appId": "com.yourdoamnin.yourapp",
+  "files": [
+    "assets/**/*",
+    "build/**/*",
+    "capacitor.config.*",
+    "app/**/*"
+  ],
+  "nsis": {
+    "allowElevation": true,
+    "oneClick": false,
+    "allowToChangeInstallationDirectory": true
+  },
+  "win": {
+    "target": "nsis",
+    "icon": "assets/appIcon.ico",
+    "asar": false 
+  },
+  "mac": {
+    "category": "your.app.category.type",
+    "target": "zip"
+  }
+}
