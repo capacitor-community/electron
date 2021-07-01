@@ -1,7 +1,7 @@
 {
-  "name": "@capacitor/device",
+  "name": "@capacitor/filesystem",
   "version": "1.0.2",
-  "description": "The Device API exposes internal information about the device, such as the model and operating system version, along with user information such as unique ids.",
+  "description": "The Filesystem API provides a NodeJS-like API for working with files on the device.",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
   "types": "dist/esm/index.d.ts",
@@ -11,13 +11,13 @@
     "android/build.gradle",
     "dist/",
     "ios/Plugin/",
-    "CapacitorDevice.podspec"
+    "CapacitorFilesystem.podspec"
   ],
   "author": "Ionic <hi@ionicframework.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ionic-team/capacitor-plugins.git"
+    "url": "https://github.com/ionic-team/capacitor-plugins"
   },
   "bugs": {
     "url": "https://github.com/ionic-team/capacitor-plugins/issues"
@@ -28,17 +28,16 @@
     "native"
   ],
   "scripts": {
-    "test": "uvu -r esm -r ts-node/register src/__tests__",
     "verify": "npm run verify:ios && npm run verify:android && npm run verify:web",
     "verify:ios": "cd ios && pod install && xcodebuild -workspace Plugin.xcworkspace -scheme Plugin && cd ..",
     "verify:android": "cd android && ./gradlew clean build test && cd ..",
-    "verify:web": "npm run build && npm test",
+    "verify:web": "npm run build",
     "lint": "npm run eslint && npm run prettier -- --check && npm run swiftlint -- lint",
     "fmt": "npm run eslint -- --fix && npm run prettier -- --write && npm run swiftlint -- autocorrect --format",
     "eslint": "eslint . --ext ts",
     "prettier": "prettier \"**/*.{css,html,ts,js,java}\"",
     "swiftlint": "node-swiftlint",
-    "docgen": "docgen --api DevicePlugin --output-readme README.md --output-json dist/docs.json",
+    "docgen": "docgen --api FilesystemPlugin --output-readme README.md --output-json dist/docs.json",
     "build": "npm run clean && npm run docgen && tsc && rollup -c rollup.config.js && npm run build-electron",
     "build-electron": "tsc --project electron/tsconfig.json && rollup -c electron/rollup.config.js && rimraf ./electron/build",
     "clean": "rimraf ./dist",
@@ -56,15 +55,12 @@
     "@rollup/plugin-commonjs": "^19.0.0",
     "@rollup/plugin-node-resolve": "^13.0.0",
     "eslint": "^7.11.0",
-    "esm": "^3.2.25",
     "prettier": "~2.3.0",
     "prettier-plugin-java": "~1.0.2",
     "rimraf": "^3.0.0",
-    "rollup": "^2.29.0",
+    "rollup": "^2.52.6",
     "swiftlint": "^1.0.1",
-    "ts-node": "^9.1.1",
-    "typescript": "~4.1.5",
-    "uvu": "^0.5.1"
+    "typescript": "~4.1.5"
   },
   "peerDependencies": {
     "@capacitor/core": "^3.0.0"
