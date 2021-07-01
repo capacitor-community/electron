@@ -6,6 +6,8 @@ import type {
   GetLanguageCodeResult
 } from '../../src/definitions';
 
+import { uuid4 } from './utils';
+
 export class Device implements DevicePlugin {
 
   async getInfo(): Promise<DeviceInfo> {
@@ -28,7 +30,7 @@ export class Device implements DevicePlugin {
 
   async getId(): Promise<DeviceId> {
     return {
-      uuid: this.uuid4(),
+      uuid: uuid4(),
     };
   }
 
@@ -37,16 +39,5 @@ export class Device implements DevicePlugin {
       batteryLevel: 0,
       isCharging: false,
     };
-  }
-  
-  uuid4(): string {
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(
-      /[xy]/g,
-      function (c) {
-        const r = (Math.random() * 16) | 0,
-          v = c === 'x' ? r : (r & 0x3) | 0x8;
-        return v.toString(16);
-      },
-    );
   }
 }

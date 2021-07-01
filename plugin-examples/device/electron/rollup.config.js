@@ -1,3 +1,5 @@
+import commonjs from '@rollup/plugin-commonjs';
+
 export default {
   input: 'electron/build/electron/src/index.js',
   output: [
@@ -5,8 +7,8 @@ export default {
       file: 'electron/dist/plugin.js',
       format: 'cjs',
       sourcemap: true,
-      inlineDynamicImports: true,
     },
   ],
   external: ['@capacitor/core'],
+  plugins: [commonjs()]
 };
