@@ -1,3 +1,17 @@
+## [4.0.0-alpha.2](https://github.com/capacitor-community/electron/compare/v4.0.0-alpha.1...v4.0.0-alpha.2) (2021-07-01)
+
+
+### Features
+
+* switch to esbuild from tsc and parcel ([ed7b4a0](https://github.com/capacitor-community/electron/commit/ed7b4a089238f448de831e2eed372e0f56f02cc5))
+
+
+### Chores
+
+* clean up console logs in rt ([9aa5623](https://github.com/capacitor-community/electron/commit/9aa5623d3944b26f110d0b63622e6ec24dbb8de0))
+* re-enable asar in windows build config ([b7997b3](https://github.com/capacitor-community/electron/commit/b7997b3fafa0de30ded5a813b43b7cde5378590c))
+* touch-up plugin example ([28b6636](https://github.com/capacitor-community/electron/commit/28b66369f89f8582447fbc441acb2f187c0fe77a))
+
 ## [4.0.0-alpha.1](https://github.com/capacitor-community/electron/compare/v4.0.0-alpha.0...v4.0.0-alpha.1) (2021-06-30)
 
 
