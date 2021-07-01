@@ -70,37 +70,25 @@ export function deepMerge(target: any, _objects: any[] = []) {
 }
 
 export function setupCapacitorElectronPlugins() {
-  const rtPluginsPath = join(
-    app.getAppPath(),
-    "build",
-    "src",
-    "rt",
-    "electron-plugins.js"
-  );
+  const rtPluginsPath = join(app.getAppPath(), "build", "src", "rt", "electron-plugins.js");
   const AsyncFunction = (async () => {}).constructor;
-  const plugins: any = require(rtPluginsPath)
-  const pluginFunctionsRegistry: any = {}
+  const plugins: any = require(rtPluginsPath);
   for (const pluginKey of Object.keys(plugins)) {
     for (const classKey of Object.keys(plugins[pluginKey]).filter(className => className !== 'default')) {
-      const functionList = Object.getOwnPropertyNames(plugins[pluginKey][classKey].prototype).filter(v => v !== 'constructor')
-      if (!pluginFunctionsRegistry[classKey]) {
-        pluginFunctionsRegistry[classKey] = {}
-      }
+      const functionList = Object.getOwnPropertyNames(plugins[pluginKey][classKey].prototype).filter(v => v !== 'constructor');
       for (const functionName of functionList) {
-        if (!pluginFunctionsRegistry[classKey][functionName]) {
-          pluginFunctionsRegistry[classKey][functionName] = ipcMain.handle(`${classKey}-${functionName}`, async (_event, ...args) => {
-            const pluginRef = new plugins[pluginKey][classKey]()
-            const theCall = pluginRef[functionName]
-            const isPromise = theCall instanceof Promise || (theCall instanceof AsyncFunction)
-            let returnVal = null
-            if (isPromise) {
-              returnVal = await theCall(...args)
-            } else {
-              returnVal = theCall(...args)
-            }
-            return returnVal
-          })
-        }
+        ipcMain.handle(`${classKey}-${functionName}`, async (_event, ...args) => {
+          const pluginRef = new plugins[pluginKey][classKey]();
+          const theCall = pluginRef[functionName];
+          const isPromise = theCall instanceof Promise || theCall instanceof AsyncFunction;
+          let returnVal = null;
+          if (isPromise) {
+            returnVal = await theCall(...args);
+          } else {
+            returnVal = theCall(...args);
+          }
+          return returnVal;
+        })
       }
     }
   }
