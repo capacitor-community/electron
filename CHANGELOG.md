@@ -1,3 +1,15 @@
+## [4.0.0-alpha.3](https://github.com/capacitor-community/electron/compare/v4.0.0-alpha.2...v4.0.0-alpha.3) (2021-07-01)
+
+
+### Bug Fixes
+
+* args not passing through plugin API ([4b6f5b9](https://github.com/capacitor-community/electron/commit/4b6f5b9cd8d0b324ec1f8da5707e0e19dfe6ee12))
+
+
+### Chores
+
+* add filesystem plugin example ([a18efe3](https://github.com/capacitor-community/electron/commit/a18efe38fb87e18d868d670888fa484bb1cf471e))
+
 ## [4.0.0-alpha.2](https://github.com/capacitor-community/electron/compare/v4.0.0-alpha.1...v4.0.0-alpha.2) (2021-07-01)
 
 
