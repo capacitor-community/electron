@@ -72,7 +72,7 @@ export function deepMerge(target: any, _objects: any[] = []) {
 export function setupCapacitorElectronPlugins() {
   const rtPluginsPath = join(app.getAppPath(), "build", "src", "rt", "electron-plugins.js");
   const AsyncFunction = (async () => {}).constructor;
-  const plugins: any = require(rtPluginsPath);
+  const plugins: {[pluginName: string]: {[className: string]: any}} = require(rtPluginsPath);
   for (const pluginKey of Object.keys(plugins)) {
     for (const classKey of Object.keys(plugins[pluginKey]).filter(className => className !== 'default')) {
       const functionList = Object.getOwnPropertyNames(plugins[pluginKey][classKey].prototype).filter(v => v !== 'constructor');
