@@ -81,7 +81,7 @@ export function setupCapacitorElectronPlugins() {
   const plugins: any = require(rtPluginsPath)
   const pluginFunctionsRegistry: any = {}
   for (const pluginKey of Object.keys(plugins)) {
-    for (const classKey of Object.keys(plugins[pluginKey])) {
+    for (const classKey of Object.keys(plugins[pluginKey]).filter(className => className !== 'default')) {
       const functionList = Object.getOwnPropertyNames(plugins[pluginKey][classKey].prototype).filter(v => v !== 'constructor')
       if (!pluginFunctionsRegistry[classKey]) {
         pluginFunctionsRegistry[classKey] = {}
