@@ -1,0 +1,90 @@
+{
+  "name": "@capacitor/device",
+  "version": "1.0.2",
+  "description": "The Device API exposes internal information about the device, such as the model and operating system version, along with user information such as unique ids.",
+  "main": "dist/plugin.cjs.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/esm/index.d.ts",
+  "unpkg": "dist/plugin.js",
+  "files": [
+    "android/src/main/",
+    "android/build.gradle",
+    "dist/",
+    "ios/Plugin/",
+    "CapacitorDevice.podspec"
+  ],
+  "author": "Ionic <hi@ionicframework.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ionic-team/capacitor-plugins.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ionic-team/capacitor-plugins/issues"
+  },
+  "keywords": [
+    "capacitor",
+    "plugin",
+    "native"
+  ],
+  "scripts": {
+    "test": "uvu -r esm -r ts-node/register src/__tests__",
+    "verify": "npm run verify:ios && npm run verify:android && npm run verify:web",
+    "verify:ios": "cd ios && pod install && xcodebuild -workspace Plugin.xcworkspace -scheme Plugin && cd ..",
+    "verify:android": "cd android && ./gradlew clean build test && cd ..",
+    "verify:web": "npm run build && npm test",
+    "lint": "npm run eslint && npm run prettier -- --check && npm run swiftlint -- lint",
+    "fmt": "npm run eslint -- --fix && npm run prettier -- --write && npm run swiftlint -- autocorrect --format",
+    "eslint": "eslint . --ext ts",
+    "prettier": "prettier \"**/*.{css,html,ts,js,java}\"",
+    "swiftlint": "node-swiftlint",
+    "docgen": "docgen --api DevicePlugin --output-readme README.md --output-json dist/docs.json",
+    "build": "npm run clean && npm run docgen && tsc && rollup -c rollup.config.js && npm run build-electron",
+    "build-electron": "tsc --project electron/tsconfig.json && rollup -c electron/rollup.config.js && rimraf ./electron/build",
+    "clean": "rimraf ./dist",
+    "watch": "tsc --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "@capacitor/android": "^3.0.0",
+    "@capacitor/core": "^3.0.0",
+    "@capacitor/docgen": "0.0.17",
+    "@capacitor/ios": "^3.0.0",
+    "@ionic/eslint-config": "^0.3.0",
+    "@ionic/prettier-config": "~1.0.1",
+    "@ionic/swiftlint-config": "^1.1.2",
+    "@rollup/plugin-commonjs": "^19.0.0",
+    "eslint": "^7.11.0",
+    "esm": "^3.2.25",
+    "prettier": "~2.3.0",
+    "prettier-plugin-java": "~1.0.2",
+    "rimraf": "^3.0.0",
+    "rollup": "^2.29.0",
+    "swiftlint": "^1.0.1",
+    "ts-node": "^9.1.1",
+    "typescript": "~4.1.5",
+    "uvu": "^0.5.1"
+  },
+  "peerDependencies": {
+    "@capacitor/core": "^3.0.0"
+  },
+  "prettier": "@ionic/prettier-config",
+  "swiftlint": "@ionic/swiftlint-config",
+  "eslintConfig": {
+    "extends": "@ionic/eslint-config/recommended"
+  },
+  "capacitor": {
+    "ios": {
+      "src": "ios"
+    },
+    "android": {
+      "src": "android"
+    },
+    "electron": {
+      "src": "electron"
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
