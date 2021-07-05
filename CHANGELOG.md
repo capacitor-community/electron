@@ -1,3 +1,16 @@
+## [4.0.0-alpha.4](https://github.com/capacitor-community/electron/compare/v4.0.0-alpha.3...v4.0.0-alpha.4) (2021-07-05)
+
+
+### Features
+
+* add inspector support to electron main process ([310a1ec](https://github.com/capacitor-community/electron/commit/310a1ec5f05cc84706b683741192bc9996df1fe4))
+
+
+### Chores
+
+* add type to plugins in plugin setup ([7efc7bf](https://github.com/capacitor-community/electron/commit/7efc7bfbd372194ce2ffa615206ac2f019e5542d))
+* optimize electron plugins setup func. ([e184475](https://github.com/capacitor-community/electron/commit/e1844757afdcf84e406788c0f358a4e05fed9033))
+
 ## [4.0.0-alpha.3](https://github.com/capacitor-community/electron/compare/v4.0.0-alpha.2...v4.0.0-alpha.3) (2021-07-01)
 
 
