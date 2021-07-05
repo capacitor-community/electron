@@ -49,8 +49,7 @@ class ElectronCapacitorApp {
         if (watcherReady) {
           clearTimeout(reloadDebouncer);
           reloadDebouncer = setTimeout(async () => {
-            app.relaunch();
-            app.exit(0);
+            this.MainWindow.webContents.reload();
           }, 500)
         }
       });
