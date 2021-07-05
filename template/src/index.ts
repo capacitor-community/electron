@@ -1,5 +1,6 @@
 import { app, BrowserWindow, Menu, MenuItem, nativeImage, Tray } from "electron";
 import { join } from "path";
+import chokidar from 'chokidar';
 import electronIsDev from 'electron-is-dev';
 import electronServe from 'electron-serve';
 import { autoUpdater } from "electron-updater"
@@ -23,6 +24,32 @@ const DeepLinkingConfig = {customProtocol: CapacitorFileConfig.deepLinkingCustom
 // -------------------------------------------------------------------------------------------------- //
 
 /////////////////////// Capacitor Electron Internals Modify At Own risk ////////////////////////////////
+let myCapacitorApp: ElectronCapacitorApp;
+const reloadWatcher = {
+  debouncer: null,
+  ready: false,
+  watcher: null,
+};
+function setupReloadWatcher() {
+  reloadWatcher.watcher = chokidar.watch(join(app.getAppPath(), "app"), {
+    ignored: /[/\\]\./,
+    persistent: true
+  }).on('ready', () => {
+    reloadWatcher.ready = true;
+  }).on('all', (_event, _path) => {
+    if (reloadWatcher.ready) {
+      clearTimeout(reloadWatcher.debouncer);
+      reloadWatcher.debouncer = setTimeout(async () => {
+        myCapacitorApp.getMainWindow().webContents.reload();
+        reloadWatcher.ready = false;
+        clearTimeout(reloadWatcher.debouncer);
+        reloadWatcher.debouncer = null;
+        reloadWatcher.watcher = null;
+        setupReloadWatcher()
+      }, 1500)
+    }
+  });
+}
 class ElectronCapacitorApp {
   private MainWindow: BrowserWindow | null = null;
   private SplashScreen: CapacitorSplashScreen | null = null;
@@ -37,22 +64,7 @@ class ElectronCapacitorApp {
     });
 
     if (electronIsDev) {
-      const chokidar = require("chokidar");
-      let watcherReady = false;
-      let reloadDebouncer;
-      chokidar.watch(join(app.getAppPath(), "app"), {
-        ignored: /[/\\]\./,
-        persistent: true
-      }).on('ready', () => {
-        watcherReady = true;
-      }).on('all', (_event, _path) => {
-        if (watcherReady) {
-          clearTimeout(reloadDebouncer);
-          reloadDebouncer = setTimeout(async () => {
-            this.MainWindow.webContents.reload();
-          }, 500)
-        }
-      });
+      setupReloadWatcher()
     }
   }
 
@@ -68,6 +80,8 @@ class ElectronCapacitorApp {
     const preloadPath = join(app.getAppPath(), "build", "src", "preload.js");
     this.MainWindow = new BrowserWindow({
       show: false,
+      width: 1200,
+      height: 800,
       webPreferences: {
         nodeIntegration: true,
         contextIsolation: true,
@@ -150,7 +164,7 @@ class ElectronCapacitorApp {
   }
 
 }
-const myCapacitorApp = new ElectronCapacitorApp();
+myCapacitorApp = new ElectronCapacitorApp();
 if (CapacitorFileConfig.deepLinkingEnabled) {
   setupElectronDeepLinking(myCapacitorApp, DeepLinkingConfig);
 }
