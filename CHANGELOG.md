@@ -1,3 +1,16 @@
+## [4.0.0-alpha.7](https://github.com/capacitor-community/electron/compare/v4.0.0-alpha.6...v4.0.0-alpha.7) (2021-07-05)
+
+
+### Features
+
+* live reload of electron process ([6ebe4b0](https://github.com/capacitor-community/electron/commit/6ebe4b02bce31c1928ade0d316aa479b6e7a10f4))
+
+
+### Bug Fixes
+
+* auto reload disconnecting debugger ([88ca9a2](https://github.com/capacitor-community/electron/commit/88ca9a2672866ac69d1437b1448b79910ea3570b))
+* make auto reload more consistant ([a30c12f](https://github.com/capacitor-community/electron/commit/a30c12fdf9daff53b74cfbfb54abfef8b8b3b829))
+
 ## [4.0.0-alpha.6](https://github.com/capacitor-community/electron/compare/v4.0.0-alpha.5...v4.0.0-alpha.6) (2021-07-05)
 
 
