@@ -1,3 +1,10 @@
+## [4.0.0-alpha.6](https://github.com/capacitor-community/electron/compare/v4.0.0-alpha.5...v4.0.0-alpha.6) (2021-07-05)
+
+
+### Features
+
+* auto relaunch electron on compiled app change ([2185c07](https://github.com/capacitor-community/electron/commit/2185c0743ef32023f41e2119cc25f341f0375549))
+
 ## [4.0.0-alpha.5](https://github.com/capacitor-community/electron/compare/v4.0.0-alpha.4...v4.0.0-alpha.5) (2021-07-05)
 
 
