@@ -1,3 +1,10 @@
+## [4.0.0-alpha.5](https://github.com/capacitor-community/electron/compare/v4.0.0-alpha.4...v4.0.0-alpha.5) (2021-07-05)
+
+
+### Bug Fixes
+
+* template dep version typeo ([ce23258](https://github.com/capacitor-community/electron/commit/ce2325852b3b9ec2c408acdde483820dab283d93))
+
 ## [4.0.0-alpha.4](https://github.com/capacitor-community/electron/compare/v4.0.0-alpha.3...v4.0.0-alpha.4) (2021-07-05)
 
 
