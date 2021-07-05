@@ -15,9 +15,10 @@
     "electron:make": "npm run build && electron-builder build -c ./electron-builder.config.json"
   },
   "dependencies": {
-    "@capacitor-community/electron": "^4.0.0-alpha.5",
+    "@capacitor-community/electron": "^4.0.0-alpha.6",
+    "chokidar": "~3.5.2",
     "electron-is-dev": "~2.0.0",
-    "electron-log": "^4.3.5",
+    "electron-log": "~4.3.5",
     "electron-serve": "~1.1.0",
     "electron-updater": "~4.3.9"
   },

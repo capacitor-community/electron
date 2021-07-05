@@ -35,6 +35,26 @@ class ElectronCapacitorApp {
       // The scheme can be changed to whatever you'd like (ex: someapp)
       scheme: CapacitorFileConfig.customUrlScheme ?? 'capacitor-electron',
     });
+
+    if (electronIsDev) {
+      const chokidar = require("chokidar");
+      let watcherReady = false;
+      let reloadDebouncer;
+      chokidar.watch(join(app.getAppPath(), "app"), {
+        ignored: /[/\\]\./,
+        persistent: true
+      }).on('ready', () => {
+        watcherReady = true;
+      }).on('all', (_event, _path) => {
+        if (watcherReady) {
+          clearTimeout(reloadDebouncer);
+          reloadDebouncer = setTimeout(async () => {
+            app.relaunch();
+            app.exit(0);
+          }, 500)
+        }
+      });
+    }
   }
 
   private async loadMainWindow(thisRef: any) {
