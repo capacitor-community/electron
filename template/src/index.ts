@@ -5,6 +5,7 @@ import electronIsDev from 'electron-is-dev';
 import electronServe from 'electron-serve';
 import unhandled from 'electron-unhandled';
 import { autoUpdater } from "electron-updater"
+import windowStateKeeper from 'electron-window-state';
 import { CapElectronEventEmitter, CapacitorSplashScreen, getCapacitorConfig, setupElectronDeepLinking, setupCapacitorElectronPlugins } from "@capacitor-community/electron";
 // const log = require('electron-log');
 
@@ -51,6 +52,7 @@ function setupReloadWatcher() {
     }
   });
 }
+let mainWindowState = windowStateKeeper({defaultWidth: 1000, defaultHeight: 800});
 const customScheme = CapacitorFileConfig.customUrlScheme ?? 'capacitor-electron';
 unhandled();
 class ElectronCapacitorApp {
@@ -83,8 +85,10 @@ class ElectronCapacitorApp {
     const preloadPath = join(app.getAppPath(), "build", "src", "preload.js");
     this.MainWindow = new BrowserWindow({
       show: false,
-      width: 1200,
-      height: 800,
+      x: mainWindowState.x,
+      y: mainWindowState.y,
+      width: mainWindowState.width,
+      height: mainWindowState.height,
       webPreferences: {
         nodeIntegration: true,
         contextIsolation: true,
@@ -94,7 +98,7 @@ class ElectronCapacitorApp {
       },
     });
 
-    // this.MainWindow.webContents.executeJavaScriptInIsolatedWorld(0, [{code: 'window.RequireCapacitor()'}])
+    mainWindowState.manage(this.MainWindow);
 
     this.MainWindow.on("closed", () => {
       if (this.SplashScreen && this.SplashScreen.getSplashWindow() && !this.SplashScreen.getSplashWindow().isDestroyed()) {
