@@ -6,6 +6,7 @@
 Bring your Capacitor ⚡ apps to the desktop with Electron! 🖥
 </p>
 <p align="center">
+  <a href="https://github.com/capacitor-community/electron"><img src="https://img.shields.io/badge/maintenance%20status-actively%20maintained-brightgreen" /></a>
   <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 <a href="#contributors"><img src="https://img.shields.io/badge/all%20contributors-9-orange?style=flat-square" /></a>
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
@@ -18,27 +19,25 @@ Bring your Capacitor ⚡ apps to the desktop with Electron! 🖥
   <a href="https://github.com/capacitor-community/electron"><img alt="GitHub Workflow Status" src="https://img.shields.io/github/workflow/status/capacitor-community/electron/CI/main?style=flat-square"></a>
 </p>
 
-## Maintainers
-
-| Maintainer       | GitHub                                  | Social                                    | Sponsoring Company | Primary |
-| ---------------- | --------------------------------------- | ----------------------------------------- | ------------------ | ------- |
-| Mike Summerfeldt | [IT-MikeS](https://github.com/IT-MikeS) | [@IT_MikeS](https://twitter.com/IT_MikeS) | Volunteer          | Yes     |
-
-Maintenance Status: Actively Maintained
-
-## Version 4 Info
+## Version 4 Info ⚠
 - Minimum `@capacitor/cli` and `@capacitor/core` version is `> 3.0.2`
 - The template and inner workings have changed a lot, a migration guide will be done but for now creating a new project to tinker with before migrating main projects is a good idea.
 - Plugins from previous versions `@capacitor-community/electron` will not function in V4, however all web plugins will continue to function as normal.
 - V4 comes with no plugins out of the box like previous versions. Instead V4 follows Capacitor in seperated plugins, see [Dialog Plugin](https://capacitorjs.com/docs/v3/apis/dialog) for an example.
 
-## Documentation (Not Updated for V4):
+## Documentation 📖 (Not Updated for V4):
 
 [You can find the docs site here.](https://capacitor-community.github.io/electron/)
 
-## Security
+## Security 🔐
 
-While this platform strives to be as much inline with current secure practices as possible there are things outside of platform control, and these fall to all of you, the users. Please take the time to read through the [security checklist](https://www.electronjs.org/docs/tutorial/security#checklist-security-recommendations) the electron team has created to keep your application as safe and secure as you possibly can.
+While this platform strives to be inline with current secure practices, there are things outside of this platforms control. Please take the time to read through the [security checklist](https://www.electronjs.org/docs/tutorial/security#checklist-security-recommendations) the electron team has created to keep your application as safe and secure as you possibly can.
+
+## Maintainers 🛠
+
+| Maintainer       | GitHub                                  | Social                                    | Sponsoring Company | Primary |
+| ---------------- | --------------------------------------- | ----------------------------------------- | ------------------ | ------- |
+| Mike Summerfeldt | [IT-MikeS](https://github.com/IT-MikeS) | [@IT_MikeS](https://twitter.com/IT_MikeS) | Volunteer          | Yes     |
 
 
 ## Contributors ✨
