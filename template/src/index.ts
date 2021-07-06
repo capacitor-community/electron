@@ -1,4 +1,4 @@
-import { app, BrowserWindow, Menu, MenuItem, nativeImage, Tray, session } from "electron";
+import { app, BrowserWindow, Menu, MenuItem, MenuItemConstructorOptions, nativeImage, Tray, session } from "electron";
 import { join } from "path";
 import chokidar from 'chokidar';
 import electronIsDev from 'electron-is-dev';
@@ -7,7 +7,10 @@ import unhandled from 'electron-unhandled';
 import { autoUpdater } from "electron-updater"
 import windowStateKeeper from 'electron-window-state';
 import { CapElectronEventEmitter, CapacitorSplashScreen, getCapacitorConfig, setupElectronDeepLinking, setupCapacitorElectronPlugins } from "@capacitor-community/electron";
-// const log = require('electron-log');
+// import logger from 'electron-log';
+
+// Graceful handling of unhandled errors.
+unhandled();
 
 // Get Config options from capacitor.config 
 const CapacitorFileConfig = getCapacitorConfig()
@@ -16,17 +19,18 @@ const CapacitorFileConfig = getCapacitorConfig()
 const TrayMenuTemplate = [
   new MenuItem({ label: "Quit App", role: "quit" })
 ];
-const AppMenuBarMenuTemplate = [
+const AppMenuBarMenuTemplate: (MenuItem | MenuItemConstructorOptions)[] = [
   { role: process.platform === "darwin" ? "appMenu" : "fileMenu" },
   { role: "viewMenu" },
 ];
 const DeepLinkingConfig = {customProtocol: CapacitorFileConfig.deepLinkingCustomProtocol ?? 'mycapacitorapp'};
-////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// -------------------------------------------------------------------------------------------------- //
 
-/////////////////////// Capacitor Electron Internals Modify At Own risk ////////////////////////////////
+
+//---Capacitor Electron Internals - Modify At Your Own risk---//
+// Define our app holder.
 let myCapacitorApp: ElectronCapacitorApp;
+// Define components for a watcher to detect when the webapp is changed so we can reload in Dev mode. 
 const reloadWatcher = {
   debouncer: null,
   ready: false,
@@ -52,9 +56,11 @@ function setupReloadWatcher() {
     }
   });
 }
-let mainWindowState = windowStateKeeper({defaultWidth: 1000, defaultHeight: 800});
+// Set our custom scheme for our web app or default to 'capacitor-electron://......'
 const customScheme = CapacitorFileConfig.customUrlScheme ?? 'capacitor-electron';
-unhandled();
+// Setup window state management, this allows windows to persist their positions between runs.
+let mainWindowState = windowStateKeeper({defaultWidth: 1000, defaultHeight: 800});
+// Define our class to manage our app.
 class ElectronCapacitorApp {
   private MainWindow: BrowserWindow | null = null;
   private SplashScreen: CapacitorSplashScreen | null = null;
@@ -62,26 +68,30 @@ class ElectronCapacitorApp {
   private loadWebApp;
   
   constructor() {
+    // Setup our web app loader, this lets us load apps like react, vue, and angular without changing their build chains.
     this.loadWebApp = electronServe({
       directory: join(app.getAppPath(), "app"),
-      // The scheme can be changed to whatever you'd like (ex: someapp)
       scheme: customScheme,
     });
 
+    // If we are in Dev mode, use the file watcher components.
     if (electronIsDev) {
       setupReloadWatcher()
     }
   }
 
+  // Helper function to load in the app.
   private async loadMainWindow(thisRef: any) {
     await thisRef.loadWebApp(thisRef.MainWindow);
   }
 
+  // Expose the mainWindow ref for use outside of the class.
   getMainWindow() {
     return this.MainWindow;
   }
 
   async init() {
+    // Setup preload script path and construct our main window.
     const preloadPath = join(app.getAppPath(), "build", "src", "preload.js");
     this.MainWindow = new BrowserWindow({
       show: false,
@@ -97,15 +107,16 @@ class ElectronCapacitorApp {
         preload: preloadPath,
       },
     });
-
     mainWindowState.manage(this.MainWindow);
 
+    // If we close the main window with the spalshscreen enabled we need to destory the ref.
     this.MainWindow.on("closed", () => {
       if (this.SplashScreen && this.SplashScreen.getSplashWindow() && !this.SplashScreen.getSplashWindow().isDestroyed()) {
         this.SplashScreen.getSplashWindow().close();
       }
     });
 
+    // When the tray icon is enabled, setup the options.
     if (CapacitorFileConfig.trayIconAndMenuEnabled) {
       this.TrayIcon = new Tray(nativeImage.createFromPath(join(app.getAppPath(), 'assets', process.platform === "win32" ? "appIcon.ico" : "appIcon.png")));
       this.TrayIcon.on("double-click", () => {
@@ -134,12 +145,12 @@ class ElectronCapacitorApp {
       );
     }
 
-    // Setup app windows menu bar
+    // Setup the main manu bar at the top of our window.
     Menu.setApplicationMenu(
-      // @ts-ignore
       Menu.buildFromTemplate(AppMenuBarMenuTemplate)
     );
 
+    // If the splashscreen is enabled, show it first while the main window loads then dwitch it out for the main window, or just load the main window from the start.
     if (CapacitorFileConfig.splashScreenEnabled) {
       this.SplashScreen = new CapacitorSplashScreen({
         imageFilePath: join(app.getAppPath(), "assets", CapacitorFileConfig.splashScreenImageName ?? "splash.png"),
@@ -165,9 +176,10 @@ class ElectronCapacitorApp {
       }
     })
 
-    // Link electron plugins in
+    // Link electron plugins into the system.
     setupCapacitorElectronPlugins()
 
+    // When the web app is loaded we hide the splashscreen if needed and show the mainwindow.
     this.MainWindow.webContents.on("dom-ready", () => {
       if (CapacitorFileConfig.splashScreenEnabled) {
         this.SplashScreen.getSplashWindow().hide();
@@ -185,16 +197,19 @@ class ElectronCapacitorApp {
   }
 
 }
+// Initialize our app.
 myCapacitorApp = new ElectronCapacitorApp();
+// If deeplinking is enabled then we will set it up here.
 if (CapacitorFileConfig.deepLinkingEnabled) {
   setupElectronDeepLinking(myCapacitorApp, DeepLinkingConfig);
 }
-////////////////////////////////////////////////////////////////////////////////////////////////////////
+//-----------------------------------------------------------//
 
 // Run Application
 (async () => {
+  // Wait for electron app to be ready.
   await app.whenReady();
-  // Security
+  // Security - Set Content-Security-Policy based on whether or not we are in dev mode.
   session.defaultSession.webRequest.onHeadersReceived((details, callback) => {
     callback({
       responseHeaders: {
@@ -207,10 +222,15 @@ if (CapacitorFileConfig.deepLinkingEnabled) {
       }
     })
   })
+  // Initialize our app, build windows, and load content.
   await myCapacitorApp.init()
-  autoUpdater.checkForUpdatesAndNotify()
+  // Check for updates if we are in a packaged app.
+  if (!electronIsDev) {
+    autoUpdater.checkForUpdatesAndNotify()
+  }
 })();
 
+// Handle when all of our windows are close (platforms have their own expectations).
 app.on("window-all-closed", function () {
   // On OS X it is common for applications and their menu bar
   // to stay active until the user quits explicitly with Cmd + Q
@@ -219,6 +239,7 @@ app.on("window-all-closed", function () {
   }
 });
 
+// When the dock icon is clicked.
 app.on("activate", async function () {
   // On OS X it's common to re-create a window in the app when the
   // dock icon is clicked and there are no other windows open.
