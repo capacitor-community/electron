@@ -1,3 +1,19 @@
+## [4.0.0-alpha.8](https://github.com/capacitor-community/electron/compare/v4.0.0-alpha.7...v4.0.0-alpha.8) (2021-07-06)
+
+
+### Features
+
+* add unhandled error catching ([f027af2](https://github.com/capacitor-community/electron/commit/f027af2709d7ba2fb076b5e26c80214ff8866b80))
+* security improvements and window state management ([07f43bf](https://github.com/capacitor-community/electron/commit/07f43bf57b564fde8d7e74e2c6a34eb7e612e23e))
+
+
+### Chores
+
+* add more comments ([afa7f0e](https://github.com/capacitor-community/electron/commit/afa7f0eed7db5db3579149c85387f26a8a3b1085))
+* clean up changelog config ([8322e9f](https://github.com/capacitor-community/electron/commit/8322e9f9b5d511a70e03e61e9ce7c469f3d0e35b))
+* clean up spacing ([7c48d86](https://github.com/capacitor-community/electron/commit/7c48d86dd01b68b92bb52cc62892cedd842cfecb))
+* dep bumps ([73a89b3](https://github.com/capacitor-community/electron/commit/73a89b337d36830695f6efcf4ffde7f970092a18))
+
 ## [4.0.0-alpha.7](https://github.com/capacitor-community/electron/compare/v4.0.0-alpha.6...v4.0.0-alpha.7) (2021-07-05)
 
 
@@ -740,8 +756,8 @@
 
 ### Features
 
-* **docs:** add docs site inital ([c920dcb](https://github.com/capacitor-community/electron/commit/c920dcbf1d55eaf69d02b6bec487023107fa91ab))
 * deeplink protocol in CapacitorElectronApp ([5e01a6d](https://github.com/capacitor-community/electron/commit/5e01a6d5885b2b091c8ed780c5247d3bbe21af25))
+* **docs:** add docs site inital ([c920dcb](https://github.com/capacitor-community/electron/commit/c920dcbf1d55eaf69d02b6bec487023107fa91ab))
 
 
 ### Bug Fixes
@@ -753,11 +769,11 @@
 ### Chores
 
 * ci for lerna v3 ([f2a72c9](https://github.com/capacitor-community/electron/commit/f2a72c9f33a5a9ea1ce50631c0fe25646f00f3a2))
+* **docs:** make docs site part of lerna ([fc15a28](https://github.com/capacitor-community/electron/commit/fc15a286b25b480153a209f2a99af4b50bae63b2))
 * lerna 3 in ci ([fa8b27a](https://github.com/capacitor-community/electron/commit/fa8b27a74bc7fe1a9b4f088b19f171b86e69d61d))
 * move docs to different repo for vercel host ([bfab893](https://github.com/capacitor-community/electron/commit/bfab89338017519e9cc950170801985ec69b9b4c))
-* update readme with docs site ([129f2d7](https://github.com/capacitor-community/electron/commit/129f2d76ee7fa6df0fbd4488f1c593fe5bd3dde5))
-* **docs:** make docs site part of lerna ([fc15a28](https://github.com/capacitor-community/electron/commit/fc15a286b25b480153a209f2a99af4b50bae63b2))
 * update changelog for 1.0.2 ([3c2a8ba](https://github.com/capacitor-community/electron/commit/3c2a8ba310e11b19bed0f5d417d8262dfa1be1f5))
+* update readme with docs site ([129f2d7](https://github.com/capacitor-community/electron/commit/129f2d76ee7fa6df0fbd4488f1c593fe5bd3dde5))
 
 ### [1.0.2](https://github.com/capacitor-community/electron/compare/v1.0.1...v1.0.2) (2020-07-21)
 
@@ -816,17 +832,12 @@
 * beta for 1.0 ([f0935ea](https://github.com/capacitor-community/electron/commit/f0935ea6ecbce15361b3a2aae9c04bd5744afb1d))
 
 
-### Refactors
-
-* lerna and more upgrades ([2e48da7](https://github.com/capacitor-community/electron/commit/2e48da7519c7c4f5d624d79625ab2e439bd89fa6))
-
-
 ### Chores
 
 * fix lerna versioning ([366433f](https://github.com/capacitor-community/electron/commit/366433fd864e22e41a2902d8078bbf8644144ae4))
-* update changelog for 0.5.4 ([368eae9](https://github.com/capacitor-community/electron/commit/368eae931c18af0a7868e62a2e8c68126a945ae3))
 * **github:** update CI checks for new structure ([79d1b85](https://github.com/capacitor-community/electron/commit/79d1b85000e7a47adcc19cd1ac1ba0b891228593))
 * remove warn from readme ([6716d8f](https://github.com/capacitor-community/electron/commit/6716d8fb44592a870fdc38b1f522c4a0834d518c))
+* update changelog for 0.5.4 ([368eae9](https://github.com/capacitor-community/electron/commit/368eae931c18af0a7868e62a2e8c68126a945ae3))
 
 ### [0.5.4](https://github.com/capacitor-community/electron/compare/v0.5.3...v0.5.4) (2020-07-20)
 
@@ -835,9 +846,9 @@
 
 ### Bug Fixes
 
+* add correction for the show window logic ([00401cc](https://github.com/capacitor-community/electron/commit/00401cc0f16998448ac3976128860f2ff39657e3))
 * **core:** add missing default option settings ([3dcef83](https://github.com/capacitor-community/electron/commit/3dcef83f15de54672ab1048949714d8c15775740))
 * **core:** use comma not semicolon ([9a68631](https://github.com/capacitor-community/electron/commit/9a686318d12f441be067f1d3233323839c017cde))
-* add correction for the show window logic ([00401cc](https://github.com/capacitor-community/electron/commit/00401cc0f16998448ac3976128860f2ff39657e3))
 
 
 ### Documentation
@@ -944,17 +955,17 @@
 
 ### Chores
 
-* edits bring more inline with other options ([f2c5509](https://github.com/capacitor-community/electron/commit/f2c5509a5507640dd23fda00101ad315ac1f49ec))
-* remove unused const ([57ff2d3](https://github.com/capacitor-community/electron/commit/57ff2d35fbe7c5af7a788d49b3224701f0d8477f))
 * **actions:** add bot workflow ([5baffd9](https://github.com/capacitor-community/electron/commit/5baffd97f2cf58fe5f26b123642bffdeaf732607))
+* add prettierignore for .github folder ([3c61e1c](https://github.com/capacitor-community/electron/commit/3c61e1cb5eac020617990e9e35e14a690bddefa7))
+* edits bring more inline with other options ([f2c5509](https://github.com/capacitor-community/electron/commit/f2c5509a5507640dd23fda00101ad315ac1f49ec))
+* fix shields in readme ([dd0d184](https://github.com/capacitor-community/electron/commit/dd0d184fef63155aa5539ae6f2b4dbb3f09ef8d5))
 * **github:** correct bot config ([4a01420](https://github.com/capacitor-community/electron/commit/4a0142004b6f0a1c42874d93e33a82cd47d86e68))
 * **github:** remove extra bot task ([989c396](https://github.com/capacitor-community/electron/commit/989c3967f0725569e763f7edc3e0ed48edfaa386))
 * **github:** remove extra task from bot config ([38d1249](https://github.com/capacitor-community/electron/commit/38d1249f137ec6f5b80fea4319fb8ca4ca938e95))
 * **github:** set needs-reply action version ([6b27ae8](https://github.com/capacitor-community/electron/commit/6b27ae8b3ec6491c9718697b53d8fb89cc9555ce))
 * **github:** update code and contributing md ([3458c9e](https://github.com/capacitor-community/electron/commit/3458c9e41f6d47da0883c54af1ef53fd7f62e70e))
-* add prettierignore for .github folder ([3c61e1c](https://github.com/capacitor-community/electron/commit/3c61e1cb5eac020617990e9e35e14a690bddefa7))
-* fix shields in readme ([dd0d184](https://github.com/capacitor-community/electron/commit/dd0d184fef63155aa5539ae6f2b4dbb3f09ef8d5))
 * note about install process being temp. ([ae52189](https://github.com/capacitor-community/electron/commit/ae52189769def529eb8074131eba7ab3dc62cf95))
+* remove unused const ([57ff2d3](https://github.com/capacitor-community/electron/commit/57ff2d35fbe7c5af7a788d49b3224701f0d8477f))
 * switch delpoy changes script to main branch ([90c921b](https://github.com/capacitor-community/electron/commit/90c921b52c6ba76fee59eeaeec50afb337a53279))
 * update changelog for 0.3.0 ([f889c59](https://github.com/capacitor-community/electron/commit/f889c596c83958faeece304cf7079070b88e5e94))
 
@@ -1023,21 +1034,16 @@
 
 ### Features
 
-* support for plugins ([901f820](https://github.com/capacitor-community/electron/commit/901f82026c8edcfe061e51653937e50d33d9a917))
 * **platform:** typescript in template ([317a4b3](https://github.com/capacitor-community/electron/commit/317a4b3ae0c7b54e4f5545f13efd92e91a7cfa31))
+* support for plugins ([901f820](https://github.com/capacitor-community/electron/commit/901f82026c8edcfe061e51653937e50d33d9a917))
 * support purposed cli hooks ([994df88](https://github.com/capacitor-community/electron/commit/994df8804c8fb35baff83a1e33b8eacc786ba3e4))
 
 
 ### Bug Fixes
 
-* typings wrong version for LTS node ([fb3f974](https://github.com/capacitor-community/electron/commit/fb3f97421b3eb1bd36e539e2f3c77c605ba03190))
 * **platform:** add template tsconfig missed option ([de4f439](https://github.com/capacitor-community/electron/commit/de4f43929b01ab9433cf7082ef9ace1b27425301))
 * **platform:** swap requires to imports ([ccf7df6](https://github.com/capacitor-community/electron/commit/ccf7df6e5a2bacbce620bf19e7cfab7a27c9f85b))
-
-
-### Refactors
-
-* change to just template named folder ([e924cc3](https://github.com/capacitor-community/electron/commit/e924cc383546982f03204bcc627ba43ffa62cf2e))
+* typings wrong version for LTS node ([fb3f974](https://github.com/capacitor-community/electron/commit/fb3f97421b3eb1bd36e539e2f3c77c605ba03190))
 
 
 ### Chores
@@ -1303,11 +1309,6 @@
 ### Bug Fixes
 
 * updated deeplinking ([e11934e](https://github.com/capacitor-community/electron/commit/e11934ec42bde0c5a000f0ee204532db04203712))
-
-
-### Refactors
-
-* move config options around and ico win32 ([890325f](https://github.com/capacitor-community/electron/commit/890325f69411fc6a8a43643e2daa9e57043bbc88))
 
 
 ### Chores
