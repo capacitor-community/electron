@@ -36,7 +36,6 @@ async function spawnElectron() {
   child.stdout.pipe(process.stdout);
 }
 
-
 function setupReloadWatcher() {
   reloadWatcher.watcher = chokidar.watch('./src/**/*', {
     ignored: /[/\\]\./,
