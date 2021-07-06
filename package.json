@@ -25,28 +25,28 @@
   "devDependencies": {
     "@types/events": "~3.0.0",
     "@types/fs-extra": "~9.0.11",
-    "@types/node": "~14.14.41",
+    "@types/node": "~14.17.4",
     "conventional-changelog-cli": "~2.1.1",
-    "conventional-changelog-conventionalcommits": "~4.5.0",
-    "electron": "~13.1.4",
-    "husky": "~6.0.0",
+    "conventional-changelog-conventionalcommits": "~4.6.0",
+    "electron": "~13.1.6",
+    "husky": "~7.0.1",
     "np": "~7.5.0",
-    "prettier": "~2.3.1",
+    "prettier": "~2.3.2",
     "pretty-quick": "~3.1.1",
     "rimraf": "~3.0.2",
     "tslib": "~2.3.0",
-    "typescript": "~4.3.4"
+    "typescript": "~4.3.5"
   },
   "dependencies": {
-    "@capacitor/cli": "^3.0.0",
-    "@capacitor/core": "^3.0.0",
+    "@capacitor/cli": "^3.0.2",
+    "@capacitor/core": "^3.0.2",
     "@ionic/utils-fs": "~3.1.5",
     "chalk": "~4.1.1",
     "electron-is-dev": "~2.0.0",
-    "esbuild": "^0.12.13",
+    "esbuild": "~0.12.15",
     "events": "~3.3.0",
     "fs-extra": "~9.1.0",
-    "mime-types": "~2.1.30",
+    "mime-types": "~2.1.31",
     "ora": "~5.4.1"
   },
   "repository": {
