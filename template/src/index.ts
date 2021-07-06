@@ -1,8 +1,9 @@
-import { app, BrowserWindow, Menu, MenuItem, nativeImage, Tray } from "electron";
+import { app, BrowserWindow, Menu, MenuItem, nativeImage, Tray, session } from "electron";
 import { join } from "path";
 import chokidar from 'chokidar';
 import electronIsDev from 'electron-is-dev';
 import electronServe from 'electron-serve';
+import unhandled from 'electron-unhandled';
 import { autoUpdater } from "electron-updater"
 import { CapElectronEventEmitter, CapacitorSplashScreen, getCapacitorConfig, setupElectronDeepLinking, setupCapacitorElectronPlugins } from "@capacitor-community/electron";
 // const log = require('electron-log');
@@ -50,6 +51,8 @@ function setupReloadWatcher() {
     }
   });
 }
+const customScheme = CapacitorFileConfig.customUrlScheme ?? 'capacitor-electron';
+unhandled();
 class ElectronCapacitorApp {
   private MainWindow: BrowserWindow | null = null;
   private SplashScreen: CapacitorSplashScreen | null = null;
@@ -60,7 +63,7 @@ class ElectronCapacitorApp {
     this.loadWebApp = electronServe({
       directory: join(app.getAppPath(), "app"),
       // The scheme can be changed to whatever you'd like (ex: someapp)
-      scheme: CapacitorFileConfig.customUrlScheme ?? 'capacitor-electron',
+      scheme: customScheme,
     });
 
     if (electronIsDev) {
@@ -144,6 +147,20 @@ class ElectronCapacitorApp {
       this.loadMainWindow(this);
     }
 
+    // Security
+    this.MainWindow.webContents.setWindowOpenHandler((details) => {
+      if (!details.url.includes(customScheme)) {
+        return {action: 'deny'}
+      } else {
+        return {action: 'allow'}
+      }
+    })
+    this.MainWindow.webContents.on('will-navigate', (event, newURL) => {
+      if (!this.MainWindow.webContents.getURL().includes(customScheme)) {
+        event.preventDefault();
+      }
+    })
+
     // Link electron plugins in
     setupCapacitorElectronPlugins()
 
@@ -173,6 +190,19 @@ if (CapacitorFileConfig.deepLinkingEnabled) {
 // Run Application
 (async () => {
   await app.whenReady();
+  // Security
+  session.defaultSession.webRequest.onHeadersReceived((details, callback) => {
+    callback({
+      responseHeaders: {
+        ...details.responseHeaders,
+        'Content-Security-Policy': [
+          electronIsDev ? 
+            `default-src ${customScheme}://* 'unsafe-inline' devtools://* 'unsafe-eval' data:` : 
+            `default-src ${customScheme}://* 'unsafe-inline' data:`
+        ]
+      }
+    })
+  })
   await myCapacitorApp.init()
   autoUpdater.checkForUpdatesAndNotify()
 })();

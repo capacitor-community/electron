@@ -9,7 +9,7 @@ Capacitor community support for the Electron platform.
   <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 <a href="#contributors"><img src="https://img.shields.io/badge/all%20contributors-9-orange?style=flat-square" /></a>
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
-  <a href="https://www.electronjs.org/releases/stable?version=13"><img src="https://img.shields.io/badge/supported%20electron%20version-~13.1.4-blue?style=flat-square" /></a>
+  <a href="https://www.electronjs.org/releases/stable?version=13"><img src="https://img.shields.io/badge/supported%20electron%20version-~13.1.6-blue?style=flat-square" /></a>
 </p>
 <p align="center">
   <a href="https://npmjs.com/package/@capacitor-community/electron"><img src="https://img.shields.io/npm/v/@capacitor-community/electron/alpha.svg?style=flat-square" /></a>
@@ -27,10 +27,10 @@ Capacitor community support for the Electron platform.
 Maintenance Status: Actively Maintained
 
 ## Version 4 Info
-- Minimum `@capacitor/cli` and `@capacitor/core` version is `>= 3.0.2`
+- Minimum `@capacitor/cli` and `@capacitor/core` version is `> 3.0.2`
 - The template and inner workings have changed a lot, a migration guide will be done but for now creating a new project to tinker with before migrating main projects is a good idea.
 - Plugins from previous versions `@capacitor-community/electron` will not function in V4, however all web plugins will continue to function as normal.
-- V4 comes with no plugins out of the box like previous versions. Instead V3 follows Capacitor in seperated plugins, see [Dialog Plugin](https://capacitorjs.com/docs/v3/apis/dialog) for an example.
+- V4 comes with no plugins out of the box like previous versions. Instead V4 follows Capacitor in seperated plugins, see [Dialog Plugin](https://capacitorjs.com/docs/v3/apis/dialog) for an example.
 
 ## Documentation (Not Updated for V4):
 
