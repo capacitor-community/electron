@@ -1,3 +1,16 @@
+## [4.0.0-alpha.9](https://github.com/capacitor-community/electron/compare/v4.0.0-alpha.8...v4.0.0-alpha.9) (2021-07-07)
+
+
+### Chores
+
+* badge style change ([462a7c3](https://github.com/capacitor-community/electron/commit/462a7c3d3dde0009adae46dd91d792740a23b2e1))
+* clean up electron index.ts ([5f2a50e](https://github.com/capacitor-community/electron/commit/5f2a50eb74448e0b1735b21fb111d9685e94a702))
+* fix readme img ([b2330f5](https://github.com/capacitor-community/electron/commit/b2330f5e9a0fd5fdde7f4233c65decc861f330d1))
+* more readme changes ([d74e342](https://github.com/capacitor-community/electron/commit/d74e3426df4eca681eebfdd3d9fbcd10c609e238))
+* more readme prettify ([11de537](https://github.com/capacitor-community/electron/commit/11de537ad93be97b7f8e4ac6b08b743e90b6a2a8))
+* update readme ([9016724](https://github.com/capacitor-community/electron/commit/9016724a627fdc64676f4318bb07a1d723aa1571))
+* update readme ([270eb9e](https://github.com/capacitor-community/electron/commit/270eb9ed3635103e71564bcf42625f7995002743))
+
 ## [4.0.0-alpha.8](https://github.com/capacitor-community/electron/compare/v4.0.0-alpha.7...v4.0.0-alpha.8) (2021-07-06)
 
 
