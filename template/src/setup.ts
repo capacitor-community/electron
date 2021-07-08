@@ -55,7 +55,9 @@ export class ElectronCapacitorApp {
   private SplashScreen: CapacitorSplashScreen | null = null;
   private TrayIcon: Tray | null = null;
   private CapacitorFileConfig: any;
-  private TrayMenuTemplate: (MenuItem | MenuItemConstructorOptions)[] = [new MenuItem({ label: "Quit App", role: "quit" })];
+  private TrayMenuTemplate: (MenuItem | MenuItemConstructorOptions)[] = [
+    new MenuItem({ label: "Quit App", role: "quit" }),
+  ];
   private AppMenuBarMenuTemplate: (MenuItem | MenuItemConstructorOptions)[] = [
     { role: process.platform === "darwin" ? "appMenu" : "fileMenu" },
     { role: "viewMenu" },
@@ -67,10 +69,15 @@ export class ElectronCapacitorApp {
   private loadWebApp;
   private customScheme;
 
-  constructor(capacitorFileConfig: any, trayMenuTemplate?: (MenuItemConstructorOptions | MenuItem)[], appMenuBarMenuTemplate?: (MenuItemConstructorOptions | MenuItem)[]) {
+  constructor(
+    capacitorFileConfig: any,
+    trayMenuTemplate?: (MenuItemConstructorOptions | MenuItem)[],
+    appMenuBarMenuTemplate?: (MenuItemConstructorOptions | MenuItem)[]
+  ) {
     this.CapacitorFileConfig = capacitorFileConfig;
 
-    this.customScheme = this.CapacitorFileConfig.customUrlScheme ?? "capacitor-electron";
+    this.customScheme =
+      this.CapacitorFileConfig.customUrlScheme ?? "capacitor-electron";
 
     if (trayMenuTemplate) {
       this.TrayMenuTemplate = trayMenuTemplate;
@@ -159,11 +166,15 @@ export class ElectronCapacitorApp {
         }
       });
       this.TrayIcon.setToolTip(app.getName());
-      this.TrayIcon.setContextMenu(Menu.buildFromTemplate(this.TrayMenuTemplate));
+      this.TrayIcon.setContextMenu(
+        Menu.buildFromTemplate(this.TrayMenuTemplate)
+      );
     }
 
     // Setup the main manu bar at the top of our window.
-    Menu.setApplicationMenu(Menu.buildFromTemplate(this.AppMenuBarMenuTemplate));
+    Menu.setApplicationMenu(
+      Menu.buildFromTemplate(this.AppMenuBarMenuTemplate)
+    );
 
     // If the splashscreen is enabled, show it first while the main window loads then dwitch it out for the main window, or just load the main window from the start.
     if (this.CapacitorFileConfig.splashScreenEnabled) {
