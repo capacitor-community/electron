@@ -1,3 +1,11 @@
+## [4.0.0-alpha.10](https://github.com/capacitor-community/electron/compare/v4.0.0-alpha.9...v4.0.0-alpha.10) (2021-07-08)
+
+
+### Chores
+
+* clean up ([c2d01ed](https://github.com/capacitor-community/electron/commit/c2d01eddc61dc22abad88d03be823f317d926bb8))
+* format ([686e4db](https://github.com/capacitor-community/electron/commit/686e4dbdabefa1221f2353ea3d5e1c9f13e09a11))
+
 ## [4.0.0-alpha.9](https://github.com/capacitor-community/electron/compare/v4.0.0-alpha.8...v4.0.0-alpha.9) (2021-07-07)
 
 
