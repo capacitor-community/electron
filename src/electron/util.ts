@@ -110,7 +110,7 @@ export async function encodeFromFile(filePath: string): Promise<string> {
   return "data:" + mediaType + ";base64," + dataBase64;
 }
 
-export function getCapacitorConfig() {
+export function getCapacitorElectronConfig() {
   let config: CapacitorElectronConfig = {};
   let capFileConfig: any = {}
   if (existsSync(join(app.getAppPath(), "build", "capacitor.config.js"))) {

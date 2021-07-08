@@ -3,7 +3,7 @@ require('esbuild').build({
   bundle: true,
   outfile: 'dist/cli-scripts/cap-scripts.js',
   platform: 'node',
-  target: 'node12',
+  target: 'node14',
   minify: true,
   external: [
     'child_process',
