@@ -1,3 +1,10 @@
+## [4.0.0-alpha.11](https://github.com/capacitor-community/electron/compare/v4.0.0-alpha.10...v4.0.0-alpha.11) (2021-07-17)
+
+
+### Bug Fixes
+
+* wrong export of get capacitor config ([dd03dd8](https://github.com/capacitor-community/electron/commit/dd03dd8d7b75d4fd78c55957504e70230f71daa5))
+
 ## [4.0.0-alpha.10](https://github.com/capacitor-community/electron/compare/v4.0.0-alpha.9...v4.0.0-alpha.10) (2021-07-08)
 
 
