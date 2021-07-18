@@ -62,10 +62,7 @@ export class ElectronCapacitorApp {
     { role: process.platform === "darwin" ? "appMenu" : "fileMenu" },
     { role: "viewMenu" },
   ];
-  private mainWindowState = windowStateKeeper({
-    defaultWidth: 1000,
-    defaultHeight: 800,
-  });
+  private mainWindowState;
   private loadWebApp;
   private customScheme;
 
@@ -104,7 +101,15 @@ export class ElectronCapacitorApp {
     return this.MainWindow;
   }
 
+  getCustomURLScheme() {
+    return this.customScheme;
+  }
+
   async init() {
+    this.mainWindowState = windowStateKeeper({
+      defaultWidth: 1000,
+      defaultHeight: 800,
+    });
     // Setup preload script path and construct our main window.
     const preloadPath = join(app.getAppPath(), "build", "src", "preload.js");
     this.MainWindow = new BrowserWindow({
