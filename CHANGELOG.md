@@ -1,3 +1,10 @@
+## [4.0.0-alpha.12](https://github.com/capacitor-community/electron/compare/v4.0.0-alpha.11...v4.0.0-alpha.12) (2021-07-18)
+
+
+### Bug Fixes
+
+* window state startup error ([6a6b4b9](https://github.com/capacitor-community/electron/commit/6a6b4b9b58b209c4293a8de59781c9e90fbc787b))
+
 ## [4.0.0-alpha.11](https://github.com/capacitor-community/electron/compare/v4.0.0-alpha.10...v4.0.0-alpha.11) (2021-07-17)
 
 
