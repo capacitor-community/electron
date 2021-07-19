@@ -1,5 +1,7 @@
-const chokidar = require('chokidar');
+/* eslint-disable no-undef */
+/* eslint-disable @typescript-eslint/no-var-requires */
 const cp = require('child_process');
+const chokidar = require('chokidar');
 const electron = require('electron');
 
 let child = null;
@@ -12,12 +14,13 @@ const reloadWatcher = {
 };
 
 function runBuild() {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve, _reject) => {
     let tempChild = cp.spawn(npmCmd, ['run', 'build']);
-    tempChild.once('exit', () => {resolve()});
+    tempChild.once('exit', () => {
+      resolve();
+    });
     tempChild.stdout.pipe(process.stdout);
-  })
-  
+  });
 }
 
 async function spawnElectron() {
@@ -32,32 +35,35 @@ async function spawnElectron() {
     if (!reloadWatcher.restarting) {
       process.exit(0);
     }
-  })
+  });
   child.stdout.pipe(process.stdout);
 }
 
 function setupReloadWatcher() {
-  reloadWatcher.watcher = chokidar.watch('./src/**/*', {
-    ignored: /[/\\]\./,
-    persistent: true
-  }).on('ready', () => {
-    reloadWatcher.ready = true;
-  }).on('all', (_event, _path) => {
-    if (reloadWatcher.ready) {
-      clearTimeout(reloadWatcher.debouncer);
-      reloadWatcher.debouncer = setTimeout(async () => {
-        console.log('Restarting');
-        reloadWatcher.restarting = true;
-        await spawnElectron();
-        reloadWatcher.restarting = false;
-        reloadWatcher.ready = false;
+  reloadWatcher.watcher = chokidar
+    .watch('./src/**/*', {
+      ignored: /[/\\]\./,
+      persistent: true,
+    })
+    .on('ready', () => {
+      reloadWatcher.ready = true;
+    })
+    .on('all', (_event, _path) => {
+      if (reloadWatcher.ready) {
         clearTimeout(reloadWatcher.debouncer);
-        reloadWatcher.debouncer = null;
-        reloadWatcher.watcher = null;
-        setupReloadWatcher()
-      }, 500)
-    }
-  });
+        reloadWatcher.debouncer = setTimeout(async () => {
+          console.log('Restarting');
+          reloadWatcher.restarting = true;
+          await spawnElectron();
+          reloadWatcher.restarting = false;
+          reloadWatcher.ready = false;
+          clearTimeout(reloadWatcher.debouncer);
+          reloadWatcher.debouncer = null;
+          reloadWatcher.watcher = null;
+          setupReloadWatcher();
+        }, 500);
+      }
+    });
 }
 
 (async () => {

@@ -5,6 +5,8 @@
   "main": "dist/core/index.js",
   "typings": "dist/core/index.d.ts",
   "scripts": {
+    "lint": "npm run eslint && npm run prettier -- --check",
+    "fmt": "npm run eslint -- --fix && npm run prettier -- --write",
     "shipit": "npm run build && np --no-tests --any-branch && npm run generate-changelog && npm run deploy-changelog",
     "clean": "rimraf ./dist",
     "build": "npm run clean && npm run build-platform && npm run build-cli-scripts",
@@ -17,12 +19,14 @@
     "build-platform": "node ./build-core.js",
     "generate-changelog": "conventional-changelog -o CHANGELOG.md -r 0 --config changelog.config.js",
     "deploy-changelog": "bash ./deployChangeLog.sh",
-    "prepare": "husky install",
-    "pretty-quick": "pretty-quick"
+    "prettier": "prettier \"**/*.{css,html,js,mjs,ts}\"",
+    "eslint": "eslint . --ext ts"
   },
   "license": "MIT",
   "author": "IT-MikeS",
   "devDependencies": {
+    "@ionic/eslint-config": "^0.3.0",
+    "@ionic/prettier-config": "^1.0.1",
     "@types/events": "~3.0.0",
     "@types/fs-extra": "~9.0.11",
     "@types/node": "~14.17.4",
@@ -30,10 +34,9 @@
     "conventional-changelog-conventionalcommits": "~4.6.0",
     "electron": "~13.1.6",
     "esbuild": "~0.12.15",
-    "husky": "~7.0.1",
+    "eslint": "~7.27.0",
     "np": "~7.5.0",
-    "prettier": "~2.3.2",
-    "pretty-quick": "~3.1.1",
+    "prettier": "2.3.2",
     "rimraf": "~3.0.2",
     "tslib": "~2.3.0",
     "typescript": "~4.3.5"

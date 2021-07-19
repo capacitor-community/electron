@@ -1,0 +1,10 @@
+plugin-examples/**
+docs/**
+.github/**
+.husky/**
+dist/**
+node_modules/**
+*.md
+*.sh
+package.json
+package-lock.json
