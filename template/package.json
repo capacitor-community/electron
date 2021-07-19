@@ -6,6 +6,10 @@
     "name": "",
     "email": ""
   },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
   "license": "MIT",
   "main": "build/src/index.js",
   "scripts": {
@@ -13,7 +17,7 @@
     "electron:start-live": "node ./live-runner.js",
     "electron:start": "npm run build && electron --inspect=5858 ./",
     "electron:pack": "npm run build && electron-builder build --dir -c ./electron-builder.config.json",
-    "electron:make": "npm run build && electron-builder build -c ./electron-builder.config.json"
+    "electron:make": "npm run build && electron-builder build -c ./electron-builder.config.json -p always"
   },
   "dependencies": {
     "@capacitor-community/electron": "alpha",
