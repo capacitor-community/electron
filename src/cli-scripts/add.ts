@@ -54,7 +54,9 @@ export async function doAdd(): Promise<void> {
     const electronPackageJson = readJSON(join(destDir, 'package.json'));
     const rootPackageJson = readJSON(join(usersProjectDir, 'package.json'));
     electronPackageJson.name = appName;
-    electronPackageJson.repository = rootPackageJson.repository;
+    if (rootPackageJson.repository) {
+      electronPackageJson.repository = rootPackageJson.repository;
+    }
     writePrettyJSON(join(destDir, 'package.json'), electronPackageJson);
 
     await runExec(`cd ${destDir} && npm i`);
