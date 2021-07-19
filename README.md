@@ -20,7 +20,7 @@ Bring your Capacitor ⚡ apps to the desktop with Electron! 🖥
 </p>
 
 ## ⚠ Version 4 Info
-- Minimum `@capacitor/cli` and `@capacitor/core` version is `> 3.0.2`
+- You will need a local build of `@capacitor/core` via `npm link` using this [PR](https://github.com/ionic-team/capacitor/pull/4771) until the PR is merged and published in a release.
 - The template and inner workings have changed a lot, a migration guide will be done but for now creating a new project to tinker with before migrating main projects is a good idea.
 - Plugins from previous versions `@capacitor-community/electron` will not function in V4, however all web plugins will continue to function as normal.
 - V4 comes with no plugins out of the box like previous versions. Instead V4 follows Capacitor in seperated plugins, see [Dialog Plugin](https://capacitorjs.com/docs/v3/apis/dialog) for an example.
