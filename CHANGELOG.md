@@ -1,3 +1,22 @@
+## [4.0.0-alpha.13](https://github.com/capacitor-community/electron/compare/v4.0.0-alpha.12...v4.0.0-alpha.13) (2021-07-20)
+
+
+### Features
+
+* default publish target to github public ([70c60fd](https://github.com/capacitor-community/electron/commit/70c60fd7550d30eeed9443e53a33e0390943bdc9))
+
+
+### Bug Fixes
+
+* check if repo is defined ([8e89791](https://github.com/capacitor-community/electron/commit/8e89791f7f3d5a083f59623c46b4ecf622d8acac))
+* fmt ([20efec8](https://github.com/capacitor-community/electron/commit/20efec8dfb5ad26e3d1dfd78a62f0791011164e7))
+
+
+### Chores
+
+* add linting and fmt scripts ([db5cf4f](https://github.com/capacitor-community/electron/commit/db5cf4fd560b7de91230950cd616af13b7903cce))
+* update readme ([10fc977](https://github.com/capacitor-community/electron/commit/10fc977f764bae4a9690e059897ee56f7f160614))
+
 ## [4.0.0-alpha.12](https://github.com/capacitor-community/electron/compare/v4.0.0-alpha.11...v4.0.0-alpha.12) (2021-07-18)
 
 
