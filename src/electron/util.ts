@@ -16,7 +16,7 @@ export function getWebAppLoader(customUrlScheme: string) {
     // The scheme can be changed to whatever you'd like (ex: someapp)
     scheme: customUrlScheme,
   });
-} 
+}
 
 export function deepMerge(target: any, _objects: any[] = []) {
   // Credit for origanal function: Josh Cole(saikojosh)[https://github.com/saikojosh]
@@ -150,7 +150,7 @@ export function getCapacitorConfig() {
   let config: CapacitorElectronConfig = {};
   let capFileConfig: any = {}
   if (existsSync(join(app.getAppPath(), "build", "capacitor.config.js"))) {
-    capFileConfig = require(join(app.getAppPath(), "build", "capacitor.config.js"))
+    capFileConfig = require(join(app.getAppPath(), "build", "capacitor.config.js")).default;
   } else {
     capFileConfig = JSON.parse(readFileSync(join(app.getAppPath(), "capacitor.config.json")).toString());
   }
