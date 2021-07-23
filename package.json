@@ -2,7 +2,7 @@
   "name": "capacitor-electron-platform",
   "private": true,
   "scripts": {
-    "publish": "npm run build-all && npm run postbuild:latest && lerna publish --conventional-commits",
+    "publish:latest": "lerna publish --conventional-commits",
     "publish:next-prerelease": "lerna publish prerelease --preid next --dist-tag next --pre-dist-tag next --conventional-commits",
     "publish:next": "lerna publish --preid next --dist-tag next --pre-dist-tag next --conventional-commits",
     "build-all": "lerna run build"

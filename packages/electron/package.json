@@ -57,5 +57,6 @@
   },
   "bugs": {
     "url": "https://github.com/capacitor-community/electron/issues"
-  }
+  },
+  "gitHead": "e383525b5979ce955677c241a4ee0a467e308edd"
 }
