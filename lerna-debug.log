@@ -1,8 +1,0 @@
-38 error Error: Command failed with exit code 1: git add -- packages/docs/package.json packages/electron/package.json packages/electron/package-lock.json lerna.json
-38 error The following paths are ignored by one of your .gitignore files:
-38 error packages/electron/package-lock.json
-38 error Use -f if you really want to add them.
-38 error     at makeError (/usr/lib/node_modules/lerna/node_modules/execa/lib/error.js:60:11)
-38 error     at handlePromise (/usr/lib/node_modules/lerna/node_modules/execa/index.js:118:26)
-38 error     at processTicksAndRejections (internal/process/task_queues.js:95:5)
-38 error     at async Promise.all (index 0)
