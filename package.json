@@ -3,8 +3,8 @@
   "private": true,
   "scripts": {
     "publish:latest": "lerna publish --conventional-commits",
-    "publish:next-prerelease": "lerna publish prerelease --preid next --dist-tag next --pre-dist-tag next --conventional-commits",
-    "publish:next": "lerna publish --preid next --dist-tag next --pre-dist-tag next --conventional-commits",
+    "publish:next-prerelease": "lerna publish prerelease --preid next --dist-tag next --pre-dist-tag next --conventional-commits --create-release github",
+    "publish:next": "lerna publish --preid next --dist-tag next --pre-dist-tag next --conventional-commits --create-release github",
     "build-all": "lerna run build"
   },
   "devDependencies": {
