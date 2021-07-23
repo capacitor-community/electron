@@ -2,9 +2,9 @@
   "name": "capacitor-electron-platform",
   "private": true,
   "scripts": {
-    "publish:latest": "env-cmd lerna publish --conventional-commits -create-release github",
-    "publish:next-prerelease": "env-cmd lerna publish prerelease --preid next --dist-tag next --pre-dist-tag next --conventional-commits --create-release github",
-    "publish:next": "env-cmd lerna publish --preid next --dist-tag next --pre-dist-tag next --conventional-commits --create-release github",
+    "publish:latest": "env-cmd lerna publish --conventional-commits -create-release github --force-publish",
+    "publish:next-prerelease": "env-cmd lerna publish prerelease --preid next --dist-tag next --pre-dist-tag next --conventional-commits --create-release github --force-publish",
+    "publish:next": "env-cmd lerna publish --preid next --dist-tag next --pre-dist-tag next --conventional-commits --create-release github --force-publish",
     "build-all": "lerna run build"
   },
   "devDependencies": {
