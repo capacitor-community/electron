@@ -3,10 +3,8 @@
   "private": true,
   "scripts": {
     "publish": "npm run build-all && npm run postbuild:latest && lerna publish --conventional-commits",
-    "publish:next-prerelease": "npm run build-all && npm run postbuild:next && lerna publish prerelease --preid next --dist-tag next --pre-dist-tag next --conventional-commits",
-    "publish:next": "npm run build-all && npm run postbuild:next && lerna publish --preid next --dist-tag next --pre-dist-tag next --conventional-commits",
-    "postbuild:next": "git add packages/docs/build/ && git commit -m \"chore(docs): build docs\" && git push origin next",
-    "postbuild:latest": "git add packages/docs/build/ && git commit -m \"chore(docs): build docs\" && git push origin next",
+    "publish:next-prerelease": "lerna publish prerelease --preid next --dist-tag next --pre-dist-tag next --conventional-commits",
+    "publish:next": "lerna publish --preid next --dist-tag next --pre-dist-tag next --conventional-commits",
     "build-all": "lerna run build"
   },
   "devDependencies": {
