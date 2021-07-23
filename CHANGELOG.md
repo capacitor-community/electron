@@ -1,3 +1,16 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [4.0.0-next.2](https://github.com/capacitor-community/electron/compare/v4.0.0-next.1...v4.0.0-next.2) (2021-07-23)
+
+**Note:** Version bump only for package capacitor-electron-platform
+
+
+
+
+
 ## [4.0.0-alpha.13](https://github.com/capacitor-community/electron/compare/v4.0.0-alpha.12...v4.0.0-alpha.13) (2021-07-20)
 
 
@@ -1452,4 +1465,3 @@
 * run prettier on project files ([aec46d2](https://github.com/capacitor-community/electron/commit/aec46d22c3ad007cdb1bdb5bd73ade1ecb30b5a9))
 * update readme usage and oss electron tools ([34e0aa9](https://github.com/capacitor-community/electron/commit/34e0aa919c1974239d939dc826a929168265721b))
 * update splashscreen custom img usage readme ([61942d7](https://github.com/capacitor-community/electron/commit/61942d75f5f79a2c51f73af2006ad2ddc792d568))
-
