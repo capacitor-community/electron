@@ -3,10 +3,10 @@ name: CI
 on:
   push:
     branches:
-      - "**"
+      - "next"
   pull_request:
     branches:
-      - "**"
+      - "next"
 
 jobs:
   lint:
@@ -21,7 +21,8 @@ jobs:
           node-version: 14.x
       - uses: actions/checkout@v2
       - run: npm install
-      - run: npm run lint
+      - run: lerna bootstrap
+      - run: lerna run lint
 
   build:
     runs-on: ubuntu-latest
@@ -35,4 +36,5 @@ jobs:
           node-version: 14.x
       - uses: actions/checkout@v2
       - run: npm install
-      - run: npm run build
+      - run: lerna bootstrap
+      - run: lerna run build
