@@ -7,4 +7,3 @@ node_modules/
 .vscode/
 npm-debug.log
 template/package-lock.json
-package-lock.json
