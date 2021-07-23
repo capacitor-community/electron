@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0-next.7](https://github.com/capacitor-community/electron/compare/v4.0.0-next.6...v4.0.0-next.7) (2021-07-23)
+
+**Note:** Version bump only for package capacitor-electron-platform
+
+
+
+
+
 # [4.0.0-next.6](https://github.com/capacitor-community/electron/compare/v4.0.0-next.5...v4.0.0-next.6) (2021-07-23)
 
 **Note:** Version bump only for package capacitor-electron-platform
