@@ -9,32 +9,30 @@ on:
       - "next"
 
 jobs:
-  lint:
+  lint(platform):
     runs-on: ubuntu-latest
     timeout-minutes: 30
     defaults:
       run:
-        working-directory: ./
+        working-directory: ./packages/electron
     steps:
       - uses: actions/setup-node@v1
         with:
           node-version: 14.x
       - uses: actions/checkout@v2
       - run: npm install
-      - run: lerna bootstrap
-      - run: lerna run lint
+      - run: npm run lint
 
-  build:
+  build(platform):
     runs-on: ubuntu-latest
     timeout-minutes: 30
     defaults:
       run:
-        working-directory: ./
+        working-directory: ./packages/electron
     steps:
       - uses: actions/setup-node@v1
         with:
           node-version: 14.x
       - uses: actions/checkout@v2
       - run: npm install
-      - run: lerna bootstrap
-      - run: lerna run build
+      - run: npm run build
