@@ -3,8 +3,8 @@
   "private": true,
   "scripts": {
     "publish": "npm run build-all && lerna publish",
-    "publish:next-prerelease": "npm run build-all && lerna publish prerelease --preid next --dist-tag next --pre-dist-tag next --no-git-tag-version --no-push --skip-npm",
-    "publish:next": "npm run build-all && lerna publish --preid next --dist-tag next --pre-dist-tag next --no-git-tag-version --no-push --skip-npm",
+    "publish:next-prerelease": "npm run build-all && lerna publish prerelease --preid next --dist-tag next --pre-dist-tag next",
+    "publish:next": "npm run build-all && lerna publish --preid next --dist-tag next --pre-dist-tag next",
     "build-all": "lerna run build"
   },
   "devDependencies": {
