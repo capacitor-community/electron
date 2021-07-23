@@ -1,6 +1,6 @@
 {
   "name": "@capacitor-community/electron",
-  "version": "4.0.0-alpha.13",
+  "version": "4.0.0-next.0",
   "description": "Capacitor community support for the Electron platform.",
   "main": "dist/core/index.js",
   "typings": "dist/core/index.d.ts",
@@ -58,5 +58,6 @@
   },
   "bugs": {
     "url": "https://github.com/capacitor-community/electron/issues"
-  }
+  },
+  "gitHead": "54d2c53e8d66f5354b24a89067caa7d63067c283"
 }

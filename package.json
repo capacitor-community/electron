@@ -3,7 +3,10 @@
   "private": true,
   "scripts": {
     "publish": "npm run build-all && lerna publish",
-    "publish:next": "npm run build-all && lerna publish --canary --preid next --no-git-tag-version --no-push",
+    "publish:next-premajor": "npm run build-all && lerna publish premajor --preid next --dist-tag next --pre-dist-tag next --no-git-tag-version --no-push --skip-npm",
+    "publish:next-preminor": "npm run build-all && lerna publish preminor --preid next --dist-tag next --pre-dist-tag next --no-git-tag-version --no-push --skip-npm",
+    "publish:next-prepatch": "npm run build-all && lerna publish prepatch --preid next --dist-tag next --pre-dist-tag next --no-git-tag-version --no-push --skip-npm",
+    "publish:next-prerelease": "npm run build-all && lerna publish prerelease --preid next --dist-tag next --pre-dist-tag next --no-git-tag-version --no-push --skip-npm",
     "build-all": "lerna run build"
   },
   "devDependencies": {
