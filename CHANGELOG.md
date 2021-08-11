@@ -1,3 +1,10 @@
+### [3.0.3](https://github.com/capacitor-community/electron/compare/v3.0.2...v3.0.3) (2021-08-11)
+
+
+### Bug Fixes
+
+* plugins with default exports causing issues ([50b3c37](https://github.com/capacitor-community/electron/commit/50b3c3705e5692d025342c0aec3d3f773cfb6ff9))
+
 ### [3.0.2](https://github.com/capacitor-community/electron/compare/v3.0.1...v3.0.2) (2021-07-22)
 
 
