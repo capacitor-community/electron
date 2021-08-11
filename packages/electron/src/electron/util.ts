@@ -141,7 +141,7 @@ export function getCapacitorElectronConfig(): CapacitorElectronConfig {
       app.getAppPath(),
       'build',
       'capacitor.config.js',
-    ));
+    )).default;
   } else {
     capFileConfig = JSON.parse(
       readFileSync(join(app.getAppPath(), 'capacitor.config.json')).toString(),
