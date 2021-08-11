@@ -1,3 +1,16 @@
+### [3.0.4](https://github.com/capacitor-community/electron/compare/v3.0.3...v3.0.4) (2021-08-11)
+
+
+### Bug Fixes
+
+* plugins with default exports causing issues [#2](https://github.com/capacitor-community/electron/issues/2) ([669c80b](https://github.com/capacitor-community/electron/commit/669c80bbf608b497fccaa6897680d2c80cb1c217))
+
+
+### Documentation
+
+* update .all-contributorsrc [skip ci] ([3148588](https://github.com/capacitor-community/electron/commit/31485884aacb0fae4fe254a210223f7eaf309cfc))
+* update README.md [skip ci] ([226250e](https://github.com/capacitor-community/electron/commit/226250e95f45ab274562e99a4d3c267e43f926f1))
+
 ### [3.0.3](https://github.com/capacitor-community/electron/compare/v3.0.2...v3.0.3) (2021-08-11)
 
 
