@@ -159,7 +159,9 @@ setPlatform("electron");
 const pluginsRegistry: any = {};
 const AsyncFunction = (async () => {}).constructor;
 for (const pluginKey of Object.keys(plugins)) {
-  for (const classKey of Object.keys(plugins[pluginKey])) {
+  for (const classKey of Object.keys(plugins[pluginKey]).filter(
+    className => className !== 'default',
+  )) {
     const functionList = Object.getOwnPropertyNames(
       plugins[pluginKey][classKey].prototype
     ).filter((v) => v !== "constructor");
