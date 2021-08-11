@@ -95,7 +95,9 @@ export function setupCapacitorElectronPlugins() {
   const pluginFunctionsRegistry: any = {}
   for (const pluginKey of Object.keys(plugins)) {
     console.log(pluginKey)
-    for (const classKey of Object.keys(plugins[pluginKey])) {
+    for (const classKey of Object.keys(plugins[pluginKey]).filter(
+      className => className !== 'default',
+    )) {
       const functionList = Object.getOwnPropertyNames(plugins[pluginKey][classKey].prototype).filter(v => v !== 'constructor')
       console.log('  ', classKey)
       console.log('    ' + JSON.stringify(functionList))
