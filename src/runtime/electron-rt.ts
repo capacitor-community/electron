@@ -13,6 +13,7 @@ const getRandomId = () => crypto.pseudoRandomBytes(5).toString("hex");
 
 addPlatform("electron", {
   name: "electron",
+  isNativePlatform: () => true,
   getPlatform: () => {
     return "electron";
   },
