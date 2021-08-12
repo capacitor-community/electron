@@ -153,7 +153,7 @@ export async function encodeFromFile(filePath: string): Promise<string> {
   mediaType = /\//.test(mediaType) ? mediaType : "image/" + mediaType;
   let dataBase64 = Buffer.isBuffer(fileData)
     ? fileData.toString("base64")
-    : new Buffer(fileData).toString("base64");
+    : Buffer.from(fileData).toString("base64");
   return "data:" + mediaType + ";base64," + dataBase64;
 }
 
