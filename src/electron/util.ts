@@ -131,7 +131,7 @@ export function setupCapacitorElectronPlugins() {
             (event, id, ...args) => {
               const handle = async () => {
                 console.log("args", args);
-                const pluginRef = pluginFunctionsRegistry[classKey];
+                const pluginRef = pluginInstanceRegistry[classKey];
                 const theCall = pluginRef[functionName];
                 console.log("theCall", theCall);
                 const call = theCall.call(pluginRef, ...args);
