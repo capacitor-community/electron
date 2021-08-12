@@ -1,21 +1,35 @@
-import { app, BrowserWindow, Menu, MenuItem, nativeImage, Tray } from "electron";
+import {
+  app,
+  BrowserWindow,
+  Menu,
+  MenuItem,
+  nativeImage,
+  Tray,
+} from "electron";
 import { join } from "path";
-import electronIsDev from 'electron-is-dev';
-import electronServe from 'electron-serve';
-import { CapElectronEventEmitter, CapacitorSplashScreen, getCapacitorConfig, setupCapacitorElectronPlugins, setupElectronDeepLinking } from "@capacitor-community/electron";
+import electronIsDev from "electron-is-dev";
+import electronServe from "electron-serve";
+import {
+  CapElectronEventEmitter,
+  CapacitorSplashScreen,
+  getCapacitorConfig,
+  setupCapacitorElectronPlugins,
+  setupElectronDeepLinking,
+} from "@capacitor-community/electron";
 
 // Get Config options from capacitor.config file
-const CapacitorFileConfig = getCapacitorConfig()
+const CapacitorFileConfig = getCapacitorConfig();
 
 /////////////////////// Menus and Configs - Modify Freely //////////////////////////////////////////////
-const TrayMenuTemplate = [
-  new MenuItem({ label: "Quit App", role: "quit" })
-];
+const TrayMenuTemplate = [new MenuItem({ label: "Quit App", role: "quit" })];
 const AppMenuBarMenuTemplate = [
   { role: process.platform === "darwin" ? "appMenu" : "fileMenu" },
   { role: "viewMenu" },
 ];
-const DeepLinkingConfig = {customProtocol: CapacitorFileConfig.deepLinkingCustomProtocol ?? 'mycapacitorapp'};
+const DeepLinkingConfig = {
+  customProtocol:
+    CapacitorFileConfig.deepLinkingCustomProtocol ?? "mycapacitorapp",
+};
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // -------------------------------------------------------------------------------------------------- //
@@ -26,12 +40,12 @@ class ElectronCapacitorApp {
   private SplashScreen: CapacitorSplashScreen | null = null;
   private TrayIcon: Tray | null = null;
   private loadWebApp;
-  
+
   constructor() {
     this.loadWebApp = electronServe({
       directory: join(app.getAppPath(), "app"),
       // The scheme can be changed to whatever you'd like (ex: someapp)
-      scheme: CapacitorFileConfig.customUrlScheme ?? 'capacitor-electron',
+      scheme: CapacitorFileConfig.customUrlScheme ?? "capacitor-electron",
     });
   }
 
@@ -44,25 +58,50 @@ class ElectronCapacitorApp {
   }
 
   async init() {
+    const icon = nativeImage.createFromPath(
+      join(
+        app.getAppPath(),
+        "assets",
+        process.platform === "win32" ? "appIcon.ico" : "appIcon.png"
+      )
+    );
+
     this.MainWindow = new BrowserWindow({
+      icon,
       show: false,
       webPreferences: {
         nodeIntegration: true,
         contextIsolation: false,
         // Use preload to inject the electron varriant overrides for capacitor plugins.
         // Note: any windows you spawn that you want to include capacitor plugins must have this preload.
-        preload: join(app.getAppPath(), "node_modules", "@capacitor-community", "electron", "dist", "runtime", "electron-rt.js"),
+        preload: join(
+          app.getAppPath(),
+          "node_modules",
+          "@capacitor-community",
+          "electron",
+          "dist",
+          "runtime",
+          "electron-rt.js"
+        ),
       },
     });
 
+    if (CapacitorFileConfig.backgroundColor) {
+      this.MainWindow.setBackgroundColor(CapacitorFileConfig.backgroundColor);
+    }
+
     this.MainWindow.on("closed", () => {
-      if (this.SplashScreen && this.SplashScreen.getSplashWindow() && !this.SplashScreen.getSplashWindow().isDestroyed()) {
+      if (
+        this.SplashScreen &&
+        this.SplashScreen.getSplashWindow() &&
+        !this.SplashScreen.getSplashWindow().isDestroyed()
+      ) {
         this.SplashScreen.getSplashWindow().close();
       }
     });
 
     if (CapacitorFileConfig.trayIconAndMenuEnabled) {
-      this.TrayIcon = new Tray(nativeImage.createFromPath(join(app.getAppPath(), 'assets', process.platform === "win32" ? "appIcon.ico" : "appIcon.png")));
+      this.TrayIcon = new Tray(icon);
       this.TrayIcon.on("double-click", () => {
         if (this.MainWindow) {
           if (this.MainWindow.isVisible()) {
@@ -84,9 +123,7 @@ class ElectronCapacitorApp {
         }
       });
       this.TrayIcon.setToolTip(app.getName());
-      this.TrayIcon.setContextMenu(
-        Menu.buildFromTemplate(TrayMenuTemplate)
-      );
+      this.TrayIcon.setContextMenu(Menu.buildFromTemplate(TrayMenuTemplate));
     }
 
     // Setup app windows menu bar
@@ -97,7 +134,11 @@ class ElectronCapacitorApp {
 
     if (CapacitorFileConfig.splashScreenEnabled) {
       this.SplashScreen = new CapacitorSplashScreen({
-        imageFilePath: join(app.getAppPath(), "assets", CapacitorFileConfig.splashScreenImageName ?? "splash.png"),
+        imageFilePath: join(
+          app.getAppPath(),
+          "assets",
+          CapacitorFileConfig.splashScreenImageName ?? "splash.png"
+        ),
         windowWidth: 400,
         windowHeight: 400,
       });
@@ -107,7 +148,7 @@ class ElectronCapacitorApp {
     }
 
     // Link electron plugins in
-    setupCapacitorElectronPlugins()
+    setupCapacitorElectronPlugins();
 
     this.MainWindow.webContents.on("dom-ready", () => {
       if (CapacitorFileConfig.splashScreenEnabled) {
@@ -120,11 +161,13 @@ class ElectronCapacitorApp {
         if (electronIsDev) {
           this.MainWindow.webContents.openDevTools();
         }
-        CapElectronEventEmitter.emit("CAPELECTRON_DeeplinkListenerInitialized", "");
+        CapElectronEventEmitter.emit(
+          "CAPELECTRON_DeeplinkListenerInitialized",
+          ""
+        );
       }, 400);
     });
   }
-
 }
 const myCapacitorApp = new ElectronCapacitorApp();
 if (CapacitorFileConfig.deepLinkingEnabled) {
@@ -135,7 +178,7 @@ if (CapacitorFileConfig.deepLinkingEnabled) {
 // Run Application
 (async () => {
   await app.whenReady();
-  await myCapacitorApp.init()
+  await myCapacitorApp.init();
 })();
 
 app.on("window-all-closed", function () {
@@ -149,7 +192,7 @@ app.on("window-all-closed", function () {
 app.on("activate", async function () {
   // On OS X it's common to re-create a window in the app when the
   // dock icon is clicked and there are no other windows open.
-  if (myCapacitorApp.getMainWindow().isDestroyed()) { 
+  if (myCapacitorApp.getMainWindow().isDestroyed()) {
     await myCapacitorApp.init();
   }
 });

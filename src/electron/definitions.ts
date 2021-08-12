@@ -21,4 +21,10 @@ export interface CapacitorElectronConfig {
   deepLinkingCustomProtocol?: string;
 }
 
+export interface CapacitorElectronExtendedConfig extends CapacitorElectronConfig {
+  backgroundColor?: string;
+  appId?: string;
+  appName?: string;
+}
+
 export type ElectronCapacitorConfig = CapacitorConfig & { electron: CapacitorElectronConfig }

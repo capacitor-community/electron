@@ -1,10 +1,10 @@
 import { join } from "path";
-import { existsSync, readFileSync } from 'fs';
+import { existsSync, readFileSync } from "fs";
 import { app, ipcMain } from "electron";
-import type { CapacitorElectronConfig } from "./definitions";
-import electronServe from 'electron-serve';
-const mimeTypes = require('mime-types');
-const EventEmitter = require('events');
+import type { CapacitorElectronExtendedConfig } from "./definitions";
+import electronServe from "electron-serve";
+const mimeTypes = require("mime-types");
+const EventEmitter = require("events");
 
 class CapElectronEmitter extends EventEmitter {}
 
@@ -19,7 +19,7 @@ export function getWebAppLoader(customUrlScheme: string) {
 }
 
 export function deepMerge(target: any, _objects: any[] = []) {
-  // Credit for origanal function: Josh Cole(saikojosh)[https://github.com/saikojosh]
+  // Credit for original function: Josh Cole(saikojosh)[https://github.com/saikojosh]
   const quickCloneArray = function (input: any) {
     return input.map(cloneValue);
   };
@@ -78,6 +78,15 @@ export function deepMerge(target: any, _objects: any[] = []) {
   return output;
 }
 
+export function pick<T>(
+  object: Record<string, T>,
+  keys: string[]
+): Record<string, T> {
+  return Object.fromEntries(
+    Object.entries(object).filter(([key]) => keys.includes(key))
+  );
+}
+
 export function setupCapacitorElectronPlugins() {
   //setupListeners
   const rtPluginsPath = join(
@@ -90,7 +99,7 @@ export function setupCapacitorElectronPlugins() {
     "electron-plugins.js"
   )
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  const AsyncFunction = (async () => {}).constructor;
+  const AsyncFunction = (async () => { }).constructor;
   const plugins: any = require(rtPluginsPath)
   const pluginFunctionsRegistry: any = {}
   for (const pluginKey of Object.keys(plugins)) {
@@ -138,7 +147,7 @@ export async function encodeFromFile(filePath: string): Promise<string> {
   }
   let mediaType = mimeTypes.lookup(filePath);
   if (!mediaType) {
-    throw new Error("Media type unreconized.");
+    throw new Error("Media type unrecognized.");
   }
   const fileData = readFileSync(filePath);
   mediaType = /\//.test(mediaType) ? mediaType : "image/" + mediaType;
@@ -149,13 +158,25 @@ export async function encodeFromFile(filePath: string): Promise<string> {
 }
 
 export function getCapacitorConfig() {
-  let config: CapacitorElectronConfig = {};
-  let capFileConfig: any = {}
+  let config: CapacitorElectronExtendedConfig = {};
+  let capFileConfig: any = {};
   if (existsSync(join(app.getAppPath(), "build", "capacitor.config.js"))) {
-    capFileConfig = require(join(app.getAppPath(), "build", "capacitor.config.js")).default;
+    capFileConfig = require(join(
+      app.getAppPath(),
+      "build",
+      "capacitor.config.js"
+    )).default;
   } else {
-    capFileConfig = JSON.parse(readFileSync(join(app.getAppPath(), "capacitor.config.json")).toString());
+    capFileConfig = JSON.parse(
+      readFileSync(join(app.getAppPath(), "capacitor.config.json")).toString()
+    );
   }
-  if (capFileConfig.electron) config = deepMerge(config, [capFileConfig.electron]);
+  if (capFileConfig.electron)
+    config = deepMerge(config, [
+      {
+        ...capFileConfig.electron,
+        ...pick(capFileConfig, ["backgroundColor", "appId", "appName"]),
+      },
+    ]);
   return config;
 }
