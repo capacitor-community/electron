@@ -1,12 +1,16 @@
 class CapacitorException extends Error {
   constructor(message, _code) {
-      super(message);
+    super(message);
   }
 }
 import { addPlatform, setPlatform } from "@capacitor/core";
 import type { PluginImplementations } from "@capacitor/core";
 const { ipcRenderer } = require("electron");
 const plugins = require("./electron-plugins");
+const crypto = require("crypto");
+
+const getRandomId = () => crypto.pseudoRandomBytes(5).toString("hex");
+
 addPlatform("electron", {
   name: "electron",
   getPlatform: () => {
@@ -17,12 +21,15 @@ addPlatform("electron", {
     jsImplementations: PluginImplementations = {}
   ) => {
     console.log(jsImplementations);
-    const registeredPlugin = (window as any).CapacitorElectronPlugins[pluginName];
+    const registeredPlugin = (window as any).CapacitorElectronPlugins[
+      pluginName
+    ];
     console.log("electron register plugin", pluginName);
     console.log(registeredPlugin);
     if (registeredPlugin) {
-      (window as any).Capacitor.Plugins[pluginName] =
-        (window as any).CapacitorElectronPlugins[pluginName];
+      (window as any).Capacitor.Plugins[pluginName] = (
+        window as any
+      ).CapacitorElectronPlugins[pluginName];
       return (window as any).CapacitorElectronPlugins[pluginName];
     } else {
       console.log("load web imp");
@@ -157,39 +164,48 @@ addPlatform("electron", {
 });
 setPlatform("electron");
 const pluginsRegistry: any = {};
+const pluginInstanceRegistry: Record<string, any> = {};
 const AsyncFunction = (async () => {}).constructor;
 for (const pluginKey of Object.keys(plugins)) {
   for (const classKey of Object.keys(plugins[pluginKey]).filter(
-    className => className !== 'default',
+    (className) => className !== "default"
   )) {
     const functionList = Object.getOwnPropertyNames(
       plugins[pluginKey][classKey].prototype
     ).filter((v) => v !== "constructor");
     if (!pluginsRegistry[classKey]) {
+      pluginInstanceRegistry[classKey] = new plugins[pluginKey][classKey]();
       pluginsRegistry[classKey] = {};
     }
     for (const functionName of functionList) {
       if (!pluginsRegistry[classKey][functionName]) {
-        const pluginRef = new plugins[pluginKey][classKey]();
+        const pluginRef = pluginInstanceRegistry[classKey];
         const isPromise =
           pluginRef[functionName] instanceof Promise ||
           pluginRef[functionName] instanceof AsyncFunction;
         if (isPromise) {
           pluginsRegistry[classKey][functionName] = (...sendArgs: any) => {
+            const id = getRandomId();
             return new Promise((resolve, _reject) => {
               console.log(
                 `sending async ipc from renderer of channel: ${classKey}-${functionName}`
               );
-              const listener = (_event: any, returnedValue: unknown) => {
-                console.log("got reply of:", returnedValue);
-                ipcRenderer.removeListener(
-                  `${classKey}-${functionName}-reply`,
-                  listener
-                );
-                resolve(returnedValue);
+              const listener = (
+                _event: any,
+                returnedId: string,
+                returnedValue: unknown
+              ) => {
+                if (returnedId === id) {
+                  console.log("got reply of:", returnedValue);
+                  ipcRenderer.removeListener(
+                    `${classKey}-${functionName}-reply`,
+                    listener
+                  );
+                  resolve(returnedValue);
+                }
               };
               ipcRenderer.on(`${classKey}-${functionName}-reply`, listener);
-              ipcRenderer.send(`${classKey}-${functionName}`, ...sendArgs);
+              ipcRenderer.send(`${classKey}-${functionName}`, id, ...sendArgs);
             });
           };
         } else {
@@ -199,6 +215,7 @@ for (const pluginKey of Object.keys(plugins)) {
             );
             return ipcRenderer.sendSync(
               `${classKey}-${functionName}`,
+              "",
               ...sendArgs
             );
           };

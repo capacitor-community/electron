@@ -1,10 +1,16 @@
 import { join } from "path";
 import { existsSync, readFileSync } from "fs";
 import { app, ipcMain } from "electron";
+import electronIsDev from "electron-is-dev";
 import type { CapacitorElectronExtendedConfig } from "./definitions";
 import electronServe from "electron-serve";
 const mimeTypes = require("mime-types");
 const EventEmitter = require("events");
+
+// Disable logging in prod
+if (!electronIsDev) {
+  console.log = () => {};
+}
 
 class CapElectronEmitter extends EventEmitter {}
 
@@ -97,44 +103,61 @@ export function setupCapacitorElectronPlugins() {
     "dist",
     "runtime",
     "electron-plugins.js"
-  )
+  );
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  const AsyncFunction = (async () => { }).constructor;
-  const plugins: any = require(rtPluginsPath)
-  const pluginFunctionsRegistry: any = {}
+  const AsyncFunction = (async () => {}).constructor;
+  const plugins: any = require(rtPluginsPath);
+  const pluginFunctionsRegistry: any = {};
+  const pluginInstanceRegistry: Record<string, any> = {};
   for (const pluginKey of Object.keys(plugins)) {
-    console.log(pluginKey)
+    console.log(pluginKey);
     for (const classKey of Object.keys(plugins[pluginKey]).filter(
-      className => className !== 'default',
+      (className) => className !== "default"
     )) {
-      const functionList = Object.getOwnPropertyNames(plugins[pluginKey][classKey].prototype).filter(v => v !== 'constructor')
-      console.log('  ', classKey)
-      console.log('    ' + JSON.stringify(functionList))
-      console.log('')
+      const functionList = Object.getOwnPropertyNames(
+        plugins[pluginKey][classKey].prototype
+      ).filter((v) => v !== "constructor");
+      console.log("  ", classKey);
+      console.log("    " + JSON.stringify(functionList));
+      console.log("");
       if (!pluginFunctionsRegistry[classKey]) {
-        pluginFunctionsRegistry[classKey] = {}
+        pluginInstanceRegistry[classKey] = new plugins[pluginKey][classKey]();
+        pluginFunctionsRegistry[classKey] = {};
       }
       for (const functionName of functionList) {
         if (!pluginFunctionsRegistry[classKey][functionName]) {
-          pluginFunctionsRegistry[classKey][functionName] = ipcMain.on(`${classKey}-${functionName}`, async (event, ...args) => {
-            console.log('args')
-            console.log(args)
-            const pluginRef = new plugins[pluginKey][classKey]()
-            const theCall = pluginRef[functionName]
-            console.log('theCall')
-            console.log(theCall)
-            const isPromise = theCall instanceof Promise || (theCall instanceof AsyncFunction)
-            console.log('isPromise')
-            console.log(isPromise)
-            let returnVal = null
-            if (isPromise) {
-              returnVal = await theCall(...args)
-              event.reply(`${classKey}-${functionName}-reply`, returnVal || null)
-            } else {
-              returnVal = theCall(...args)
-              event.returnValue = returnVal
+          pluginFunctionsRegistry[classKey][functionName] = ipcMain.on(
+            `${classKey}-${functionName}`,
+            (event, id, ...args) => {
+              const handle = async () => {
+                console.log("args", args);
+                const pluginRef = pluginFunctionsRegistry[classKey];
+                const theCall = pluginRef[functionName];
+                console.log("theCall", theCall);
+                const call = theCall.call(pluginRef, ...args);
+                const isPromise =
+                  theCall instanceof Promise ||
+                  theCall instanceof AsyncFunction ||
+                  call instanceof Promise;
+                console.log("isPromise", isPromise);
+                if (isPromise) {
+                  const returnVal = await call;
+                  event.reply(
+                    `${classKey}-${functionName}-reply`,
+                    id,
+                    returnVal ?? null
+                  );
+                } else {
+                  event.returnValue = call;
+                }
+              };
+
+              handle().catch((error) => {
+                console.error(error);
+                event.returnValue = error;
+              });
             }
-          })
+          );
         }
       }
     }
