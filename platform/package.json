@@ -8,7 +8,7 @@
     "lint": "npm run eslint && npm run prettier -- --check",
     "fmt": "npm run eslint -- --fix && npm run prettier -- --write",
     "clean": "rimraf ./dist",
-    "build": "npm run clean && npm run build-platform",
+    "build": "npm run clean && npm run fmt && npm run build-platform",
     "capacitor:add": "node dist/cli-scripts/cap-scripts.js add",
     "capacitor:copy": "node dist/cli-scripts/cap-scripts.js copy",
     "capacitor:update": "node dist/cli-scripts/cap-scripts.js update",
@@ -56,5 +56,5 @@
   "bugs": {
     "url": "https://github.com/capacitor-community/electron/issues"
   },
-  "gitHead": "e383525b5979ce955677c241a4ee0a467e308edd"
+  "gitHead": "1fcd702d0e0f8efd0f4c02001e02c446aa961171"
 }
