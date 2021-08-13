@@ -174,8 +174,6 @@ export function resolveElectronPlugin(plugin: Plugin): string | null {
 
 export type TaskInfoProvider = (messsage: string) => void;
 
-
-
 export async function runTask<T>(
   title: string,
   fn: (info: TaskInfoProvider) => Promise<T>,
@@ -190,11 +188,13 @@ export async function runTask<T>(
     const start = process.hrtime();
     const value = await fn((message: string) => {
       spinner = spinner.info();
-      spinner = spinner.start(`${title}: ${chalk.dim(message)}`)
+      spinner = spinner.start(`${title}: ${chalk.dim(message)}`);
     });
     spinner = spinner.info();
     const elapsed = process.hrtime(start);
-    spinner = spinner.succeed(`${title}: ${chalk.dim('completed in ' + formatHrTime(elapsed))}`);
+    spinner = spinner.succeed(
+      `${title}: ${chalk.dim('completed in ' + formatHrTime(elapsed))}`,
+    );
     return value;
   } catch (e) {
     spinner = spinner.fail(`${title}: ${e.message ? e.message : ''}`);

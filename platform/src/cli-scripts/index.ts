@@ -6,27 +6,39 @@ import { doOpen } from './open';
 import { doUpdate } from './update';
 
 async function doUpdateTask() {
-  return await runTask('Updating Electron plugins', async (taskInfoMessageProvider) => {
-    return await doUpdate();
-  });
+  return await runTask(
+    'Updating Electron plugins',
+    async taskInfoMessageProvider => {
+      return await doUpdate();
+    },
+  );
 }
 
 async function doAddTask() {
-  return await runTask('Adding Electron platform', async (taskInfoMessageProvider) => {
-    return doAdd(taskInfoMessageProvider);
-  });
+  return await runTask(
+    'Adding Electron platform',
+    async taskInfoMessageProvider => {
+      return doAdd(taskInfoMessageProvider);
+    },
+  );
 }
 
 async function doCopyTask() {
-  return await runTask('Copying Web App to Electron platform', async (taskInfoMessageProvider) => {
-    return await doCopy(taskInfoMessageProvider);
-  });
+  return await runTask(
+    'Copying Web App to Electron platform',
+    async taskInfoMessageProvider => {
+      return await doCopy(taskInfoMessageProvider);
+    },
+  );
 }
 
 async function doOpenTask() {
-  return await runTask('Opening Electron platform', async (taskInfoMessageProvider) => {
-    return await doOpen();
-  });
+  return await runTask(
+    'Opening Electron platform',
+    async taskInfoMessageProvider => {
+      return await doOpen();
+    },
+  );
 }
 
 (async () => {

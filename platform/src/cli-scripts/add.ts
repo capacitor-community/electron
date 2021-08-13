@@ -3,11 +3,13 @@ import { copySync } from 'fs-extra';
 import { join } from 'path';
 import { extract } from 'tar';
 
-import type { TaskInfoProvider} from './common';
+import type { TaskInfoProvider } from './common';
 import { readJSON, runExec, writePrettyJSON } from './common';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export async function doAdd(taskInfoMessageProvider: TaskInfoProvider): Promise<void> {
+export async function doAdd(
+  taskInfoMessageProvider: TaskInfoProvider,
+): Promise<void> {
   const usersProjectDir = process.env.CAPACITOR_ROOT_DIR;
   const platformNodeModuleTemplateTar = join(
     usersProjectDir,
@@ -40,9 +42,9 @@ export async function doAdd(taskInfoMessageProvider: TaskInfoProvider): Promise<
 
   if (!existsSync(destDir)) {
     mkdirSync(destDir);
-    taskInfoMessageProvider(`extracting template`)
+    taskInfoMessageProvider(`extracting template`);
     await extract({ file: platformNodeModuleTemplateTar, cwd: destDir });
-    taskInfoMessageProvider(`copying capacitor config file`)
+    taskInfoMessageProvider(`copying capacitor config file`);
     copySync(usersProjectCapConfigFile, join(destDir, configFileName));
 
     const appName: string = configData.appName;
@@ -52,10 +54,10 @@ export async function doAdd(taskInfoMessageProvider: TaskInfoProvider): Promise<
     if (rootPackageJson.repository) {
       platformPackageJson.repository = rootPackageJson.repository;
     }
-    taskInfoMessageProvider(`setting up electron project`)
+    taskInfoMessageProvider(`setting up electron project`);
     writePrettyJSON(join(destDir, 'package.json'), platformPackageJson);
 
-    taskInfoMessageProvider(`installing npm modules`)
+    taskInfoMessageProvider(`installing npm modules`);
     await runExec(`cd ${destDir} && npm i`);
   } else {
     throw new Error('Electron platform already exists.');

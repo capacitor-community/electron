@@ -47,14 +47,8 @@ async function buildPlatformCore() {
     platform: 'node',
     target: 'node14',
     minify: true,
-    external: [
-      'electron', 
-      'fs', 
-      'path', 
-      'mime-types', 
-      'events'
-    ],
-  })
+    external: ['electron', 'fs', 'path', 'mime-types', 'events'],
+  });
 }
 
 (async () => {
