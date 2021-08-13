@@ -2,13 +2,15 @@
   "name": "capacitor-electron-platform",
   "private": true,
   "scripts": {
-    "publish:latest": "env-cmd lerna publish --conventional-commits -create-release github --force-publish",
-    "publish:next-prerelease": "env-cmd lerna publish prerelease --preid next --dist-tag next --pre-dist-tag next --conventional-commits --create-release github --force-publish",
-    "publish:next": "env-cmd lerna publish --preid next --dist-tag next --pre-dist-tag next --conventional-commits --create-release github --force-publish",
-    "build-all": "lerna run build"
+    "prepublishOnly": "npm run build-all && shx cp -f ./README.md ./platform/README.md && shx git commit -m \"chore: Update Readme In Package\" && ",
+    "publish:latest": "env-cmd lerna publish --conventional-commits -create-release github --force-publish --dist-tag latest",
+    "publish:next": "env-cmd lerna publish prerelease --preid next --dist-tag next --pre-dist-tag next --conventional-commits --create-release github --force-publish",
+    "build-all": "lerna run build --stream",
+    "postinstall": "lerna bootstrap"
   },
   "devDependencies": {
-    "env-cmd": "^10.1.0",
-    "lerna": "^4.0.0"
+    "env-cmd": "~10.1.0",
+    "lerna": "~4.0.0",
+    "shx": "~0.3.3"
   }
 }

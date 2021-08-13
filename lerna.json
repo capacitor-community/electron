@@ -1,6 +1,7 @@
 {
   "packages": [
-    "packages/*"
+    "./docs/",
+    "./platform/"
   ],
   "version": "4.0.0-next.8"
 }
