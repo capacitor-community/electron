@@ -1,20 +1,20 @@
-import { existsSync, renameSync } from 'fs';
+import { existsSync, mkdirSync } from 'fs';
 import { copySync } from 'fs-extra';
 import { join } from 'path';
+import { extract } from 'tar';
 
+import type { TaskInfoProvider} from './common';
 import { readJSON, runExec, writePrettyJSON } from './common';
 
-export async function doAdd(): Promise<void> {
-  //console.log(process.env.CAPACITOR_ROOT_DIR);
-  //console.log(process.env.CAPACITOR_WEB_DIR);
-  //console.log(process.env.CAPACITOR_CONFIG);
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export async function doAdd(taskInfoMessageProvider: TaskInfoProvider): Promise<void> {
   const usersProjectDir = process.env.CAPACITOR_ROOT_DIR;
-  const capacitorElectronNodeModuleTemplateDir = join(
+  const platformNodeModuleTemplateTar = join(
     usersProjectDir,
     'node_modules',
     '@capacitor-community',
     'electron',
-    'template',
+    'template.tar.gz',
   );
   const destDir = join(usersProjectDir, 'electron');
   let usersProjectCapConfigFile: string | undefined = undefined;
@@ -38,27 +38,24 @@ export async function doAdd(): Promise<void> {
 
   const configData = JSON.parse(process.env.CAPACITOR_CONFIG);
 
-  const builtWebAppDir = process.env.CAPACITOR_WEB_DIR;
-
   if (!existsSync(destDir)) {
-    copySync(capacitorElectronNodeModuleTemplateDir, destDir);
+    mkdirSync(destDir);
+    taskInfoMessageProvider(`extracting template`)
+    await extract({ file: platformNodeModuleTemplateTar, cwd: destDir });
+    taskInfoMessageProvider(`copying capacitor config file`)
     copySync(usersProjectCapConfigFile, join(destDir, configFileName));
-    // writeFileSync(
-    //   join(destDir, "capacitor.config.json"),
-    //   JSON.stringify(configData)
-    // );
-    renameSync(join(destDir, 'gitignore'), join(destDir, '.gitignore'));
-    copySync(builtWebAppDir, join(destDir, 'app'));
 
     const appName: string = configData.appName;
-    const electronPackageJson = readJSON(join(destDir, 'package.json'));
+    const platformPackageJson = readJSON(join(destDir, 'package.json'));
     const rootPackageJson = readJSON(join(usersProjectDir, 'package.json'));
-    electronPackageJson.name = appName;
+    platformPackageJson.name = appName;
     if (rootPackageJson.repository) {
-      electronPackageJson.repository = rootPackageJson.repository;
+      platformPackageJson.repository = rootPackageJson.repository;
     }
-    writePrettyJSON(join(destDir, 'package.json'), electronPackageJson);
+    taskInfoMessageProvider(`setting up electron project`)
+    writePrettyJSON(join(destDir, 'package.json'), platformPackageJson);
 
+    taskInfoMessageProvider(`installing npm modules`)
     await runExec(`cd ${destDir} && npm i`);
   } else {
     throw new Error('Electron platform already exists.');

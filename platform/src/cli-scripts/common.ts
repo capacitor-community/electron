@@ -2,6 +2,7 @@ import chalk from 'chalk';
 import { exec } from 'child_process';
 import { createHash } from 'crypto';
 import { readFileSync, existsSync, writeFileSync } from 'fs';
+import type { Ora } from 'ora';
 import { dirname, join, parse, resolve } from 'path';
 
 const enum PluginType {
@@ -171,7 +172,9 @@ export function resolveElectronPlugin(plugin: Plugin): string | null {
   }
 }
 
-type TaskInfoProvider = (messsage: string) => void;
+export type TaskInfoProvider = (messsage: string) => void;
+
+
 
 export async function runTask<T>(
   title: string,
@@ -181,21 +184,21 @@ export async function runTask<T>(
   const ora = require('ora');
   // eslint-disable-next-line @typescript-eslint/no-var-requires
   const chalk = require('chalk');
-  const spinner = ora(title).start();
+  let spinner: Ora = ora(title).start(`${title}`);
   try {
+    spinner = spinner.start(`${title}: ${chalk.dim('start 🚀')}`);
     const start = process.hrtime();
-    let taskInfoMessage;
-    const value = await fn((message: string) => (taskInfoMessage = message));
+    const value = await fn((message: string) => {
+      spinner = spinner.info();
+      spinner = spinner.start(`${title}: ${chalk.dim(message)}`)
+    });
+    spinner = spinner.info();
     const elapsed = process.hrtime(start);
-    if (taskInfoMessage) {
-      spinner.info(`${title} ${chalk.dim('– ' + taskInfoMessage)}`);
-    } else {
-      spinner.succeed(`${title} ${chalk.dim('in ' + formatHrTime(elapsed))}`);
-    }
+    spinner = spinner.succeed(`${title}: ${chalk.dim('completed in ' + formatHrTime(elapsed))}`);
     return value;
   } catch (e) {
-    spinner.fail(`${title}: ${e.message ? e.message : ''}`);
-    spinner.stop();
+    spinner = spinner.fail(`${title}: ${e.message ? e.message : ''}`);
+    spinner = spinner.stop();
     throw e;
   }
 }
