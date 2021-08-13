@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0-next.9](https://github.com/capacitor-community/electron/compare/v4.0.0-next.8...v4.0.0-next.9) (2021-08-13)
+
+
+### Features
+
+* more verbose cli messages and template tar.gz ([be58a72](https://github.com/capacitor-community/electron/commit/be58a724512c562afba264793a3e97c9bf547aef))
+
+
+
+
+
+
 # [4.0.0-next.8](https://github.com/capacitor-community/electron/compare/v4.0.0-next.7...v4.0.0-next.8) (2021-07-23)
 
 **Note:** Version bump only for package @capacitor-community/electron
