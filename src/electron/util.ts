@@ -114,16 +114,14 @@ export function setupCapacitorElectronPlugins() {
             const theCall = pluginRef[functionName]
             console.log('theCall')
             console.log(theCall)
-            const isPromise = theCall instanceof Promise || (theCall instanceof AsyncFunction)
+            const call = theCall.call(pluginRef, ...args);
+            const isPromise = theCall instanceof Promise || (theCall instanceof AsyncFunction) || call instanceof Promise;
             console.log('isPromise')
             console.log(isPromise)
-            let returnVal = null
             if (isPromise) {
-              returnVal = await theCall(...args)
-              event.reply(`${classKey}-${functionName}-reply`, returnVal || null)
+              event.reply(`${classKey}-${functionName}-reply`, (await call) ?? null)
             } else {
-              returnVal = theCall(...args)
-              event.returnValue = returnVal
+              event.returnValue = call;
             }
           })
         }
