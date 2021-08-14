@@ -93,6 +93,7 @@ export function setupCapacitorElectronPlugins() {
   const AsyncFunction = (async () => {}).constructor;
   const plugins: any = require(rtPluginsPath)
   const pluginFunctionsRegistry: any = {}
+  const pluginInstanceRegistry: Record<string, any> = {};
   for (const pluginKey of Object.keys(plugins)) {
     console.log(pluginKey)
     for (const classKey of Object.keys(plugins[pluginKey]).filter(
@@ -103,6 +104,7 @@ export function setupCapacitorElectronPlugins() {
       console.log('    ' + JSON.stringify(functionList))
       console.log('')
       if (!pluginFunctionsRegistry[classKey]) {
+        pluginInstanceRegistry[classKey] = new plugins[pluginKey][classKey]();
         pluginFunctionsRegistry[classKey] = {}
       }
       for (const functionName of functionList) {
@@ -110,7 +112,7 @@ export function setupCapacitorElectronPlugins() {
           pluginFunctionsRegistry[classKey][functionName] = ipcMain.on(`${classKey}-${functionName}`, async (event, ...args) => {
             console.log('args')
             console.log(args)
-            const pluginRef = new plugins[pluginKey][classKey]()
+            const pluginRef = pluginInstanceRegistry[classKey];
             const theCall = pluginRef[functionName]
             console.log('theCall')
             console.log(theCall)
