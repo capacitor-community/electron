@@ -1,12 +1,16 @@
 class CapacitorException extends Error {
   constructor(message, _code) {
-      super(message);
+    super(message);
   }
 }
 import { addPlatform, setPlatform } from "@capacitor/core";
 import type { PluginImplementations } from "@capacitor/core";
 const { ipcRenderer } = require("electron");
 const plugins = require("./electron-plugins");
+const crypto = require("crypto");
+
+const getRandomId = () => crypto.pseudoRandomBytes(5).toString("hex");
+
 addPlatform("electron", {
   name: "electron",
   getPlatform: () => {
@@ -176,20 +180,23 @@ for (const pluginKey of Object.keys(plugins)) {
           pluginRef[functionName] instanceof AsyncFunction;
         if (isPromise) {
           pluginsRegistry[classKey][functionName] = (...sendArgs: any) => {
+            const id = getRandomId();
             return new Promise((resolve, _reject) => {
               console.log(
                 `sending async ipc from renderer of channel: ${classKey}-${functionName}`
               );
-              const listener = (_event: any, returnedValue: unknown) => {
-                console.log("got reply of:", returnedValue);
-                ipcRenderer.removeListener(
-                  `${classKey}-${functionName}-reply`,
-                  listener
-                );
-                resolve(returnedValue);
+              const listener = (_event: any, returnedId: string, returnedValue: unknown) => {
+                if (returnedId === id) {
+                  console.log("got reply of:", returnedValue);
+                  ipcRenderer.removeListener(
+                    `${classKey}-${functionName}-reply`,
+                    listener
+                  );
+                  resolve(returnedValue);
+                }
               };
               ipcRenderer.on(`${classKey}-${functionName}-reply`, listener);
-              ipcRenderer.send(`${classKey}-${functionName}`, ...sendArgs);
+              ipcRenderer.send(`${classKey}-${functionName}`, id, ...sendArgs);
             });
           };
         } else {
@@ -199,6 +206,7 @@ for (const pluginKey of Object.keys(plugins)) {
             );
             return ipcRenderer.sendSync(
               `${classKey}-${functionName}`,
+              "",
               ...sendArgs
             );
           };
