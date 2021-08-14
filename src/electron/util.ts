@@ -108,26 +108,25 @@ export function setupCapacitorElectronPlugins() {
       for (const functionName of functionList) {
         if (!pluginFunctionsRegistry[classKey][functionName]) {
           pluginFunctionsRegistry[classKey][functionName] = ipcMain.on(`${classKey}-${functionName}`, async (event, id, ...args) => {
-              console.log('args')
-              console.log(args)
-              const pluginRef = new plugins[pluginKey][classKey]();
-              const theCall = pluginRef[functionName];
-              console.log("theCall");
-              console.log(theCall);
-              const isPromise =
-                theCall instanceof Promise || theCall instanceof AsyncFunction;
-              console.log("isPromise");
-              console.log(isPromise);
-              let returnVal = null;
-              if (isPromise) {
-                returnVal = await theCall(...args);
-                event.reply(`${classKey}-${functionName}-reply`, id, returnVal || null);
-              } else {
-                returnVal = theCall(...args);
-                event.returnValue = returnVal;
-              }
+            console.log('args')
+            console.log(args)
+            const pluginRef = new plugins[pluginKey][classKey]();
+            const theCall = pluginRef[functionName];
+            console.log("theCall");
+            console.log(theCall);
+            const isPromise =
+              theCall instanceof Promise || theCall instanceof AsyncFunction;
+            console.log("isPromise");
+            console.log(isPromise);
+            let returnVal = null;
+            if (isPromise) {
+              returnVal = await theCall(...args);
+              event.reply(`${classKey}-${functionName}-reply`, id, returnVal || null);
+            } else {
+              returnVal = theCall(...args);
+              event.returnValue = returnVal;
             }
-          );
+          });
         }
       }
     }
