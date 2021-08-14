@@ -1,6 +1,6 @@
 class CapacitorException extends Error {
   constructor(message, _code) {
-    super(message);
+      super(message);
   }
 }
 import { addPlatform, setPlatform } from "@capacitor/core";
@@ -18,15 +18,12 @@ addPlatform("electron", {
     jsImplementations: PluginImplementations = {}
   ) => {
     console.log(jsImplementations);
-    const registeredPlugin = (window as any).CapacitorElectronPlugins[
-      pluginName
-    ];
+    const registeredPlugin = (window as any).CapacitorElectronPlugins[pluginName];
     console.log("electron register plugin", pluginName);
     console.log(registeredPlugin);
     if (registeredPlugin) {
-      (window as any).Capacitor.Plugins[pluginName] = (
-        window as any
-      ).CapacitorElectronPlugins[pluginName];
+      (window as any).Capacitor.Plugins[pluginName] =
+        (window as any).CapacitorElectronPlugins[pluginName];
       return (window as any).CapacitorElectronPlugins[pluginName];
     } else {
       console.log("load web imp");
@@ -164,7 +161,7 @@ const pluginsRegistry: any = {};
 const AsyncFunction = (async () => {}).constructor;
 for (const pluginKey of Object.keys(plugins)) {
   for (const classKey of Object.keys(plugins[pluginKey]).filter(
-    (className) => className !== "default"
+    className => className !== 'default',
   )) {
     const functionList = Object.getOwnPropertyNames(
       plugins[pluginKey][classKey].prototype
