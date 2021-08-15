@@ -9,6 +9,7 @@ const { ipcRenderer } = require("electron");
 const plugins = require("./electron-plugins");
 addPlatform("electron", {
   name: "electron",
+  isNativePlatform: () => true,
   getPlatform: () => {
     return "electron";
   },
