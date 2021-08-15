@@ -13,6 +13,7 @@ const getRandomId = () => crypto.pseudoRandomBytes(5).toString("hex");
 
 addPlatform("electron", {
   name: "electron",
+  isNativePlatform: () => true,
   getPlatform: () => {
     return "electron";
   },
@@ -161,6 +162,7 @@ addPlatform("electron", {
 });
 setPlatform("electron");
 const pluginsRegistry: any = {};
+const pluginInstanceRegistry: Record<string, any> = {};
 const AsyncFunction = (async () => {}).constructor;
 for (const pluginKey of Object.keys(plugins)) {
   for (const classKey of Object.keys(plugins[pluginKey]).filter(
@@ -170,11 +172,12 @@ for (const pluginKey of Object.keys(plugins)) {
       plugins[pluginKey][classKey].prototype
     ).filter((v) => v !== "constructor");
     if (!pluginsRegistry[classKey]) {
+      pluginInstanceRegistry[classKey] = new plugins[pluginKey][classKey]();
       pluginsRegistry[classKey] = {};
     }
     for (const functionName of functionList) {
       if (!pluginsRegistry[classKey][functionName]) {
-        const pluginRef = new plugins[pluginKey][classKey]();
+        const pluginRef = pluginInstanceRegistry[classKey];
         const isPromise =
           pluginRef[functionName] instanceof Promise ||
           pluginRef[functionName] instanceof AsyncFunction;
