@@ -130,7 +130,7 @@ export function setupCapacitorElectronPlugins() {
             console.log('isPromise')
             console.log(isPromise)
             if (isPromise) {
-              event.reply(`${classKey}-${functionName}-reply`, (await call) ?? null)
+              event.reply(`${classKey}-${functionName}-reply`, id, (await call) ?? null)
             } else {
               event.returnValue = call;
             }
