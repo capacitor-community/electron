@@ -1,3 +1,5 @@
+import { CapacitorConfig } from "@capacitor/cli";
+
 export interface SplashOptions {
   imageFilePath?: string;
   windowWidth?: number;
@@ -18,3 +20,5 @@ export interface CapacitorElectronConfig {
   deepLinkingEnabled?: boolean;
   deepLinkingCustomProtocol?: string;
 }
+
+export type ElectronCapacitorConfig = CapacitorConfig & { electron: CapacitorElectronConfig }
