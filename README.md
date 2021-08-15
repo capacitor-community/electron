@@ -7,7 +7,7 @@ Capacitor community support for the Electron platform.
 </p>
 <p align="center">
   <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-<a href="#contributors"><img src="https://img.shields.io/badge/all%20contributors-10-orange?style=flat-square" /></a>
+<a href="#contributors"><img src="https://img.shields.io/badge/all%20contributors-11-orange?style=flat-square" /></a>
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
   <a href="https://www.electronjs.org/releases/stable?version=12"><img src="https://img.shields.io/badge/supported%20electron%20version-~13.1.3-blue?style=flat-square" /></a>
 </p>
@@ -60,6 +60,7 @@ While this platform strives to be as much inline with current secure practices a
     <td align="center"><a href="https://github.com/jgoux"><img src="https://avatars0.githubusercontent.com/u/1443499?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Julien Goux</b></sub></a><br /><a href="https://github.com/capacitor-community/electron/commits?author=jgoux" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/MathisTLD"><img src="https://avatars.githubusercontent.com/u/42317770?v=4?s=75" width="75px;" alt=""/><br /><sub><b>MathisTLD</b></sub></a><br /><a href="https://github.com/capacitor-community/electron/commits?author=MathisTLD" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/challenger71498"><img src="https://avatars.githubusercontent.com/u/43464986?v=4?s=75" width="75px;" alt=""/><br /><sub><b>challenger71498</b></sub></a><br /><a href="https://github.com/capacitor-community/electron/commits?author=challenger71498" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/jdgjsag67251"><img src="https://avatars.githubusercontent.com/u/88368191?v=4?s=75" width="75px;" alt=""/><br /><sub><b>jdgjsag67251</b></sub></a><br /><a href="https://github.com/capacitor-community/electron/commits?author=jdgjsag67251" title="Code">💻</a></td>
   </tr>
 </table>
 
