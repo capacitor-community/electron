@@ -118,7 +118,7 @@ export function setupCapacitorElectronPlugins() {
       }
       for (const functionName of functionList) {
         if (!pluginFunctionsRegistry[classKey][functionName]) {
-          pluginFunctionsRegistry[classKey][functionName] = ipcMain.on(`${classKey}-${functionName}`, async (event, ...args) => {
+          pluginFunctionsRegistry[classKey][functionName] = ipcMain.on(`${classKey}-${functionName}`, async (event, id, ...args) => {
             console.log('args')
             console.log(args)
             const pluginRef = pluginInstanceRegistry[classKey];
@@ -130,11 +130,11 @@ export function setupCapacitorElectronPlugins() {
             console.log('isPromise')
             console.log(isPromise)
             if (isPromise) {
-              event.reply(`${classKey}-${functionName}-reply`, (await call) ?? null)
+              event.reply(`${classKey}-${functionName}-reply`, id, (await call) ?? null)
             } else {
               event.returnValue = call;
             }
-          })
+          });
         }
       }
     }
