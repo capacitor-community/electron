@@ -1,3 +1,4 @@
+import type {CapacitorElectronConfig} from '@capacitor-community/electron';
 import {
   CapElectronEventEmitter,
   CapacitorSplashScreen,
@@ -56,7 +57,7 @@ export class ElectronCapacitorApp {
   private MainWindow: BrowserWindow | null = null;
   private SplashScreen: CapacitorSplashScreen | null = null;
   private TrayIcon: Tray | null = null;
-  private CapacitorFileConfig: any;
+  private CapacitorFileConfig: CapacitorElectronConfig;
   private TrayMenuTemplate: (MenuItem | MenuItemConstructorOptions)[] = [
     new MenuItem({ label: 'Quit App', role: 'quit' }),
   ];
@@ -69,14 +70,14 @@ export class ElectronCapacitorApp {
   private customScheme: string;
 
   constructor(
-    capacitorFileConfig: any,
+    capacitorFileConfig: CapacitorElectronConfig,
     trayMenuTemplate?: (MenuItemConstructorOptions | MenuItem)[],
     appMenuBarMenuTemplate?: (MenuItemConstructorOptions | MenuItem)[],
   ) {
     this.CapacitorFileConfig = capacitorFileConfig;
 
     this.customScheme =
-      this.CapacitorFileConfig.customUrlScheme ?? 'capacitor-electron';
+      this.CapacitorFileConfig.electron.customUrlScheme ?? 'capacitor-electron';
 
     if (trayMenuTemplate) {
       this.TrayMenuTemplate = trayMenuTemplate;
@@ -108,6 +109,13 @@ export class ElectronCapacitorApp {
   }
 
   async init(): Promise<void> {
+    const icon = nativeImage.createFromPath(
+      join(
+        app.getAppPath(),
+        "assets",
+        process.platform === "win32" ? "appIcon.ico" : "appIcon.png"
+      )
+    );
     this.mainWindowState = windowStateKeeper({
       defaultWidth: 1000,
       defaultHeight: 800,
@@ -115,6 +123,7 @@ export class ElectronCapacitorApp {
     // Setup preload script path and construct our main window.
     const preloadPath = join(app.getAppPath(), 'build', 'src', 'preload.js');
     this.MainWindow = new BrowserWindow({
+      icon,
       show: false,
       x: this.mainWindowState.x,
       y: this.mainWindowState.y,
@@ -130,6 +139,10 @@ export class ElectronCapacitorApp {
     });
     this.mainWindowState.manage(this.MainWindow);
 
+    if (this.CapacitorFileConfig.electron.backgroundColor) {
+      this.MainWindow.setBackgroundColor(this.CapacitorFileConfig.electron.backgroundColor);
+    }
+
     // If we close the main window with the splashscreen enabled we need to destory the ref.
     this.MainWindow.on('closed', () => {
       if (
@@ -141,16 +154,8 @@ export class ElectronCapacitorApp {
     });
 
     // When the tray icon is enabled, setup the options.
-    if (this.CapacitorFileConfig.trayIconAndMenuEnabled) {
-      this.TrayIcon = new Tray(
-        nativeImage.createFromPath(
-          join(
-            app.getAppPath(),
-            'assets',
-            process.platform === 'win32' ? 'appIcon.ico' : 'appIcon.png',
-          ),
-        ),
-      );
+    if (this.CapacitorFileConfig.electron.trayIconAndMenuEnabled) {
+      this.TrayIcon = new Tray(icon);
       this.TrayIcon.on('double-click', () => {
         if (this.MainWindow) {
           if (this.MainWindow.isVisible()) {
@@ -183,12 +188,12 @@ export class ElectronCapacitorApp {
     );
 
     // If the splashscreen is enabled, show it first while the main window loads then dwitch it out for the main window, or just load the main window from the start.
-    if (this.CapacitorFileConfig.splashScreenEnabled) {
+    if (this.CapacitorFileConfig.electron.splashScreenEnabled) {
       this.SplashScreen = new CapacitorSplashScreen({
         imageFilePath: join(
           app.getAppPath(),
           'assets',
-          this.CapacitorFileConfig.splashScreenImageName ?? 'splash.png',
+          this.CapacitorFileConfig.electron.splashScreenImageName ?? 'splash.png',
         ),
         windowWidth: 400,
         windowHeight: 400,
@@ -217,10 +222,10 @@ export class ElectronCapacitorApp {
 
     // When the web app is loaded we hide the splashscreen if needed and show the mainwindow.
     this.MainWindow.webContents.on('dom-ready', () => {
-      if (this.CapacitorFileConfig.splashScreenEnabled) {
+      if (this.CapacitorFileConfig.electron.splashScreenEnabled) {
         this.SplashScreen.getSplashWindow().hide();
       }
-      if (!this.CapacitorFileConfig.hideMainWindowOnLaunch) {
+      if (!this.CapacitorFileConfig.electron.hideMainWindowOnLaunch) {
         this.MainWindow.show();
       }
       setTimeout(() => {

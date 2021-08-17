@@ -1,3 +1,5 @@
+import type { CapacitorConfig } from "@capacitor/cli";
+
 export interface SplashOptions {
   imageFilePath?: string;
   windowWidth?: number;
@@ -9,7 +11,7 @@ export interface ElectronCapacitorDeeplinkingConfig {
   customHandler?: (url: string) => void;
 }
 
-export interface CapacitorElectronConfig {
+export interface ElectronConfig {
   customUrlScheme?: string;
   trayIconAndMenuEnabled?: boolean;
   splashScreenEnabled?: boolean;
@@ -17,4 +19,9 @@ export interface CapacitorElectronConfig {
   hideMainWindowOnLaunch?: boolean;
   deepLinkingEnabled?: boolean;
   deepLinkingCustomProtocol?: string;
+  backgroundColor?: string;
+  appId?: string;
+  appName?: string;
 }
+
+export type CapacitorElectronConfig = CapacitorConfig & { electron?: ElectronConfig }

@@ -73,6 +73,15 @@ export function deepMerge(target: any, _objects: any[] = []): any {
   return output;
 }
 
+export function pick<T>(
+  object: Record<string, T>,
+  keys: string[]
+): Record<string, T> {
+  return Object.fromEntries(
+    Object.entries(object).filter(([key]) => keys.includes(key))
+  );
+}
+
 export function setupCapacitorElectronPlugins(): void {
   const rtPluginsPath = join(
     app.getAppPath(),
@@ -122,13 +131,13 @@ export async function encodeFromFile(filePath: string): Promise<string> {
   }
   let mediaType = mimeTypes.lookup(filePath);
   if (!mediaType) {
-    throw new Error('Media type unreconized.');
+    throw new Error('Media type unrecognized.');
   } else if (typeof mediaType === 'string') {
     const fileData = readFileSync(filePath);
     mediaType = /\//.test(mediaType) ? mediaType : 'image/' + mediaType;
     const dataBase64 = Buffer.isBuffer(fileData)
       ? fileData.toString('base64')
-      : new Buffer(fileData).toString('base64');
+      : Buffer.from(fileData).toString('base64');
     return 'data:' + mediaType + ';base64,' + dataBase64;
   }
 }
@@ -148,6 +157,6 @@ export function getCapacitorElectronConfig(): CapacitorElectronConfig {
     );
   }
   if (capFileConfig.electron)
-    config = deepMerge(config, [capFileConfig.electron]);
+    config = deepMerge(config, [capFileConfig]);
   return config;
 }
