@@ -1,3 +1,11 @@
+## [3.1.0](https://github.com/capacitor-community/electron/compare/v3.0.4...v3.1.0) (2021-08-17)
+
+
+### Documentation
+
+* update .all-contributorsrc [skip ci] ([3665dda](https://github.com/capacitor-community/electron/commit/3665dda93506b369d7fe36b33093bda2bd2e717c))
+* update README.md [skip ci] ([d551402](https://github.com/capacitor-community/electron/commit/d551402b3cf6580d54792f0b847637e06166afaf))
+
 ### [3.0.4](https://github.com/capacitor-community/electron/compare/v3.0.3...v3.0.4) (2021-08-11)
 
 
