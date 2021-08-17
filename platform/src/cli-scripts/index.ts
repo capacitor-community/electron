@@ -9,7 +9,7 @@ async function doUpdateTask() {
   return await runTask(
     'Updating Electron plugins',
     async taskInfoMessageProvider => {
-      return await doUpdate();
+      return await doUpdate(taskInfoMessageProvider);
     },
   );
 }
@@ -36,7 +36,7 @@ async function doOpenTask() {
   return await runTask(
     'Opening Electron platform',
     async taskInfoMessageProvider => {
-      return await doOpen();
+      return await doOpen(taskInfoMessageProvider);
     },
   );
 }
@@ -54,6 +54,8 @@ async function doOpenTask() {
         await doCopyTask();
         break;
       case 'run':
+        await doOpenTask();
+        break;
       case 'open':
         await doOpenTask();
         break;

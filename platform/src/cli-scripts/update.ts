@@ -2,6 +2,7 @@ import { existsSync, writeFileSync } from 'fs';
 import { copySync } from 'fs-extra';
 import { join, isAbsolute, resolve, relative } from 'path';
 
+import type { TaskInfoProvider } from './common';
 import {
   readJSON,
   resolvePlugin,
@@ -9,7 +10,9 @@ import {
   runExec,
 } from './common';
 
-export async function doUpdate(): Promise<void> {
+export async function doUpdate(
+  taskInfoMessageProvider: TaskInfoProvider,
+): Promise<void> {
   const usersProjectDir = process.env.CAPACITOR_ROOT_DIR;
 
   const webAppPackageJson = await readJSON(
@@ -25,6 +28,9 @@ export async function doUpdate(): Promise<void> {
     ...dependencies,
     ...devDependencies,
   };
+
+  taskInfoMessageProvider('searching for plugins');
+
   // get all cap plugins installed
   let plugins = await Promise.all(
     Object.keys(deps).map(async p => resolvePlugin(p)),
@@ -57,6 +63,8 @@ export async function doUpdate(): Promise<void> {
     .filter(plugin => plugin.path !== null);
 
   let npmIStr = '';
+
+  taskInfoMessageProvider('generating electron-plugins.js');
 
   let outStr = `/* eslint-disable @typescript-eslint/no-var-requires */\n`;
   for (const electronPlugin of pluginMap) {
@@ -117,6 +125,7 @@ export async function doUpdate(): Promise<void> {
   );
 
   if (npmIStr.length > 0) {
+    taskInfoMessageProvider('installing electron plugin files');
     console.log(`\n\nWill install:${npmIStr}\n\n`);
     await runExec(`cd ${join(usersProjectDir, 'electron')} && npm i${npmIStr}`);
   }

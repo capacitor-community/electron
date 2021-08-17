@@ -77,7 +77,8 @@ export class ElectronCapacitorApp {
     this.CapacitorFileConfig = capacitorFileConfig;
 
     this.customScheme =
-      this.CapacitorFileConfig.electron.customUrlScheme ?? 'capacitor-electron';
+      this.CapacitorFileConfig.electron?.customUrlScheme ??
+      'capacitor-electron';
 
     if (trayMenuTemplate) {
       this.TrayMenuTemplate = trayMenuTemplate;
@@ -139,7 +140,7 @@ export class ElectronCapacitorApp {
     });
     this.mainWindowState.manage(this.MainWindow);
 
-    if (this.CapacitorFileConfig.electron.backgroundColor) {
+    if (this.CapacitorFileConfig.electron?.backgroundColor) {
       this.MainWindow.setBackgroundColor(
         this.CapacitorFileConfig.electron.backgroundColor,
       );
@@ -156,7 +157,7 @@ export class ElectronCapacitorApp {
     });
 
     // When the tray icon is enabled, setup the options.
-    if (this.CapacitorFileConfig.electron.trayIconAndMenuEnabled) {
+    if (this.CapacitorFileConfig.electron?.trayIconAndMenuEnabled) {
       this.TrayIcon = new Tray(icon);
       this.TrayIcon.on('double-click', () => {
         if (this.MainWindow) {
@@ -190,12 +191,12 @@ export class ElectronCapacitorApp {
     );
 
     // If the splashscreen is enabled, show it first while the main window loads then dwitch it out for the main window, or just load the main window from the start.
-    if (this.CapacitorFileConfig.electron.splashScreenEnabled) {
+    if (this.CapacitorFileConfig.electron?.splashScreenEnabled) {
       this.SplashScreen = new CapacitorSplashScreen({
         imageFilePath: join(
           app.getAppPath(),
           'assets',
-          this.CapacitorFileConfig.electron.splashScreenImageName ??
+          this.CapacitorFileConfig.electron?.splashScreenImageName ??
             'splash.png',
         ),
         windowWidth: 400,
@@ -225,10 +226,10 @@ export class ElectronCapacitorApp {
 
     // When the web app is loaded we hide the splashscreen if needed and show the mainwindow.
     this.MainWindow.webContents.on('dom-ready', () => {
-      if (this.CapacitorFileConfig.electron.splashScreenEnabled) {
+      if (this.CapacitorFileConfig.electron?.splashScreenEnabled) {
         this.SplashScreen.getSplashWindow().hide();
       }
-      if (!this.CapacitorFileConfig.electron.hideMainWindowOnLaunch) {
+      if (!this.CapacitorFileConfig.electron?.hideMainWindowOnLaunch) {
         this.MainWindow.show();
       }
       setTimeout(() => {

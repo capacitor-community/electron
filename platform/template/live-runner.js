@@ -13,6 +13,7 @@ const reloadWatcher = {
   restarting: false,
 };
 
+///*
 function runBuild() {
   return new Promise((resolve, _reject) => {
     let tempChild = cp.spawn(npmCmd, ['run', 'build']);
@@ -22,6 +23,7 @@ function runBuild() {
     tempChild.stdout.pipe(process.stdout);
   });
 }
+//*/
 
 async function spawnElectron() {
   if (child !== null) {
