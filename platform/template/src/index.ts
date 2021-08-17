@@ -43,7 +43,8 @@ const myCapacitorApp = new ElectronCapacitorApp(
 if (capacitorFileConfig.electron?.deepLinkingEnabled) {
   setupElectronDeepLinking(myCapacitorApp, {
     customProtocol:
-      capacitorFileConfig.electron.deepLinkingCustomProtocol ?? 'mycapacitorapp',
+      capacitorFileConfig.electron.deepLinkingCustomProtocol ??
+      'mycapacitorapp',
   });
 }
 

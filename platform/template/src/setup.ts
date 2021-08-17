@@ -1,4 +1,4 @@
-import type {CapacitorElectronConfig} from '@capacitor-community/electron';
+import type { CapacitorElectronConfig } from '@capacitor-community/electron';
 import {
   CapElectronEventEmitter,
   CapacitorSplashScreen,
@@ -112,9 +112,9 @@ export class ElectronCapacitorApp {
     const icon = nativeImage.createFromPath(
       join(
         app.getAppPath(),
-        "assets",
-        process.platform === "win32" ? "appIcon.ico" : "appIcon.png"
-      )
+        'assets',
+        process.platform === 'win32' ? 'appIcon.ico' : 'appIcon.png',
+      ),
     );
     this.mainWindowState = windowStateKeeper({
       defaultWidth: 1000,
@@ -140,7 +140,9 @@ export class ElectronCapacitorApp {
     this.mainWindowState.manage(this.MainWindow);
 
     if (this.CapacitorFileConfig.electron.backgroundColor) {
-      this.MainWindow.setBackgroundColor(this.CapacitorFileConfig.electron.backgroundColor);
+      this.MainWindow.setBackgroundColor(
+        this.CapacitorFileConfig.electron.backgroundColor,
+      );
     }
 
     // If we close the main window with the splashscreen enabled we need to destory the ref.
@@ -193,7 +195,8 @@ export class ElectronCapacitorApp {
         imageFilePath: join(
           app.getAppPath(),
           'assets',
-          this.CapacitorFileConfig.electron.splashScreenImageName ?? 'splash.png',
+          this.CapacitorFileConfig.electron.splashScreenImageName ??
+            'splash.png',
         ),
         windowWidth: 400,
         windowHeight: 400,

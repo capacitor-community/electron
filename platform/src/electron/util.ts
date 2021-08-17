@@ -75,10 +75,10 @@ export function deepMerge(target: any, _objects: any[] = []): any {
 
 export function pick<T>(
   object: Record<string, T>,
-  keys: string[]
+  keys: string[],
 ): Record<string, T> {
   return Object.fromEntries(
-    Object.entries(object).filter(([key]) => keys.includes(key))
+    Object.entries(object).filter(([key]) => keys.includes(key)),
   );
 }
 
@@ -156,7 +156,6 @@ export function getCapacitorElectronConfig(): CapacitorElectronConfig {
       readFileSync(join(app.getAppPath(), 'capacitor.config.json')).toString(),
     );
   }
-  if (capFileConfig.electron)
-    config = deepMerge(config, [capFileConfig]);
+  if (capFileConfig.electron) config = deepMerge(config, [capFileConfig]);
   return config;
 }

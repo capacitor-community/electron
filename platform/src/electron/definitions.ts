@@ -1,4 +1,4 @@
-import type { CapacitorConfig } from "@capacitor/cli";
+import type { CapacitorConfig } from '@capacitor/cli';
 
 export interface SplashOptions {
   imageFilePath?: string;
@@ -24,4 +24,6 @@ export interface ElectronConfig {
   appName?: string;
 }
 
-export type CapacitorElectronConfig = CapacitorConfig & { electron?: ElectronConfig }
+export type CapacitorElectronConfig = CapacitorConfig & {
+  electron?: ElectronConfig;
+};
