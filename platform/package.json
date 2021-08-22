@@ -1,0 +1,60 @@
+{
+  "name": "@capacitor-community/electron",
+  "version": "4.0.0",
+  "description": "Capacitor community support for the Electron platform.",
+  "main": "dist/core/index.js",
+  "typings": "dist/core/index.d.ts",
+  "scripts": {
+    "lint": "npm run eslint && npm run prettier -- --check",
+    "fmt": "npm run eslint -- --fix && npm run prettier -- --write",
+    "clean": "rimraf ./dist",
+    "build": "npm run clean && npm run fmt && npm run build-platform",
+    "capacitor:add": "node dist/cli-scripts/cap-scripts.js add",
+    "capacitor:copy": "node dist/cli-scripts/cap-scripts.js copy",
+    "capacitor:update": "node dist/cli-scripts/cap-scripts.js update",
+    "capacitor:sync": "node dist/cli-scripts/cap-scripts.js sync",
+    "capacitor:open": "node dist/cli-scripts/cap-scripts.js open",
+    "build-platform": "node ./build-platform.js",
+    "prettier": "prettier \"**/*.{css,html,js,mjs,ts}\"",
+    "eslint": "eslint . --ext ts"
+  },
+  "license": "MIT",
+  "author": "IT-MikeS",
+  "devDependencies": {
+    "@ionic/eslint-config": "^0.3.0",
+    "@ionic/prettier-config": "^1.0.1",
+    "@types/events": "~3.0.0",
+    "@types/fs-extra": "~9.0.11",
+    "@types/node": "~14.17.4",
+    "conventional-changelog-cli": "~2.1.1",
+    "conventional-changelog-conventionalcommits": "~4.6.0",
+    "electron": "~13.1.6",
+    "esbuild": "~0.12.15",
+    "eslint": "~7.27.0",
+    "np": "~7.5.0",
+    "prettier": "2.3.2",
+    "rimraf": "~3.0.2",
+    "tar": "^6.1.7",
+    "tslib": "~2.3.0",
+    "typescript": "~4.3.5"
+  },
+  "dependencies": {
+    "@capacitor/cli": "^3.1.1",
+    "@capacitor/core": "^3.1.1",
+    "@ionic/utils-fs": "~3.1.5",
+    "chalk": "~4.1.1",
+    "electron-is-dev": "~2.0.0",
+    "events": "~3.3.0",
+    "fs-extra": "~9.1.0",
+    "mime-types": "~2.1.31",
+    "ora": "~5.4.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/capacitor-community/electron"
+  },
+  "bugs": {
+    "url": "https://github.com/capacitor-community/electron/issues"
+  },
+  "gitHead": "9098fd1a4867a0a49b771a2de396d9f7b636f023"
+}

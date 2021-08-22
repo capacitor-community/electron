@@ -54,6 +54,7 @@
     "@ionic/prettier-config": "~1.0.1",
     "@ionic/swiftlint-config": "^1.1.2",
     "@rollup/plugin-commonjs": "^19.0.0",
+    "@rollup/plugin-node-resolve": "^13.0.0",
     "eslint": "^7.11.0",
     "esm": "^3.2.25",
     "prettier": "~2.3.0",
