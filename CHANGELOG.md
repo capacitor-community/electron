@@ -113,6 +113,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
+<<<<<<< HEAD
 * check if repo is defined ([8e89791](https://github.com/capacitor-community/electron/commit/8e89791f7f3d5a083f59623c46b4ecf622d8acac))
 * fmt ([20efec8](https://github.com/capacitor-community/electron/commit/20efec8dfb5ad26e3d1dfd78a62f0791011164e7))
 
@@ -123,10 +124,22 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * update readme ([10fc977](https://github.com/capacitor-community/electron/commit/10fc977f764bae4a9690e059897ee56f7f160614))
 
 ## [4.0.0-alpha.12](https://github.com/capacitor-community/electron/compare/v4.0.0-alpha.11...v4.0.0-alpha.12) (2021-07-18)
+=======
+* plugins with default exports causing issues [#2](https://github.com/capacitor-community/electron/issues/2) ([669c80b](https://github.com/capacitor-community/electron/commit/669c80bbf608b497fccaa6897680d2c80cb1c217))
+
+
+### Documentation
+
+* update .all-contributorsrc [skip ci] ([3148588](https://github.com/capacitor-community/electron/commit/31485884aacb0fae4fe254a210223f7eaf309cfc))
+* update README.md [skip ci] ([226250e](https://github.com/capacitor-community/electron/commit/226250e95f45ab274562e99a4d3c267e43f926f1))
+
+### [3.0.3](https://github.com/capacitor-community/electron/compare/v3.0.2...v3.0.3) (2021-08-11)
+>>>>>>> main
 
 
 ### Bug Fixes
 
+<<<<<<< HEAD
 * window state startup error ([6a6b4b9](https://github.com/capacitor-community/electron/commit/6a6b4b9b58b209c4293a8de59781c9e90fbc787b))
 
 ## [4.0.0-alpha.11](https://github.com/capacitor-community/electron/compare/v4.0.0-alpha.10...v4.0.0-alpha.11) (2021-07-17)
@@ -263,12 +276,22 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Bug Fixes
 
 * wrong param name in expose fn ([1ef5aba](https://github.com/capacitor-community/electron/commit/1ef5abacae7b6b5a24e3843cd2a1c1daad5cf6b3))
+=======
+* plugins with default exports causing issues ([50b3c37](https://github.com/capacitor-community/electron/commit/50b3c3705e5692d025342c0aec3d3f773cfb6ff9))
+
+### [3.0.2](https://github.com/capacitor-community/electron/compare/v3.0.1...v3.0.2) (2021-07-22)
+>>>>>>> main
 
 
 ### Chores
 
+<<<<<<< HEAD
 * comment clean up ([2a4842d](https://github.com/capacitor-community/electron/commit/2a4842ddc2f5da1004f3ad721c338b4ec23c27d4))
 * template cleanup ([1132b6c](https://github.com/capacitor-community/electron/commit/1132b6c617e6fb9ee556a62b8a87962c8b4126c5))
+=======
+* correct npm ignore ([c22dabc](https://github.com/capacitor-community/electron/commit/c22dabc88e29897b3b5567f8ac02b299a84bddd0))
+* update plugin example ([4ce5fbc](https://github.com/capacitor-community/electron/commit/4ce5fbc49cda07bccbd6f3941c3a489d574219d2))
+>>>>>>> main
 
 ### [3.0.1](https://github.com/capacitor-community/electron/compare/v3.0.0...v3.0.1) (2021-06-22)
 
@@ -1203,6 +1226,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * **platform:** add template tsconfig missed option ([de4f439](https://github.com/capacitor-community/electron/commit/de4f43929b01ab9433cf7082ef9ace1b27425301))
 * **platform:** swap requires to imports ([ccf7df6](https://github.com/capacitor-community/electron/commit/ccf7df6e5a2bacbce620bf19e7cfab7a27c9f85b))
 * typings wrong version for LTS node ([fb3f974](https://github.com/capacitor-community/electron/commit/fb3f97421b3eb1bd36e539e2f3c77c605ba03190))
+<<<<<<< HEAD
+=======
+
+
+### Refactors
+
+* change to just template named folder ([e924cc3](https://github.com/capacitor-community/electron/commit/e924cc383546982f03204bcc627ba43ffa62cf2e))
+>>>>>>> main
 
 
 ### Chores

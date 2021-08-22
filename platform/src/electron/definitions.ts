@@ -19,11 +19,21 @@ export interface ElectronConfig {
   hideMainWindowOnLaunch?: boolean;
   deepLinkingEnabled?: boolean;
   deepLinkingCustomProtocol?: string;
+<<<<<<< HEAD:platform/src/electron/definitions.ts
+=======
+}
+
+export interface CapacitorElectronExtendedConfig extends CapacitorElectronConfig {
+>>>>>>> main:src/electron/definitions.ts
   backgroundColor?: string;
   appId?: string;
   appName?: string;
 }
 
+<<<<<<< HEAD:platform/src/electron/definitions.ts
 export type CapacitorElectronConfig = CapacitorConfig & {
   electron?: ElectronConfig;
 };
+=======
+export type ElectronCapacitorConfig = CapacitorConfig & { electron: CapacitorElectronConfig }
+>>>>>>> main:src/electron/definitions.ts
