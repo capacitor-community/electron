@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0](https://github.com/capacitor-community/electron/compare/v4.0.0-next.12...v4.0.0) (2021-08-22)
+
+
+
+# [3.1.0](https://github.com/capacitor-community/electron/compare/v4.0.0-next.10...v3.1.0) (2021-08-17)
+
+
+
+## [3.0.4](https://github.com/capacitor-community/electron/compare/v3.0.3...v3.0.4) (2021-08-11)
+
+
+### Bug Fixes
+
+* plugins with default exports causing issues [#2](https://github.com/capacitor-community/electron/issues/2) ([669c80b](https://github.com/capacitor-community/electron/commit/669c80bbf608b497fccaa6897680d2c80cb1c217))
+
+
+
+## [3.0.3](https://github.com/capacitor-community/electron/compare/v4.0.0-next.8...v3.0.3) (2021-08-11)
+
+
+### Bug Fixes
+
+* plugins with default exports causing issues ([50b3c37](https://github.com/capacitor-community/electron/commit/50b3c3705e5692d025342c0aec3d3f773cfb6ff9))
+
+
+
+## [3.0.2](https://github.com/capacitor-community/electron/compare/v4.0.0-alpha.13...v3.0.2) (2021-07-22)
+
+
+
+
+
+
 # [4.0.0-next.12](https://github.com/capacitor-community/electron/compare/v4.0.0-next.11...v4.0.0-next.12) (2021-08-18)
 
 **Note:** Version bump only for package capacitor-electron-platform
