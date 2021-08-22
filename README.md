@@ -25,7 +25,7 @@ Bring your Capacitor ⚡ apps to the desktop with Electron! 🖥
 - Plugins from previous versions `@capacitor-community/electron` will not function in V4, however all web plugins will continue to function as normal.
 - V4 comes with no plugins out of the box like previous versions. Instead V4 follows Capacitor in seperated plugins, see [Plugin Examples Directory](https://github.com/capacitor-community/electron/tree/main/plugin-examples) for examples.
 
-## 📖 Documentation (Not Updated for V4):
+## 📖 Documentation:
 
 [You can find the docs site here.](https://capacitor-community.github.io/electron/)
 
