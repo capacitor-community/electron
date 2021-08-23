@@ -13,17 +13,17 @@ Bring your Capacitor ⚡ apps to the desktop with Electron! 🖥
   <a href="https://www.electronjs.org/releases/stable?version=13"><img src="https://img.shields.io/badge/supported%20electron%20version-~13.1.9-blue" /></a>
 </p>
 <p align="center">
-  <a href="https://npmjs.com/package/@capacitor-community/electron"><img src="https://img.shields.io/npm/v/@capacitor-community/electron/next.svg" /></a>
+  <a href="https://npmjs.com/package/@capacitor-community/electron"><img src="https://img.shields.io/npm/v/@capacitor-community/electron.svg" /></a>
   <a href="https://npmjs.com/package/@capacitor-community/electron"><img alt="npm" src="https://img.shields.io/npm/dw/@capacitor-community/electron"></a>
   <a href="https://npmjs.com/package/@capacitor-community/electron"><img src="https://img.shields.io/npm/l/@capacitor-community/electron.svg?color=blue" /></a>
   <a href="https://github.com/capacitor-community/electron"><img alt="GitHub Workflow Status" src="https://img.shields.io/github/workflow/status/capacitor-community/electron/CI/next"></a>
 </p>
 
 ## ⚠ Version 4 Info
-- You will need a local build of  the `@capacitor/core` via `npm link` or local install using the [repo](https://github.com/ionic-team/capacitor) until `3.2.0`+ is released.
+- You will `3.2.0`+ of capcitor.
 - The template and inner workings have changed a lot, a migration guide will be done but for now creating a new project to tinker with before migrating main projects is a good idea.
 - Plugins from previous versions `@capacitor-community/electron` will not function in V4, however all web plugins will continue to function as normal.
-- V4 comes with no plugins out of the box like previous versions. Instead V4 follows Capacitor in seperated plugins, see [Plugin Examples Directory](https://github.com/capacitor-community/electron/tree/main/plugin-examples) for examples.
+- V4 comes with no plugins out of the box. Instead V4 follows Capacitor in seperated plugins, see [Plugin Examples Directory](https://github.com/capacitor-community/electron/tree/main/plugin-examples) for examples.
 
 ## 📖 Documentation:
 
