@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.2](https://github.com/capacitor-community/electron/compare/v4.0.1...v4.0.2) (2021-08-24)
+
+
+### Bug Fixes
+
+* update method fixs and plugin calls fix ([20c69a3](https://github.com/capacitor-community/electron/commit/20c69a3d334e065430900c0a875615dc84d2da84))
+
+
+
+
+
 ## [4.0.1](https://github.com/capacitor-community/electron/compare/v4.0.0...v4.0.1) (2021-08-24)
 
 
