@@ -1,3 +1,4 @@
+import type { CapacitorConfig } from '@capacitor/cli';
 import chalk from 'chalk';
 import { exec } from 'child_process';
 import { createHash } from 'crypto';
@@ -39,6 +40,103 @@ interface Plugin {
     type: PluginType;
     path: string;
   };
+}
+
+type DeepReadonly<T> = { readonly [P in keyof T]: DeepReadonly<T[P]> };
+
+export type ExternalConfig = DeepReadonly<CapacitorConfig>;
+interface Config {
+  readonly app: AppConfig;
+}
+interface AppConfig {
+  readonly rootDir: string;
+  readonly appId: string;
+  readonly appName: string;
+  readonly webDir: string;
+  readonly webDirAbs: string;
+  readonly package: PackageJson;
+  readonly extConfigType: 'json' | 'js' | 'ts';
+  readonly extConfigName: string;
+  readonly extConfigFilePath: string;
+  readonly extConfig: ExternalConfig;
+  /**
+   * Whether to use a bundled web runtime instead of relying on a bundler/module
+   * loader. If you're not using something like rollup or webpack or dynamic ES
+   * module imports, set this to "true" and import "capacitor.js" manually.
+   */
+  readonly bundledWebRuntime: boolean;
+}
+interface PackageJson {
+  readonly name: string;
+  readonly version: string;
+  readonly dependencies?: { readonly [key: string]: string | undefined };
+  readonly devDependencies?: { readonly [key: string]: string | undefined };
+}
+
+export async function getPlugins(packageJsonPath: string): Promise<Plugin[]> {
+  const packageJson: PackageJson = (await readJSON(
+    packageJsonPath,
+  )) as PackageJson;
+  //console.log(packageJson);
+  const possiblePlugins = getDependencies(packageJson);
+  //console.log(possiblePlugins);
+  const resolvedPlugins = await Promise.all(
+    possiblePlugins.map(async p => resolvePlugin(p)),
+  );
+
+  return resolvedPlugins.filter(p => !!p);
+}
+
+export function getDependencies(packageJson: PackageJson): string[] {
+  return [
+    ...Object.keys(packageJson.dependencies ?? {}),
+    ...Object.keys(packageJson.devDependencies ?? {}),
+  ];
+}
+
+export async function resolvePlugin(name: string): Promise<Plugin | null> {
+  try {
+    const usersProjectDir = process.env.CAPACITOR_ROOT_DIR;
+    const packagePath = resolveNode(usersProjectDir, name, 'package.json');
+    if (!packagePath) {
+      console.error(
+        `\nUnable to find ${chalk.bold(`node_modules/${name}`)}.\n` +
+          `Are you sure ${chalk.bold(name)} is installed?`,
+      );
+    }
+
+    const rootPath = dirname(packagePath);
+    const meta = await readJSON(packagePath);
+    if (!meta) {
+      return null;
+    }
+    if (meta.capacitor) {
+      return {
+        id: name,
+        name: fixName(name),
+        version: meta.version,
+        rootPath,
+        repository: meta.repository,
+        manifest: meta.capacitor,
+      };
+    }
+  } catch (e) {
+    // ignore
+  }
+  return null;
+}
+
+export function resolveNode(
+  root: string,
+  ...pathSegments: string[]
+): string | null {
+  try {
+    const t = require.resolve(pathSegments.join('/'), { paths: [root] });
+    //console.log(t);
+    return t;
+  } catch (e) {
+    return null;
+  }
 }
 
 export function errorLog(message: string): void {
@@ -84,25 +182,6 @@ export function hashJsFileName(filename: string, slt: number): string {
   return `${filename}-${hash}.js`;
 }
 
-export function resolveNode(...pathSegments: string[]): string {
-  const id = pathSegments[0];
-  const path = pathSegments.slice(1);
-
-  let modulePath;
-  const starts = [getCwd()];
-  for (const start of starts) {
-    modulePath = resolveNodeFrom(start, id);
-    if (modulePath) {
-      break;
-    }
-  }
-  if (!modulePath) {
-    return null;
-  }
-
-  return join(modulePath, ...path);
-}
-
 export function writePrettyJSON(path: string, data: any): void {
   return writeFileSync(path, JSON.stringify(data, null, '  ') + '\n');
 }
@@ -120,43 +199,6 @@ export function resolveNodeFrom(start: string, id: string): string | null {
       return null;
     }
     basePath = dirname(basePath);
-  }
-}
-
-export async function resolvePlugin(name: string): Promise<{
-  id: string;
-  name: string;
-  version: any;
-  rootPath: string;
-  repository: any;
-  manifest: any;
-}> {
-  try {
-    const rootPath = resolveNode(name);
-    if (!rootPath) {
-      console.error(
-        `Unable to find node_modules/${name}. Are you sure ${name} is installed?`,
-      );
-      return null;
-    }
-
-    const packagePath = join(rootPath, 'package.json');
-    const meta = await readJSON(packagePath);
-    if (!meta) {
-      return null;
-    }
-    if (meta.capacitor) {
-      return {
-        id: name,
-        name: fixName(name),
-        version: meta.version,
-        rootPath: rootPath,
-        repository: meta.repository,
-        manifest: meta.capacitor,
-      };
-    }
-  } catch (e) {
-    return null;
   }
 }
 

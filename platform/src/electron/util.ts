@@ -83,6 +83,7 @@ export function pick<T>(
 }
 
 export function setupCapacitorElectronPlugins(): void {
+  console.log('in setupCapacitorElectronPlugins');
   const rtPluginsPath = join(
     app.getAppPath(),
     'build',
@@ -96,26 +97,31 @@ export function setupCapacitorElectronPlugins(): void {
   const plugins: {
     [pluginName: string]: { [className: string]: any };
   } = require(rtPluginsPath);
+  console.log(plugins);
   for (const pluginKey of Object.keys(plugins)) {
+    console.log(`${pluginKey}`);
     for (const classKey of Object.keys(plugins[pluginKey]).filter(
       className => className !== 'default',
     )) {
+      console.log(`-> ${classKey}`);
       const functionList = Object.getOwnPropertyNames(
         plugins[pluginKey][classKey].prototype,
       ).filter(v => v !== 'constructor');
       for (const functionName of functionList) {
+        console.log(`--> ${functionName}`);
         ipcMain.handle(
           `${classKey}-${functionName}`,
           async (_event, ...args) => {
+            console.log(`called ipcMain.handle: ${classKey}-${functionName}`);
             const pluginRef = new plugins[pluginKey][classKey]();
             const theCall = pluginRef[functionName];
             const isPromise =
               theCall instanceof Promise || theCall instanceof AsyncFunction;
             let returnVal = null;
             if (isPromise) {
-              returnVal = await theCall(...args);
+              returnVal = await pluginRef[functionName](...args);
             } else {
-              returnVal = theCall(...args);
+              returnVal = pluginRef[functionName](...args);
             }
             return returnVal;
           },

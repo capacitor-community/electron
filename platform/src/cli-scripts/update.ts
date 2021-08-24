@@ -1,9 +1,11 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { existsSync, writeFileSync } from 'fs';
 import { copySync } from 'fs-extra';
 import { join, isAbsolute, resolve, relative } from 'path';
 
 import type { TaskInfoProvider } from './common';
 import {
+  getPlugins,
   readJSON,
   resolvePlugin,
   resolveElectronPlugin,
@@ -15,9 +17,9 @@ export async function doUpdate(
 ): Promise<void> {
   const usersProjectDir = process.env.CAPACITOR_ROOT_DIR;
 
-  const webAppPackageJson = await readJSON(
-    join(usersProjectDir, 'package.json'),
-  );
+  const userProjectPackageJsonPath = join(usersProjectDir, 'package.json');
+
+  const webAppPackageJson = await readJSON(userProjectPackageJsonPath);
   const dependencies = webAppPackageJson.dependencies
     ? webAppPackageJson.dependencies
     : {};
@@ -31,12 +33,14 @@ export async function doUpdate(
 
   taskInfoMessageProvider('searching for plugins');
 
+  //console.log(`\n\n${userProjectPackageJsonPath}\n\n`);
+
   // get all cap plugins installed
-  let plugins = await Promise.all(
-    Object.keys(deps).map(async p => resolvePlugin(p)),
-  );
-  // Filter out null returns
-  plugins = plugins.filter(p => !!p);
+  const plugins = await getPlugins(userProjectPackageJsonPath);
+  //console.log('\n\n');
+  //console.log(plugins);
+  //console.log('\n');
+
   // Get only the ones with electron "native" plugins
   const pluginMap: {
     name: string;
@@ -63,6 +67,10 @@ export async function doUpdate(
     .filter(plugin => plugin.path !== null);
 
   let npmIStr = '';
+
+  //console.log('\n');
+  //console.log(pluginMap);
+  //console.log('\n');
 
   taskInfoMessageProvider('generating electron-plugins.js');
 
