@@ -82,6 +82,8 @@ export function pick<T>(
   );
 }
 
+const pluginInstances: { [pluginClassName: string]: any } = {};
+
 export function setupCapacitorElectronPlugins(): void {
   console.log('in setupCapacitorElectronPlugins');
   const rtPluginsPath = join(
@@ -113,10 +115,19 @@ export function setupCapacitorElectronPlugins(): void {
           `${classKey}-${functionName}`,
           async (_event, ...args) => {
             console.log(`called ipcMain.handle: ${classKey}-${functionName}`);
-            const pluginRef = new plugins[pluginKey][classKey]();
-            const theCall = pluginRef[functionName];
+            let pluginRef: any = undefined;
+            if (
+              pluginInstances[`${pluginKey}_${classKey}`] === undefined ||
+              pluginInstances[`${pluginKey}_${classKey}`] === null
+            ) {
+              pluginInstances[`${pluginKey}_${classKey}`] = new plugins[
+                pluginKey
+              ][classKey]();
+            }
+            pluginRef = pluginInstances[`${pluginKey}_${classKey}`];
             const isPromise =
-              theCall instanceof Promise || theCall instanceof AsyncFunction;
+              pluginRef[functionName] instanceof Promise ||
+              pluginRef[functionName] instanceof AsyncFunction;
             let returnVal = null;
             if (isPromise) {
               returnVal = await pluginRef[functionName](...args);
