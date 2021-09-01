@@ -141,12 +141,16 @@ export function setupCapacitorElectronPlugins() {
                   call instanceof Promise;
                 console.log("isPromise", isPromise);
                 if (isPromise) {
-                  const returnVal = await call;
-                  event.reply(
-                    `${classKey}-${functionName}-reply`,
-                    id,
-                    returnVal ?? null
-                  );
+                  try {
+                    const returnVal = await call;
+                    event.reply(
+                      `${classKey}-${functionName}-reply`,
+                      id,
+                      returnVal ?? null
+                    );
+                  } catch (err) {
+                    event.reply(`${classKey}-${functionName}-reply`, id, err, true);
+                  }
                 } else {
                   event.returnValue = call;
                 }

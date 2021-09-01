@@ -187,14 +187,15 @@ for (const pluginKey of Object.keys(plugins)) {
         if (isPromise) {
           pluginsRegistry[classKey][functionName] = (...sendArgs: any) => {
             const id = getRandomId();
-            return new Promise((resolve, _reject) => {
+            return new Promise((resolve, reject) => {
               console.log(
                 `sending async ipc from renderer of channel: ${classKey}-${functionName}`
               );
               const listener = (
                 _event: any,
                 returnedId: string,
-                returnedValue: unknown
+                returnedValue: unknown,
+                threw = false
               ) => {
                 if (returnedId === id) {
                   console.log("got reply of:", returnedValue);
@@ -202,7 +203,12 @@ for (const pluginKey of Object.keys(plugins)) {
                     `${classKey}-${functionName}-reply`,
                     listener
                   );
-                  resolve(returnedValue);
+                  
+                  if (threw) {
+                    reject(returnedValue);
+                  } else {
+                    resolve(returnedValue);
+                  }
                 }
               };
               ipcRenderer.on(`${classKey}-${functionName}-reply`, listener);
