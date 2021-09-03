@@ -74,24 +74,17 @@ interface PackageJson {
 }
 
 export async function getPlugins(packageJsonPath: string): Promise<Plugin[]> {
-  const packageJson: PackageJson = (await readJSON(
-    packageJsonPath,
-  )) as PackageJson;
+  const packageJson: PackageJson = (await readJSON(packageJsonPath)) as PackageJson;
   //console.log(packageJson);
   const possiblePlugins = getDependencies(packageJson);
   //console.log(possiblePlugins);
-  const resolvedPlugins = await Promise.all(
-    possiblePlugins.map(async p => resolvePlugin(p)),
-  );
+  const resolvedPlugins = await Promise.all(possiblePlugins.map(async (p) => resolvePlugin(p)));
 
-  return resolvedPlugins.filter(p => !!p);
+  return resolvedPlugins.filter((p) => !!p);
 }
 
 export function getDependencies(packageJson: PackageJson): string[] {
-  return [
-    ...Object.keys(packageJson.dependencies ?? {}),
-    ...Object.keys(packageJson.devDependencies ?? {}),
-  ];
+  return [...Object.keys(packageJson.dependencies ?? {}), ...Object.keys(packageJson.devDependencies ?? {})];
 }
 
 export async function resolvePlugin(name: string): Promise<Plugin | null> {
@@ -100,8 +93,7 @@ export async function resolvePlugin(name: string): Promise<Plugin | null> {
     const packagePath = resolveNode(usersProjectDir, name, 'package.json');
     if (!packagePath) {
       console.error(
-        `\nUnable to find ${chalk.bold(`node_modules/${name}`)}.\n` +
-          `Are you sure ${chalk.bold(name)} is installed?`,
+        `\nUnable to find ${chalk.bold(`node_modules/${name}`)}.\n` + `Are you sure ${chalk.bold(name)} is installed?`
       );
     }
 
@@ -126,10 +118,7 @@ export async function resolvePlugin(name: string): Promise<Plugin | null> {
   return null;
 }
 
-export function resolveNode(
-  root: string,
-  ...pathSegments: string[]
-): string | null {
+export function resolveNode(root: string, ...pathSegments: string[]): string | null {
   try {
     const t = require.resolve(pathSegments.join('/'), { paths: [root] });
     //console.log(t);
@@ -170,15 +159,13 @@ export function fixName(name: string): string {
     .replace(/\//g, '_')
     .replace(/-/g, '_')
     .replace(/@/g, '')
-    .replace(/_\w/g, m => m[1].toUpperCase());
+    .replace(/_\w/g, (m) => m[1].toUpperCase());
 
   return name.charAt(0).toUpperCase() + name.slice(1);
 }
 
 export function hashJsFileName(filename: string, slt: number): string {
-  const hash = createHash('md5')
-    .update(`${Date.now()}-${slt}-${filename}`)
-    .digest('hex');
+  const hash = createHash('md5').update(`${Date.now()}-${slt}-${filename}`).digest('hex');
   return `${filename}-${hash}.js`;
 }
 
@@ -204,11 +191,7 @@ export function resolveNodeFrom(start: string, id: string): string | null {
 
 export function resolveElectronPlugin(plugin: Plugin): string | null {
   if (plugin.manifest?.electron?.src) {
-    return join(
-      plugin.rootPath,
-      plugin.manifest.electron.src,
-      'dist/plugin.js',
-    );
+    return join(plugin.rootPath, plugin.manifest.electron.src, 'dist/plugin.js');
   } else {
     return null;
   }
@@ -216,10 +199,7 @@ export function resolveElectronPlugin(plugin: Plugin): string | null {
 
 export type TaskInfoProvider = (messsage: string) => void;
 
-export async function runTask<T>(
-  title: string,
-  fn: (info: TaskInfoProvider) => Promise<T>,
-): Promise<T> {
+export async function runTask<T>(title: string, fn: (info: TaskInfoProvider) => Promise<T>): Promise<T> {
   // eslint-disable-next-line @typescript-eslint/no-var-requires
   const ora = require('ora');
   // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -234,9 +214,7 @@ export async function runTask<T>(
     });
     spinner = spinner.info();
     const elapsed = process.hrtime(start);
-    spinner = spinner.succeed(
-      `${title}: ${chalk.dim('completed in ' + formatHrTime(elapsed))}`,
-    );
+    spinner = spinner.succeed(`${title}: ${chalk.dim('completed in ' + formatHrTime(elapsed))}`);
     return value;
   } catch (e) {
     spinner = spinner.fail(`${title}: ${e.message ? e.message : ''}`);

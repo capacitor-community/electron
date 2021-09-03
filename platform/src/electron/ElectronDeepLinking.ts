@@ -5,7 +5,7 @@ import { CapElectronEventEmitter } from './util';
 
 export function setupElectronDeepLinking(
   capacitorElectronApp: any,
-  config: ElectronCapacitorDeeplinkingConfig,
+  config: ElectronCapacitorDeeplinkingConfig
 ): ElectronCapacitorDeeplinking {
   return new ElectronCapacitorDeeplinking(capacitorElectronApp, config);
 }
@@ -21,21 +21,16 @@ export class ElectronCapacitorDeeplinking {
     this.customProtocol = config.customProtocol;
     if (config.customHandler) this.customHandler = config.customHandler;
 
-    CapElectronEventEmitter.on(
-      'CAPELECTRON_DeeplinkListenerInitialized',
-      () => {
-        if (
-          this.capacitorAppRef?.getMainWindow() &&
-          !this.capacitorAppRef.getMainWindow().isDestroyed() &&
-          this.lastPassedUrl !== null &&
-          this.lastPassedUrl.length > 0
-        )
-          this.capacitorAppRef
-            .getMainWindow()
-            .webContents.send('appUrlOpen', this.lastPassedUrl);
-        this.lastPassedUrl = null;
-      },
-    );
+    CapElectronEventEmitter.on('CAPELECTRON_DeeplinkListenerInitialized', () => {
+      if (
+        this.capacitorAppRef?.getMainWindow() &&
+        !this.capacitorAppRef.getMainWindow().isDestroyed() &&
+        this.lastPassedUrl !== null &&
+        this.lastPassedUrl.length > 0
+      )
+        this.capacitorAppRef.getMainWindow().webContents.send('appUrlOpen', this.lastPassedUrl);
+      this.lastPassedUrl = null;
+    });
 
     const instanceLock = app.requestSingleInstanceLock();
     if (instanceLock) {
@@ -45,8 +40,7 @@ export class ElectronCapacitorDeeplinking {
           this.internalHandler(this.lastPassedUrl);
         }
         if (!this.capacitorAppRef.getMainWindow().isDestroyed()) {
-          if (this.capacitorAppRef.getMainWindow().isMinimized())
-            this.capacitorAppRef.getMainWindow().restore();
+          if (this.capacitorAppRef.getMainWindow().isMinimized()) this.capacitorAppRef.getMainWindow().restore();
           this.capacitorAppRef.getMainWindow().focus();
         } else {
           this.capacitorAppRef.init();
@@ -56,14 +50,12 @@ export class ElectronCapacitorDeeplinking {
       app.quit();
     }
 
-    if (!app.isDefaultProtocolClient(this.customProtocol))
-      app.setAsDefaultProtocolClient(this.customProtocol);
+    if (!app.isDefaultProtocolClient(this.customProtocol)) app.setAsDefaultProtocolClient(this.customProtocol);
     app.on('open-url', (event, url) => {
       event.preventDefault();
       this.lastPassedUrl = url;
       this.internalHandler(url);
-      if (this.capacitorAppRef?.getMainWindow()?.isDestroyed())
-        this.capacitorAppRef.init();
+      if (this.capacitorAppRef?.getMainWindow()?.isDestroyed()) this.capacitorAppRef.init();
     });
 
     if (process.platform === 'win32') {
@@ -83,15 +75,9 @@ export class ElectronCapacitorDeeplinking {
         }
       }
       if (url.length > 0) {
-        if (this.customHandler !== null && url !== null)
-          this.customHandler(url);
-        if (
-          this.capacitorAppRef?.getMainWindow() &&
-          !this.capacitorAppRef.getMainWindow().isDestroyed()
-        )
-          this.capacitorAppRef
-            .getMainWindow()
-            .webContents.send('appUrlOpen', url);
+        if (this.customHandler !== null && url !== null) this.customHandler(url);
+        if (this.capacitorAppRef?.getMainWindow() && !this.capacitorAppRef.getMainWindow().isDestroyed())
+          this.capacitorAppRef.getMainWindow().webContents.send('appUrlOpen', url);
       }
     }
   }

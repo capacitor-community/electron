@@ -1,10 +1,6 @@
 import { setupElectronDeepLinking } from './ElectronDeepLinking';
 import { CapacitorSplashScreen } from './ElectronSplashScreen';
-import {
-  CapElectronEventEmitter,
-  getCapacitorElectronConfig,
-  setupCapacitorElectronPlugins,
-} from './util';
+import { CapElectronEventEmitter, getCapacitorElectronConfig, setupCapacitorElectronPlugins } from './util';
 
 export * from './definitions';
 

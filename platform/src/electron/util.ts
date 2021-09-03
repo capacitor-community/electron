@@ -25,8 +25,7 @@ export function deepMerge(target: any, _objects: any[] = []): any {
   const getTypeOf = function (input: any) {
     if (input === null) return 'null';
     else if (typeof input === 'undefined') return 'undefined';
-    else if (typeof input === 'object')
-      return Array.isArray(input) ? 'array' : 'object';
+    else if (typeof input === 'object') return Array.isArray(input) ? 'array' : 'object';
     return typeof input;
   };
   const quickCloneObject = function (input: any) {
@@ -40,7 +39,7 @@ export function deepMerge(target: any, _objects: any[] = []): any {
     }
     return output;
   };
-  const objects = _objects.map(object => object || {});
+  const objects = _objects.map((object) => object || {});
   const output = target || {};
   for (let oindex = 0; oindex < objects.length; oindex++) {
     const object = objects[oindex];
@@ -52,8 +51,7 @@ export function deepMerge(target: any, _objects: any[] = []): any {
       const existingValueType = getTypeOf(output[key]);
       if (type === 'object') {
         if (existingValueType !== 'undefined') {
-          const existingValue =
-            existingValueType === 'object' ? output[key] : {};
+          const existingValue = existingValueType === 'object' ? output[key] : {};
           output[key] = deepMerge({}, [existingValue, quickCloneObject(value)]);
         } else {
           output[key] = quickCloneObject(value);
@@ -73,26 +71,15 @@ export function deepMerge(target: any, _objects: any[] = []): any {
   return output;
 }
 
-export function pick<T>(
-  object: Record<string, T>,
-  keys: string[],
-): Record<string, T> {
-  return Object.fromEntries(
-    Object.entries(object).filter(([key]) => keys.includes(key)),
-  );
+export function pick<T>(object: Record<string, T>, keys: string[]): Record<string, T> {
+  return Object.fromEntries(Object.entries(object).filter(([key]) => keys.includes(key)));
 }
 
 const pluginInstances: { [pluginClassName: string]: any } = {};
 
 export function setupCapacitorElectronPlugins(): void {
   console.log('in setupCapacitorElectronPlugins');
-  const rtPluginsPath = join(
-    app.getAppPath(),
-    'build',
-    'src',
-    'rt',
-    'electron-plugins.js',
-  );
+  const rtPluginsPath = join(app.getAppPath(), 'build', 'src', 'rt', 'electron-plugins.js');
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   const AsyncFunction = (async () => {}).constructor;
   // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -102,41 +89,33 @@ export function setupCapacitorElectronPlugins(): void {
   console.log(plugins);
   for (const pluginKey of Object.keys(plugins)) {
     console.log(`${pluginKey}`);
-    for (const classKey of Object.keys(plugins[pluginKey]).filter(
-      className => className !== 'default',
-    )) {
+    for (const classKey of Object.keys(plugins[pluginKey]).filter((className) => className !== 'default')) {
       console.log(`-> ${classKey}`);
-      const functionList = Object.getOwnPropertyNames(
-        plugins[pluginKey][classKey].prototype,
-      ).filter(v => v !== 'constructor');
+      const functionList = Object.getOwnPropertyNames(plugins[pluginKey][classKey].prototype).filter(
+        (v) => v !== 'constructor'
+      );
       for (const functionName of functionList) {
         console.log(`--> ${functionName}`);
-        ipcMain.handle(
-          `${classKey}-${functionName}`,
-          async (_event, ...args) => {
-            console.log(`called ipcMain.handle: ${classKey}-${functionName}`);
-            let pluginRef: any = undefined;
-            if (
-              pluginInstances[`${pluginKey}_${classKey}`] === undefined ||
-              pluginInstances[`${pluginKey}_${classKey}`] === null
-            ) {
-              pluginInstances[`${pluginKey}_${classKey}`] = new plugins[
-                pluginKey
-              ][classKey]();
-            }
-            pluginRef = pluginInstances[`${pluginKey}_${classKey}`];
-            const isPromise =
-              pluginRef[functionName] instanceof Promise ||
-              pluginRef[functionName] instanceof AsyncFunction;
-            let returnVal = null;
-            if (isPromise) {
-              returnVal = await pluginRef[functionName](...args);
-            } else {
-              returnVal = pluginRef[functionName](...args);
-            }
-            return returnVal;
-          },
-        );
+        ipcMain.handle(`${classKey}-${functionName}`, async (_event, ...args) => {
+          console.log(`called ipcMain.handle: ${classKey}-${functionName}`);
+          let pluginRef: any = undefined;
+          if (
+            pluginInstances[`${pluginKey}_${classKey}`] === undefined ||
+            pluginInstances[`${pluginKey}_${classKey}`] === null
+          ) {
+            pluginInstances[`${pluginKey}_${classKey}`] = new plugins[pluginKey][classKey]();
+          }
+          pluginRef = pluginInstances[`${pluginKey}_${classKey}`];
+          const isPromise =
+            pluginRef[functionName] instanceof Promise || pluginRef[functionName] instanceof AsyncFunction;
+          let returnVal = null;
+          if (isPromise) {
+            returnVal = await pluginRef[functionName](...args);
+          } else {
+            returnVal = pluginRef[functionName](...args);
+          }
+          return returnVal;
+        });
       }
     }
   }
@@ -163,15 +142,9 @@ export function getCapacitorElectronConfig(): CapacitorElectronConfig {
   let config: CapacitorElectronConfig = {};
   let capFileConfig: any = {};
   if (existsSync(join(app.getAppPath(), 'build', 'capacitor.config.js'))) {
-    capFileConfig = require(join(
-      app.getAppPath(),
-      'build',
-      'capacitor.config.js',
-    )).default;
+    capFileConfig = require(join(app.getAppPath(), 'build', 'capacitor.config.js')).default;
   } else {
-    capFileConfig = JSON.parse(
-      readFileSync(join(app.getAppPath(), 'capacitor.config.json')).toString(),
-    );
+    capFileConfig = JSON.parse(readFileSync(join(app.getAppPath(), 'capacitor.config.json')).toString());
   }
   if (capFileConfig.electron) config = deepMerge(config, [capFileConfig]);
   return config;

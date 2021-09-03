@@ -9,13 +9,10 @@ async function packTemplate() {
   const templateSrc = join('./', 'template');
   const destTemplateFilePath = join('./', 'template.tar.gz');
   const files = [];
-  readdirSync(templateSrc).forEach(file => {
+  readdirSync(templateSrc).forEach((file) => {
     files.push(file);
   });
-  await tar.create(
-    { gzip: true, file: destTemplateFilePath, cwd: templateSrc },
-    files,
-  );
+  await tar.create({ gzip: true, file: destTemplateFilePath, cwd: templateSrc }, files);
   console.log(`Packed ${destTemplateFilePath}!`);
 }
 
@@ -27,15 +24,7 @@ async function buildCliScrpts() {
     platform: 'node',
     target: 'node14',
     minify: true,
-    external: [
-      'child_process',
-      'fs',
-      'path',
-      'fs-extra',
-      'crypto',
-      'chalk',
-      'ora',
-    ],
+    external: ['child_process', 'fs', 'path', 'fs-extra', 'crypto', 'chalk', 'ora'],
   });
 }
 

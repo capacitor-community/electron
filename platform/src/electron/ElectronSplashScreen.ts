@@ -25,10 +25,7 @@ export class CapacitorSplashScreen {
     });
   }
 
-  async init(
-    loadMainWindowCallback: any,
-    mainWindowThisRef: any,
-  ): Promise<void> {
+  async init(loadMainWindowCallback: any, mainWindowThisRef: any): Promise<void> {
     this.splashWin = new BrowserWindow({
       width: this.splashOptions.windowWidth,
       height: this.splashOptions.windowHeight,
@@ -48,9 +45,7 @@ export class CapacitorSplashScreen {
 
     const splashHtml = `<html style="width: 100%; height: 100%; margin: 0; overflow: hidden;"><body style="width: 100%; height: 100%;"><div style="background-image: url('${imageUrl}'); background-position: center center; background-repeat: no-repeat; width: 100%; height: 100%; margin: 0; overflow: hidden; position: absolute; top: 0; left: 0; z-index: 100;">&nbsp;</div></body></html>`;
 
-    this.splashWin.loadURL(
-      `data:text/html;charset=UTF-8,${encodeURIComponent(splashHtml)}`,
-    );
+    this.splashWin.loadURL(`data:text/html;charset=UTF-8,${encodeURIComponent(splashHtml)}`);
 
     this.splashWin.webContents.on('dom-ready', async () => {
       this.splashWin.show();

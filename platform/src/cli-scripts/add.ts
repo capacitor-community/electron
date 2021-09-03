@@ -7,16 +7,14 @@ import type { TaskInfoProvider } from './common';
 import { readJSON, runExec, writePrettyJSON } from './common';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export async function doAdd(
-  taskInfoMessageProvider: TaskInfoProvider,
-): Promise<void> {
+export async function doAdd(taskInfoMessageProvider: TaskInfoProvider): Promise<void> {
   const usersProjectDir = process.env.CAPACITOR_ROOT_DIR;
   const platformNodeModuleTemplateTar = join(
     usersProjectDir,
     'node_modules',
     '@capacitor-community',
     'electron',
-    'template.tar.gz',
+    'template.tar.gz'
   );
   const destDir = join(usersProjectDir, 'electron');
   let usersProjectCapConfigFile: string | undefined = undefined;

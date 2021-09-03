@@ -4,28 +4,16 @@ import { copySync } from 'fs-extra';
 import { join, isAbsolute, resolve, relative } from 'path';
 
 import type { TaskInfoProvider } from './common';
-import {
-  getPlugins,
-  readJSON,
-  resolvePlugin,
-  resolveElectronPlugin,
-  runExec,
-} from './common';
+import { getPlugins, readJSON, resolvePlugin, resolveElectronPlugin, runExec } from './common';
 
-export async function doUpdate(
-  taskInfoMessageProvider: TaskInfoProvider,
-): Promise<void> {
+export async function doUpdate(taskInfoMessageProvider: TaskInfoProvider): Promise<void> {
   const usersProjectDir = process.env.CAPACITOR_ROOT_DIR;
 
   const userProjectPackageJsonPath = join(usersProjectDir, 'package.json');
 
   const webAppPackageJson = await readJSON(userProjectPackageJsonPath);
-  const dependencies = webAppPackageJson.dependencies
-    ? webAppPackageJson.dependencies
-    : {};
-  const devDependencies = webAppPackageJson.devDependencies
-    ? webAppPackageJson.devDependencies
-    : {};
+  const dependencies = webAppPackageJson.dependencies ? webAppPackageJson.dependencies : {};
+  const devDependencies = webAppPackageJson.devDependencies ? webAppPackageJson.devDependencies : {};
   const deps = {
     ...dependencies,
     ...devDependencies,
@@ -48,15 +36,13 @@ export async function doUpdate(
     installStr: string;
     id: string;
   }[] = plugins
-    .map(plugin => {
+    .map((plugin) => {
       let installStr = '';
       // consider cases when package is not installed via npm
       // TODO: add support for packages installed via git etc...
       if (deps[plugin?.id] && deps[plugin?.id].startsWith('file:')) {
         const pkgPath = deps[plugin?.id].replace(/^file:/, '');
-        const pkgAbsPath = isAbsolute(pkgPath)
-          ? pkgPath
-          : resolve(usersProjectDir, pkgPath);
+        const pkgAbsPath = isAbsolute(pkgPath) ? pkgPath : resolve(usersProjectDir, pkgPath);
         installStr = relative(join(usersProjectDir, 'electron'), pkgAbsPath); // try to use relative path as much as possible
       } else installStr = `${plugin?.id}@${plugin?.version}`;
       const path = resolveElectronPlugin(plugin);
@@ -64,7 +50,7 @@ export async function doUpdate(
       const id = plugin?.id;
       return { name, path, installStr, id };
     })
-    .filter(plugin => plugin.path !== null);
+    .filter((plugin) => plugin.path !== null);
 
   let npmIStr = '';
 
@@ -77,18 +63,8 @@ export async function doUpdate(
   let outStr = `/* eslint-disable @typescript-eslint/no-var-requires */\n`;
   for (const electronPlugin of pluginMap) {
     npmIStr += ` ${electronPlugin.installStr}`;
-    const tmpPath = join(
-      usersProjectDir,
-      'electron',
-      'node_modules',
-      electronPlugin.id,
-      'electron',
-      'dist/plugin.js',
-    );
-    outStr += `const ${electronPlugin.name} = require('${tmpPath.replace(
-      /\\/g,
-      '\\\\',
-    )}')\n`;
+    const tmpPath = join(usersProjectDir, 'electron', 'node_modules', electronPlugin.id, 'electron', 'dist/plugin.js');
+    outStr += `const ${electronPlugin.name} = require('${tmpPath.replace(/\\/g, '\\\\')}')\n`;
   }
   outStr += '\nmodule.exports = {\n';
   for (const electronPlugin of pluginMap) {
@@ -96,18 +72,9 @@ export async function doUpdate(
   }
   outStr += '}';
 
-  const capacitorElectronRuntimeFilePath = join(
-    usersProjectDir,
-    'electron',
-    'src',
-    'rt',
-  );
+  const capacitorElectronRuntimeFilePath = join(usersProjectDir, 'electron', 'src', 'rt');
 
-  writeFileSync(
-    join(capacitorElectronRuntimeFilePath, 'electron-plugins.js'),
-    outStr,
-    { encoding: 'utf-8' },
-  );
+  writeFileSync(join(capacitorElectronRuntimeFilePath, 'electron-plugins.js'), outStr, { encoding: 'utf-8' });
 
   let usersProjectCapConfigFile: string | undefined = undefined;
   let configFileName: string | undefined = undefined;
@@ -126,11 +93,7 @@ export async function doUpdate(
     usersProjectCapConfigFile = configFileOptions.json;
     configFileName = 'capacitor.config.json';
   }
-  copySync(
-    usersProjectCapConfigFile,
-    join(usersProjectDir, 'electron', configFileName),
-    { overwrite: true },
-  );
+  copySync(usersProjectCapConfigFile, join(usersProjectDir, 'electron', configFileName), { overwrite: true });
 
   if (npmIStr.length > 0) {
     taskInfoMessageProvider('installing electron plugin files');
