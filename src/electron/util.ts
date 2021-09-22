@@ -1,16 +1,10 @@
 import { join } from "path";
 import { existsSync, readFileSync } from "fs";
 import { app, ipcMain } from "electron";
-import electronIsDev from "electron-is-dev";
 import type { CapacitorElectronExtendedConfig } from "./definitions";
 import electronServe from "electron-serve";
 const mimeTypes = require("mime-types");
 const EventEmitter = require("events");
-
-// Disable logging in prod
-if (!electronIsDev) {
-  console.log = () => {};
-}
 
 class CapElectronEmitter extends EventEmitter {}
 
@@ -127,7 +121,7 @@ export function setupCapacitorElectronPlugins() {
       for (const functionName of functionList) {
         if (!pluginFunctionsRegistry[classKey][functionName]) {
           pluginFunctionsRegistry[classKey][functionName] = ipcMain.on(
-            `${classKey}-${functionName}`,
+            `function-${classKey}-${functionName}`,
             (event, id, ...args) => {
               const handle = async () => {
                 console.log("args", args);
@@ -144,12 +138,12 @@ export function setupCapacitorElectronPlugins() {
                   try {
                     const returnVal = await call;
                     event.reply(
-                      `${classKey}-${functionName}-reply`,
+                      `function-${classKey}-${functionName}-reply`,
                       id,
                       returnVal ?? null
                     );
                   } catch (err) {
-                    event.reply(`${classKey}-${functionName}-reply`, id, err, true);
+                    event.reply(`function-${classKey}-${functionName}-reply`, id, err, true);
                   }
                 } else {
                   event.returnValue = call;
@@ -163,6 +157,19 @@ export function setupCapacitorElectronPlugins() {
             }
           );
         }
+      }
+
+      if (pluginInstanceRegistry[classKey] instanceof EventEmitter) {
+        ipcMain.on(`event-add-${classKey}`, (event, type) => {
+          const eventHandler = (...data: any[]) => 
+            event.sender.send(`event-${classKey}-${type}`, ...data);
+
+          pluginInstanceRegistry[classKey].addListener(type, eventHandler);
+          
+          ipcMain.once(`event-remove-${classKey}`, (_, type) => {
+            pluginFunctionsRegistry[classKey].removeListener(type, eventHandler);
+          });
+        });
       }
     }
   }

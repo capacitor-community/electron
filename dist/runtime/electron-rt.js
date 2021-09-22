@@ -8,6 +8,7 @@ class CapacitorException extends Error {
 const core_1 = require("@capacitor/core");
 const { ipcRenderer } = require("electron");
 const plugins = require("./electron-plugins");
+const { EventEmitter } = require("events");
 const crypto = require("crypto");
 const getRandomId = () => crypto.pseudoRandomBytes(5).toString("hex");
 core_1.addPlatform("electron", {
@@ -153,7 +154,7 @@ for (const pluginKey of Object.keys(plugins)) {
                             const listener = (_event, returnedId, returnedValue, threw = false) => {
                                 if (returnedId === id) {
                                     console.log("got reply of:", returnedValue);
-                                    ipcRenderer.removeListener(`${classKey}-${functionName}-reply`, listener);
+                                    ipcRenderer.removeListener(`function-${classKey}-${functionName}-reply`, listener);
                                     if (threw) {
                                         reject(returnedValue);
                                     }
@@ -162,18 +163,42 @@ for (const pluginKey of Object.keys(plugins)) {
                                     }
                                 }
                             };
-                            ipcRenderer.on(`${classKey}-${functionName}-reply`, listener);
-                            ipcRenderer.send(`${classKey}-${functionName}`, id, ...sendArgs);
+                            ipcRenderer.on(`function-${classKey}-${functionName}-reply`, listener);
+                            ipcRenderer.send(`function-${classKey}-${functionName}`, id, ...sendArgs);
                         });
                     };
                 }
                 else {
                     pluginsRegistry[classKey][functionName] = (...sendArgs) => {
                         console.log(`sending sync ipc from renderer of channel: ${classKey}-${functionName}`);
-                        return ipcRenderer.sendSync(`${classKey}-${functionName}`, "", ...sendArgs);
+                        return ipcRenderer.sendSync(`function-${classKey}-${functionName}`, "", ...sendArgs);
                     };
                 }
             }
+        }
+        if (pluginInstanceRegistry[classKey] instanceof EventEmitter) {
+            const listeners = {};
+            pluginsRegistry[classKey].events = {
+                addEventListener(type, callback) {
+                    if (!listeners[type]) {
+                        ipcRenderer.send(`event-add-${classKey}`, type);
+                        listeners[type] = new Map();
+                    }
+                    const eventHandler = (_, ...args) => callback(...args);
+                    ipcRenderer.addListener(`event-${classKey}-${type}`, eventHandler);
+                    listeners[type].set(callback, eventHandler);
+                },
+                removeEventListener(type, callback) {
+                    if (listeners[type]) {
+                        ipcRenderer.removeListener(`event-${classKey}-${type}`, listeners[type].get(callback));
+                        listeners[type].delete(callback);
+                        if (listeners[type].size) {
+                            ipcRenderer.send(`event-remove-${classKey}`, type);
+                            delete listeners[type];
+                        }
+                    }
+                }
+            };
         }
     }
 }

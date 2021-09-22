@@ -4,14 +4,9 @@ exports.getCapacitorConfig = exports.encodeFromFile = exports.setupCapacitorElec
 const path_1 = require("path");
 const fs_1 = require("fs");
 const electron_1 = require("electron");
-const electron_is_dev_1 = require("electron-is-dev");
 const electron_serve_1 = require("electron-serve");
 const mimeTypes = require("mime-types");
 const EventEmitter = require("events");
-// Disable logging in prod
-if (!electron_is_dev_1.default) {
-    console.log = () => { };
-}
 class CapElectronEmitter extends EventEmitter {
 }
 exports.CapElectronEventEmitter = new CapElectronEmitter();
@@ -115,7 +110,7 @@ function setupCapacitorElectronPlugins() {
             }
             for (const functionName of functionList) {
                 if (!pluginFunctionsRegistry[classKey][functionName]) {
-                    pluginFunctionsRegistry[classKey][functionName] = electron_1.ipcMain.on(`${classKey}-${functionName}`, (event, id, ...args) => {
+                    pluginFunctionsRegistry[classKey][functionName] = electron_1.ipcMain.on(`function-${classKey}-${functionName}`, (event, id, ...args) => {
                         const handle = async () => {
                             console.log("args", args);
                             const pluginRef = pluginInstanceRegistry[classKey];
@@ -129,10 +124,10 @@ function setupCapacitorElectronPlugins() {
                             if (isPromise) {
                                 try {
                                     const returnVal = await call;
-                                    event.reply(`${classKey}-${functionName}-reply`, id, returnVal !== null && returnVal !== void 0 ? returnVal : null);
+                                    event.reply(`function-${classKey}-${functionName}-reply`, id, returnVal !== null && returnVal !== void 0 ? returnVal : null);
                                 }
                                 catch (err) {
-                                    event.reply(`${classKey}-${functionName}-reply`, id, err, true);
+                                    event.reply(`function-${classKey}-${functionName}-reply`, id, err, true);
                                 }
                             }
                             else {
@@ -145,6 +140,15 @@ function setupCapacitorElectronPlugins() {
                         });
                     });
                 }
+            }
+            if (pluginInstanceRegistry[classKey] instanceof EventEmitter) {
+                electron_1.ipcMain.on(`event-add-${classKey}`, (event, type) => {
+                    const eventHandler = (...data) => event.sender.send(`event-${classKey}-${type}`, ...data);
+                    pluginInstanceRegistry[classKey].addListener(type, eventHandler);
+                    electron_1.ipcMain.once(`event-remove-${classKey}`, (_, type) => {
+                        pluginFunctionsRegistry[classKey].removeListener(type, eventHandler);
+                    });
+                });
             }
         }
     }

@@ -7,6 +7,7 @@ import { addPlatform, setPlatform } from "@capacitor/core";
 import type { PluginImplementations } from "@capacitor/core";
 const { ipcRenderer } = require("electron");
 const plugins = require("./electron-plugins");
+const { EventEmitter } = require("events");
 const crypto = require("crypto");
 
 const getRandomId = () => crypto.pseudoRandomBytes(5).toString("hex");
@@ -200,7 +201,7 @@ for (const pluginKey of Object.keys(plugins)) {
                 if (returnedId === id) {
                   console.log("got reply of:", returnedValue);
                   ipcRenderer.removeListener(
-                    `${classKey}-${functionName}-reply`,
+                    `function-${classKey}-${functionName}-reply`,
                     listener
                   );
                   
@@ -211,8 +212,8 @@ for (const pluginKey of Object.keys(plugins)) {
                   }
                 }
               };
-              ipcRenderer.on(`${classKey}-${functionName}-reply`, listener);
-              ipcRenderer.send(`${classKey}-${functionName}`, id, ...sendArgs);
+              ipcRenderer.on(`function-${classKey}-${functionName}-reply`, listener);
+              ipcRenderer.send(`function-${classKey}-${functionName}`, id, ...sendArgs);
             });
           };
         } else {
@@ -221,7 +222,7 @@ for (const pluginKey of Object.keys(plugins)) {
               `sending sync ipc from renderer of channel: ${classKey}-${functionName}`
             );
             return ipcRenderer.sendSync(
-              `${classKey}-${functionName}`,
+              `function-${classKey}-${functionName}`,
               "",
               ...sendArgs
             );
@@ -229,7 +230,38 @@ for (const pluginKey of Object.keys(plugins)) {
         }
       }
     }
+
+    if (pluginInstanceRegistry[classKey] instanceof EventEmitter) {
+      const listeners = {};
+
+      pluginsRegistry[classKey].events = {
+        addEventListener(type: string, callback: (...args) => void) {
+          if (!listeners[type]) {
+            ipcRenderer.send(`event-add-${classKey}`, type);
+            listeners[type] = new Map();
+          }
+
+          const eventHandler = (_, ...args) => 
+            callback(...args);
+
+          ipcRenderer.addListener(`event-${classKey}-${type}`, eventHandler);
+          listeners[type].set(callback, eventHandler);
+        },
+        removeEventListener(type, callback: (...args) => void) {
+          if (listeners[type]) {
+            ipcRenderer.removeListener(`event-${classKey}-${type}`, listeners[type].get(callback));
+            listeners[type].delete(callback);
+
+            if (listeners[type].size) {
+              ipcRenderer.send(`event-remove-${classKey}`, type);
+              delete listeners[type];
+            }
+          }
+        }
+      }
+    }
   }
 }
+
 (window as any).CapacitorElectronPlugins = { ...pluginsRegistry };
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
