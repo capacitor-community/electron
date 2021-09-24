@@ -112,15 +112,12 @@ function setupCapacitorElectronPlugins() {
                 if (!pluginFunctionsRegistry[classKey][functionName]) {
                     pluginFunctionsRegistry[classKey][functionName] = electron_1.ipcMain.on(`function-${classKey}-${functionName}`, (event, id, ...args) => {
                         const handle = async () => {
-                            console.log("args", args);
                             const pluginRef = pluginInstanceRegistry[classKey];
                             const theCall = pluginRef[functionName];
-                            console.log("theCall", theCall);
                             const call = theCall.call(pluginRef, ...args);
                             const isPromise = theCall instanceof Promise ||
                                 theCall instanceof AsyncFunction ||
                                 call instanceof Promise;
-                            console.log("isPromise", isPromise);
                             if (isPromise) {
                                 try {
                                     const returnVal = await call;

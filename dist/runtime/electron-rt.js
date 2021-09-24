@@ -192,7 +192,7 @@ for (const pluginKey of Object.keys(plugins)) {
                     if (listeners[type]) {
                         ipcRenderer.removeListener(`event-${classKey}-${type}`, listeners[type].get(callback));
                         listeners[type].delete(callback);
-                        if (listeners[type].size) {
+                        if (listeners[type].size < 1) {
                             ipcRenderer.send(`event-remove-${classKey}`, type);
                             delete listeners[type];
                         }
