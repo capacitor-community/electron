@@ -2,8 +2,11 @@
 .cache/
 build/
 node_modules/
+node_modules
 .DS_Store
 .vscode/
 npm-debug.log
 electron_template/package-lock.json
 package-lock.json
+.env
+lerna-debug.log
