@@ -124,5 +124,9 @@ export default class MyPlugin extends EventEmitter {
 
 In your client code you can do the following:
 ```typescript
-CapacitorCustomPlatform.plugins.MyPlugin.addListener('my-event', console.log);
+const id = CapacitorCustomPlatform.plugins.MyPlugin.addListener('my-event', console.log);
+
+// SOME CODE
+
+CapacitorCustomPlatform.plugins.MyPlugin.removeListener(id);
 ```
