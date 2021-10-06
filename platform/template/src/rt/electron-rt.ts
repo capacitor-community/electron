@@ -30,7 +30,7 @@ Object.keys(plugins).forEach((pluginKey) => {
 
       // Events
       if (plugins[pluginKey][classKey].prototype instanceof EventEmitter) {
-        const listeners: {[key: string]: {type: string; listener: (...args: any[]) => void}} = {};
+        const listeners: { [key: string]: { type: string; listener: (...args: any[]) => void } } = {};
         const listenersOfTypeExist = (type) => !!Object.values(listeners).find((listenerObj) => listenerObj.type === type);
 
         Object.assign(contextApi[classKey], {
@@ -44,7 +44,7 @@ Object.keys(plugins).forEach((pluginKey) => {
             const eventHandler = (_, ...args) => callback(...args);
 
             ipcRenderer.addListener(`event-${classKey}-${type}`, eventHandler);
-            listeners[id] = {type, listener: eventHandler};
+            listeners[id] = { type, listener: eventHandler };
 
             return id;
           },
