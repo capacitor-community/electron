@@ -76,6 +76,8 @@ export function pick<T>(object: Record<string, T>, keys: string[]): Record<strin
 }
 
 const pluginInstances: { [pluginClassName: string]: any } = {};
+const pluginInstanceRegistry: Record<string, any> = {};
+const pluginFunctionsRegistry: any = {};
 
 export function setupCapacitorElectronPlugins(): void {
   console.log('in setupCapacitorElectronPlugins');
@@ -91,6 +93,12 @@ export function setupCapacitorElectronPlugins(): void {
     console.log(`${pluginKey}`);
     for (const classKey of Object.keys(plugins[pluginKey]).filter((className) => className !== 'default')) {
       console.log(`-> ${classKey}`);
+
+      if (!pluginFunctionsRegistry[classKey]) {
+        pluginInstanceRegistry[classKey] = new plugins[pluginKey][classKey]();
+        pluginFunctionsRegistry[classKey] = {};
+      }
+
       const functionList = Object.getOwnPropertyNames(plugins[pluginKey][classKey].prototype).filter(
         (v) => v !== 'constructor'
       );
@@ -103,7 +111,7 @@ export function setupCapacitorElectronPlugins(): void {
             pluginInstances[`${pluginKey}_${classKey}`] === undefined ||
             pluginInstances[`${pluginKey}_${classKey}`] === null
           ) {
-            pluginInstances[`${pluginKey}_${classKey}`] = new plugins[pluginKey][classKey]();
+            pluginInstances[`${pluginKey}_${classKey}`] = pluginInstanceRegistry[classKey];
           }
           pluginRef = pluginInstances[`${pluginKey}_${classKey}`];
           const isPromise =
@@ -115,6 +123,20 @@ export function setupCapacitorElectronPlugins(): void {
             returnVal = pluginRef[functionName](...args);
           }
           return returnVal;
+        });
+      }
+
+      if (pluginInstanceRegistry[classKey] instanceof EventEmitter) {
+        ipcMain.on(`event-add-${classKey}`, (event, type) => {
+          const eventHandler = (...data: any[]) => {
+            event.sender.send(`event-${classKey}-${type}`, ...data);
+          };
+
+          (pluginInstanceRegistry[classKey] as EventEmitter).addListener(type, eventHandler);
+
+          ipcMain.once(`event-remove-${classKey}`, (_, type) => {
+            (pluginInstanceRegistry[classKey] as EventEmitter).removeListener(type, eventHandler);
+          });
         });
       }
     }
