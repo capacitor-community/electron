@@ -53,7 +53,7 @@ Object.keys(plugins).forEach((pluginKey) => {
               throw new Error('Invalid id');
             }
 
-            const {type, listener} = listeners[id];
+            const { type, listener } = listeners[id];
 
             ipcRenderer.removeListener(`event-${classKey}-${type}`, listener);
 
@@ -63,6 +63,16 @@ Object.keys(plugins).forEach((pluginKey) => {
               ipcRenderer.send(`event-remove-${classKey}`, type);
             }
           },
+          removeAllListeners(type: string) {
+            Object.entries(listeners).forEach(([id, listenerObj]) => {
+              if (listenerObj.type === type) {
+                ipcRenderer.removeListener(`event-${classKey}-${type}`, listenerObj.listener);
+                delete listeners[id];
+              }
+            });
+
+            ipcRenderer.send(`event-remove-${classKey}`, type);
+          }
         });
       }
     });
