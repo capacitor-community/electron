@@ -34,7 +34,7 @@ Object.keys(plugins).forEach((pluginKey) => {
         const listenersOfTypeExist = (type) => !!Object.values(listeners).find((listenerObj) => listenerObj.type === type);
 
         Object.assign(contextApi[classKey], {
-          addEventListener(type: string, callback: (...args) => void) {
+          addListener(type: string, callback: (...args) => void) {
             const id = randomId();
 
             if (!listenersOfTypeExist(type)) {
@@ -48,7 +48,7 @@ Object.keys(plugins).forEach((pluginKey) => {
 
             return id;
           },
-          removeEventListener(id: string) {
+          removeListener(id: string) {
             if (!listeners[id]) {
               throw new Error('Invalid id');
             }

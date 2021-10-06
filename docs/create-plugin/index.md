@@ -108,7 +108,7 @@
 ### Check out the `plugin-example` folder in the repo for a small demo plugin.
 
 ## Events
-If you want to emit events from your plugin, your class has to extend the [NodeJS event emitter class](https://nodejs.org/api/events.html#events_class_eventemitter). This is used by Capacitor Electron to determine if it should expose the `addEventListener` & `removeEventListener` functions to the Electron runtime plugin.
+If you want to emit events from your plugin, your class has to extend the [NodeJS event emitter class](https://nodejs.org/api/events.html#events_class_eventemitter). This is used by Capacitor Electron to determine if it should expose the `addListener` & `removeListener` functions to the Electron runtime plugin.
 
 ```typescript
 import { EventEmitter } from 'events';
@@ -124,5 +124,5 @@ export default class MyPlugin extends EventEmitter {
 
 In your client code you can do the following:
 ```typescript
-CapacitorCustomPlatform.plugins.MyPlugin.addEventListener('my-event', console.log);
+CapacitorCustomPlatform.plugins.MyPlugin.addListener('my-event', console.log);
 ```
