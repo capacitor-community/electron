@@ -9,7 +9,7 @@ const config = {
   title: 'Capacitor Community Electron Platform',
   tagline: 'Deploy your Capacitor apps to Linux, Mac, and Windows desktops, with the Electron platform!',
   url: 'https://github.com',
-  baseUrl: '/',
+  baseUrl: '/electron/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
