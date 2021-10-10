@@ -19,4 +19,4 @@ sidebar_position: 1
 
 ## Changing the default configuration
 
-In the `*yourAppDir*/electron/src/index.ts` you can edit anything you'd like, with V4 a lot of what was hidden in V2 from developers is now exposed to tinker with (or not if you dont want to). However most configuration is done in one of the following files in your apps main directory: `capacitor.config.json`, `capacitor.config.js`, or `capacitor.config.ts`. Please [see config options page for details](/./config-options/index).
+In the `*yourAppDir*/electron/src/index.ts` you can edit anything you'd like, with V4 a lot of what was hidden in V2 from developers is now exposed to tinker with (or not if you dont want to). However most configuration is done in one of the following files in your apps main directory: `capacitor.config.json`, `capacitor.config.js`, or `capacitor.config.ts`. Please [see config options page for details](/docs/configoptions).
