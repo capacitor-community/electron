@@ -1,4 +1,8 @@
-# **Config Options**
+---
+sidebar_position: 4
+---
+
+# Config Options
 
 You can use the options below in the `capacitor.config.ts` file under the `electron` prop. Please use `ElectronCapacitorConfig` exported from `@capacitor-community/electron` instead of `CapacitorConfig` from `@capacitor/cli`.\
 All options are optional and can be omitted if you do not require them. The `backgroundColor` property will also be used to configure the Electron window color.\

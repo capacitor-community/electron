@@ -1,4 +1,8 @@
-# Using a Custom Splashscreen
+---
+sidebar_position: 2
+---
+
+# Custom Splashscreen
 
 `@capacitor-community/electron` looks in the `YOUR_APP_ROOT/electron/assets` folder for a `splash.png` file by default, but you can use your own image by using one of the following methods:
 

@@ -1,20 +1,33 @@
-# Introduction
+# Website
 
-Deploy your Capacitor apps to Linux, Mac, and Windows desktops, with the Electron platform! 🖥️
+This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
 
-## Features
+### Installation
 
-- ⚡ **Capacitor Plugins:** use Capacitor plugins with the desktop;
-- ⚙ **Easy Configuration:** simple object configuration, where the platform takes care of the heavy lifting.
-  - 🔗 **Deeplinking:** allow web urls to open your application and receive data;
-  - 💦 **Splashscreen:** easy to use Splashscreen for loading feedback on launch and through out your app;
-  - 🌠 **Tray Icon:** simple tray icon support, with or without showing a main window;
-  - 🛠 **App Menu:** create Electron menus for your app with templates;
-- 🎉 **Typescript:** use Typescript in the electron project;
-- ⚛ **Electron:** at the end of it, the app is still Electron and the platform wont get in the way of the development flow Electron apps have.
-- 📦 **Build Defaults:** enjoy preset build defaults and runner scripts via `Electron-Builder`
-- 🔥 _And More!_
+```
+$ yarn
+```
 
-<br />
+### Local Development
 
-[Get started now!](./getting-started/index)
+```
+$ yarn start
+```
+
+This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
+
+### Build
+
+```
+$ yarn build
+```
+
+This command generates static content into the `build` directory and can be served using any static contents hosting service.
+
+### Deployment
+
+```
+$ GIT_USER=<Your GitHub username> USE_SSH=true yarn deploy
+```
+
+If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.

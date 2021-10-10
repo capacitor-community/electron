@@ -1,4 +1,8 @@
-# **Getting Started**
+---
+sidebar_position: 1
+---
+
+# Getting Started
 
 ## Installation into an existing Capacitor application.
 

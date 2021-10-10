@@ -1,3 +1,7 @@
+---
+sidebar_position: 5
+---
+
 # Create a Capacitor Electron Plugin
 
 1. Create or open a Capacitor V3 compatible plugin in your editor of choice.

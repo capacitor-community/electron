@@ -1,3 +1,7 @@
+---
+sidebar_position: 3
+---
+
 # Deeplinking
 
 The Capacitor Community Electron platform comes with a utility for enabling easy deeplinking for your applications.
