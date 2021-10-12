@@ -108,15 +108,16 @@ export function setupCapacitorElectronPlugins(): void {
         });
       }
 
-      if (pluginInstanceRegistry[classKey] instanceof EventEmitter) {
+    // For every Plugin which extends EventEmitter, start listening for 'event-add-{classKey}'
+    if (pluginInstanceRegistry[classKey] instanceof EventEmitter) {
+        // Listen for calls about adding event listeners (types) to this particular class
+        // This is only called by renderer when the first addListener of a particular type is requested
         ipcMain.on(`event-add-${classKey}`, (event, type) => {
-          const eventHandler = (...data: any[]) => {
-            event.sender.send(`event-${classKey}-${type}`, ...data);
-          };
+          const eventHandler = (...data: any[]) => event.sender.send(`event-${classKey}-${type}`, ...data);
 
           (pluginInstanceRegistry[classKey] as EventEmitter).addListener(type, eventHandler);
 
-          ipcMain.once(`event-remove-${classKey}`, (_, type) => {
+          ipcMain.once(`event-remove-${classKey}-${type}`, () => {
             (pluginInstanceRegistry[classKey] as EventEmitter).removeListener(type, eventHandler);
           });
         });

@@ -37,6 +37,7 @@ Object.keys(plugins).forEach((pluginKey) => {
           addListener(type: string, callback: (...args) => void) {
             const id = randomId();
 
+            // Deduplicate events
             if (!listenersOfTypeExist(type)) {
               ipcRenderer.send(`event-add-${classKey}`, type);
             }
@@ -60,7 +61,7 @@ Object.keys(plugins).forEach((pluginKey) => {
             delete listeners[id];
 
             if (!listenersOfTypeExist(type)) {
-              ipcRenderer.send(`event-remove-${classKey}`, type);
+              ipcRenderer.send(`event-remove-${classKey}-${type}`);
             }
           },
           removeAllListeners(type: string) {
@@ -71,7 +72,7 @@ Object.keys(plugins).forEach((pluginKey) => {
               }
             });
 
-            ipcRenderer.send(`event-remove-${classKey}`, type);
+            ipcRenderer.send(`event-remove-${classKey}-${type}`);
           }
         });
       }
