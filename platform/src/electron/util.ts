@@ -75,9 +75,7 @@ export function pick<T>(object: Record<string, T>, keys: string[]): Record<strin
   return Object.fromEntries(Object.entries(object).filter(([key]) => keys.includes(key)));
 }
 
-const pluginInstances: { [pluginClassName: string]: any } = {};
-const pluginInstanceRegistry: Record<string, any> = {};
-const pluginFunctionsRegistry: any = {};
+const pluginInstanceRegistry: { [pluginClassName: string]: { [functionName: string]: any } } = {};
 
 export function setupCapacitorElectronPlugins(): void {
   console.log('in setupCapacitorElectronPlugins');
@@ -94,26 +92,17 @@ export function setupCapacitorElectronPlugins(): void {
     for (const classKey of Object.keys(plugins[pluginKey]).filter((className) => className !== 'default')) {
       console.log(`-> ${classKey}`);
 
-      if (!pluginFunctionsRegistry[classKey]) {
+      if (!pluginInstanceRegistry[classKey]) {
         pluginInstanceRegistry[classKey] = new plugins[pluginKey][classKey]();
-        pluginFunctionsRegistry[classKey] = {};
       }
 
-      const functionList = Object.getOwnPropertyNames(plugins[pluginKey][classKey].prototype).filter(
-        (v) => v !== 'constructor'
-      );
+      const functionList = Object.getOwnPropertyNames(plugins[pluginKey][classKey].prototype).filter((v) => v !== 'constructor');
+
       for (const functionName of functionList) {
         console.log(`--> ${functionName}`);
         ipcMain.handle(`${classKey}-${functionName}`, async (_event, ...args) => {
           console.log(`called ipcMain.handle: ${classKey}-${functionName}`);
-          let pluginRef: any = undefined;
-          if (
-            pluginInstances[`${pluginKey}_${classKey}`] === undefined ||
-            pluginInstances[`${pluginKey}_${classKey}`] === null
-          ) {
-            pluginInstances[`${pluginKey}_${classKey}`] = pluginInstanceRegistry[classKey];
-          }
-          pluginRef = pluginInstances[`${pluginKey}_${classKey}`];
+          const pluginRef = pluginInstanceRegistry[classKey];
           const isPromise =
             pluginRef[functionName] instanceof Promise || pluginRef[functionName] instanceof AsyncFunction;
           let returnVal = null;
