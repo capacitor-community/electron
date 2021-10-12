@@ -80,12 +80,11 @@ const pluginInstanceRegistry: { [pluginClassName: string]: { [functionName: stri
 export function setupCapacitorElectronPlugins(): void {
   console.log('in setupCapacitorElectronPlugins');
   const rtPluginsPath = join(app.getAppPath(), 'build', 'src', 'rt', 'electron-plugins.js');
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  const AsyncFunction = (async () => {}).constructor;
   // eslint-disable-next-line @typescript-eslint/no-var-requires
   const plugins: {
     [pluginName: string]: { [className: string]: any };
   } = require(rtPluginsPath);
+
   console.log(plugins);
   for (const pluginKey of Object.keys(plugins)) {
     console.log(`${pluginKey}`);
@@ -100,18 +99,12 @@ export function setupCapacitorElectronPlugins(): void {
 
       for (const functionName of functionList) {
         console.log(`--> ${functionName}`);
-        ipcMain.handle(`${classKey}-${functionName}`, async (_event, ...args) => {
+
+        ipcMain.handle(`${classKey}-${functionName}`, (_event, ...args) => {
           console.log(`called ipcMain.handle: ${classKey}-${functionName}`);
           const pluginRef = pluginInstanceRegistry[classKey];
-          const isPromise =
-            pluginRef[functionName] instanceof Promise || pluginRef[functionName] instanceof AsyncFunction;
-          let returnVal = null;
-          if (isPromise) {
-            returnVal = await pluginRef[functionName](...args);
-          } else {
-            returnVal = pluginRef[functionName](...args);
-          }
-          return returnVal;
+
+          return pluginRef[functionName](...args);
         });
       }
 
