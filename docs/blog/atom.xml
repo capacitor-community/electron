@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://github.com/electron/blog</id>
+    <title>Capacitor Community Electron Platform Blog</title>
+    <updated>2021-10-10T00:00:00.000Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://github.com/electron/blog"/>
+    <subtitle>Capacitor Community Electron Platform Blog</subtitle>
+    <icon>https://github.com/electron/img/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[Welcome to the new docs site!]]></title>
+        <id>welcome</id>
+        <link href="https://github.com/electron/blog/welcome"/>
+        <updated>2021-10-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[This is the new docs site for the Capacitor Electron Platform!]]></summary>
+        <author>
+            <name>Mike Summerfeldt</name>
+            <uri>https://github.com/IT-MikeS</uri>
+        </author>
+    </entry>
+</feed>

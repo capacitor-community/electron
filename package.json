@@ -8,7 +8,8 @@
     "publish:latest-patch": "env-cmd lerna publish patch --conventional-commits --create-release github --force-publish --dist-tag latest",
     "publish:next": "env-cmd lerna publish prerelease --preid next --dist-tag next --pre-dist-tag next --conventional-commits --create-release github --force-publish",
     "build-all": "lerna run build --stream",
-    "postinstall": "lerna bootstrap"
+    "postinstall": "lerna bootstrap",
+    "lerna": "lerna"
   },
   "devDependencies": {
     "env-cmd": "~10.1.0",

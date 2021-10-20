@@ -1,4 +1,5 @@
 .env
 lerna-debug.log
 node_modules
+docs_old
 .vscode
