@@ -60,19 +60,19 @@ export async function doUpdate(taskInfoMessageProvider: TaskInfoProvider): Promi
 
   taskInfoMessageProvider('generating electron-plugins.js');
 
+  const capacitorElectronRuntimeFilePath = join(usersProjectDir, 'electron', 'src', 'rt');
+
   let outStr = `/* eslint-disable @typescript-eslint/no-var-requires */\n`;
   for (const electronPlugin of pluginMap) {
     npmIStr += ` ${electronPlugin.installStr}`;
-    const tmpPath = join(usersProjectDir, 'electron', 'node_modules', electronPlugin.id, 'electron', 'dist/plugin.js');
-    outStr += `const ${electronPlugin.name} = require('${tmpPath.replace(/\\/g, '\\\\')}')\n`;
+    const tmpPath = join(relative(capacitorElectronRuntimeFilePath, usersProjectDir), 'node_modules', electronPlugin.id, 'electron', 'dist/plugin.js');
+    outStr += `const ${electronPlugin.name} = require('${tmpPath.replace(/\\/g, '\\\\')}');\n`;
   }
   outStr += '\nmodule.exports = {\n';
   for (const electronPlugin of pluginMap) {
     outStr += `  ${electronPlugin.name},\n`;
   }
   outStr += '}';
-
-  const capacitorElectronRuntimeFilePath = join(usersProjectDir, 'electron', 'src', 'rt');
 
   writeFileSync(join(capacitorElectronRuntimeFilePath, 'electron-plugins.js'), outStr, { encoding: 'utf-8' });
 
