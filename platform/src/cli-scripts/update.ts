@@ -73,7 +73,13 @@ export async function doUpdate(taskInfoMessageProvider: TaskInfoProvider): Promi
   let outStr = `/* eslint-disable @typescript-eslint/no-var-requires */\n`;
   for (const electronPlugin of pluginMap) {
     npmIStr += ` ${electronPlugin.installStr}`;
-    const tmpPath = join(relative(capacitorElectronRuntimeFilePath, usersProjectDir), 'node_modules', electronPlugin.id, 'electron', 'dist/plugin.js');
+    const tmpPath = join(
+      relative(capacitorElectronRuntimeFilePath, usersProjectDir),
+      'node_modules',
+      electronPlugin.id,
+      'electron',
+      'dist/plugin.js'
+    );
     outStr += `const ${electronPlugin.name} = require('${tmpPath.replace(/\\/g, '\\\\')}');\n`;
   }
   outStr += '\nmodule.exports = {\n';
