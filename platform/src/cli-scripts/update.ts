@@ -37,14 +37,22 @@ export async function doUpdate(taskInfoMessageProvider: TaskInfoProvider): Promi
     id: string;
   }[] = plugins
     .map((plugin) => {
-      let installStr = '';
-      // consider cases when package is not installed via npm
-      // TODO: add support for packages installed via git etc...
-      if (deps[plugin?.id] && deps[plugin?.id].startsWith('file:')) {
-        const pkgPath = deps[plugin?.id].replace(/^file:/, '');
-        const pkgAbsPath = isAbsolute(pkgPath) ? pkgPath : resolve(usersProjectDir, pkgPath);
-        installStr = relative(join(usersProjectDir, 'electron'), pkgAbsPath); // try to use relative path as much as possible
-      } else installStr = `${plugin?.id}@${plugin?.version}`;
+      const installStr: string = (() => {
+        // Consider cases when package is not installed via npm
+        if (deps[plugin?.id]) {
+          if (deps[plugin.id].startsWith('file:')) {
+            const pkgPath = deps[plugin?.id].replace(/^file:/, '');
+            const pkgAbsPath = isAbsolute(pkgPath) ? pkgPath : resolve(usersProjectDir, pkgPath);
+
+            return relative(join(usersProjectDir, 'electron'), pkgAbsPath); // try to use relative path as much as possible
+          } else if (deps[plugin.id].match(/^(https?|git):/)) {
+            return deps[plugin.id];
+          }
+        }
+
+        return `${plugin?.id}@${plugin?.version}`;
+      })();
+
       const path = resolveElectronPlugin(plugin);
       const name = plugin?.name;
       const id = plugin?.id;

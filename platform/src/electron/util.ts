@@ -9,6 +9,7 @@ import { join } from 'path';
 import type { CapacitorElectronConfig } from './definitions';
 
 class CapElectronEmitter extends EventEmitter {}
+let config: CapacitorElectronConfig = {};
 
 export const CapElectronEventEmitter = new CapElectronEmitter();
 
@@ -75,6 +76,14 @@ export function pick<T>(object: Record<string, T>, keys: string[]): Record<strin
   return Object.fromEntries(Object.entries(object).filter(([key]) => keys.includes(key)));
 }
 
+export function deepClone<T>(object: Record<string, T>): Record<string, T> {
+  if (globalThis?.structuredClone) {
+    return globalThis.structuredClone(object);
+  }
+
+  return JSON.parse(JSON.stringify(object));
+}
+
 const pluginInstanceRegistry: { [pluginClassName: string]: { [functionName: string]: any } } = {};
 
 export function setupCapacitorElectronPlugins(): void {
@@ -92,7 +101,7 @@ export function setupCapacitorElectronPlugins(): void {
       console.log(`-> ${classKey}`);
 
       if (!pluginInstanceRegistry[classKey]) {
-        pluginInstanceRegistry[classKey] = new plugins[pluginKey][classKey]();
+        pluginInstanceRegistry[classKey] = new plugins[pluginKey][classKey](deepClone(config as Record<string, any>));
       }
 
       const functionList = Object.getOwnPropertyNames(plugins[pluginKey][classKey].prototype).filter((v) => v !== 'constructor');
@@ -144,7 +153,6 @@ export async function encodeFromFile(filePath: string): Promise<string> {
 }
 
 export function getCapacitorElectronConfig(): CapacitorElectronConfig {
-  let config: CapacitorElectronConfig = {};
   let capFileConfig: any = {};
   if (existsSync(join(app.getAppPath(), 'build', 'capacitor.config.js'))) {
     capFileConfig = require(join(app.getAppPath(), 'build', 'capacitor.config.js')).default;
@@ -152,5 +160,5 @@ export function getCapacitorElectronConfig(): CapacitorElectronConfig {
     capFileConfig = JSON.parse(readFileSync(join(app.getAppPath(), 'capacitor.config.json')).toString());
   }
   if (capFileConfig.electron) config = deepMerge(config, [capFileConfig]);
-  return config;
+  return deepClone(config as Record<string, any>) as CapacitorElectronConfig;
 }
