@@ -84,48 +84,51 @@ export function deepClone<T>(object: Record<string, T>): Record<string, T> {
   return JSON.parse(JSON.stringify(object));
 }
 
-const pluginInstances: { [pluginClassName: string]: any } = {};
+const pluginInstanceRegistry: { [pluginClassName: string]: { [functionName: string]: any } } = {};
 
 export function setupCapacitorElectronPlugins(): void {
   console.log('in setupCapacitorElectronPlugins');
   const rtPluginsPath = join(app.getAppPath(), 'build', 'src', 'rt', 'electron-plugins.js');
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  const AsyncFunction = (async () => {}).constructor;
   // eslint-disable-next-line @typescript-eslint/no-var-requires
   const plugins: {
     [pluginName: string]: { [className: string]: any };
   } = require(rtPluginsPath);
+
   console.log(plugins);
   for (const pluginKey of Object.keys(plugins)) {
     console.log(`${pluginKey}`);
     for (const classKey of Object.keys(plugins[pluginKey]).filter((className) => className !== 'default')) {
       console.log(`-> ${classKey}`);
-      const functionList = Object.getOwnPropertyNames(plugins[pluginKey][classKey].prototype).filter(
-        (v) => v !== 'constructor'
-      );
+
+      if (!pluginInstanceRegistry[classKey]) {
+        pluginInstanceRegistry[classKey] = new plugins[pluginKey][classKey](deepClone(config as Record<string, any>));
+      }
+
+      const functionList = Object.getOwnPropertyNames(plugins[pluginKey][classKey].prototype).filter((v) => v !== 'constructor');
+
       for (const functionName of functionList) {
         console.log(`--> ${functionName}`);
-        ipcMain.handle(`${classKey}-${functionName}`, async (_event, ...args) => {
+
+        ipcMain.handle(`${classKey}-${functionName}`, (_event, ...args) => {
           console.log(`called ipcMain.handle: ${classKey}-${functionName}`);
-          let pluginRef: any = undefined;
-          if (
-            pluginInstances[`${pluginKey}_${classKey}`] === undefined ||
-            pluginInstances[`${pluginKey}_${classKey}`] === null
-          ) {
-            pluginInstances[`${pluginKey}_${classKey}`] = new plugins[pluginKey][classKey](
-              deepClone(config as Record<string, any>)
-            );
-          }
-          pluginRef = pluginInstances[`${pluginKey}_${classKey}`];
-          const isPromise =
-            pluginRef[functionName] instanceof Promise || pluginRef[functionName] instanceof AsyncFunction;
-          let returnVal = null;
-          if (isPromise) {
-            returnVal = await pluginRef[functionName](...args);
-          } else {
-            returnVal = pluginRef[functionName](...args);
-          }
-          return returnVal;
+          const pluginRef = pluginInstanceRegistry[classKey];
+
+          return pluginRef[functionName](...args);
+        });
+      }
+
+    // For every Plugin which extends EventEmitter, start listening for 'event-add-{classKey}'
+    if (pluginInstanceRegistry[classKey] instanceof EventEmitter) {
+        // Listen for calls about adding event listeners (types) to this particular class
+        // This is only called by renderer when the first addListener of a particular type is requested
+        ipcMain.on(`event-add-${classKey}`, (event, type) => {
+          const eventHandler = (...data: any[]) => event.sender.send(`event-${classKey}-${type}`, ...data);
+
+          (pluginInstanceRegistry[classKey] as EventEmitter).addListener(type, eventHandler);
+
+          ipcMain.once(`event-remove-${classKey}-${type}`, () => {
+            (pluginInstanceRegistry[classKey] as EventEmitter).removeListener(type, eventHandler);
+          });
         });
       }
     }

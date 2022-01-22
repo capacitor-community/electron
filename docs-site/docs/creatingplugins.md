@@ -111,6 +111,30 @@ sidebar_position: 5
 
 ### Check out the `plugin-example` folder in the repo for a small demo plugin.
 
+## Events
+If you want to emit events from your plugin, your class has to extend the [NodeJS event emitter class](https://nodejs.org/api/events.html#events_class_eventemitter). This is used by Capacitor Electron to determine if it should expose the `addListener` & `removeListener` functions to the Electron runtime plugin.
+
+```typescript
+import { EventEmitter } from 'events';
+
+export default class MyPlugin extends EventEmitter {
+  constructor() {
+    setInterval(() => {
+      this.emit('my-event', 'You successfully listened to the 10sec event!');     
+    }, 10_000);
+  }
+}
+```
+
+In your client code you can do the following:
+```typescript
+const id = CapacitorCustomPlatform.plugins.MyPlugin.addListener('my-event', console.log);
+
+// SOME CODE
+
+CapacitorCustomPlatform.plugins.MyPlugin.removeListener(id);
+```
+
 ## Config
 Plugins get access to the `capacitor.config.ts` config object as the first argument to the constructor. E.g.:
 ```typescript
