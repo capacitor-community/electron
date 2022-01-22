@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.1.0](https://github.com/capacitor-community/electron/compare/v4.0.3...v4.1.0) (2022-01-22)
+
+
+### Features
+
+* upgrade to electron 14 ([c059943](https://github.com/capacitor-community/electron/commit/c059943f51d843ad763e4a21dbc0083933714d30))
+
+
+### Reverts
+
+* Revert "v4.1.0" ([8a875e8](https://github.com/capacitor-community/electron/commit/8a875e8940f78ca022ccd106765d324a02eb02c9))
+* Revert "v4.1.0" ([6feb65d](https://github.com/capacitor-community/electron/commit/6feb65decee36d2ec6cf469497c422b11269158a))
+
+
+
+
+
+
 ## [4.0.3](https://github.com/capacitor-community/electron/compare/v4.0.2...v4.0.3) (2021-08-25)
 
 
