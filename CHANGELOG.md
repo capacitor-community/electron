@@ -3,27 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [4.1.0](https://github.com/capacitor-community/electron/compare/v4.0.3...v4.1.0) (2022-01-22)
-
-
-### Bug Fixes
-
-* **docs:** base url issue ([6581bcf](https://github.com/capacitor-community/electron/commit/6581bcfc3a3570b6a188125fbc39002965b63e49))
-* **docs:** build docs ([fb6dedd](https://github.com/capacitor-community/electron/commit/fb6dedd645c9791653198e25527dcaa015fc80a8))
-* **docs:** build errors ([9fbe6d1](https://github.com/capacitor-community/electron/commit/9fbe6d1aa73563661cdbfd48141c811fb7dcaa4a))
-* **docs:** move build to a root folder ([0c4a39f](https://github.com/capacitor-community/electron/commit/0c4a39fd9442b6377a0e862170acbf50da4b1830))
-
-
-### Features
-
-* **docs:** new docs ([3d46b17](https://github.com/capacitor-community/electron/commit/3d46b17b9d05e9eaae5f8713a9d62263eded795b))
-* upgrade to electron 14 ([c059943](https://github.com/capacitor-community/electron/commit/c059943f51d843ad763e4a21dbc0083933714d30))
-
-
-
-
-
-
 ## [4.0.3](https://github.com/capacitor-community/electron/compare/v4.0.2...v4.0.3) (2021-08-25)
 
 
