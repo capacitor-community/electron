@@ -110,3 +110,23 @@ sidebar_position: 5
 
 
 ### Check out the `plugin-example` folder in the repo for a small demo plugin.
+
+## Config
+Plugins get access to the `capacitor.config.ts` config object as the first argument to the constructor. E.g.:
+```typescript
+export default class App {
+  private config?: Record<string, any>;
+
+  constructor(config?: Record<string, any>) {
+    this.config = config;
+  }
+
+  getLaunchUrl(): string | undefined {
+    const url = this.config?.server?.url;
+    
+    return url ? { url } : undefined;
+  }
+}
+```
+
+**Keep in mind that the config could possibly be `undefined`.**
