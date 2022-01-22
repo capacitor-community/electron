@@ -5,26 +5,17 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [4.1.0](https://github.com/capacitor-community/electron/compare/v4.0.3...v4.1.0) (2022-01-22)
 
+## Huge thanks to @jdgjsag67251 for all of the below contributions in this release!
 
 ### Bug Fixes
 
-* **docs:** base url issue ([6581bcf](https://github.com/capacitor-community/electron/commit/6581bcfc3a3570b6a188125fbc39002965b63e49))
-* **docs:** build docs ([fb6dedd](https://github.com/capacitor-community/electron/commit/fb6dedd645c9791653198e25527dcaa015fc80a8))
-* **docs:** build errors ([9fbe6d1](https://github.com/capacitor-community/electron/commit/9fbe6d1aa73563661cdbfd48141c811fb7dcaa4a))
-* **docs:** move build to a root folder ([0c4a39f](https://github.com/capacitor-community/electron/commit/0c4a39fd9442b6377a0e862170acbf50da4b1830))
-
+* Path issues in built apps
+* Background color config for electron 
 
 ### Features
 
-* **docs:** new docs ([3d46b17](https://github.com/capacitor-community/electron/commit/3d46b17b9d05e9eaae5f8713a9d62263eded795b))
-* upgrade to electron 14 ([c059943](https://github.com/capacitor-community/electron/commit/c059943f51d843ad763e4a21dbc0083933714d30))
-
-
-### Reverts
-
-* Revert "v4.1.0" ([8a875e8](https://github.com/capacitor-community/electron/commit/8a875e8940f78ca022ccd106765d324a02eb02c9))
-* Revert "v4.1.0" ([6feb65d](https://github.com/capacitor-community/electron/commit/6feb65decee36d2ec6cf469497c422b11269158a))
-
+* Plugin events support 
+* Access config from plugins
 
 
 
