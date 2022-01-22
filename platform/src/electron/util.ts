@@ -9,6 +9,7 @@ import { join } from 'path';
 import type { CapacitorElectronConfig } from './definitions';
 
 class CapElectronEmitter extends EventEmitter {}
+let config: CapacitorElectronConfig = {};
 
 export const CapElectronEventEmitter = new CapElectronEmitter();
 
@@ -103,7 +104,7 @@ export function setupCapacitorElectronPlugins(): void {
             pluginInstances[`${pluginKey}_${classKey}`] === undefined ||
             pluginInstances[`${pluginKey}_${classKey}`] === null
           ) {
-            pluginInstances[`${pluginKey}_${classKey}`] = new plugins[pluginKey][classKey]();
+            pluginInstances[`${pluginKey}_${classKey}`] = new plugins[pluginKey][classKey](config);
           }
           pluginRef = pluginInstances[`${pluginKey}_${classKey}`];
           const isPromise =
@@ -139,7 +140,6 @@ export async function encodeFromFile(filePath: string): Promise<string> {
 }
 
 export function getCapacitorElectronConfig(): CapacitorElectronConfig {
-  let config: CapacitorElectronConfig = {};
   let capFileConfig: any = {};
   if (existsSync(join(app.getAppPath(), 'build', 'capacitor.config.js'))) {
     capFileConfig = require(join(app.getAppPath(), 'build', 'capacitor.config.js')).default;
