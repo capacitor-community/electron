@@ -28,7 +28,7 @@
     "@types/node": "~14.17.4",
     "conventional-changelog-cli": "~2.1.1",
     "conventional-changelog-conventionalcommits": "~4.6.0",
-    "electron": "~14.0.0",
+    "electron": "~14.2.4",
     "esbuild": "~0.12.25",
     "eslint": "~7.32.0",
     "prettier": "2.3.2",
