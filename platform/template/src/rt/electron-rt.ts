@@ -69,13 +69,12 @@ Object.keys(plugins).forEach((pluginKey) => {
           },
           removeAllListeners(type: string) {
             Object.entries(listeners).forEach(([id, listenerObj]) => {
-              if (listenerObj.type === type) {
-                ipcRenderer.removeListener(`event-${classKey}-${type}`, listenerObj.listener);
+              if (!type || listenerObj.type === type) {
+                ipcRenderer.removeListener(`event-${classKey}-${listenerObj.type}`, listenerObj.listener);
+                ipcRenderer.send(`event-remove-${classKey}-${listenerObj.type}`);
                 delete listeners[id];
               }
             });
-
-            ipcRenderer.send(`event-remove-${classKey}-${type}`);
           },
         });
       }
