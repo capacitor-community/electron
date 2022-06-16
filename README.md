@@ -10,7 +10,7 @@ Bring your Capacitor ⚡ apps to the desktop with Electron! 🖥
    <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 <a href="#contributors"><img src="https://img.shields.io/badge/all%20contributors-11-orange?style=flat-square" /></a>
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
-  <a href="https://www.electronjs.org/releases/stable?version=14"><img src="https://img.shields.io/badge/supported%20electron%20version-~14.0.0-blue" /></a>
+  <a href="https://www.electronjs.org/releases/stable?version=14"><img src="https://img.shields.io/badge/supported%20electron%20version-^19.0.0-blue" /></a>
 </p>
 <p align="center">
   <a href="https://npmjs.com/package/@capacitor-community/electron"><img src="https://img.shields.io/npm/v/@capacitor-community/electron.svg" /></a>

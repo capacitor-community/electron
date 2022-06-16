@@ -7,13 +7,14 @@
     "publish:latest-minor": "env-cmd lerna publish minor --conventional-commits --create-release github --force-publish --dist-tag latest",
     "publish:latest-patch": "env-cmd lerna publish patch --conventional-commits --create-release github --force-publish --dist-tag latest",
     "publish:next": "env-cmd lerna publish prerelease --preid next --dist-tag next --pre-dist-tag next --conventional-commits --create-release github --force-publish",
-    "build-all": "lerna run build --stream",
+    "build": "lerna run build --stream",
+    "fmt": "lerna run fmt --stream",
     "postinstall": "lerna bootstrap",
     "lerna": "lerna"
   },
   "devDependencies": {
     "env-cmd": "~10.1.0",
-    "lerna": "~4.0.0",
-    "shx": "~0.3.3"
+    "lerna": "~5.1.4",
+    "shx": "~0.3.4"
   }
 }
