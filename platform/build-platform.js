@@ -22,7 +22,7 @@ async function buildCliScrpts() {
     bundle: true,
     outfile: 'dist/cli-scripts/cap-scripts.js',
     platform: 'node',
-    target: 'node14',
+    target: 'node16',
     minify: true,
     external: ['child_process', 'fs', 'path', 'fs-extra', 'crypto', 'chalk', 'ora'],
   });
@@ -34,7 +34,7 @@ async function buildPlatformCore() {
     bundle: true,
     outfile: 'dist/core/index.js',
     platform: 'node',
-    target: 'node14',
+    target: 'node16',
     minify: true,
     external: ['electron', 'fs', 'path', 'mime-types', 'events'],
   });
