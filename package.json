@@ -2,7 +2,7 @@
   "name": "capacitor-electron-platform",
   "private": true,
   "scripts": {
-    "prepublishOnly": "npm run build-all && shx cp -f ./README.md ./platform/README.md && git add --all && git commit -m \"chore: build and update readme in package\" && git push",
+    "prepublishOnly": "npm run build && shx cp -f ./README.md ./platform/README.md && git add --all && git commit -m \"chore: build and update readme in package\" && git push",
     "publish:latest-major": "env-cmd lerna publish major --conventional-commits --create-release github --force-publish --dist-tag latest",
     "publish:latest-minor": "env-cmd lerna publish minor --conventional-commits --create-release github --force-publish --dist-tag latest",
     "publish:latest-patch": "env-cmd lerna publish patch --conventional-commits --create-release github --force-publish --dist-tag latest",
