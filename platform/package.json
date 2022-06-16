@@ -1,6 +1,6 @@
 {
   "name": "@capacitor-community/electron",
-  "version": "4.1.1",
+  "version": "4.1.2",
   "description": "Capacitor community support for the Electron platform.",
   "main": "dist/core/index.js",
   "typings": "dist/core/index.d.ts",
@@ -15,7 +15,7 @@
     "capacitor:sync": "node dist/cli-scripts/cap-scripts.js sync",
     "capacitor:open": "node dist/cli-scripts/cap-scripts.js open",
     "build-platform": "node ./build-platform.js",
-    "build-platform-types": "tsc ./src/electron/index.ts --outDir ./dist/core --declaration --emitDeclarationOnly --esModuleInterop", 
+    "build-platform-types": "tsc ./src/electron/index.ts --outDir ./dist/core --declaration --emitDeclarationOnly --esModuleInterop",
     "prettier": "prettier \"**/*.{css,html,js,mjs,ts}\"",
     "eslint": "eslint . --ext ts"
   },

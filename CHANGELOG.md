@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.1.2](https://github.com/capacitor-community/electron/compare/v4.1.1...v4.1.2) (2022-06-16)
+
+
+### Bug Fixes
+
+* bundle platform types ([43177c2](https://github.com/capacitor-community/electron/commit/43177c29a192b5515485e20a08782dfd41560d95))
+
+
+
+
+
 ## [4.1.1](https://github.com/capacitor-community/electron/compare/v4.1.1-next.2...v4.1.1) (2022-06-16)
 
 **Note:** Version bump only for package capacitor-electron-platform
