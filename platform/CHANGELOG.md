@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.1.1-next.0](https://github.com/capacitor-community/electron/compare/v4.1.0...v4.1.1-next.0) (2022-06-16)
+
+
+### Bug Fixes
+
+* update electron and deps. ([bac0db7](https://github.com/capacitor-community/electron/commit/bac0db75e0b81b2d659621e7c4c841d383a1cb2a))
+
+
+
+
+
 # [4.1.0](https://github.com/capacitor-community/electron/compare/v4.0.3...v4.1.0) (2022-01-22)
 
 ## Huge thanks to @jdgjsag67251 for all of the below contributions in this release!
