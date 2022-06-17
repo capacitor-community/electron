@@ -9,7 +9,19 @@ on:
       - "main"
 
 jobs:
+  setup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16.15.1
+          cache: 'npm'
+      - run: npm install
+
   lint:
+    needs: [setup]
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -22,6 +34,7 @@ jobs:
       - run: npm run lint
 
   build:
+    needs: [setup, lint]
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
