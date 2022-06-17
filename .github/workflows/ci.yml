@@ -3,36 +3,31 @@ name: CI
 on:
   push:
     branches:
-      - "next"
+      - "main"
   pull_request:
     branches:
-      - "next"
+      - "main"
 
 jobs:
-  lint-platform:
+  lint:
     runs-on: ubuntu-latest
     timeout-minutes: 30
-    defaults:
-      run:
-        working-directory: ./platform
     steps:
-      - uses: actions/setup-node@v1
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
-          node-version: 14.x
-      - uses: actions/checkout@v2
+          node-version: 16.15.1
+          cache: 'npm'
       - run: npm install
       - run: npm run lint
 
-  build-platform:
+  build:
     runs-on: ubuntu-latest
     timeout-minutes: 30
-    defaults:
-      run:
-        working-directory: ./platform
     steps:
-      - uses: actions/setup-node@v1
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
-          node-version: 14.x
-      - uses: actions/checkout@v2
+          node-version: 16.15.1
       - run: npm install
       - run: npm run build

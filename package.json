@@ -7,8 +7,9 @@
     "publish:latest-minor": "env-cmd lerna publish minor --conventional-commits --create-release github --force-publish --dist-tag latest",
     "publish:latest-patch": "env-cmd lerna publish patch --conventional-commits --create-release github --force-publish --dist-tag latest",
     "publish:next": "env-cmd lerna publish prerelease --preid next --dist-tag next --pre-dist-tag next --conventional-commits --create-release github --force-publish",
-    "build": "lerna run build --stream",
-    "fmt": "lerna run fmt --stream",
+    "build": "lerna run build",
+    "fmt": "lerna run fmt",
+    "lint": "lerna run lint",
     "postinstall": "lerna bootstrap",
     "lerna": "lerna"
   },

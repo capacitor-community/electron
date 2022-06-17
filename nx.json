@@ -5,7 +5,8 @@
       "runner": "nx/tasks-runners/default",
       "options": {
         "cacheableOperations": [
-          "build"
+          "build",
+          "lint"
         ]
       }
     }
