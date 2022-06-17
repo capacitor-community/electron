@@ -6,3 +6,4 @@ docs_old
 ./.nx-cache
 ./cache
 ./nxcache
+.DS_Store
