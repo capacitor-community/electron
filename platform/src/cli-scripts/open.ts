@@ -7,7 +7,7 @@ export async function doOpen(taskInfoMessageProvider: TaskInfoProvider): Promise
   const usersProjectDir = process.env.CAPACITOR_ROOT_DIR;
   const destDir = join(usersProjectDir, 'electron');
   try {
-    taskInfoMessageProvider('builing electron app');
+    taskInfoMessageProvider('building electron app');
     taskInfoMessageProvider('running electron app');
     await runExec(`cd ${destDir} && npm run electron:start-live`);
   } catch (e) {
