@@ -46,6 +46,7 @@
     "electron-is-dev": "~2.0.0",
     "events": "~3.3.0",
     "fs-extra": "~9.1.0",
+    "keyv": "^4.5.0",
     "mime-types": "~2.1.35",
     "ora": "~5.4.1"
   },
