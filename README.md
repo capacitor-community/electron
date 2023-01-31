@@ -19,11 +19,11 @@ Bring your Capacitor ⚡ apps to the desktop with Electron! 🖥
   <a href="https://github.com/capacitor-community/electron"><img alt="GitHub Workflow Status" src="https://img.shields.io/github/actions/workflow/status/capacitor-community/electron/ci.yml?branch=main"></a>
 </p>
 
-## ⚠ Version 4 Info
+## ⚠ Version 4 or Above Info
 - You will need version `3.2.0`+ of capacitor.
 - The template and inner workings have changed a lot, a migration guide will be done but for now creating a new project to tinker with before migrating main projects is a good idea.
-- Plugins from previous versions `@capacitor-community/electron` will not function in V4, however all web plugins will continue to function as normal.
-- V4 comes with no plugins out of the box. Instead V4 follows Capacitor in seperated plugins, see [Plugin Examples Directory](https://github.com/capacitor-community/electron/tree/main/plugin-examples) for examples.
+- Plugins from previous versions `@capacitor-community/electron` will not function in V4 or above, however all web plugins will continue to function as normal.
+- V4 comes with no plugins out of the box. Instead V4 and above follow Capacitor in seperated plugins, see [Plugin Examples Directory](https://github.com/capacitor-community/electron/tree/main/plugin-examples) for examples.
 
 ## 📖 Documentation:
 
