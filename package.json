@@ -16,10 +16,9 @@
     "capacitor:open": "node dist/cli-scripts/cap-scripts.js open",
     "build-platform": "node ./build.js",
     "build-platform-types": "tsc ./src/electron-platform/index.ts --outDir ./dist/core --declaration --emitDeclarationOnly --esModuleInterop",
-    "prepare": "husky install",
     "shipit": "pnpm semantic-release && npm publish --tag latest --provenance",
     "shipit-next": "pnpm semantic-release && npm publish --tag next --provenance",
-    "commit": "git add . && pnpm git-cz"
+    "commit": "git add . && pnpm git-cz && git push"
   },
   "license": "MIT",
   "author": "IT-MikeS",
