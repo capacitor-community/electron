@@ -36,8 +36,6 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: 'Setup Tools'
         uses: ./.github/actions/setup-tools
-        with:
-          skip-install-on-cache-hit: 'true'
       - name: 'Lint Package'
         shell: bash
         run: |
@@ -54,9 +52,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: 'Setup Tools'
         uses: ./.github/actions/setup-tools
-        with:
-          skip-install-on-cache-hit: 'true'
-      - name: 'Lint Package'
+      - name: 'Build Package'
         shell: bash
         run: |
-          pnpm run lint
+          pnpm run build
