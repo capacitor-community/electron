@@ -1,9 +1,9 @@
-.env
-lerna-debug.log
-node_modules
-docs_old
-.vscode
-./.nx-cache
-./cache
-./nxcache
+.idea/
+.cache/
+build/
+dist/
+node_modules/
 .DS_Store
+.vscode/
+npm-debug.log
+template.tar.gz

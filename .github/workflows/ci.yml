@@ -5,8 +5,11 @@ on:
     branches:
       - "main"
   pull_request:
-    branches:
-      - "main"
+    types:
+      - 'synchronize'
+      - 'opened'
+
+permissions: read-all
 
 jobs:
   setup:
@@ -14,11 +17,11 @@ jobs:
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
         with:
-          node-version: 16.15.1
-          cache: 'npm'
-      - run: npm install
+          fetch-depth: 0
+          token: ${{ secrets.GH_TOKEN }}
+      - name: 'Setup Tools'
+        uses: ./.github/actions/setup-tools
 
   lint:
     needs: [setup]
@@ -26,12 +29,17 @@ jobs:
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
         with:
-          node-version: 16.15.1
-          cache: 'npm'
-      - run: npm install
-      - run: npm run lint
+          fetch-depth: 0
+          token: ${{ secrets.GH_TOKEN }}
+      - name: 'Setup Tools'
+        uses: ./.github/actions/setup-tools
+        with:
+          skip-install-on-cache-hit: 'true'
+      - name: 'Lint Package'
+        shell: bash
+        run: |
+          pnpm run lint
 
   build:
     needs: [setup, lint]
@@ -39,8 +47,14 @@ jobs:
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
         with:
-          node-version: 16.15.1
-      - run: npm install
-      - run: npm run build
+          fetch-depth: 0
+          token: ${{ secrets.GH_TOKEN }}
+      - name: 'Setup Tools'
+        uses: ./.github/actions/setup-tools
+        with:
+          skip-install-on-cache-hit: 'true'
+      - name: 'Lint Package'
+        shell: bash
+        run: |
+          pnpm run lint

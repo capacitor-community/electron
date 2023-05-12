@@ -1,7 +1,0 @@
-{
-  "packages": [
-    "./platform/"
-  ],
-  "version": "4.1.2",
-  "useNx": true
-}
