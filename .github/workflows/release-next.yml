@@ -22,6 +22,10 @@ jobs:
           uses: ./.github/actions/setup-tools
         - name: Build package
           run: pnpm run build
+        - name: "NPM Identity"
+          run: |
+            echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_PUBLISH_TOKEN }}" >> ~/.npmrc
+            npm whoami
         - name: Release
           env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
