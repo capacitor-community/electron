@@ -21,7 +21,7 @@
           "pnpm-lock.json",
           "CHANGELOG.md"
         ],
-        "message": "🔩(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}\n\n\nskip-checks: true"
+        "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}\n\n\nskip-checks: true"
       }
     ],
     "@semantic-release/github"
