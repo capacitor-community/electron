@@ -1,6 +1,6 @@
 {
   "name": "@capacitor-community/electron",
-  "version": "5.0.0",
+  "version": "4.1.2",
   "description": "Capacitor community support for the Electron platform.",
   "main": "dist/core/index.js",
   "typings": "dist/core/index.d.ts",
@@ -15,23 +15,38 @@
     "capacitor:sync": "node dist/cli-scripts/cap-scripts.js sync",
     "capacitor:open": "node dist/cli-scripts/cap-scripts.js open",
     "build-platform": "node ./build.js",
-    "build-platform-types": "tsc ./src/electron-platform/index.ts --outDir ./dist/core --declaration --emitDeclarationOnly --esModuleInterop"
+    "build-platform-types": "tsc ./src/electron-platform/index.ts --outDir ./dist/core --declaration --emitDeclarationOnly --esModuleInterop",
+    "prepare": "husky install",
+    "shipit": "pnpm semantic-release && npm publish --tag latest --provenance",
+    "shipit-next": "pnpm semantic-release && npm publish --tag next --provenance"
   },
   "license": "MIT",
   "author": "IT-MikeS",
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.59.5",
-    "@typescript-eslint/parser": "^5.59.5",
-    "eslint-config-prettier": "^8.8.0",
-    "eslint-plugin-import": "^2.27.5",
+    "@commitlint/cli": "^17.6.3",
+    "@commitlint/config-conventional": "^17.6.3",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/commit-analyzer": "^9.0.2",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/npm": "^10.0.3",
+    "@semantic-release/release-notes-generator": "^11.0.1",
     "@types/events": "^3.0.0",
     "@types/fs-extra": "^11.0.1",
     "@types/node": "^18.16.8",
+    "@typescript-eslint/eslint-plugin": "^5.59.5",
+    "@typescript-eslint/parser": "^5.59.5",
+    "commitizen": "^4.3.0",
+    "cz-conventional-changelog": "^3.3.0",
     "electron": "^24.3.0",
     "esbuild": "^0.17.18",
     "eslint": "^8.40.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-import": "^2.27.5",
+    "husky": "^8.0.0",
+    "is-ci": "^3.0.1",
     "prettier": "^2.8.8",
     "rimraf": "^5.0.0",
+    "semantic-release": "^21.0.2",
     "tar": "^6.1.14",
     "typescript": "^5.0.4"
   },
@@ -53,5 +68,20 @@
   },
   "bugs": {
     "url": "https://github.com/capacitor-community/electron/issues"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "prepare-commit-msg": "exec < /dev/tty && npx cz --hook || true"
+    }
   }
 }
