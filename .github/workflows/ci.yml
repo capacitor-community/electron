@@ -8,6 +8,7 @@ on:
     types:
       - 'synchronize'
       - 'opened'
+  workflow_dispatch:
 
 permissions: read-all
 
