@@ -18,7 +18,8 @@
     "build-platform-types": "tsc ./src/electron-platform/index.ts --outDir ./dist/core --declaration --emitDeclarationOnly --esModuleInterop",
     "prepare": "husky install",
     "shipit": "pnpm semantic-release && npm publish --tag latest --provenance",
-    "shipit-next": "pnpm semantic-release && npm publish --tag next --provenance"
+    "shipit-next": "pnpm semantic-release && npm publish --tag next --provenance",
+    "commit": "git add . && pnpm git-cz"
   },
   "license": "MIT",
   "author": "IT-MikeS",
@@ -42,7 +43,6 @@
     "eslint": "^8.40.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-import": "^2.27.5",
-    "husky": "^8.0.0",
     "is-ci": "^3.0.1",
     "prettier": "^2.8.8",
     "rimraf": "^5.0.0",
@@ -77,11 +77,6 @@
   "config": {
     "commitizen": {
       "path": "cz-conventional-changelog"
-    }
-  },
-  "husky": {
-    "hooks": {
-      "prepare-commit-msg": "exec < /dev/tty && npx cz --hook || true"
     }
   }
 }
