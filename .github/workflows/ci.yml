@@ -21,7 +21,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-          token: ${{ secrets.GH_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
       - name: 'Setup Tools'
         uses: ./.github/actions/setup-tools
 
@@ -33,7 +33,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-          token: ${{ secrets.GH_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
       - name: 'Setup Tools'
         uses: ./.github/actions/setup-tools
         with:
@@ -51,7 +51,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-          token: ${{ secrets.GH_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
       - name: 'Setup Tools'
         uses: ./.github/actions/setup-tools
         with:
