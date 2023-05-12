@@ -1,3 +1,11 @@
+# [5.0.0-next.2](https://github.com/capacitor-community/electron/compare/v5.0.0-next.1...v5.0.0-next.2) (2023-05-12)
+
+
+### Bug Fixes
+
+* release fix ([85e5fad](https://github.com/capacitor-community/electron/commit/85e5fadf6bdf3267475c409588947752c0a6c2d7))
+* release fixes ([4a0bd52](https://github.com/capacitor-community/electron/commit/4a0bd52ccb79210ee513476765923f386067e1fe))
+
 # [5.0.0-next.1](https://github.com/capacitor-community/electron/compare/v4.1.2...v5.0.0-next.1) (2023-05-12)
 
 
