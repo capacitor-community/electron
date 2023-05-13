@@ -141,17 +141,18 @@ export async function encodeFromFile(filePath: string): Promise<string> {
   if (!filePath) {
     throw new Error('filePath is required.');
   }
-  let mediaType = mimeTypes.lookup(filePath);
-  if (!mediaType) {
+  let mediaType: string | boolean = mimeTypes.lookup(filePath);
+  if (mediaType === false) {
     throw new Error('Media type unrecognized.');
-  } else if (typeof mediaType === 'string') {
-    const fileData = readFileSync(filePath);
-    mediaType = /\//.test(mediaType) ? mediaType : 'image/' + mediaType;
-    const dataBase64 = Buffer.isBuffer(fileData)
-      ? fileData.toString('base64')
-      : Buffer.from(fileData).toString('base64');
-    return 'data:' + mediaType + ';base64,' + dataBase64;
+  } else if (typeof mediaType !== 'string') {
+    throw new Error('Media type is not string.');
   }
+  const fileData = readFileSync(filePath);
+  mediaType = /\//.test(mediaType) ? mediaType : 'image/' + mediaType;
+  const dataBase64 = Buffer.isBuffer(fileData)
+    ? fileData.toString('base64')
+    : Buffer.from(fileData).toString('base64');
+  return 'data:' + mediaType + ';base64,' + dataBase64;
 }
 
 export function getCapacitorElectronConfig(): CapacitorElectronConfig {

@@ -4,6 +4,7 @@ import { exec } from 'child_process';
 import { createHash } from 'crypto';
 import { readFileSync, existsSync, writeFileSync } from 'fs';
 import type { Ora } from 'ora';
+import ora from 'ora';
 import { dirname, join, parse, resolve } from 'path';
 
 const enum PluginType {
@@ -23,7 +24,7 @@ interface PluginManifest {
     src: string;
   };
 }
-interface Plugin {
+export interface Plugin {
   id: string;
   name: string;
   version: string;
@@ -73,7 +74,7 @@ interface PackageJson {
   readonly devDependencies?: { readonly [key: string]: string | undefined };
 }
 
-export async function getPlugins(packageJsonPath: string): Promise<Plugin[]> {
+export async function getPlugins(packageJsonPath: string): Promise<(Plugin | null)[]> {
   const packageJson: PackageJson = (await readJSON(packageJsonPath)) as PackageJson;
   //console.log(packageJson);
   const possiblePlugins = getDependencies(packageJson);
@@ -89,12 +90,14 @@ export function getDependencies(packageJson: PackageJson): string[] {
 
 export async function resolvePlugin(name: string): Promise<Plugin | null> {
   try {
-    const usersProjectDir = process.env.CAPACITOR_ROOT_DIR;
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    const usersProjectDir = process.env.CAPACITOR_ROOT_DIR!;
     const packagePath = resolveNode(usersProjectDir, name, 'package.json');
     if (!packagePath) {
       console.error(
         `\nUnable to find ${chalk.bold(`node_modules/${name}`)}.\n` + `Are you sure ${chalk.bold(name)} is installed?`
       );
+      return null;
     }
 
     const rootPath = dirname(packagePath);
@@ -132,7 +135,7 @@ export function errorLog(message: string): void {
   console.log(chalk.red(`Error: ${message}`));
 }
 
-export function getCwd(): string {
+export function getCwd(): string | undefined {
   const _cwd = process.env.INIT_CWD;
   return _cwd;
 }
@@ -200,10 +203,6 @@ export function resolveElectronPlugin(plugin: Plugin): string | null {
 export type TaskInfoProvider = (messsage: string) => void;
 
 export async function runTask<T>(title: string, fn: (info: TaskInfoProvider) => Promise<T>): Promise<T> {
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const ora = require('ora');
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const chalk = require('chalk');
   let spinner: Ora = ora(title).start(`${title}`);
   try {
     spinner = spinner.start(`${title}: ${chalk.dim('start 🚀')}`);

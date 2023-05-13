@@ -4,7 +4,8 @@ import type { TaskInfoProvider } from './common';
 import { runExec, errorLog } from './common';
 
 export async function doOpen(taskInfoMessageProvider: TaskInfoProvider): Promise<void> {
-  const usersProjectDir = process.env.CAPACITOR_ROOT_DIR;
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  const usersProjectDir = process.env.CAPACITOR_ROOT_DIR!;
   const destDir = join(usersProjectDir, 'electron');
   try {
     taskInfoMessageProvider('building electron app');

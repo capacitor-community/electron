@@ -13,7 +13,7 @@ export function setupElectronDeepLinking(
 export class ElectronCapacitorDeeplinking {
   private customProtocol = 'mycapacitorapp';
   private lastPassedUrl: null | string = null;
-  private customHandler: (url: string) => void | null = null;
+  private customHandler: null | ((url: string) => void) = null;
   private capacitorAppRef: any = null;
 
   constructor(capacitorApp: any, config: ElectronCapacitorDeeplinkingConfig) {

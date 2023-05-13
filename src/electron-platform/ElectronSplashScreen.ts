@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import type Electron from 'electron';
 import { app, BrowserWindow, ipcMain } from 'electron';
 import { join } from 'path';

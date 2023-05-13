@@ -1,13 +1,13 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { existsSync, writeFileSync } from 'fs';
 import { copySync } from 'fs-extra';
 import { join, isAbsolute, resolve, relative } from 'path';
 
-import type { TaskInfoProvider } from './common';
-import { getPlugins, readJSON, resolvePlugin, resolveElectronPlugin, runExec } from './common';
+import type { TaskInfoProvider, Plugin } from './common';
+import { getPlugins, readJSON, resolveElectronPlugin, runExec } from './common';
 
 export async function doUpdate(taskInfoMessageProvider: TaskInfoProvider): Promise<void> {
-  const usersProjectDir = process.env.CAPACITOR_ROOT_DIR;
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  const usersProjectDir = process.env.CAPACITOR_ROOT_DIR!;
 
   const userProjectPackageJsonPath = join(usersProjectDir, 'package.json');
 
@@ -36,7 +36,8 @@ export async function doUpdate(taskInfoMessageProvider: TaskInfoProvider): Promi
     installStr: string;
     id: string;
   }[] = plugins
-    .map((plugin) => {
+    .filter((plugin: Plugin | null): plugin is Plugin => plugin !== null)
+    .map((plugin: Plugin) => {
       const installStr: string = (() => {
         // Consider cases when package is not installed via npm
         if (deps[plugin?.id]) {

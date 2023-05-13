@@ -8,7 +8,8 @@ import { readJSON, runExec, writePrettyJSON } from './common';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export async function doAdd(taskInfoMessageProvider: TaskInfoProvider): Promise<void> {
-  const usersProjectDir = process.env.CAPACITOR_ROOT_DIR;
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  const usersProjectDir = process.env.CAPACITOR_ROOT_DIR!;
   const platformNodeModuleTemplateTar = join(
     usersProjectDir,
     'node_modules',
@@ -36,7 +37,8 @@ export async function doAdd(taskInfoMessageProvider: TaskInfoProvider): Promise<
     configFileName = 'capacitor.config.json';
   }
 
-  const configData = JSON.parse(process.env.CAPACITOR_CONFIG);
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  const configData = JSON.parse(process.env.CAPACITOR_CONFIG!);
 
   if (!existsSync(destDir)) {
     mkdirSync(destDir);

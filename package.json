@@ -53,13 +53,13 @@
     "@capacitor/cli": ">=4.6.0",
     "@capacitor/core": ">=4.6.0",
     "@ionic/utils-fs": "~3.1.6",
-    "chalk": "^5.2.0",
+    "chalk": "^4.1.2",
     "electron-is-dev": "~2.0.0",
     "events": "~3.3.0",
     "fs-extra": "~11.1.1",
     "keyv": "^4.5.2",
     "mime-types": "~2.1.35",
-    "ora": "^6.3.0"
+    "ora": "^5.4.1"
   },
   "repository": {
     "type": "git",
