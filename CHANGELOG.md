@@ -1,3 +1,10 @@
+# [5.0.0-next.3](https://github.com/capacitor-community/electron/compare/v5.0.0-next.2...v5.0.0-next.3) (2023-05-13)
+
+
+### Bug Fixes
+
+* clean up ts errors ([0755400](https://github.com/capacitor-community/electron/commit/0755400723cf2847ec4b9f824302d623742da12a))
+
 # [5.0.0-next.2](https://github.com/capacitor-community/electron/compare/v5.0.0-next.1...v5.0.0-next.2) (2023-05-12)
 
 
