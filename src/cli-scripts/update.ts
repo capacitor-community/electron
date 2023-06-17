@@ -3,7 +3,7 @@ import { copySync } from 'fs-extra';
 import { join, isAbsolute, resolve, relative } from 'path';
 
 import type { TaskInfoProvider, Plugin } from './common';
-import { getPlugins, readJSON, resolveElectronPlugin, runExec } from './common';
+import { getPlugins, readJSON, resolveElectronPlugin, runExec, getInstallCommand } from './common';
 
 export async function doUpdate(taskInfoMessageProvider: TaskInfoProvider): Promise<void> {
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -108,11 +108,23 @@ export async function doUpdate(taskInfoMessageProvider: TaskInfoProvider): Promi
     usersProjectCapConfigFile = configFileOptions.json;
     configFileName = 'capacitor.config.json';
   }
-  copySync(usersProjectCapConfigFile, join(usersProjectDir, 'electron', configFileName), { overwrite: true });
+
+  const usersProjectConfigFilePath = join(usersProjectDir, 'electron', configFileName);
+
+  copySync(usersProjectCapConfigFile, usersProjectConfigFilePath, { overwrite: true });
 
   if (npmIStr.length > 0) {
     taskInfoMessageProvider('installing electron plugin files');
     console.log(`\n\nWill install:${npmIStr}\n\n`);
-    await runExec(`cd ${join(usersProjectDir, 'electron')} && npm i${npmIStr}`);
+
+    const config = readJSON(usersProjectConfigFilePath);
+
+    const npmClient = config.electron?.npmClient || 'npm';
+    const installCommand = getInstallCommand(npmClient);
+    const registryCommand = config.electron?.registry ? ` --registry ${config.electron.registry}` : '';
+
+    await runExec(
+      `cd ${join(usersProjectDir, 'electron')} && ${npmClient} ${installCommand}${npmIStr}${registryCommand}`
+    );
   }
 }
