@@ -19,7 +19,7 @@ sidebar_position: 5
     ConfirmResult,
   } from '../../src/definitions';
 
-  export class Dialog implements DialogPlugin {
+  export class DialogElectron implements DialogPlugin {
     async alert(options: AlertOptions): Promise<void> {
       await dialog.showMessageBox({message: options.message + ' --- electron'});
     }
@@ -99,14 +99,22 @@ sidebar_position: 5
     }
   },
   ```
-9. Modify the main `package.json` in the root directory, add an entry into the `files` array of the following:
+9. Add your electron implementation to the `<root>/src/index.ts` where your web implementation is registered:
+  ```typescript
+  const Dialog = registerPlugin<DialogPlugin>('Dialog', {
+    web: () => import('./web').then(m => new m.DialogWeb()),
+    electron: () => (window as any).CapacitorCustomPlatform.plugins.DialogElectron
+  });
+  ```
+
+10. Modify the main `package.json` in the root directory, add an entry into the `files` array of the following:
   `electron/`
-10. Modify the main `package.json` in the root directory, add an entry into the `scripts` object of the following:
+11.  Modify the main `package.json` in the root directory, add an entry into the `scripts` object of the following:
   `"build-electron": "tsc --project electron/tsconfig.json && rollup -c electron/rollup.config.js && rimraf ./electron/build",`
-11. Modify the main `package.json` in the root directory, edit the `build` entry in the `scripts` object to be the following:
+12.  Modify the main `package.json` in the root directory, edit the `build` entry in the `scripts` object to be the following:
   `"build": "npm run clean && npm run docgen && tsc && rollup -c rollup.config.js && npm run build-electron",`
-12. Run the `build` npm script to build your plugin.
-13. Release it to NPM then use in your capacitor apps as any other native plugin like android or ios. (dont forget to use `npx cap sync/copy/update/open @capacitor-community/electron`)
+13.  Run the `build` npm script to build your plugin.
+14.  Release it to NPM then use in your capacitor apps as any other native plugin like android or ios. (dont forget to use `npx cap sync/copy/update/open @capacitor-community/electron`)
 
 
 ### Check out the `plugin-example` folder in the repo for a small demo plugin.
