@@ -4,14 +4,14 @@ sidebar_position: 4
 
 # Config Options
 
-You can use the options below in the `capacitor.config.ts` file under the `electron` prop. Please use `ElectronCapacitorConfig` exported from `@capacitor-community/electron` instead of `CapacitorConfig` from `@capacitor/cli`.\
+You can use the options below in the `capacitor.config.ts` file under the `electron` prop. Please use `CapacitorElectronConfig` exported from `@capacitor-community/electron` instead of `CapacitorConfig` from `@capacitor/cli`.\
 All options are optional and can be omitted if you do not require them. The `backgroundColor` property will also be used to configure the Electron window color.\
 Furthermore, you can edit and tinker with the `electron/src/index.ts` file as more is exposed to the developer as of V3.
 
 ```typescript
-import { ElectronCapacitorConfig } from '@capacitor-community/electron';
+import { CapacitorElectronConfig } from '@capacitor-community/electron';
 
-const config: ElectronCapacitorConfig = {
+const config: CapacitorElectronConfig = {
   ...,
   electron: {
     // Custom scheme for your app to be served on in the electron window.
