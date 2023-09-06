@@ -29,7 +29,7 @@
     "@types/node": "~16.11.41",
     "conventional-changelog-cli": "~2.2.2",
     "conventional-changelog-conventionalcommits": "~4.6.3",
-    "electron": "^19.0.0",
+    "electron": "^22.3.21",
     "esbuild": "~0.14.44",
     "eslint": "~7.32.0",
     "prettier": "~2.7.1",
