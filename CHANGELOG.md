@@ -1,3 +1,10 @@
+# [5.0.0-next.4](https://github.com/capacitor-community/electron/compare/v5.0.0-next.3...v5.0.0-next.4) (2023-09-21)
+
+
+### Bug Fixes
+
+* no old changelog ([d72b1a7](https://github.com/capacitor-community/electron/commit/d72b1a753200373d6c4f44767b9c00c378bdacfb))
+
 # [5.0.0-next.3](https://github.com/capacitor-community/electron/compare/v5.0.0-next.2...v5.0.0-next.3) (2023-05-13)
 
 
