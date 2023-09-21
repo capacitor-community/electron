@@ -1,3 +1,10 @@
+## [5.0.1](https://github.com/capacitor-community/electron/compare/v5.0.0...v5.0.1) (2023-09-21)
+
+
+### Bug Fixes
+
+* electron version bump in template ([5b9c478](https://github.com/capacitor-community/electron/commit/5b9c478a568debec93b60933da4bcd62ce50d15d))
+
 # [5.0.0](https://github.com/capacitor-community/electron/compare/v4.1.3...v5.0.0) (2023-09-21)
 
 
