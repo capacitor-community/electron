@@ -1,3 +1,10 @@
+## [4.1.3](https://github.com/capacitor-community/electron/compare/v4.1.2...v4.1.3) (2023-09-21)
+
+
+### Bug Fixes
+
+* typo ([045c260](https://github.com/capacitor-community/electron/commit/045c260bc67318d8c9940f94d07cb6c54c796e6e))
+
 # [5.0.0-next.4](https://github.com/capacitor-community/electron/compare/v5.0.0-next.3...v5.0.0-next.4) (2023-09-21)
 
 
