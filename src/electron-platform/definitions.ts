@@ -22,6 +22,8 @@ export interface ElectronConfig {
   backgroundColor?: string;
   appId?: string;
   appName?: string;
+  npmClient?: string;
+  registry?: string;
 }
 
 export type CapacitorElectronConfig = CapacitorConfig & {

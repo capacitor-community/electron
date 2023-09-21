@@ -234,3 +234,16 @@ function formatHrTime(hrtime: any) {
   }
   return time.toFixed(2) + TIME_UNITS[index];
 }
+
+export function getInstallCommand(npmClient: string): string {
+  switch (npmClient) {
+    case 'yarn':
+    case 'bun':
+    case 'pnpm':
+      return 'add';
+
+    case 'npm':
+    default:
+      return 'install';
+  }
+}
