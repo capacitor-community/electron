@@ -149,9 +149,7 @@ export async function encodeFromFile(filePath: string): Promise<string> {
   }
   const fileData = readFileSync(filePath);
   mediaType = /\//.test(mediaType) ? mediaType : 'image/' + mediaType;
-  const dataBase64 = Buffer.isBuffer(fileData)
-    ? fileData.toString('base64')
-    : Buffer.from(fileData).toString('base64');
+  const dataBase64 = Buffer.isBuffer(fileData) ? fileData.toString('base64') : Buffer.from(fileData).toString('base64');
   return 'data:' + mediaType + ';base64,' + dataBase64;
 }
 
