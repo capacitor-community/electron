@@ -1,3 +1,15 @@
+# [5.0.0](https://github.com/capacitor-community/electron/compare/v4.1.3...v5.0.0) (2023-09-21)
+
+
+### Features
+
+* v5 ([a951a58](https://github.com/capacitor-community/electron/commit/a951a58a67be3be2aa50ca4fdd8252163209c9ce))
+
+
+### BREAKING CHANGES
+
+* use new electron and cap versions
+
 ## [4.1.3](https://github.com/capacitor-community/electron/compare/v4.1.2...v4.1.3) (2023-09-21)
 
 
