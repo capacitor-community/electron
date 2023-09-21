@@ -1,0 +1,45 @@
+name: 'Setup Tools'
+description: 'Setup tools needed in repo'
+
+inputs:
+  skip-install-on-cache-hit:
+    description: 'If a Cache Hit happens, skip pnpm install'
+    required: true
+    default: 'false'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Install Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18
+
+    - name: Install PNPM
+      uses: pnpm/action-setup@v2
+      id: pnpm-install
+      with:
+        version: 8
+        run_install: false
+
+    - name: Get pnpm store directory
+      id: pnpm-cache
+      shell: bash
+      run: |
+        echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_ENV
+
+    - name: Setup PNPM cache
+      id: cache-pnpm-store
+      uses: actions/cache@v3
+      env:
+        STORE_PATH: ${{ env.STORE_PATH }}
+      with:
+        path: ${{ env.STORE_PATH }}
+        key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+        restore-keys: |
+          ${{ runner.os }}-pnpm-store-
+
+    - name: Install dependencies
+      if: inputs.skip-install-on-cache-hit == 'false' || (inputs.skip-install-on-cache-hit == 'true' && steps.cache-pnpm-store.cache-hit == 'false')
+      shell: bash
+      run: pnpm install
