@@ -1,11 +1,13 @@
 import type { CapacitorConfig } from '@capacitor/cli';
+import type typescript from 'typescript';
 import chalk from 'chalk';
 import { exec } from 'child_process';
 import { createHash } from 'crypto';
-import { readFileSync, existsSync, writeFileSync } from 'fs';
+import { existsSync, writeFileSync } from 'fs';
 import type { Ora } from 'ora';
 import ora from 'ora';
 import { dirname, join, parse, resolve } from 'path';
+import { pathExists, readFileSync } from '@ionic/utils-fs';
 
 const enum PluginType {
   Core,
@@ -43,12 +45,19 @@ export interface Plugin {
   };
 }
 
+export const CONFIG_FILE_NAME_TS = 'capacitor.config.ts';
+export const CONFIG_FILE_NAME_JS = 'capacitor.config.js';
+export const CONFIG_FILE_NAME_JSON = 'capacitor.config.json';
+
 type DeepReadonly<T> = { readonly [P in keyof T]: DeepReadonly<T[P]> };
 
-export type ExternalConfig = DeepReadonly<CapacitorConfig>;
-interface Config {
-  readonly app: AppConfig;
-}
+export type ExternalConfig = DeepReadonly<CapacitorConfig> &
+  {
+    electron?: {
+      includePlugins?: string[]
+    }
+  };
+
 interface AppConfig {
   readonly rootDir: string;
   readonly appId: string;
@@ -74,11 +83,122 @@ interface PackageJson {
   readonly devDependencies?: { readonly [key: string]: string | undefined };
 }
 
+type ExtConfigPairs = Pick<
+  AppConfig,
+  'extConfigType' | 'extConfigName' | 'extConfigFilePath' | 'extConfig'
+>;
+
+interface NodeModuleWithCompile extends NodeJS.Module {
+  _compile?(code: string, filename: string): any;
+}
+
+export const requireTS = (ts: typeof typescript, p: string): unknown => {
+  const id = resolve(p);
+
+  delete require.cache[id];
+
+  require.extensions['.ts'] = (
+    module: NodeModuleWithCompile,
+    fileName: string,
+  ) => {
+    let sourceText = readFileSync(fileName, 'utf8');
+
+    if (fileName.endsWith('.ts')) {
+      const tsResults = ts.transpileModule(sourceText, {
+        fileName,
+        compilerOptions: {
+          module: ts.ModuleKind.CommonJS,
+          moduleResolution: ts.ModuleResolutionKind.NodeJs,
+          esModuleInterop: true,
+          strict: true,
+          target: ts.ScriptTarget.ES2017,
+        },
+        reportDiagnostics: true,
+      });
+      sourceText = tsResults.outputText;
+    } else {
+      // quick hack to turn a modern es module
+      // into and old school commonjs module
+      sourceText = sourceText.replace(/export\s+\w+\s+(\w+)/gm, 'exports.$1');
+    }
+
+    module._compile?.(sourceText, fileName);
+  };
+
+  const m = require(id); // eslint-disable-line @typescript-eslint/no-var-requires
+
+  delete require.extensions['.ts'];
+
+  return m;
+}
+
+async function loadExtConfigTS(
+  rootDir: string,
+  extConfigName: string,
+  extConfigFilePath: string,
+): Promise<ExtConfigPairs> {
+  const tsPath = resolveNode(rootDir, 'typescript');
+  if (!tsPath) {
+    throw new Error(
+      'Could not find installation of TypeScript.\n' +
+      `To use ${
+        extConfigName
+      } files, you must install TypeScript in your project, e.g. w/ npm install -D typescript`,
+    );
+  }
+
+  const ts = require(tsPath); // eslint-disable-line @typescript-eslint/no-var-requires
+  const extConfigObject = requireTS(ts, extConfigFilePath) as any;
+  const extConfig = extConfigObject.default ?? extConfigObject;
+
+  return {
+    extConfigType: 'ts',
+    extConfigName,
+    extConfigFilePath: extConfigFilePath,
+    extConfig,
+  };
+}
+
+async function loadExtConfigJS(
+  rootDir: string,
+  extConfigName: string,
+  extConfigFilePath: string,
+): Promise<ExtConfigPairs> {
+  return {
+    extConfigType: 'js',
+    extConfigName,
+    extConfigFilePath: extConfigFilePath,
+    extConfig: require(extConfigFilePath),
+  }
+}
+
+async function loadExtConfig(rootDir: string): Promise<ExtConfigPairs> {
+  const extConfigFilePathTS = resolve(rootDir, CONFIG_FILE_NAME_TS);
+
+  if (await pathExists(extConfigFilePathTS)) {
+    return loadExtConfigTS(rootDir, CONFIG_FILE_NAME_TS, extConfigFilePathTS);
+  }
+
+  const extConfigFilePathJS = resolve(rootDir, CONFIG_FILE_NAME_JS);
+
+  if (await pathExists(extConfigFilePathJS)) {
+    return loadExtConfigJS(rootDir, CONFIG_FILE_NAME_JS, extConfigFilePathJS);
+  }
+
+  const extConfigFilePath = resolve(rootDir, CONFIG_FILE_NAME_JSON);
+
+  return {
+    extConfigType: 'json',
+    extConfigName: CONFIG_FILE_NAME_JSON,
+    extConfigFilePath: extConfigFilePath,
+    extConfig: await readJSON(extConfigFilePath),
+  };
+}
+
 export async function getPlugins(packageJsonPath: string): Promise<(Plugin | null)[]> {
   const packageJson: PackageJson = (await readJSON(packageJsonPath)) as PackageJson;
-  //console.log(packageJson);
-  const possiblePlugins = getDependencies(packageJson);
-  //console.log(possiblePlugins);
+  const conf = (await loadExtConfig(process.env.CAPACITOR_ROOT_DIR)).extConfig.electron?.includePlugins
+  const possiblePlugins = conf ?? getDependencies(packageJson);
   const resolvedPlugins = await Promise.all(possiblePlugins.map(async (p) => resolvePlugin(p)));
 
   return resolvedPlugins.filter((p) => !!p);
