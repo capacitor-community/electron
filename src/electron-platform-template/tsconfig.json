@@ -4,6 +4,7 @@
   "compilerOptions": {
     "outDir": "./build",
     "importHelpers": true,
+    "skipLibCheck": true,
     "target": "ES2017",
     "module": "CommonJS",
     "moduleResolution": "node",
