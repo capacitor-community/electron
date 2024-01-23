@@ -10,12 +10,8 @@ import { readJSON, runExec, writePrettyJSON } from './common';
 export async function doAdd(taskInfoMessageProvider: TaskInfoProvider): Promise<void> {
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const usersProjectDir = process.env.CAPACITOR_ROOT_DIR!;
-  const platformNodeModuleTemplateTar = join(
-    usersProjectDir,
-    'node_modules',
-    '@capacitor-community',
-    'electron',
-    'template.tar.gz'
+  const platformNodeModuleTemplateTar = require.resolve(
+    ['@capacitor-community', 'electron', 'template.tar.gz'].join('/')
   );
   const destDir = join(usersProjectDir, 'electron');
   let usersProjectCapConfigFile: string | undefined = undefined;
