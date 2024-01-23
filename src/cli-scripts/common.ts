@@ -6,6 +6,7 @@ import { readFileSync, existsSync, writeFileSync } from 'fs';
 import type { Ora } from 'ora';
 import ora from 'ora';
 import { dirname, join, parse, resolve } from 'path';
+import path from "node:path"
 
 const enum PluginType {
   Core,
@@ -91,7 +92,8 @@ export function getDependencies(packageJson: PackageJson): string[] {
 export async function resolvePlugin(name: string): Promise<Plugin | null> {
   try {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    const packagePath = resolveNode( name);
+    const packagePath = resolveNode([name, 'package.json'].join('/'));
+    // const packagePath = resolveNode(name);
     if (!packagePath) {
       console.error(
         `\nUnable to find ${chalk.bold(`node_modules/${name}`)}.\n` + `Are you sure ${chalk.bold(name)} is installed?`
@@ -100,7 +102,8 @@ export async function resolvePlugin(name: string): Promise<Plugin | null> {
     }
 
     const rootPath = dirname(packagePath);
-    const meta = await readJSON([packagePath, 'package.json'].join('/'));
+    const meta = await readJSON(packagePath);
+    // const meta = await readJSON([packagePath, 'package.json'].join('/'));
     if (!meta) {
       return null;
     }
@@ -120,11 +123,10 @@ export async function resolvePlugin(name: string): Promise<Plugin | null> {
   return null;
 }
 
-
-export function resolveNode(pkg_name:string): string | null {
+export function resolveNode(pkg: string): string | null {
   try {
-    const t = require.resolve(pkg_name);
-    //console.log(t);
+    const t = path.resolve(pkg);
+    // console.log(t);
     return t;
   } catch (e) {
     return null;
