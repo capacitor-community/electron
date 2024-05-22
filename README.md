@@ -6,7 +6,7 @@
 Bring your Capacitor ⚡ apps to the desktop with Electron! 🖥
 </p>
 <p align="center">
-  <a href="https://github.com/capacitor-community/electron"><img src="https://img.shields.io/badge/maintenance%20status-maintained-yellow" /></a>
+  <a href="https://github.com/capacitor-community/electron"><img src="https://img.shields.io/badge/maintenance%20status-unmaintained-red" /></a>
    <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 <a href="#contributors"><img src="https://img.shields.io/badge/all%20contributors-11-orange?style=flat-square" /></a>
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
