@@ -92,6 +92,9 @@ export async function resolvePlugin(name: string): Promise<Plugin | null> {
   try {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const usersProjectDir = process.env.CAPACITOR_ROOT_DIR!;
+    if (/^@types[\\/]/.test(name)) {
+      return null;
+    }
     const packagePath = resolveNode(usersProjectDir, name, 'package.json');
     if (!packagePath) {
       console.error(
@@ -123,7 +126,7 @@ export async function resolvePlugin(name: string): Promise<Plugin | null> {
 
 export function resolveNode(root: string, ...pathSegments: string[]): string | null {
   try {
-    const t = require.resolve(pathSegments.join('/'), { paths: [root] });
+    const t = require.resolve(pathSegments.slice(0, -1).join('/'), { paths: [root] });
     //console.log(t);
     return t;
   } catch (e) {
