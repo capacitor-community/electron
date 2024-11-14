@@ -162,3 +162,24 @@ export default class App {
 ```
 
 **Keep in mind that the config could possibly be `undefined`.**
+
+## Caller
+Plugins get access to the caller of the method using the context object that gets passed as the second argument of the constructor. E.g.:
+
+```typescript
+import { PluginContext } from '@capacitor/electron';
+
+export default class App {
+  private context: PluginContext;
+
+  constructor(_?: Record<string, any>, context: PluginContext) {
+    this.context = context;
+  }
+
+  getId(): number {
+    const { sender } = this.context.caller.get();
+
+    return sender.id;
+  }
+}
+```
