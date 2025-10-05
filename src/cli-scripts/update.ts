@@ -67,11 +67,13 @@ export async function doUpdate(taskInfoMessageProvider: TaskInfoProvider): Promi
   //console.log(pluginMap);
   //console.log('\n');
 
-  taskInfoMessageProvider('generating electron-plugins.js');
+  taskInfoMessageProvider('generating electron-plugins.ts');
 
   const capacitorElectronRuntimeFilePath = join(usersProjectDir, 'electron', 'src', 'rt');
 
   let outStr = `/* eslint-disable @typescript-eslint/no-var-requires */\n`;
+  outStr += `import type { ISingleCapacitorElectronPlugin } from './electron-rt';\n\n`;
+  outStr += `export const AllPlugins: ISingleCapacitorElectronPlugin[] = [\n`;
   for (const electronPlugin of pluginMap) {
     npmIStr += ` ${electronPlugin.installStr}`;
     const tmpPath = join(
@@ -81,15 +83,14 @@ export async function doUpdate(taskInfoMessageProvider: TaskInfoProvider): Promi
       'electron',
       'dist/plugin.js'
     );
-    outStr += `const ${electronPlugin.name} = require('${tmpPath.replace(/\\/g, '\\\\')}');\n`;
+    outStr += `  {\n`;
+    outStr += `    name: '${electronPlugin.name}',\n`;
+    outStr += `    web: () => import('${tmpPath.replace(/\\/g, '\\\\')}'),\n`;
+    outStr += `  },\n`;
   }
-  outStr += '\nmodule.exports = {\n';
-  for (const electronPlugin of pluginMap) {
-    outStr += `  ${electronPlugin.name},\n`;
-  }
-  outStr += '}';
+  outStr += '];\n';
 
-  writeFileSync(join(capacitorElectronRuntimeFilePath, 'electron-plugins.js'), outStr, { encoding: 'utf-8' });
+  writeFileSync(join(capacitorElectronRuntimeFilePath, 'electron-plugins.ts'), outStr, { encoding: 'utf-8' });
 
   let usersProjectCapConfigFile: string | undefined = undefined;
   let configFileName: string | undefined = undefined;

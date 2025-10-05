@@ -17,11 +17,11 @@ export class CapacitorSplashScreen {
   constructor(splashOptions?: SplashOptions) {
     if (splashOptions) this.splashOptions = { ...splashOptions };
 
-    ipcMain.on('showCapacitorSplashScreen', (_event: any, _options: any) => {
+    ipcMain.on('showCapacitorSplashScreen', () => {
       this.splashWin!.show();
     });
 
-    ipcMain.on('hideCapacitorSplashScreen', (_event: any, _options: any) => {
+    ipcMain.on('hideCapacitorSplashScreen', () => {
       this.splashWin!.hide();
     });
   }

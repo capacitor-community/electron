@@ -1,0 +1,16 @@
+{
+  "name": "test-app",
+  "version": "1.0.0",
+  "description": "A test application for capacitor-community/electron",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx cap run electron"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@capacitor/cli": "latest",
+    "@capacitor/core": "latest",
+    "@capacitor-community/electron": "file:.."
+  }
+}

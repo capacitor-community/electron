@@ -46,27 +46,6 @@ export interface Plugin {
 type DeepReadonly<T> = { readonly [P in keyof T]: DeepReadonly<T[P]> };
 
 export type ExternalConfig = DeepReadonly<CapacitorConfig>;
-interface Config {
-  readonly app: AppConfig;
-}
-interface AppConfig {
-  readonly rootDir: string;
-  readonly appId: string;
-  readonly appName: string;
-  readonly webDir: string;
-  readonly webDirAbs: string;
-  readonly package: PackageJson;
-  readonly extConfigType: 'json' | 'js' | 'ts';
-  readonly extConfigName: string;
-  readonly extConfigFilePath: string;
-  readonly extConfig: ExternalConfig;
-  /**
-   * Whether to use a bundled web runtime instead of relying on a bundler/module
-   * loader. If you're not using something like rollup or webpack or dynamic ES
-   * module imports, set this to "true" and import "capacitor.js" manually.
-   */
-  readonly bundledWebRuntime: boolean;
-}
 interface PackageJson {
   readonly name: string;
   readonly version: string;
