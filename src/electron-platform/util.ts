@@ -1,12 +1,13 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable @typescript-eslint/prefer-for-of */
+import { AsyncLocalStorage } from 'async_hooks';
 import { app, ipcMain } from 'electron';
 import EventEmitter from 'events';
 import { existsSync, readFileSync } from 'fs';
 import mimeTypes from 'mime-types';
 import { join } from 'path';
 
-import type { CapacitorElectronConfig } from './definitions';
+import type { CallContext, CapacitorElectronConfig } from './definitions';
 
 class CapElectronEmitter extends EventEmitter {}
 let config: CapacitorElectronConfig = {};
@@ -87,6 +88,14 @@ export function deepClone<T>(object: Record<string, T>): Record<string, T> {
 const pluginInstanceRegistry: { [pluginClassName: string]: { [functionName: string]: any } } = {};
 
 export function setupCapacitorElectronPlugins(): void {
+  const callerStorage = new AsyncLocalStorage();
+  const caller = Object.defineProperties(
+    {},
+    {
+      get: { value: () => callerStorage.getStore(), writable: false, configurable: false, enumerable: true },
+    }
+  );
+
   console.log('in setupCapacitorElectronPlugins');
   const rtPluginsPath = join(app.getAppPath(), 'build', 'src', 'rt', 'electron-plugins.js');
   // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -101,7 +110,9 @@ export function setupCapacitorElectronPlugins(): void {
       console.log(`-> ${classKey}`);
 
       if (!pluginInstanceRegistry[classKey]) {
-        pluginInstanceRegistry[classKey] = new plugins[pluginKey][classKey](deepClone(config as Record<string, any>));
+        pluginInstanceRegistry[classKey] = new plugins[pluginKey][classKey](deepClone(config as Record<string, any>), {
+          caller,
+        });
       }
 
       const functionList = Object.getOwnPropertyNames(plugins[pluginKey][classKey].prototype).filter(
@@ -111,11 +122,18 @@ export function setupCapacitorElectronPlugins(): void {
       for (const functionName of functionList) {
         console.log(`--> ${functionName}`);
 
-        ipcMain.handle(`${classKey}-${functionName}`, (_event, ...args) => {
+        ipcMain.handle(`${classKey}-${functionName}`, (event, ...args) => {
           console.log(`called ipcMain.handle: ${classKey}-${functionName}`);
           const pluginRef = pluginInstanceRegistry[classKey];
+          const callContext: CallContext = {
+            senderFrame: event.senderFrame,
+            processId: event.processId,
+            frameId: event.frameId,
+            sender: event.sender,
+            event,
+          };
 
-          return pluginRef[functionName](...args);
+          return callerStorage.run(callContext, () => pluginRef[functionName](...args));
         });
       }
 
