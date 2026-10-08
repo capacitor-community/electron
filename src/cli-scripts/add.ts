@@ -58,7 +58,7 @@ export async function doAdd(taskInfoMessageProvider: TaskInfoProvider): Promise<
     writePrettyJSON(join(destDir, 'package.json'), platformPackageJson);
 
     taskInfoMessageProvider(`installing npm modules`);
-    await runExec(`cd ${destDir} && npm i`);
+    await runExec('npm i', destDir);
   } else {
     throw new Error('Electron platform already exists.');
   }

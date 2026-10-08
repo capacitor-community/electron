@@ -10,7 +10,7 @@ export async function doOpen(taskInfoMessageProvider: TaskInfoProvider): Promise
   try {
     taskInfoMessageProvider('building electron app');
     taskInfoMessageProvider('running electron app');
-    await runExec(`cd ${destDir} && npm run electron:start-live`);
+    await runExec('npm run electron:start-live', destDir);
   } catch (e) {
     errorLog(e.message);
     throw e;

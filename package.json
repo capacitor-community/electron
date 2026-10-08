@@ -7,6 +7,7 @@
   "scripts": {
     "lint": "pnpm eslint . --ext ts && pnpm prettier \"./**/*.{css,html,ts,js,java}\" --check",
     "fmt": "pnpm eslint . --ext ts --fix && pnpm prettier \"./**/*.{css,html,ts,js,java}\" --write",
+    "test": "pnpm run build-platform && node --test test/cli-scripts.test.js",
     "clean": "rimraf ./dist && rimraf ./template.tar.gz",
     "build": "pnpm run clean && pnpm run fmt && pnpm run build-platform && pnpm run build-platform-types",
     "capacitor:add": "node dist/cli-scripts/cap-scripts.js add",
