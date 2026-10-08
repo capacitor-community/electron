@@ -145,9 +145,9 @@ export function readJSON(pathToUse: string): { [key: string]: any } {
   return JSON.parse(data);
 }
 
-export function runExec(command: string): Promise<string> {
+export function runExec(command: string, cwd?: string): Promise<string> {
   return new Promise((resolve, reject) => {
-    exec(command, (error, stdout, stderr) => {
+    exec(command, { cwd }, (error, stdout, stderr) => {
       if (error) {
         reject(stdout + stderr);
       } else {
